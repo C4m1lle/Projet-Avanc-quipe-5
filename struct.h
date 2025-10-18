@@ -10,5 +10,10 @@ tTournee create_tournee(int tailledef);
 int add_in_tournee(tTournee tour, tInstance inst);
 void delete_tournee(tTournee * ptour);
 
+float get_x(tInstance inst);
+float get_y(tInstance inst);
+float get_id(tInstance inst);
+
+tInstance get_instance_at(tTournee tour,int nb);
 
 #endif

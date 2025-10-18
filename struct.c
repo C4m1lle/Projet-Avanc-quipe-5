@@ -20,6 +20,17 @@ tInstance create_instance(int idd, float xd, float yd){
     inst->y = yd;
     return inst;
 }
+
+float get_x(tInstance inst){
+    return inst->x;
+}
+float get_y(tInstance inst){
+    return inst->y;
+}
+int get_id(tInstance inst){
+    return inst->id;
+}
+
 void delete_instance(tInstance * pinst){
     free(*pinst);
     *pinst = NULL;
@@ -42,6 +53,11 @@ int add_in_tournee(tTournee tour, tInstance inst){
         return -1;
     }
 }
+
+tInstance get_instance_at(tTournee tour,int nb){
+    return tour->chemin[nb];
+}
+
 
 void delete_tournee(tTournee * ptour){
     free((*ptour)->chemin);
