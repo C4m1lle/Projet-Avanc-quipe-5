@@ -55,6 +55,9 @@ int add_in_tournee(tTournee tour, tInstance inst){
 }
 
 tInstance get_instance_at(tTournee tour,int nb){
+    if (nb>tour->current){
+        return NULL;
+    }
     return tour->chemin[nb];
 }
 
