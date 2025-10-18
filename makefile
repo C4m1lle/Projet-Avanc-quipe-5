@@ -1,14 +1,22 @@
-FLAGS = -Wall
+# Compilateur et options
 CC = gcc
-EXECS = main
+CFLAGS = -Wall -Wextra -std=c11
 
+# Nom de l'exécutable
+EXE = main
 
-main: main.o
-	$(CC) $(FLAGS) $^ -o $@
+# Détection automatique de tous les fichiers .c du répertoire
+SRCS = $(wildcard *.c)
+OBJS = $(SRCS:.c=.o)
 
+# Règle principale
+$(EXE): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(EXE)
+
+# Règle générique de compilation
 %.o: %.c
-	$(CC) $(FLAGS) -o $@ -c $<
+	$(CC) $(CFLAGS) -c $< -o $@
 
+# Nettoyage
 clean:
-	rm -f $(EXECS)
-	rm -f *.o
+	rm -f $(EXE) $(OBJS)
