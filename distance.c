@@ -3,21 +3,24 @@
 #include <math.h>
 #include "distance.h"
 #include "struct.h"
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
 // --------------------------------------------
 // Distance EUCLIDIENNE (EUCL_2D)
 // --------------------------------------------
 double dist_eucl2d(tInstance a, tInstance b) {
-    double dx = b->x - a->x;
-    double dy = b->y - a->y;
+    double dx = get_x(b) - get_x(a);
+    double dy = get_y(b) - get_y(a);
     return sqrt(dx * dx + dy * dy);
 }
 
 // --------------------------------------------
-// Distance ATT (pseudo-euclidienne TSPLIB)
+// Distance ATT (pseudo-euclidienne)
 // --------------------------------------------
 double dist_att(tInstance a, tInstance b) {
-    double dx = b->x - a->x;
-    double dy = b->y - a->y;
+    double dx = get_x(b) - get_x(a);
+    double dy = get_y(b) - get_y(a);
     double value = sqrt((dx * dx + dy * dy) / 10.0);
     double distance = round(value);
     if (distance < value) distance += 1.0;
@@ -25,7 +28,7 @@ double dist_att(tInstance a, tInstance b) {
 }
 
 // --------------------------------------------
-// Distance géographique (GEO - TSPLIB)
+// Distance géographique (GEO)
 // --------------------------------------------
 static double deg2rad(double deg) {
     return deg * M_PI / 180.0;
@@ -33,10 +36,10 @@ static double deg2rad(double deg) {
 
 double dist_geo(tInstance a, tInstance b) {
     double radius = 6378.388; // rayon terrestre (km)
-    double lat1 = deg2rad(a->x);
-    double lon1 = deg2rad(a->y);
-    double lat2 = deg2rad(b->x);
-    double lon2 = deg2rad(b->y);
+    double lat1 = deg2rad(get_x(a));
+    double lon1 = deg2rad(get_y(a));
+    double lat2 = deg2rad(get_x(b));
+    double lon2 = deg2rad(get_y(b));
 
     double q1 = cos(lon1 - lon2);
     double q2 = cos(lat1 - lat2);
@@ -45,18 +48,29 @@ double dist_geo(tInstance a, tInstance b) {
     return distance;
 }
 
-// --------------------------------------------
-// Calcul de la longueur d’une tournée complète
-// --------------------------------------------
 double tour_length(tTournee tour, DistanceFunc dist) {
-    if (!tour || tour->taille<2) return 0.0;
+    if (!tour)
+        return 0.0;
 
     double total = 0.0;
-    for (int i = 0; i < tour->current - 1; i++) {
-        total += dist(tour->chemin[i], tour->chemin[i + 1]);
+    int i = 0;
+
+    while (1) {
+        tInstance current = get_instance_at(tour, i);
+        tInstance next = get_instance_at(tour, i + 1);
+
+        if (next == NULL)
+            break; // fin de la tournée
+
+        total += dist(current, next);
+        i++;
     }
 
-    // Retour à la ville de départ
-    total += dist(tour->chemin[tour->current - 1], tour->chemin[0]);
+    // retour à la première ville si tournée complète
+    tInstance first = get_instance_at(tour, 0);
+    tInstance last = get_instance_at(tour, i - 1);
+    if (first && last)
+        total += dist(last, first);
+
     return total;
 }
