@@ -8,13 +8,17 @@ struct s_instance {
 };
 
 struct s_tournee { 
-    tInstance * chemin;
+    tInstance *  chemin;
     int taille;
     int current;
 };
 
 tInstance create_instance(int idd, float xd, float yd){
     tInstance inst = malloc(sizeof(struct s_instance));
+    if(inst == NULL){
+        fprintf(stderr, "Erreur : allocation échouée pour la structure \"Instance\"(%d,%f,%f).\n",idd,xd,yd);
+        return NULL;
+    }
     inst->id = idd;
     inst->x = xd;
     inst->y = yd;
@@ -38,7 +42,16 @@ void delete_instance(tInstance * pinst){
 
 tTournee create_tournee(int tailledef){
     tTournee tour = malloc(sizeof(struct s_tournee));
+    if(tour == NULL){
+        fprintf(stderr, "Erreur : allocation échouée pour la structure \"Tournee\"\n");
+        return NULL;
+    }
     tour->chemin = malloc(sizeof(tInstance)*tailledef);
+    if(tour->chemin == NULL){
+        fprintf(stderr, "Erreur : allocation échouée pour la structure \"Tournee\".\n");
+        free(tour);
+        return NULL;
+    }
     tour->taille = tailledef;
     tour->current = 0;
     return tour;

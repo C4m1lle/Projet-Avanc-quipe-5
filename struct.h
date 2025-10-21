@@ -4,6 +4,7 @@
 typedef struct s_instance* tInstance;
 typedef struct s_tournee* tTournee;
 
+
 tInstance create_instance(int idd, float xd, float yd);
 void delete_instance(tInstance * pinst);
 tTournee create_tournee(int tailledef);
