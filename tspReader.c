@@ -114,6 +114,10 @@ tProbleme load_problem(const char * filepath){
                     add_in_tournee(problem->tournee,current_instance);
                 }
             break;
+            case 0: //mot vide
+            break;
+            case 218: // EOF 
+            break;
             default:
                 fprintf(stderr,"Erreur : Mot clé invalide dans %s, \"%s\" non traité\n",filepath,token_buffer);
             break;
@@ -142,4 +146,8 @@ void print_nodes(tProbleme problem){
         }
         
     }
+}
+
+tTournee get_nodes(tProbleme problem){
+    return problem->tournee;
 }
