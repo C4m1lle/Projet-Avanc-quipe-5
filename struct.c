@@ -4,8 +4,8 @@
 
 struct s_instance { 
     int id;
-    float x;
-    float y;
+    double x;
+    double y;
 };
 
 struct s_tournee { 
@@ -14,10 +14,10 @@ struct s_tournee {
     int current;
 };
 
-tInstance create_instance(int idd, float xd, float yd){
+tInstance create_instance(int idd, double xd, double yd){
     tInstance inst = malloc(sizeof(struct s_instance));
     if(inst == NULL){
-        fprintf(stderr, "Erreur : allocation échouée pour la structure \"Instance\"(%d,%f,%f).\n",idd,xd,yd);
+        fprintf(stderr, "Erreur : allocation échouée pour la structure \"Instance\"(%d,%lf,%lf).\n",idd,xd,yd);
         return NULL;
     }
     inst->id = idd;
@@ -26,10 +26,10 @@ tInstance create_instance(int idd, float xd, float yd){
     return inst;
 }
 
-float get_x(tInstance inst){
+double get_x(tInstance inst){
     return inst->x;
 }
-float get_y(tInstance inst){
+double get_y(tInstance inst){
     return inst->y;
 }
 int get_id(tInstance inst){

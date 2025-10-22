@@ -7,7 +7,6 @@
 int main(int argc, char * argv[]){
     tInstance a = create_instance(1, 10.0, 10.0);
     tInstance b = create_instance(2, 20.0, 20.0);
-
     printf("Distance EUCL_2D : %.3f\n", dist_eucl2d(a, b));
     printf("Distance ATT     : %.3f\n", dist_att(a, b));
 
@@ -22,7 +21,10 @@ int main(int argc, char * argv[]){
     delete_instance(&p);
     delete_instance(&r);
 
-    tProbleme prob = load_problem("a280.tsp");
+    /*tProbleme prob = load_problem("a280.tsp");
+    tProbleme prob2 = load_problem("ali535.tsp");
     print_nodes(prob);
+    print_nodes(prob2);*/
+    
     return 0;
 }

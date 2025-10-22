@@ -11,6 +11,7 @@
 #define DIMENSION 678
 #define EDGE_WEIGHT_TYPE 1245
 #define NODE_COORD_SECTION 1392
+#define DISPLAY_DATA_TYPE 1328
 
 
 struct s_probleme {
@@ -20,8 +21,7 @@ struct s_probleme {
     char * type;
     int dimension;
     char * edge_weight_type;
-    /*NODE COORD TYPE
-    EDGE_DATA_SECTION*/
+    char * display_data_type;
     tTournee tournee;
 };
 
@@ -29,11 +29,6 @@ tProbleme create_problem(){
     tProbleme problem = malloc(sizeof(struct s_probleme));
     if(problem == NULL){
         fprintf(stderr, "Erreur : allocation échouée pour la structure \"Probleme\"\n");
-        return NULL;
-    }
-    problem->tournee = create_tournee(280);
-    if(problem->tournee == NULL){
-        fprintf(stderr, "Erreur : allocation échouée pour la structure \"Probleme->Tournee\"\n");
         return NULL;
     }
     return problem;
@@ -47,12 +42,13 @@ char * string_alloc(char * buffer){
 
 tProbleme load_problem(const char * filepath){
     FILE* pfile;
-    char token_buffer[32];
+    char token_buffer[128];
     char c;
     tInstance current_instance;
     int i,j;
     int sum;
-    int id,x,y;
+    int id;
+    double x,y;
 
     /*Ouverture du fichier*/
     if((pfile = fopen(filepath,"r")) == NULL){
@@ -69,7 +65,7 @@ tProbleme load_problem(const char * filepath){
             c = fgetc(pfile);
             token_buffer[j]=c;
             j++;
-        }while(c != ' ' && c!= ':' && j<31 && c != '\n');
+        }while(c != ' ' && c!= ':' && j<127 && c != '\n');
         token_buffer[j-1]='\0';
         if(c == ' '){
             while(fgetc(pfile)!=':');
@@ -81,7 +77,7 @@ tProbleme load_problem(const char * filepath){
 
         i = 0;
         sum = 0;
-        while(token_buffer[i]!='\0' && i < 32){
+        while(token_buffer[i]!='\0' && i < 128){
             sum+=token_buffer[i];
             i++;
         }
@@ -108,11 +104,16 @@ tProbleme load_problem(const char * filepath){
                 problem->edge_weight_type = string_alloc(token_buffer);
             break;
             case NODE_COORD_SECTION:
+                problem->tournee = create_tournee(problem->dimension);
                 for(int i = 0; i<problem->dimension;i++){
-                    fscanf(pfile,"%3d%3d%3d",&id,&x,&y);
+                    fscanf(pfile,"%d %lf %lf",&id,&x,&y);
                     current_instance = create_instance(id,x,y);
                     add_in_tournee(problem->tournee,current_instance);
                 }
+            break;
+            case DISPLAY_DATA_TYPE:
+                fscanf(pfile,"%s",token_buffer);
+                problem->display_data_type = string_alloc(token_buffer);
             break;
             case 0: //mot vide
             break;
@@ -125,12 +126,12 @@ tProbleme load_problem(const char * filepath){
         }
 
     }while(strcmp(token_buffer,"EOF")!=0);
-    printf("%p\n",problem);
+    /*printf("%p\n",problem);
     printf("%s\n",problem->name);
     printf("%s\n",problem->comment);
     printf("%s\n",problem->type);
     printf("%d\n",problem->dimension);
-    printf("%s\n",problem->edge_weight_type);
+    printf("%s\n",problem->edge_weight_type);*/
     return  problem;
 }
 
