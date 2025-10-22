@@ -148,6 +148,19 @@ void print_nodes(tProbleme problem){
         
     }
 }
+void print_values(tProbleme problem){
+    tInstance inst;
+    printf("[");
+    for(int i = 0;i<problem->dimension;i++){
+        inst = get_instance_at(problem->tournee,i);
+        if(i==problem->dimension-1){
+            printf("(%.2lf , %.2lf)]\n",get_x(inst),get_y(inst));
+        }else{
+            printf("(%.2lf , %.2lf), ",get_x(inst),get_y(inst));
+        }
+        
+    }
+}
 
 tTournee get_nodes(tProbleme problem){
     return problem->tournee;

@@ -6,4 +6,5 @@ typedef struct s_probleme* tProbleme;
 tProbleme load_problem(const char * filepath);
 void print_nodes(tProbleme problem);
 tTournee get_nodes(tProbleme problem);
+void print_values(tProbleme problem);
 #endif

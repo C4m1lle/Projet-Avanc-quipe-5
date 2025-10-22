@@ -24,7 +24,8 @@ int main(int argc, char * argv[]){
     /*tProbleme prob = load_problem("a280.tsp");
     tProbleme prob2 = load_problem("ali535.tsp");
     print_nodes(prob);
-    print_nodes(prob2);*/
+    print_nodes(prob2);
+    print_values(prob2);*/
     
     return 0;
 }
