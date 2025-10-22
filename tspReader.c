@@ -5,7 +5,7 @@
 #include "struct.h"
 #include "tspReader.h"
 
-#define NAME 289 //Somme des valeurs ascii
+#define NAME 289 //Somme des valeurs ascii des caractères composant le mot-clé
 #define COMMENT 531
 #define TYPE 322
 #define DIMENSION 678
@@ -47,25 +47,40 @@ char * string_alloc(char * buffer){
 
 tProbleme load_problem(const char * filepath){
     FILE* pfile;
+    char token_buffer[32];
+    char c;
+    tInstance current_instance;
+    int i,j;
+    int sum;
+    int id,x,y;
+
+    /*Ouverture du fichier*/
     if((pfile = fopen(filepath,"r")) == NULL){
         fprintf(stderr,"Fichier %s inaccessible ou inexistant.\n",filepath);
         return NULL;
     }
     tProbleme problem = create_problem();
-    char token_buffer[32];
-    char token_trashbin[32];
-    tInstance current_instance;
-    fscanf(pfile,"%s",token_buffer);
-    while(strcmp(token_buffer,"EOF")!=0){
-        int i = 0;
-        int sum = 0;
-        int id,x,y;
-        if(token_buffer[strlen(token_buffer)-1]==':'){
-            token_buffer[strlen(token_buffer)-1] = '\0';
-        }else if(sum!=NODE_COORD_SECTION){
-            fscanf(pfile,"%s",token_trashbin); //retrait des :
-            
+    
+    /*Lecture du fichier*/
+
+    do{
+        j=0;
+        do{
+            c = fgetc(pfile);
+            token_buffer[j]=c;
+            j++;
+        }while(c != ' ' && c!= ':' && j<31 && c != '\n');
+        token_buffer[j-1]='\0';
+        if(c == ' '){
+            while(fgetc(pfile)!=':');
+
         }
+
+
+        /*Calcul de la somme ascii*/
+
+        i = 0;
+        sum = 0;
         while(token_buffer[i]!='\0' && i < 32){
             sum+=token_buffer[i];
             i++;
@@ -104,9 +119,8 @@ tProbleme load_problem(const char * filepath){
             break;
 
         }
-        fscanf(pfile,"%s",token_buffer);
-        
-    }
+
+    }while(strcmp(token_buffer,"EOF")!=0);
     printf("%p\n",problem);
     printf("%s\n",problem->name);
     printf("%s\n",problem->comment);
