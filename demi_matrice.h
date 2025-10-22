@@ -6,7 +6,7 @@
 
 
 typedef struct {
-    int nb_villes;      /
+    int nb_villes;
     double **lignes;    
 } DemiMatrice;
 
