@@ -13,7 +13,7 @@ void delete_tournee(tTournee * ptour);
 
 float get_x(tInstance inst);
 float get_y(tInstance inst);
-float get_id(tInstance inst);
+int get_id(tInstance inst);
 
 tInstance get_instance_at(tTournee tour,int nb);
 

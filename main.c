@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "struct.h"
 #include "distance.h"
+#include "tspReader.h"
 
 int main(int argc, char * argv[]){
     tInstance a = create_instance(1, 10.0, 10.0);
@@ -21,5 +22,7 @@ int main(int argc, char * argv[]){
     delete_instance(&p);
     delete_instance(&r);
 
+    tProbleme prob = load_problem("a280.tsp");
+    print_nodes(prob);
     return 0;
 }
