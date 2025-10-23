@@ -1,31 +1,85 @@
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <strings.h>
+#include <string.h>
+#include <time.h>
 #include "struct.h"
-#include "distance.h"
 #include "tspReader.h"
+#include "distance.h"
 
-int main(int argc, char * argv[]){
-    tInstance a = create_instance(1, 10.0, 10.0);
-    tInstance b = create_instance(2, 20.0, 20.0);
-    printf("Distance EUCL_2D : %.3f\n", dist_eucl2d(a, b));
-    printf("Distance ATT     : %.3f\n", dist_att(a, b));
+int main(int argc, char *argv[]) {
 
-    delete_instance(&a);
-    delete_instance(&b);
+    if (argc < 3) {
+        printf("Usage : %s -f fichier.tsp [-c]\n", argv[0]);
+        printf("  -f : nom du fichier TSPLIB à lire\n");
+        printf("  -c : (optionnel) calculer la longueur de la tournée canonique\n");
+        return 1;
+    }
 
-    // Exemple GEO 
-    tInstance p = create_instance(1, 48.8566, 2.3522);
-    tInstance r = create_instance(2, 41.9028, 12.4964);
-    printf("Distance GEO     : %.3f km\n", dist_geo(p, r));
+    char *filename = NULL;
 
-    delete_instance(&p);
-    delete_instance(&r);
+    for (int i = 1; i < argc; i++) {
+        if (strcmp(argv[i], "-f") == 0 && i + 1 < argc) {
+            filename = argv[++i];
+        }
+    }
 
-    /*tProbleme prob = load_problem("a280.tsp");
-    tProbleme prob2 = load_problem("ali535.tsp");
-    print_nodes(prob);
-    print_nodes(prob2);
-    print_values(prob2);*/
-    
+    if (!filename) {
+        fprintf(stderr, "Erreur : aucun fichier .tsp fourni.\n");
+        return 1;
+    }
+
+    tProbleme problem = load_problem(filename);
+    if (!problem) {
+        fprintf(stderr, "Erreur : impossible de charger le fichier TSPLIB.\n");
+        return 1;
+    }
+
+    tTournee tour = get_nodes(problem);
+    if (!tour) {
+        fprintf(stderr, "Erreur : aucune tournée trouvée dans le fichier.\n");
+        delete_problem(&problem);
+        return 1;
+    }
+
+    const char *etype = get_edge_weight_type(problem);
+    int dist_code = 0;  // 0 = EUCL_2D, 1 = ATT, 2 = GEO
+    if (etype) {
+        if (strcasecmp(etype, "ATT") == 0) dist_code = 1;
+        else if (strcasecmp(etype, "GEO") == 0) dist_code = 2;
+    }
+
+    // Chronométrer le calcul
+    clock_t start = clock();
+
+    double length = 0.0;
+    if (dist_code == 1)
+        length = tour_length(tour, dist_att);
+    else if (dist_code == 2)
+        length = tour_length(tour, dist_geo);
+    else
+        length = tour_length(tour, dist_eucl2d);
+
+    clock_t end = clock();
+    double cpu_time = (double)(end - start) / CLOCKS_PER_SEC;
+
+    // Affichage au format Python attendu
+ 
+    printf("Tour %s canonical %.6f %.2f [", filename, cpu_time, length);
+
+    int i = 0;
+    tInstance inst;
+    while ((inst = get_instance_at(tour, i)) != NULL) {
+        printf("%d", get_id(inst));
+        i++;
+        if (get_instance_at(tour, i) != NULL)
+            printf(",");
+    }
+    printf("]\n");
+
+    delete_problem(&problem);
+
     return 0;
 }
+
+
