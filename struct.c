@@ -69,15 +69,26 @@ int add_in_tournee(tTournee tour, tInstance inst){
 }
 
 tInstance get_instance_at(tTournee tour,int nb){
-    if (nb>tour->current){
+     if (!tour) return NULL;
+    if (nb >= tour->current) {
         return NULL;
     }
+
     return tour->chemin[nb];
 }
 
 
 void delete_tournee(tTournee * ptour){
-    free((*ptour)->chemin);
-    free(*ptour);
+   if (!ptour || !*ptour) return;
+
+    tTournee t = *ptour;
+
+   
+    for (int i = 0; i < t->current; i++) {
+        delete_instance(&(t->chemin[i]));
+    }
+
+    free(t->chemin);
+    free(t);
     *ptour = NULL;
 }
