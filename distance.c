@@ -3,74 +3,85 @@
 #include <math.h>
 #include "distance.h"
 #include "struct.h"
-#ifndef M_PI
-#define M_PI 3.14159265358979323846
-#endif
+#define PI 3.141592
+#define RRR 6378.388
+static int nint(double x) {
+    return (int)(x + 0.5);
+}
 // --------------------------------------------
 // Distance EUCLIDIENNE (EUCL_2D)
 // --------------------------------------------
 double dist_eucl2d(tInstance a, tInstance b) {
-    double dx = get_x(b) - get_x(a);
-    double dy = get_y(b) - get_y(a);
-    return sqrt(dx * dx + dy * dy);
+    double xd = get_x(a) - get_x(b);
+    double yd = get_y(a) - get_y(b);
+
+    double dij = sqrt(xd * xd + yd * yd);
+    return nint(dij);
 }
 
 // --------------------------------------------
 // Distance ATT (pseudo-euclidienne)
 // --------------------------------------------
 double dist_att(tInstance a, tInstance b) {
-    double dx = get_x(b) - get_x(a);
-    double dy = get_y(b) - get_y(a);
-    double value = sqrt((dx * dx + dy * dy) / 10.0);
-    double distance = round(value);
-    if (distance < value) distance += 1.0;
-    return distance;
+    double xd = get_x(a) - get_x(b);
+    double yd = get_y(a) - get_y(b);
+
+    double rij = sqrt((xd * xd + yd * yd) / 10.0);
+    int tij = nint(rij);
+
+    int dij;
+    if (tij < rij)
+        dij = tij + 1;
+    else
+        dij = tij;
+
+    return dij;
 }
 
 // --------------------------------------------
 // Distance géographique (GEO)
 // --------------------------------------------
-static double deg2rad(double deg) {
-    return deg * M_PI / 180.0;
+
+static double geo_to_rad(double coord) {
+    int deg = (int)(coord);       
+    double min = coord - deg;     
+    return PI * (deg + 5.0 * min / 3.0) / 180.0;
 }
 
+// Calcul de la distance géographique entre deux instances
 double dist_geo(tInstance a, tInstance b) {
-    double radius = 6378.388; // rayon terrestre (km)
-    double lat1 = deg2rad(get_x(a));
-    double lon1 = deg2rad(get_y(a));
-    double lat2 = deg2rad(get_x(b));
-    double lon2 = deg2rad(get_y(b));
+    double lat1 = geo_to_rad(get_x(a));
+    double lon1 = geo_to_rad(get_y(a));
+    double lat2 = geo_to_rad(get_x(b));
+    double lon2 = geo_to_rad(get_y(b));
 
     double q1 = cos(lon1 - lon2);
     double q2 = cos(lat1 - lat2);
     double q3 = cos(lat1 + lat2);
-    double distance = radius * acos(0.5 * ((1.0 + q1) * q2 - (1.0 - q1) * q3)) + 1.0;
-    return distance;
+
+    int dij = (int) ( RRR * acos( 0.5*((1.0+q1)*q2 - (1.0-q1)*q3) ) + 1.0);
+
+    return dij;
 }
 
 double tour_length(tTournee tour, DistanceFunc dist) {
-    if (!tour)
-        return 0.0;
+    if (!tour) return 0.0;
 
-    double total = 0.0;
+    int total = 0.0;
     int i = 0;
+    tInstance current, next;
 
-    while (1) {
-        tInstance current = get_instance_at(tour, i);
-        tInstance next = get_instance_at(tour, i + 1);
-
-        if (next == NULL)
-            break; // fin de la tournée
-
+    while ((current = get_instance_at(tour, i)) != NULL &&
+           (next = get_instance_at(tour, i+1)) != NULL) {
         total += dist(current, next);
         i++;
     }
 
-    // retour à la première ville si tournée complète
+    // fermer le tour
     tInstance first = get_instance_at(tour, 0);
-    tInstance last = get_instance_at(tour, i - 1);
-    if (first && last)
-        total += dist(last, first);
+    tInstance last = get_instance_at(tour, i);
+    if (first && last) total += dist(last, first);
 
     return total;
 }
+

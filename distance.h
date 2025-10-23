@@ -3,6 +3,7 @@
 
 #include "struct.h"
 
+
 // Type de fonction de distance
 typedef double (*DistanceFunc)(tInstance, tInstance);
 
