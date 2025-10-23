@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include <strings.h>
 #include "struct.h"
 #include "tspReader.h"
 
@@ -13,7 +13,7 @@
 #define NODE_COORD_SECTION 1392
 #define DISPLAY_DATA_TYPE 1328
 
-
+FILE* pfile;
 struct s_probleme {
     
     char * name;
@@ -25,12 +25,19 @@ struct s_probleme {
     tTournee tournee;
 };
 
-tProbleme create_problem(){
+tProbleme create_problem() {
     tProbleme problem = malloc(sizeof(struct s_probleme));
-    if(problem == NULL){
-        fprintf(stderr, "Erreur : allocation échouée pour la structure \"Probleme\"\n");
+    if (!problem) {
+        fprintf(stderr, "Erreur : allocation échouée pour tProbleme\n");
         return NULL;
     }
+    problem->name = NULL;
+    problem->comment = NULL;
+    problem->type = NULL;
+    problem->edge_weight_type = NULL;
+    problem->display_data_type = NULL;
+    problem->dimension = 0;
+    problem->tournee = NULL;
     return problem;
 }
 
@@ -41,7 +48,7 @@ char * string_alloc(char * buffer){
 }
 
 tProbleme load_problem(const char * filepath){
-    FILE* pfile;
+   
     char token_buffer[128];
     char c;
     tInstance current_instance;
@@ -164,4 +171,40 @@ void print_values(tProbleme problem){
 
 tTournee get_nodes(tProbleme problem){
     return problem->tournee;
+}
+const char *get_edge_weight_type(tProbleme problem) {
+    if (!problem || !problem->edge_weight_type)
+        return "EUC_2D"; // valeur par défaut
+
+    // On copie la valeur du fichier TSPLIB
+    const char *type = problem->edge_weight_type;
+
+    // Normalisation : on supprime les majuscules/minuscules éventuelles
+    if (strcasecmp(type, "EUC_2D") == 0)
+        return "EUC_2D";
+    else if (strcasecmp(type, "ATT") == 0)
+        return "ATT";
+    else if (strcasecmp(type, "GEO") == 0)
+        return "GEO";
+    else
+        return "EUC_2D"; // par défaut si type inconnu
+}
+
+void delete_problem(tProbleme *pproblem) {
+    if (!pproblem || !*pproblem) return;
+
+    tProbleme p = *pproblem;
+
+    if (p->name) free(p->name);
+    if (p->comment) free(p->comment);
+    if (p->type) free(p->type);
+    if (p->edge_weight_type) free(p->edge_weight_type);
+    if (p->display_data_type) free(p->display_data_type);
+
+    if (p->tournee)
+        delete_tournee(&(p->tournee));
+
+    free(p);
+    *pproblem = NULL;
+    fclose(pfile);
 }
