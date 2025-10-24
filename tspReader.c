@@ -72,6 +72,7 @@ tProbleme load_problem(const char * filepath){
         j=0;
         do{
             c = fgetc(pfile);
+            fprintf(stderr,"%c",c);
             token_buffer[j]=c;
             j++;
         }while(c != ' ' && c!= ':' && j<127 && c != '\n');
@@ -94,7 +95,7 @@ tProbleme load_problem(const char * filepath){
         switch(sum){ // somme ascii des keywords par soucis de performance pour éviter de faire des if enchaînés
             
             case NAME:
-                fscanf(pfile,"%s",token_buffer);
+                fscanf(pfile,"%[^\n]",token_buffer);
                 problem->name = string_alloc(token_buffer);
             break;
             case COMMENT:
@@ -102,23 +103,23 @@ tProbleme load_problem(const char * filepath){
                 problem->comment = string_alloc(token_buffer);
             break;
             case TYPE:
-                fscanf(pfile,"%s",token_buffer);
+                fscanf(pfile,"%[^\n]",token_buffer);
                 problem->type = string_alloc(token_buffer);
             break;
             case DIMENSION:
-                fscanf(pfile,"%s",token_buffer);
+                fscanf(pfile,"%[^\n]",token_buffer);
                 problem->dimension = atoi(token_buffer);
             break;
             case EDGE_WEIGHT_TYPE:
-                fscanf(pfile,"%s",token_buffer);
+                fscanf(pfile,"%[^\n]",token_buffer);
                 problem->edge_weight_type = string_alloc(token_buffer);
             break;
             case DISPLAY_DATA_TYPE:
-                fscanf(pfile,"%s",token_buffer);
+                fscanf(pfile,"%[^\n]",token_buffer);
                 problem->display_data_type = string_alloc(token_buffer);
             break;
             case EDGE_WEIGHT_FORMAT:
-                fscanf(pfile,"%s",token_buffer);
+                fscanf(pfile,"%[^\n]",token_buffer);
                 problem->edge_weight_format = string_alloc(token_buffer);
             break;
             case NODE_COORD_SECTION:
