@@ -72,12 +72,12 @@ tProbleme load_problem(const char * filepath){
         j=0;
         do{
             c = fgetc(pfile);
-            fprintf(stderr,"%c",c);
+            //fprintf(stderr,"%c",c);
             token_buffer[j]=c;
             j++;
         }while(c != ' ' && c!= ':' && j<127 && c != '\n');
         token_buffer[j-1]='\0';
-        fprintf(stderr,"%s",token_buffer);
+        //fprintf(stderr,"%s",token_buffer);
         if(c == ' '){
             while(fgetc(pfile)!=':');
 
