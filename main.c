@@ -1,85 +1,83 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <strings.h>
 #include <string.h>
+#include <strings.h>
 #include <time.h>
 #include "struct.h"
 #include "tspReader.h"
 #include "distance.h"
+#include "demi_matrice.h"
 
 int main(int argc, char *argv[]) {
 
     if (argc < 3) {
-        printf("Usage : %s -f fichier.tsp [-c]\n", argv[0]);
-        printf("  -f : nom du fichier TSPLIB à lire\n");
-        printf("  -c : (optionnel) calculer la longueur de la tournée canonique\n");
+        printf("Usage: %s -f fichier.tsp [-c]\n", argv[0]);
         return 1;
     }
 
     char *filename = NULL;
-
-    for (int i = 1; i < argc; i++) {
-        if (strcmp(argv[i], "-f") == 0 && i + 1 < argc) {
+    for (int i = 1; i < argc; i++)
+        if (strcmp(argv[i], "-f") == 0 && i+1 < argc)
             filename = argv[++i];
-        }
-    }
 
-    if (!filename) {
-        fprintf(stderr, "Erreur : aucun fichier .tsp fourni.\n");
-        return 1;
-    }
+    if (!filename) { fprintf(stderr, "Erreur: aucun fichier .tsp fourni.\n"); return 1; }
 
     tProbleme problem = load_problem(filename);
-    if (!problem) {
-        fprintf(stderr, "Erreur : impossible de charger le fichier TSPLIB.\n");
-        return 1;
-    }
+    if (!problem) { fprintf(stderr, "Erreur: impossible de charger le fichier TSPLIB.\n"); return 1; }
 
     tTournee tour = get_nodes(problem);
-    if (!tour) {
-        fprintf(stderr, "Erreur : aucune tournée trouvée dans le fichier.\n");
-        delete_problem(&problem);
-        return 1;
-    }
+    if (!tour) { delete_problem(&problem); return 1; }
 
     const char *etype = get_edge_weight_type(problem);
-    int dist_code = 0;  // 0 = EUCL_2D, 1 = ATT, 2 = GEO
+    DistanceFunc dist_func = dist_eucl2d;
     if (etype) {
-        if (strcasecmp(etype, "ATT") == 0) dist_code = 1;
-        else if (strcasecmp(etype, "GEO") == 0) dist_code = 2;
+        if (strcasecmp(etype, "ATT") == 0)dist_func = dist_att;
+        else if (strcasecmp(etype, "GEO") == 0) dist_func = dist_geo;
     }
 
-    // Chronométrer le calcul
-    clock_t start = clock();
+    int nb_villes = get_tour_size(problem);
 
-    double length = 0.0;
-    if (dist_code == 1)
-        length = tour_length(tour, dist_att);
-    else if (dist_code == 2)
-        length = tour_length(tour, dist_geo);
-    else
-        length = tour_length(tour, dist_eucl2d);
+    // -----------------------------
+    // 1) Calcul direct avec DistanceFunc
+    // -----------------------------
+    
+    clock_t start1 = clock();
+    double length_direct = tour_length(tour, dist_func);
+    clock_t end1 = clock();
+    double cpu_direct = (double)(end1 - start1) / CLOCKS_PER_SEC;
 
-    clock_t end = clock();
-    double cpu_time = (double)(end - start) / CLOCKS_PER_SEC;
-
-    // Affichage au format Python attendu
- 
-    printf("Tour %s canonical %.6f %.2f [", filename, cpu_time, length);
-
-    int i = 0;
-    tInstance inst;
-    while ((inst = get_instance_at(tour, i)) != NULL) {
+    printf("Tour %s canonical %.6f %.2f [", filename, cpu_direct, length_direct);
+    for (int i = 0; i < nb_villes; i++) {
+        tInstance inst = get_instance_at(tour, i);
         printf("%d", get_id(inst));
-        i++;
-        if (get_instance_at(tour, i) != NULL)
-            printf(",");
+        if (i < nb_villes - 1) printf(",");
+    }
+    printf("]\n");
+    
+    // -----------------------------
+    // 2) Calcul via demi-matrice
+    // -----------------------------
+    DemiMatrice *matrice = demi_matrice_from_tour(tour, nb_villes, dist_func);
+    if (!matrice) { delete_problem(&problem); return 1; }
+
+    clock_t start2 = clock();
+    double length_demi = tour_length_from_demi_matrice(tour, matrice);
+    clock_t end2 = clock();
+    double cpu_demi = (double)(end2 - start2) / CLOCKS_PER_SEC;
+
+    printf("Tour %s canonical %.6f %.2f [", filename, cpu_demi, length_demi);
+    for (int i = 0; i < nb_villes; i++) {
+        tInstance inst = get_instance_at(tour, i);
+        printf("%d", get_id(inst));
+        if (i < nb_villes - 1) printf(",");
     }
     printf("]\n");
 
+    // liberation de ressources
+    detruire_demi_matrice(matrice);
     delete_problem(&problem);
-
     return 0;
 }
+
 
 
