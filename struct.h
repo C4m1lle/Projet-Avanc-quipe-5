@@ -1,20 +1,43 @@
-#ifndef __STRUCT_H__
-#define __STRUCT_H__	
+#ifndef STRUCT_H
+#define STRUCT_H
 
 typedef struct s_instance* tInstance;
 typedef struct s_tournee* tTournee;
+typedef struct s_probleme* tProbleme;
 
+struct s_instance {
+    int id;
+    double x;
+    double y;
+};
 
-tInstance create_instance(int idd, double xd, double yd);
-void delete_instance(tInstance * pinst);
-tTournee create_tournee(int tailledef);
-int add_in_tournee(tTournee tour, tInstance inst);
-void delete_tournee(tTournee * ptour);
+struct s_tournee {
+    tInstance *chemin;
+    int taille;
+};
 
-double get_x(tInstance inst);
-double get_y(tInstance inst);
-int get_id(tInstance inst);
+struct s_probleme {
+    char *name;
+    char *comment;
+    char *type;
+    int dimension;
+    char *edge_weight_type;
+    char *display_data_type;
+    tTournee tournee;
+};
 
-tInstance get_instance_at(tTournee tour,int nb);
+/* Déclarations des fonctions */
+tInstance create_instance(int id, double x, double y);
+tTournee create_tournee(int taille);
+void add_in_tournee(tTournee tour, tInstance inst);
+tInstance get_instance_at(tTournee tour, int index);
+void delete_tournee(tTournee *tour);
 
 #endif
+
+
+
+
+
+
+

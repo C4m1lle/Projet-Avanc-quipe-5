@@ -2,17 +2,7 @@
 #include <stdio.h>
 #include "struct.h"
 
-struct s_instance { 
-    int id;
-    double x;
-    double y;
-};
 
-struct s_tournee { 
-    tInstance *  chemin;
-    int taille;
-    int current;
-};
 
 tInstance create_instance(int idd, double xd, double yd){
     tInstance inst = malloc(sizeof(struct s_instance));
@@ -92,3 +82,6 @@ void delete_tournee(tTournee * ptour){
     free(t);
     *ptour = NULL;
 }
+
+
+

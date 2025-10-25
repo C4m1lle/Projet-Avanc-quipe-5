@@ -85,3 +85,6 @@ double tour_length_from_demi_matrice(tTournee tour, DemiMatrice *matrice) {
     return total;
 }
 
+
+
+

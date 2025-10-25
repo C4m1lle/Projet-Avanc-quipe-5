@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <math.h>
 #include "distance.h"
-#include "struct.h"
 #define PI 3.141592
 #define RRR 6378.388
 static int nint(double x) {
@@ -84,4 +83,7 @@ double tour_length(tTournee tour, DistanceFunc dist) {
 
     return total;
 }
+
+
+
 

@@ -17,3 +17,7 @@ double tour_length(tTournee tour, DistanceFunc dist);
 
 #endif
 
+
+
+
+
