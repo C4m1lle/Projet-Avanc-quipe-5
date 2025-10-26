@@ -99,16 +99,18 @@ int main(int argc, char *argv[]) {
         printf("]\n");
     }
     if(bf){
-        // Setup Ctrl+C
+        
         
 
-
+        
         //TEST BRUTEFORCE
         int * best = malloc(sizeof(int)*get_taille_tournee(tour));
         double dist;
-        printf("Calcul des distances en boucle (Ctrl+C pour interruption)...\n");
-        
+        printf("Calcul des distances (Ctrl+C pour interruption)...\n");
+
+        // Setup Ctrl+C
         setup_signal_handler(tour,dist_eucl2d,best,&dist);
+        
         printf("dist = %lf\n",dist);
         printf("[");
 
@@ -116,6 +118,7 @@ int main(int argc, char *argv[]) {
             printf("%d,",best[i]);
         }
         printf("%d]\n",best[get_taille_tournee(tour)-1]);
+        
     }
 
 

@@ -1,0 +1,90 @@
+#define _POSIX_C_SOURCE 200809L
+#include <stdio.h>
+#include <stdlib.h>
+#include <signal.h>
+#include "struct.h"
+#include "demi_matrice.h"
+#include "distance.h"
+#include "signal_handler.h"
+#include "tspReader.h"
+#include "bruteforce.h"
+
+// Variables statiques accessibles au signal handler
+static tTournee static_path = NULL;
+static double * current_distmin = NULL;
+static int * current_path = NULL;
+static int path_lenght = 0;
+static DistanceFunc current_dist = NULL;
+static int has_to_stop = 0;
+
+// Affichage de la permutation via les fonctions publiques
+static void print_tour(int * current_path) {
+    printf("[");
+    int i;
+    for (i = 0; i < path_lenght-1; i++) {
+        printf("%d,", current_path[i]);
+    }
+    printf("%d]\n",current_path[i]);
+}
+
+// Signal handler pour Ctrl+C
+static void traiterSignal(int sig) {
+    (void)sig;
+    printf("\n=== Interruption détectée (Ctrl+C) ===\n");
+    
+    printf("Longueur actuelle du tour : %.2lf\n", *current_distmin);
+    printf("Permutation courante : ");
+    print_tour(current_path);
+    
+
+    printf("Voulez-vous arrêter le programme ? (o/n) : ");
+    char c;
+    do{
+        c = getchar();
+    }while(c != 'o' && c != 'O' && c != 'n' && c != 'N');
+    if (c == 'o' || c == 'O') {
+        printf("Libération de la mémoire et arrêt du programme...\n");
+        
+        //fflush(NULL);
+        has_to_stop = 1;
+    }
+    if (c == 'n' || c == 'N') {
+        printf("Reprise du calcul...\n");
+        
+        
+    }
+    
+}
+
+// Setup du signal handler
+void setup_signal_handler(tTournee tour, DistanceFunc dist,int * best, double * distmin) {
+    static_path = tour;
+    current_distmin = distmin;
+    current_path = best;
+    current_dist = dist;
+    path_lenght = get_taille_tournee(tour);
+
+    struct sigaction action;
+    sigset_t mask;
+    action.sa_handler = traiterSignal;
+    sigemptyset(&action.sa_mask);
+    action.sa_flags = 0;
+
+    if (sigaction(SIGINT, &action, NULL) != 0) {
+        perror("sigaction");
+        exit(EXIT_FAILURE);
+    }
+
+    sigemptyset(&mask);
+    if (sigprocmask(SIG_SETMASK, &mask, NULL) != 0) {
+        perror("sigprocmask");
+        exit(EXIT_FAILURE);
+    }
+    bruteforce(static_path,current_dist,current_path,current_distmin,&has_to_stop);
+}
+
+
+
+
+
+
