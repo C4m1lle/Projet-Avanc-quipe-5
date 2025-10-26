@@ -8,23 +8,39 @@
 #include "distance.h"
 #include "bruteforce.h"
 
+void usage(char * arg){
+    printf("Usage : %s -f fichier.tsp [-c] [-bf] [-bfm]\n",arg);
+    printf("  -f : nom du fichier TSPLIB à lire\n");
+    printf("  -c : (optionnel) calculer la longueur de la tournée canonique\n");
+    printf("  -bf : (optionnel) calculer la longeur optimale par force brute\n");
+    printf("  -bfm : (optionnel) calculer la longeur optimale par force brute matricielle\n");
+    printf("  -h : help, affiche l'usage et ne fait aucun calcul.\n");
+}
+
 int main(int argc, char *argv[]) {
 
     if (argc < 3) {
-        printf("Usage : %s -f fichier.tsp [-c]\n", argv[0]);
-        printf("  -f : nom du fichier TSPLIB à lire\n");
-        printf("  -c : (optionnel) calculer la longueur de la tournée canonique\n");
+        usage(argv[0]);
         return 1;
     }
 
     char *filename = NULL;
-    int iscanonic = 1;
+    int iscanonic=0,bf=0,bfm=0;
     for (int i = 1; i < argc; i++) {
         if (strcmp(argv[i], "-f") == 0 && i + 1 < argc) {
             filename = argv[++i];
         }
         if (strcmp(argv[i], "-c") == 0) {
-            iscanonic = 0;
+            iscanonic = 1;
+        }
+        if (strcmp(argv[i], "-bf") == 0) {
+            bf = 1;
+        }
+        if (strcmp(argv[i], "-bfm") == 0) {
+            bfm = 1;
+        }
+        if (strcmp(argv[i], "-h") == 0) {
+            usage(argv[0]);
         }
     }
 
@@ -32,71 +48,66 @@ int main(int argc, char *argv[]) {
         fprintf(stderr, "Erreur : aucun fichier .tsp fourni.\n");
         return 1;
     }
-
     tProbleme problem = load_problem(filename);
     if (!problem) {
         fprintf(stderr, "Erreur : impossible de charger le fichier TSPLIB.\n");
         return 1;
     }
-
     tTournee tour = get_nodes(problem);
     if (!tour) {
         fprintf(stderr, "Erreur : aucune tournée trouvée dans le fichier.\n");
         delete_problem(&problem);
         return 1;
     }
-
-    //TEST BRUTEFORCE
-    int * best = malloc(sizeof(int)*get_taille_tournee(tour));
-    double dist;
-    bruteforce(tour,dist_eucl2d,best,&dist);
-    printf("dist = %lf\n",dist);
-    printf("[");
-    for(int i = 0;i<get_taille_tournee(tour)-1;i++){
-        printf("%d, ",best[i]);
-    }
-    printf("%d]\n",best[get_taille_tournee(tour)-1]);
-
-
     const char *etype = get_edge_weight_type(problem);
     int dist_code = 0;  // 0 = EUCL_2D, 1 = ATT, 2 = GEO
     if (etype) {
         if (strcasecmp(etype, "ATT") == 0) dist_code = 1;
         else if (strcasecmp(etype, "GEO") == 0) dist_code = 2;
     }
+    if(iscanonic){
+        // Chronométrer le calcul
+        clock_t start = clock();
 
-    // Chronométrer le calcul
-    clock_t start = clock();
+        double length = 0.0;
+        if (dist_code == 1)
+            length = tour_length(tour, dist_att);
+        else if (dist_code == 2)
+            length = tour_length(tour, dist_geo);
+        else
+            length = tour_length(tour, dist_eucl2d);
 
-    double length = 0.0;
-    if (dist_code == 1)
-        length = tour_length(tour, dist_att);
-    else if (dist_code == 2)
-        length = tour_length(tour, dist_geo);
-    else
-        length = tour_length(tour, dist_eucl2d);
+        clock_t end = clock();
+        double cpu_time = (double)(end - start) / CLOCKS_PER_SEC;
 
-    clock_t end = clock();
-    double cpu_time = (double)(end - start) / CLOCKS_PER_SEC;
+        // Affichage au format Python attendu
 
-    // Affichage au format Python attendu
+        printf("Tour %s canonical %.6f %.2f [", filename, cpu_time, length);
 
-    printf("Tour %s canonical %.6f %.2f [", filename, cpu_time, length);
-
-    int i = 0;
-    tInstance inst;
-    while ((inst = get_instance_at(tour, i)) != NULL) {
-        printf("%d", get_id(inst));
-        i++;
-        if (get_instance_at(tour, i) != NULL)
-            printf(",");
+        int i = 0;
+        tInstance inst;
+        while ((inst = get_instance_at(tour, i)) != NULL) {
+            printf("%d", get_id(inst));
+            i++;
+            if (get_instance_at(tour, i) != NULL)
+                printf(",");
+        }
+        printf("]\n");
     }
-    printf("]\n");
+    if(bf){
+        //TEST BRUTEFORCE
+        int * best = malloc(sizeof(int)*get_taille_tournee(tour));
+        double dist;
+        bruteforce(tour,dist_eucl2d,best,&dist);
+        printf("dist = %lf\n",dist);
+        printf("[");
+        for(int i = 0;i<get_taille_tournee(tour)-1;i++){
+            printf("%d,",best[i]);
+        }
+        printf("%d]\n",best[get_taille_tournee(tour)-1]);
+    }
 
     delete_problem(&problem);
-
-
-
     return 0;
 }
 
