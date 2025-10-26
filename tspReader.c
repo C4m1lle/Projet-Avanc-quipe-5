@@ -212,9 +212,8 @@ void delete_problem(tProbleme *pproblem) {
     if (p->edge_weight_type) free(p->edge_weight_type);
     if (p->display_data_type) free(p->display_data_type);
     if (p->edge_weight_format) free(p->edge_weight_format);
-
-    if (p->tournee)
-        delete_tournee(&(p->tournee));
+    
+    if (p->tournee) delete_tournee(&(p->tournee));
 
     free(p);
     *pproblem = NULL;

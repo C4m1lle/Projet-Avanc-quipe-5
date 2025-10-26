@@ -59,4 +59,5 @@ void bruteforce(tTournee tour, DistanceFunc dist,int * best, double * distmin,in
             }
         }
     }
+    free(tab_id);
 }

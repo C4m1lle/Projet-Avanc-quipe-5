@@ -118,7 +118,7 @@ int main(int argc, char *argv[]) {
             printf("%d,",best[i]);
         }
         printf("%d]\n",best[get_taille_tournee(tour)-1]);
-        
+        free(best);
     }
 
 
