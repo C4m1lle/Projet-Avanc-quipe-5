@@ -4,35 +4,7 @@
 #include "struct.h"
 #include "distance.h"
 
-
-double bruteforce(tTournee tour, DistanceFunc dist){
-    tInstance inst1;inst2;
-    int taille = tour->current;
-    double distmin = DBL_MAX;
-    double distcur;
-    int * tab_id = malloc(sizeof(int)*taille);
-    for(int i = 0;i<taille;i++){
-        inst = get_instance_at(tour,i);
-        tab_id[i] = get_id(inst);
-    }
-    while(next_permutation(tab_id,taille)){
-        distcur = 0;
-        for(int i = 0;i<current-1;i++){
-            inst1 = get_instance_at(tab_id[i]-1);
-            inst2 = get_instance_at(tab_id[i+1]-1);
-            distcur+=dist(isnt1,inst2);
-        }
-        if(distmin>distcur){
-            distmin = distcur;
-        }
-    }
-    
-    
-
-
-}
-
-int next_permutation(int ids[], int length) {
+int next_permutation(int ids[], int length){
 	// Find non-increasing suffix
 	if (length == 0)
 		return 1;
@@ -60,4 +32,32 @@ int next_permutation(int ids[], int length) {
 		j--;
 	}
 	return 0;
+}
+
+double bruteforce(tTournee tour, DistanceFunc dist,int * best){
+    tInstance inst1,inst2;
+    int taille = get_taille_tournee(tour);
+    double distmin = DBL_MAX;
+    double distcur;
+    int * tab_id = malloc(sizeof(int)*taille);
+    for(int i = 0;i<taille;i++){
+        inst1 = get_instance_at(tour,i);
+        tab_id[i] = get_id(inst1);
+    }
+    while(next_permutation(tab_id,taille)==0){
+        distcur = 0;
+        for(int i = 0;i<taille-1;i++){
+            inst1 = get_instance_at(tour,(tab_id[i])-1);
+            inst2 = get_instance_at(tour,(tab_id[i+1])-1);
+            distcur+=dist(inst1,inst2);
+        }
+        
+        if(distmin>distcur){
+            distmin = distcur;
+            for(int i = 0;i<taille;i++){
+                best[i] = tab_id[i];
+            }
+        }
+    }
+    return distmin;
 }

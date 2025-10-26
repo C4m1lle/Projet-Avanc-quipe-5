@@ -6,6 +6,7 @@
 #include "struct.h"
 #include "tspReader.h"
 #include "distance.h"
+#include "bruteforce.h"
 
 int main(int argc, char *argv[]) {
 
@@ -17,10 +18,13 @@ int main(int argc, char *argv[]) {
     }
 
     char *filename = NULL;
-
+    int iscanonic = 1;
     for (int i = 1; i < argc; i++) {
         if (strcmp(argv[i], "-f") == 0 && i + 1 < argc) {
             filename = argv[++i];
+        }
+        if (strcmp(argv[i], "-c") == 0) {
+            iscanonic = 0;
         }
     }
 
@@ -41,6 +45,16 @@ int main(int argc, char *argv[]) {
         delete_problem(&problem);
         return 1;
     }
+
+    //TEST BRUTEFORCE
+    int * best = malloc(sizeof(int)*get_taille_tournee(tour));
+    printf("dist = %lf\n",bruteforce(tour,dist_eucl2d,best));
+    printf("[");
+    for(int i = 0;i<get_taille_tournee(tour)-1;i++){
+        printf("%d, ",best[i]);
+    }
+    printf("%d]\n",best[get_taille_tournee(tour)-1]);
+
 
     const char *etype = get_edge_weight_type(problem);
     int dist_code = 0;  // 0 = EUCL_2D, 1 = ATT, 2 = GEO
@@ -64,7 +78,7 @@ int main(int argc, char *argv[]) {
     double cpu_time = (double)(end - start) / CLOCKS_PER_SEC;
 
     // Affichage au format Python attendu
- 
+
     printf("Tour %s canonical %.6f %.2f [", filename, cpu_time, length);
 
     int i = 0;
@@ -78,6 +92,8 @@ int main(int argc, char *argv[]) {
     printf("]\n");
 
     delete_problem(&problem);
+
+
 
     return 0;
 }
