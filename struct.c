@@ -68,6 +68,10 @@ int add_in_tournee(tTournee tour, tInstance inst){
     }
 }
 
+int get_taille_tournee(tTournee tour){
+    return tour->current;
+}
+
 tInstance get_instance_at(tTournee tour,int nb){
      if (!tour) return NULL;
     if (nb >= tour->current) {

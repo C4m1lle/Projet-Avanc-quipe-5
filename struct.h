@@ -16,5 +16,5 @@ double get_y(tInstance inst);
 int get_id(tInstance inst);
 
 tInstance get_instance_at(tTournee tour,int nb);
-
+int get_taille_tournee(tTournee tour);
 #endif
