@@ -16,7 +16,6 @@
 
 
 struct s_probleme {
-    
     char * name;
     char * comment;
     char * type;
