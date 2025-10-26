@@ -34,10 +34,10 @@ int next_permutation(int ids[], int length){
 	return 0;
 }
 
-double bruteforce(tTournee tour, DistanceFunc dist,int * best){
+void bruteforce(tTournee tour, DistanceFunc dist,int * best, double * distmin){
     tInstance inst1,inst2;
     int taille = get_taille_tournee(tour);
-    double distmin = DBL_MAX;
+    (*distmin) = DBL_MAX;
     double distcur;
     int * tab_id = malloc(sizeof(int)*taille);
     for(int i = 0;i<taille;i++){
@@ -52,12 +52,11 @@ double bruteforce(tTournee tour, DistanceFunc dist,int * best){
             distcur+=dist(inst1,inst2);
         }
         
-        if(distmin>distcur){
-            distmin = distcur;
+        if((*distmin)>distcur){
+            (*distmin) = distcur;
             for(int i = 0;i<taille;i++){
                 best[i] = tab_id[i];
             }
         }
     }
-    return distmin;
 }

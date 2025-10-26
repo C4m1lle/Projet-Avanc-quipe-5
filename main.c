@@ -48,7 +48,9 @@ int main(int argc, char *argv[]) {
 
     //TEST BRUTEFORCE
     int * best = malloc(sizeof(int)*get_taille_tournee(tour));
-    printf("dist = %lf\n",bruteforce(tour,dist_eucl2d,best));
+    double dist;
+    bruteforce(tour,dist_eucl2d,best,&dist);
+    printf("dist = %lf\n",dist);
     printf("[");
     for(int i = 0;i<get_taille_tournee(tour)-1;i++){
         printf("%d, ",best[i]);
