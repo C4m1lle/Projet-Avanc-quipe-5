@@ -57,7 +57,7 @@ static void traiterSignal(int sig) {
 }
 
 // Setup du signal handler
-void setup_signal_handler(tTournee tour, DistanceFunc dist,int * best, double * distmin) {
+void setup_signal_handler(tTournee tour, DistanceFunc dist,int * best, double * distmin, int bff) {
     static_path = tour;
     current_distmin = distmin;
     current_path = best;
@@ -80,7 +80,14 @@ void setup_signal_handler(tTournee tour, DistanceFunc dist,int * best, double * 
         perror("sigprocmask");
         exit(EXIT_FAILURE);
     }
-    bruteforce(static_path,current_dist,current_path,current_distmin,&has_to_stop);
+    if(!bff){
+        bruteforce(tour,dist,best,distmin,&has_to_stop);
+    }else{
+        tDemiMatrice mat = demi_matrice_from_tour(tour,get_taille_tournee(tour),dist);
+        bruteforce_demi_matrice(tour,mat,best,distmin,&has_to_stop);
+        detruire_demi_matrice(mat);
+    }
+    
 }
 
 

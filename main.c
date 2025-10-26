@@ -17,7 +17,7 @@ void usage(char * arg){
     printf("  -f : nom du fichier TSPLIB à lire\n");
     printf("  -c : (optionnel) calculer la longueur de la tournée canonique\n");
     printf("  -bf : (optionnel) calculer la longeur optimale par force brute\n");
-    printf("  -bfm : (optionnel) calculer la longeur optimale par force brute matricielle\n");
+    printf("  -bfm : (optionnel) calculer la longeur optimale par force brute matricielle (pas encore implémenté)\n");
     printf("  -h : help, affiche l'usage et ne fait aucun calcul.\n");
 }
 
@@ -98,18 +98,21 @@ int main(int argc, char *argv[]) {
         }
         printf("]\n");
     }
-    if(bf){
-        
-        
+    if(bf || bfm){
 
-        
         //TEST BRUTEFORCE
+        int bff;
+        if(bf){
+            bff = 0;
+        }else{
+            bff = 1;
+        }
         int * best = malloc(sizeof(int)*get_taille_tournee(tour));
         double dist;
         printf("Calcul des distances (Ctrl+C pour interruption)...\n");
 
         // Setup Ctrl+C
-        setup_signal_handler(tour,dist_eucl2d,best,&dist);
+        setup_signal_handler(tour,dist_eucl2d,best,&dist,bff);
         
         printf("dist = %lf\n",dist);
         printf("[");
@@ -120,6 +123,8 @@ int main(int argc, char *argv[]) {
         printf("%d]\n",best[get_taille_tournee(tour)-1]);
         free(best);
     }
+    
+
 
 
 

@@ -3,10 +3,14 @@
 #include <math.h>
 #include "demi_matrice.h"
 
+struct sDemiMatrice{
+    int nb_villes;
+    double **lignes;
+};
 
 // Création d'une demi-matrice vide
-DemiMatrice *creer_demi_matrice(int nb_villes) {
-    DemiMatrice *matrice = malloc(sizeof(DemiMatrice));
+tDemiMatrice creer_demi_matrice(int nb_villes) {
+    tDemiMatrice matrice = malloc(sizeof(struct sDemiMatrice));
     if (!matrice) return NULL;
 
     matrice->nb_villes = nb_villes;
@@ -27,7 +31,7 @@ DemiMatrice *creer_demi_matrice(int nb_villes) {
 }
 
 // Destruction
-void detruire_demi_matrice(DemiMatrice *matrice) {
+void detruire_demi_matrice(tDemiMatrice matrice) {
     if (!matrice) return;
     for (int i = 0; i < matrice->nb_villes - 1; i++) free(matrice->lignes[i]);
     free(matrice->lignes);
@@ -35,13 +39,13 @@ void detruire_demi_matrice(DemiMatrice *matrice) {
 }
 
 // Accès / définition
-double obtenir_distance(const DemiMatrice *matrice, int i, int j) {
+double obtenir_distance(const tDemiMatrice matrice, int i, int j) {
     if (!matrice || i < 0 || j < 0 || i >= matrice->nb_villes || j >= matrice->nb_villes) return -1.0;
     if (i == j) return 0.0;
     return (i < j) ? matrice->lignes[i][j-i-1] : matrice->lignes[j][i-j-1];
 }
 
-int definir_distance(DemiMatrice *matrice, int i, int j, double valeur) {
+int definir_distance(tDemiMatrice matrice, int i, int j, double valeur) {
     if (!matrice || i < 0 || j < 0 || i >= matrice->nb_villes || j >= matrice->nb_villes) return -1;
     if (i == j) return 0;
     if (i < j) matrice->lignes[i][j-i-1] = valeur;
@@ -50,10 +54,10 @@ int definir_distance(DemiMatrice *matrice, int i, int j, double valeur) {
 }
 
 // Création à partir d'une tournée
-DemiMatrice *demi_matrice_from_tour(tTournee tour, int nb_villes, DistanceFunc dist) {
+tDemiMatrice demi_matrice_from_tour(tTournee tour, int nb_villes, DistanceFunc dist) {
     if (!tour || !dist || nb_villes <= 0) return NULL;
 
-    DemiMatrice *matrice = creer_demi_matrice(nb_villes);
+    tDemiMatrice matrice = creer_demi_matrice(nb_villes);
     if (!matrice) return NULL;
 
     for (int i = 0; i < nb_villes - 1; i++) {
@@ -69,7 +73,7 @@ DemiMatrice *demi_matrice_from_tour(tTournee tour, int nb_villes, DistanceFunc d
 }
 
 // Calcul de la longueur de la tournée via la demi-matrice
-double tour_length_from_demi_matrice(tTournee tour, DemiMatrice *matrice) {
+double tour_length_from_demi_matrice(tTournee tour, tDemiMatrice matrice) {
     if (!tour || !matrice) return 0.0;
 
     double total = 0.0;

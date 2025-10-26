@@ -3,6 +3,7 @@
 #include <float.h>
 #include "struct.h"
 #include "distance.h"
+#include "demi_matrice.h"
 
 int next_permutation(int ids[], int length){
 	// Find non-increasing suffix
@@ -35,6 +36,35 @@ int next_permutation(int ids[], int length){
 }
 
 void bruteforce(tTournee tour, DistanceFunc dist,int * best, double * distmin,int * has_to_stop){
+    tInstance inst1,inst2;
+    int taille = get_taille_tournee(tour);
+    (*distmin) = DBL_MAX;
+    double distcur;
+    int * tab_id = malloc(sizeof(int)*taille);
+    for(int i = 0;i<taille;i++){
+        inst1 = get_instance_at(tour,i);
+        tab_id[i] = get_id(inst1);
+    }
+    while(next_permutation(tab_id,taille)==0 && (*has_to_stop)==0){
+        distcur = 0;
+        for(int i = 0;i<taille-1;i++){
+            inst1 = get_instance_at(tour,(tab_id[i])-1);
+            inst2 = get_instance_at(tour,(tab_id[i+1])-1);
+            distcur+=dist(inst1,inst2);
+        }
+        
+        if((*distmin)>distcur){
+            (*distmin) = distcur;
+            for(int i = 0;i<taille;i++){
+                best[i] = tab_id[i];
+            }
+        }
+    }
+    free(tab_id);
+}
+
+void bruteforce_demi_matrice(tTournee tour, DistanceFunc dist,int * best, double * distmin,int * has_to_stop){
+    tDemiMatrice 
     tInstance inst1,inst2;
     int taille = get_taille_tournee(tour);
     (*distmin) = DBL_MAX;
