@@ -1,11 +1,15 @@
+#define _POSIX_C_SOURCE 200809L
 #include <stdio.h>
 #include <stdlib.h>
-#include <strings.h>
 #include <string.h>
+#include <strings.h>
 #include <time.h>
+
 #include "struct.h"
 #include "tspReader.h"
 #include "distance.h"
+#include "demi_matrice.h"
+#include "signal_handler.h"
 #include "bruteforce.h"
 
 void usage(char * arg){
@@ -95,17 +99,28 @@ int main(int argc, char *argv[]) {
         printf("]\n");
     }
     if(bf){
+        // Setup Ctrl+C
+        
+
+
         //TEST BRUTEFORCE
         int * best = malloc(sizeof(int)*get_taille_tournee(tour));
         double dist;
-        bruteforce(tour,dist_eucl2d,best,&dist);
+        printf("Calcul des distances en boucle (Ctrl+C pour interruption)...\n");
+        
+        setup_signal_handler(tour,dist_eucl2d,best,&dist);
         printf("dist = %lf\n",dist);
         printf("[");
+
         for(int i = 0;i<get_taille_tournee(tour)-1;i++){
             printf("%d,",best[i]);
         }
         printf("%d]\n",best[get_taille_tournee(tour)-1]);
     }
+
+
+
+    // Libération memoire
 
     delete_problem(&problem);
     return 0;

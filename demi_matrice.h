@@ -2,22 +2,18 @@
 #define __DEMI_MATRICE_H__
 
 #include "struct.h"
-#include "distance.h"
-
+#include "distance.h"  
 
 typedef struct {
     int nb_villes;
-    double **lignes;    
+    double **lignes;
 } DemiMatrice;
-
 
 DemiMatrice *creer_demi_matrice(int nb_villes);
 void detruire_demi_matrice(DemiMatrice *matrice);
-
 double obtenir_distance(const DemiMatrice *matrice, int i, int j);
 int definir_distance(DemiMatrice *matrice, int i, int j, double valeur);
-
-int remplir_matrice_depuis_instances(DemiMatrice *matrice, tInstance *villes, DistanceFunc fonction_distance);
+DemiMatrice *demi_matrice_from_tour(tTournee tour, int nb_villes, DistanceFunc dist);
+double tour_length_from_demi_matrice(tTournee tour, DemiMatrice *matrice);
 
 #endif
-

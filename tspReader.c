@@ -47,6 +47,9 @@ char * string_alloc(char * buffer){
     strcpy(string,buffer);
     return string;
 }
+int get_size_probleme(tProbleme prob){
+    return prob->dimension;
+}
 
 tProbleme load_problem(const char * filepath){
     FILE* pfile;
