@@ -10,19 +10,18 @@
 #define TYPE 322
 #define DIMENSION 678
 #define EDGE_WEIGHT_TYPE 1245
-#define EDGE_WEIGHT_FORMAT 1380
 #define NODE_COORD_SECTION 1392
 #define DISPLAY_DATA_TYPE 1328
 
-
+FILE* pfile;
 struct s_probleme {
+    
     char * name;
     char * comment;
     char * type;
     int dimension;
     char * edge_weight_type;
     char * display_data_type;
-    char * edge_weight_format;
     tTournee tournee;
 };
 
@@ -47,12 +46,9 @@ char * string_alloc(char * buffer){
     strcpy(string,buffer);
     return string;
 }
-int get_size_probleme(tProbleme prob){
-    return prob->dimension;
-}
 
 tProbleme load_problem(const char * filepath){
-    FILE* pfile;
+   
     char token_buffer[128];
     char c;
     tInstance current_instance;
@@ -74,12 +70,10 @@ tProbleme load_problem(const char * filepath){
         j=0;
         do{
             c = fgetc(pfile);
-            //fprintf(stderr,"%c",c);
             token_buffer[j]=c;
             j++;
         }while(c != ' ' && c!= ':' && j<127 && c != '\n');
         token_buffer[j-1]='\0';
-        //fprintf(stderr,"%s",token_buffer);
         if(c == ' '){
             while(fgetc(pfile)!=':');
 
@@ -97,7 +91,7 @@ tProbleme load_problem(const char * filepath){
         switch(sum){ // somme ascii des keywords par soucis de performance pour éviter de faire des if enchaînés
             
             case NAME:
-                fscanf(pfile,"%[^\n]",token_buffer);
+                fscanf(pfile,"%s",token_buffer);
                 problem->name = string_alloc(token_buffer);
             break;
             case COMMENT:
@@ -105,32 +99,28 @@ tProbleme load_problem(const char * filepath){
                 problem->comment = string_alloc(token_buffer);
             break;
             case TYPE:
-                fscanf(pfile,"%[^\n]",token_buffer);
+                fscanf(pfile,"%s",token_buffer);
                 problem->type = string_alloc(token_buffer);
             break;
             case DIMENSION:
-                fscanf(pfile,"%[^\n]",token_buffer);
+                fscanf(pfile,"%s",token_buffer);
                 problem->dimension = atoi(token_buffer);
             break;
             case EDGE_WEIGHT_TYPE:
-                fscanf(pfile,"%[^\n]",token_buffer);
+                fscanf(pfile,"%s",token_buffer);
                 problem->edge_weight_type = string_alloc(token_buffer);
-            break;
-            case DISPLAY_DATA_TYPE:
-                fscanf(pfile,"%[^\n]",token_buffer);
-                problem->display_data_type = string_alloc(token_buffer);
-            break;
-            case EDGE_WEIGHT_FORMAT:
-                fscanf(pfile,"%[^\n]",token_buffer);
-                problem->edge_weight_format = string_alloc(token_buffer);
             break;
             case NODE_COORD_SECTION:
                 problem->tournee = create_tournee(problem->dimension);
                 for(int i = 0; i<problem->dimension;i++){
-                    fscanf(pfile," %d %lf %lf ",&id,&x,&y);
+                    fscanf(pfile,"%d %lf %lf",&id,&x,&y);
                     current_instance = create_instance(id,x,y);
                     add_in_tournee(problem->tournee,current_instance);
                 }
+            break;
+            case DISPLAY_DATA_TYPE:
+                fscanf(pfile,"%s",token_buffer);
+                problem->display_data_type = string_alloc(token_buffer);
             break;
             case 0: //mot vide
             break;
@@ -149,7 +139,6 @@ tProbleme load_problem(const char * filepath){
     printf("%s\n",problem->type);
     printf("%d\n",problem->dimension);
     printf("%s\n",problem->edge_weight_type);*/
-    fclose(pfile);
     return  problem;
 }
 
@@ -211,11 +200,11 @@ void delete_problem(tProbleme *pproblem) {
     if (p->type) free(p->type);
     if (p->edge_weight_type) free(p->edge_weight_type);
     if (p->display_data_type) free(p->display_data_type);
-    if (p->edge_weight_format) free(p->edge_weight_format);
-    
-    if (p->tournee) delete_tournee(&(p->tournee));
+
+    if (p->tournee)
+        delete_tournee(&(p->tournee));
 
     free(p);
     *pproblem = NULL;
-
+    fclose(pfile);
 }
