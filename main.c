@@ -21,6 +21,21 @@ void usage(char * arg){
     printf("  -h : help, affiche l'usage et ne fait aucun calcul.\n");
 }
 
+DistanceFunc dist_Code_Func(int dist_code){
+    switch(dist_code){
+        case 1:
+            return dist_att;
+        break;
+        case 2:
+            return dist_geo;
+        break;
+        default:
+            return dist_eucl2d;
+        break;
+    }
+}
+
+
 int main(int argc, char *argv[]) {
 
     if (argc < 3) {
@@ -74,12 +89,7 @@ int main(int argc, char *argv[]) {
         clock_t start = clock();
 
         double length = 0.0;
-        if (dist_code == 1)
-            length = tour_length(tour, dist_att);
-        else if (dist_code == 2)
-            length = tour_length(tour, dist_geo);
-        else
-            length = tour_length(tour, dist_eucl2d);
+        length = tour_length(tour,dist_Code_Func(dist_code));
 
         clock_t end = clock();
         double cpu_time = (double)(end - start) / CLOCKS_PER_SEC;
@@ -112,7 +122,7 @@ int main(int argc, char *argv[]) {
         printf("Calcul des distances (Ctrl+C pour interruption)...\n");
 
         // Setup Ctrl+C
-        setup_signal_handler(tour,dist_eucl2d,best,&dist,bff);
+        setup_signal_handler(tour,dist_Code_Func(dist_code),best,&dist,bff);
         
         printf("dist = %lf\n",dist);
         printf("[");

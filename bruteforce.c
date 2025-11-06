@@ -52,6 +52,7 @@ void bruteforce(tTournee tour, DistanceFunc dist,int * best, double * distmin,in
             inst2 = get_instance_at(tour,(tab_id[i+1])-1);
             distcur+=dist(inst1,inst2);
         }
+        distcur+=dist(get_instance_at(tour,(tab_id[0])-1),get_instance_at(tour,(tab_id[taille-1])-1));
         
         if((*distmin)>distcur){
             (*distmin) = distcur;
@@ -81,7 +82,7 @@ void bruteforce_demi_matrice(tTournee tour, DistanceFunc dist,int * best, double
         for(int i = 0;i<taille-1;i++){
             distcur+=obtenir_distance(matrice,tab_id[i]-1,tab_id[i+1]-1);
         }
-        
+        distcur+=obtenir_distance(matrice,tab_id[0]-1,tab_id[taille-1]-1);
         if((*distmin)>distcur){
             (*distmin) = distcur;
             for(int i = 0;i<taille;i++){
