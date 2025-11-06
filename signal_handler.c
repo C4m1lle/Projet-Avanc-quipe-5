@@ -83,9 +83,7 @@ void setup_signal_handler(tTournee tour, DistanceFunc dist,int * best, double * 
     if(!bff){
         bruteforce(tour,dist,best,distmin,&has_to_stop);
     }else{
-        tDemiMatrice mat = demi_matrice_from_tour(tour,get_taille_tournee(tour),dist);
-        bruteforce_demi_matrice(tour,mat,best,distmin,&has_to_stop);
-        detruire_demi_matrice(mat);
+        bruteforce_demi_matrice(tour,dist,best,distmin,&has_to_stop);
     }
     
 }

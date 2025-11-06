@@ -105,7 +105,7 @@ int main(int argc, char *argv[]) {
         if(bf){
             bff = 0;
         }else{
-            bff = 0; // bff = 1 mais erreur de segmentation
+            bff = 1; // bff = 1 mais erreur de segmentation
         }
         int * best = malloc(sizeof(int)*get_taille_tournee(tour));
         double dist;
