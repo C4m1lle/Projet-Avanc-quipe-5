@@ -35,6 +35,13 @@ DistanceFunc dist_Code_Func(int dist_code){
     }
 }
 
+void affichage_test_python(char * filename, char * method, double sec, double length, int * tournee, int taille_tournee){
+    printf("%s ; %s ; %.6f ; %.2f ; [", filename, method, sec, length);
+    for(int i = 0; i < taille_tournee-1; i++){
+        printf("%d, ",tournee[i]);
+    }
+    printf("%d]\n",tournee[taille_tournee-1]);
+}
 
 int main(int argc, char *argv[]) {
 
@@ -112,26 +119,24 @@ int main(int argc, char *argv[]) {
 
         //TEST BRUTEFORCE
         int bff;
+        char method[4];
         if(bf){
             bff = 0;
+            sprintf(method,"bf");
         }else{
-            bff = 1; // bff = 1 mais erreur de segmentation
+            bff = 1;
+            sprintf(method,"bfm");
         }
         int * best = malloc(sizeof(int)*get_taille_tournee(tour));
         double dist;
         printf("Calcul des distances (Ctrl+C pour interruption)...\n");
 
         // Setup Ctrl+C
+        clock_t startbf = clock();
         setup_signal_handler(tour,dist_Code_Func(dist_code),best,&dist,bff);
-        
-        printf("dist = %lf\n",dist);
-        printf("[");
-
-        for(int i = 0;i<get_taille_tournee(tour)-1;i++){
-            printf("%d,",best[i]);
-        }
-        printf("%d]\n",best[get_taille_tournee(tour)-1]);
-        free(best);
+        clock_t endbf = clock();
+        double bf_time = (double)(endbf - startbf) / CLOCKS_PER_SEC;
+        affichage_test_python(filename, method, bf_time, dist, best, get_taille_tournee(tour));
     }
     
 
