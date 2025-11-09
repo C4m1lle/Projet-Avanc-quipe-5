@@ -5,6 +5,7 @@
 #include <strings.h>
 #include <time.h>
 
+#include "nn.h"
 #include "struct.h"
 #include "tspReader.h"
 #include "distance.h"
