@@ -14,11 +14,17 @@
 #include "bruteforce.h"
 
 void usage(char * arg){
-    printf("Usage : %s -f fichier.tsp [-c] [-bf] [-bfm]\n",arg);
+    printf("Usage : %s [<-f file.tsp> [-o <output.txt>] [-c] [-d {eucl2d | att | geo}] [-m {bf | bfm | nn | rw | 2optnn | 2optrw | ga}]] [-h]\n",arg);
     printf("  -f : nom du fichier TSPLIB à lire\n");
-    printf("  -c : (optionnel) calculer la longueur de la tournée canonique\n");
-    printf("  -bf : (optionnel) calculer la longeur optimale par force brute\n");
-    printf("  -bfm : (optionnel) calculer la longeur optimale par force brute matricielle (pas encore implémenté)\n");
+    printf("  -o <output.txt> : rediriger la sortie vers un fichier .txt\n");
+    printf("  -d <distance_type> :  choix de la distance choisies pour les calculs (eucl2d par défaut)\n");
+    printf("  -c : afficher la longueur de la tournée canonique\n");
+    printf("  -m {bf | bfm | nn | rw | 2optnn | 2optrw | ga} : recherche de la longueur optimale selon la méthode choisie\n");
+    printf("                                         bf : force brute\n");
+    printf("                                         bfm : force brute matricielle\n");
+    printf("                                         nn : plus proche voisin (nearest neighbor)\n");
+    printf("                                         rw : marche aléatoire (random walk)\n");
+    printf("                                         ga <nombre d'individus> <nombre de générations> <taux de mutation> : algorithme génétique générique\n");
     printf("  -h : help, affiche l'usage et ne fait aucun calcul.\n");
 }
 
@@ -44,15 +50,16 @@ void affichage_test_python(char * filename, char * method, double sec, double le
     printf("%d]\n",tournee[taille_tournee-1]);
 }
 
+
 int main(int argc, char *argv[]) {
 
-    if (argc < 3) {
+    if (argc < 2) {
         usage(argv[0]);
         return 1;
     }
 
     char *filename = NULL;
-    int iscanonic=0,bf=0,bfm=0;
+    int iscanonic=0,bf=0,bfm=0, nn;
     for (int i = 1; i < argc; i++) {
         if (strcmp(argv[i], "-f") == 0 && i + 1 < argc) {
             filename = argv[++i];
