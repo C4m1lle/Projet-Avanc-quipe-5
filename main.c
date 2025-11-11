@@ -219,6 +219,7 @@ int main(int argc, char *argv[]) {
         clock_t endbf = clock();
         double bf_time = (double)(endbf - startbf) / CLOCKS_PER_SEC;
         affichage_test_python(filename, method, bf_time, dist, best, get_taille_tournee(tour));
+        free(best);
     }
      /* --- Random Walk (rw) --- */
     if (rw) {
