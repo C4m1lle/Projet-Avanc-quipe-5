@@ -19,6 +19,8 @@
 #define RW 233
 #define DEUXOPTNN 609
 #define DEUXOPTRW 622
+#define GADPX 532
+#define ALL 313
 
 
 void usage(char * arg){
@@ -69,7 +71,8 @@ int main(int argc, char *argv[]) {
     
     char *filename = NULL;
     char mMode_buffer[7];
-    int iscanonic=0,bf=0,bfm=0,nn=0,rw=0,deux_optnn=0,deux_optrw=0,ga=0,m=0,j,sum;
+    int iscanonic=0,bf=0,bfm=0,nn=0,rw=0,deux_optnn=0,deux_optrw=0,ga=0,gadpx=0,m=0,j,sum;
+    DistanceFunc dist_method = dist_eucl2d;
     for (int i = 1; i < argc; i++) {
         if(strcmp(argv[i], "-f") == 0) {
             if(i + 1 >= argc){
@@ -80,6 +83,19 @@ int main(int argc, char *argv[]) {
         }
         if (strcmp(argv[i], "-c") == 0) {
             iscanonic = 1;
+        }
+        if (strcmp(argv[i], "-d") == 0) {
+            if(i+1 >= argc){
+                usage(argv[0]);
+                return 1;
+            }
+            if (strcmp(argv[i+1], "att") == 0){
+                dist_method = dist_att;
+            }
+            if (strcmp(argv[i+1], "geo") == 0){
+                dist_method = dist_geo;
+            }
+
         }
         if (strcmp(argv[i], "-m") == 0) {
             if( (m==1) | (i+1 >= argc)){
@@ -115,6 +131,19 @@ int main(int argc, char *argv[]) {
                 case DEUXOPTRW:
                     deux_optrw = 1;
                 break;
+                case GADPX:
+                    gadpx = 1;
+                break;
+                case ALL:
+                    bf = 1;
+                    bfm = 1;
+                    ga = 1;
+                    nn = 1;
+                    rw = 1;
+                    deux_optnn = 1;
+                    deux_optrw = 1;
+                    gadpx = 1;
+                break;
                 default:
                     usage(argv[0]);
                     return 1;
@@ -149,6 +178,7 @@ int main(int argc, char *argv[]) {
         if (strcasecmp(etype, "ATT") == 0) dist_code = 1;
         else if (strcasecmp(etype, "GEO") == 0) dist_code = 2;
     }
+    printf("Instance ; Méthode ; Temps CPU (sec) ; Longueur ; Tour\n");
     if(iscanonic){
         // Chronométrer le calcul
         clock_t start = clock();
@@ -187,11 +217,11 @@ int main(int argc, char *argv[]) {
         }
         int * best = malloc(sizeof(int)*get_taille_tournee(tour));
         double dist;
-        printf("Calcul des distances (Ctrl+C pour interruption)...\n");
+        //printf("Calcul des distances (Ctrl+C pour interruption)...\n");
 
         // Setup Ctrl+C
         clock_t startbf = clock();
-        setup_signal_handler(tour,dist_Code_Func(dist_code),best,&dist,bff);
+        setup_signal_handler(tour,dist_method,best,&dist,bff);
         clock_t endbf = clock();
         double bf_time = (double)(endbf - startbf) / CLOCKS_PER_SEC;
         affichage_test_python(filename, method, bf_time, dist, best, get_taille_tournee(tour));
