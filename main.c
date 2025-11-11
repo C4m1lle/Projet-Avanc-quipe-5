@@ -44,7 +44,7 @@ void affichage_test_python(FILE * output_file,char * filename, char * method, do
     fprintf(output_file,"%s %s %.6f %.2f [", filename, method, sec, length);
 
     for(int i = 0; i < taille_tournee-1; i++){
-        fprintf(output_file,"%d, ",tournee[i]);
+        fprintf(output_file,"%d,",tournee[i]);
     }
     fprintf(output_file,"%d]\n",tournee[taille_tournee-1]);
 }
