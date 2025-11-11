@@ -257,22 +257,22 @@ int main(int argc, char *argv[]) {
 
     int n = get_taille_tournee(tour);
     int *best = malloc(sizeof(int) * n);
-    if (!best) {
-        fprintf(stderr, "Erreur memoire allocation best (nn)\n");
-    } else {
-        double dist_found = 0.0;
+        if (!best) {
+            fprintf(stderr, "Erreur memoire allocation best (nn)\n");
+        } else {
+            double dist_found = 0.0;
 
-        clock_t startnn = clock();
-        plus_proche_voisin(tour, dist_Code_Func(dist_code), best, &dist_found);
+            clock_t startnn = clock();
+            plus_proche_voisin(tour, dist_method, best, &dist_found);
 
-        clock_t endnn = clock();
-        double nn_time = (double)(endnn - startnn) / CLOCKS_PER_SEC;
+            clock_t endnn = clock();
+            double nn_time = (double)(endnn - startnn) / CLOCKS_PER_SEC;
 
-        affichage_test_python(filename, method, nn_time, dist_found, best, n);
+            affichage_test_python(filename, method, nn_time, dist_found, best, n);
 
-        free(best);
+            free(best);
+        }
     }
-}
 
 
     // Libération memoire
