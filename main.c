@@ -39,18 +39,14 @@ void usage(char * arg){
 }
 
 
-void affichage_test_python(char * filename, char * method, double sec, double length, int * tournee, int taille_tournee){
+void affichage_test_python(FILE * output_file,char * filename, char * method, double sec, double length, int * tournee, int taille_tournee){
     
-    printf("%s %s %.6f %.2f [", filename, method, sec, length);
+    fprintf(output_file,"%s ; %s ; %.6f ; %.2f ; [", filename, method, sec, length);
 
-    for (int i = 0; i < taille_tournee; ++i) {
-        printf("%d", tournee[i]);
-        if (i + 1 < taille_tournee) {
-            printf(",");
-        }
+    for(int i = 0; i < taille_tournee-1; i++){
+        fprintf(output_file,"%d, ",tournee[i]);
     }
-
-    printf("]\n");
+    fprintf(output_file,"%d]\n",tournee[taille_tournee-1]);
 }
 
 
@@ -64,6 +60,7 @@ int main(int argc, char *argv[]) {
     }
     
     char *filename = NULL;
+    FILE * output_file = stdout;
     char mMode_buffer[7];
     int iscanonic=0,bf=0,bfm=0,nn=0,rw=0,deux_optnn=0,deux_optrw=0,ga=0,gadpx=0,m=0,j,sum,force_dist_method=0;
     DistanceFunc dist_method = dist_eucl2d;
@@ -74,6 +71,17 @@ int main(int argc, char *argv[]) {
                 return 1;
             }
             filename = argv[++i];
+        }
+        if(strcmp(argv[i], "-o") == 0) {
+            if(i + 1 >= argc){
+                usage(argv[0]);
+                return 1;
+            }
+            if((output_file = fopen(argv[i+1],"a")) == NULL){
+                fprintf(stderr,"Fichier %s inaccessible ou inexistant.\n",argv[++i]);
+                return 1;
+            }
+            
         }
         if (strcmp(argv[i], "-c") == 0) {
             iscanonic = 1;
@@ -167,12 +175,12 @@ int main(int argc, char *argv[]) {
         return 1;
     }
     const char *etype = get_edge_weight_type(problem);
-
+    int taille_Tournee = get_taille_tournee(tour);
     if (etype && !force_dist_method) {
         if (strcasecmp(etype, "ATT") == 0) dist_method = dist_att;
         else if (strcasecmp(etype, "GEO") == 0) dist_method = dist_geo;
     }
-    printf("Instance ; Méthode ; Temps CPU (sec) ; Longueur ; Tour\n");
+    fprintf(output_file,"Instance ; Méthode ; Temps CPU (sec) ; Longueur ; Tour\n");
     if(iscanonic){
         // Chronométrer le calcul
         clock_t start = clock();
@@ -185,48 +193,53 @@ int main(int argc, char *argv[]) {
 
         // Affichage au format Python attendu
 
-        printf("%s canonical %.6f %.2f [", filename, cpu_time, length);
-
-        int i = 0;
+        int * tab_tournee = malloc(sizeof(int)*taille_Tournee);
         tInstance inst;
-        while ((inst = get_instance_at(tour, i)) != NULL) {
-            printf("%d", get_id(inst));
-            i++;
-            if (get_instance_at(tour, i) != NULL)
-                printf(",");
+
+        for(int id = 0; id<taille_Tournee; id++){
+            inst = get_instance_at(tour, id);
+            tab_tournee[id] = get_id(inst);
         }
-        printf("]\n");
+
+        affichage_test_python(output_file,filename, "canonical", cpu_time, length, tab_tournee, taille_Tournee);
+        free(tab_tournee);
     }
-    if(bf || bfm){
+    if(bf){
 
         //TEST BRUTEFORCE
-        int bff;
-        char method[4];
-        if(bf){
-            bff = 0;
-            sprintf(method,"bf");
-        }else{
-            bff = 1;
-            sprintf(method,"bfm");
-        }
-        int * best = malloc(sizeof(int)*get_taille_tournee(tour));
+        int * best_bf = malloc(sizeof(int)*taille_Tournee);
         double dist;
         //printf("Calcul des distances (Ctrl+C pour interruption)...\n");
 
         // Setup Ctrl+C
         clock_t startbf = clock();
-        setup_signal_handler(tour,dist_method,best,&dist,bff);
+        setup_signal_handler(tour,dist_method,best_bf,&dist,0);
         clock_t endbf = clock();
         double bf_time = (double)(endbf - startbf) / CLOCKS_PER_SEC;
-        affichage_test_python(filename, method, bf_time, dist, best, get_taille_tournee(tour));
-        free(best);
+        affichage_test_python(output_file,filename, "bf", bf_time, dist, best_bf, taille_Tournee);
+        free(best_bf);
+    }
+    if(bfm){
+
+        //TEST BRUTEFORCE
+        int * best_bfm = malloc(sizeof(int)*taille_Tournee);
+        double dist;
+        //printf("Calcul des distances (Ctrl+C pour interruption)...\n");
+
+        // Setup Ctrl+C
+        clock_t startbfm = clock();
+        setup_signal_handler(tour,dist_method,best_bfm,&dist,1);
+        clock_t endbfm = clock();
+        double bfm_time = (double)(endbfm - startbfm) / CLOCKS_PER_SEC;
+        affichage_test_python(output_file,filename, "bfm", bfm_time, dist, best_bfm, taille_Tournee);
+        free(best_bfm);
     }
      /* --- Random Walk (rw) --- */
     if (rw) {
         char method[4];
         sprintf(method, "rw");
 
-        int n = get_taille_tournee(tour);
+        int n = taille_Tournee;
         int *best = malloc(sizeof(int) * n);
         if (!best) {
             fprintf(stderr, "Erreur memoire allocation best (rw)\n");
@@ -246,32 +259,31 @@ int main(int argc, char *argv[]) {
             if (rc != 0) {
                 fprintf(stderr, "random_walk a retourné une erreur (rc=%d)\n", rc);
             } else {
-                affichage_test_python(filename, method, rw_time, dist_found, best, n);
+                affichage_test_python(output_file,filename, method, rw_time, dist_found, best, n);
             }
 
             free(best);
         }
     }
     if (nn) {
-    char method[3];
-    sprintf(method, "nn");
+        char method[3];
+        sprintf(method, "nn");
 
-    int n = get_taille_tournee(tour);
-    int *best = malloc(sizeof(int) * n);
-        if (!best) {
-            fprintf(stderr, "Erreur memoire allocation best (nn)\n");
-        } else {
-            double dist_found = 0.0;
+        int *best = malloc(sizeof(int) * taille_Tournee);
+            if (!best) {
+                fprintf(stderr, "Erreur memoire allocation best (nn)\n");
+            } else {
+                double dist_found = 0.0;
 
-            clock_t startnn = clock();
-            plus_proche_voisin(tour, dist_method, best, &dist_found);
+                clock_t startnn = clock();
+                plus_proche_voisin(tour, dist_method, best, &dist_found);
 
-            clock_t endnn = clock();
-            double nn_time = (double)(endnn - startnn) / CLOCKS_PER_SEC;
+                clock_t endnn = clock();
+                double nn_time = (double)(endnn - startnn) / CLOCKS_PER_SEC;
 
-            affichage_test_python(filename, method, nn_time, dist_found, best, n);
+                affichage_test_python(output_file,filename, method, nn_time, dist_found, best, taille_Tournee);
 
-            free(best);
+                free(best);
         }
     }
 
@@ -279,6 +291,9 @@ int main(int argc, char *argv[]) {
     // Libération memoire
 
     delete_problem(&problem);
+    if(output_file!=stdout){
+        fclose(output_file);
+    }
     return 0;
 }
 
