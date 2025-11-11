@@ -5,11 +5,6 @@
 #include "distance.h"
 #include "demi_matrice.h"
 
-/* plus_proche_voisin
- * tour : la tournée contenant les instances
- * distance : fonction de distance
- * meilleure_tour : tableau préalloué pour stocker l'ordre des ids des villes
- */
 
 void plus_proche_voisin(tTournee tour, DistanceFunc distance, int *meilleure_tour, double *longueur_totale) {
     int n = get_taille_tournee(tour);
@@ -24,7 +19,7 @@ void plus_proche_voisin(tTournee tour, DistanceFunc distance, int *meilleure_tou
     visite[ville_actuelle] = 1;
     meilleure_tour[0] = ville_actuelle;
 
-    // Construction de la tournée
+   
     for (i = 1; i < n; i++) {
         double distance_min = DBL_MAX;
         int prochaine_ville = -1;
@@ -48,7 +43,6 @@ void plus_proche_voisin(tTournee tour, DistanceFunc distance, int *meilleure_tou
         ville_actuelle = prochaine_ville;
     }
 
-    // 🔹 Calcul de la distance totale du parcours final
     double somme_distances = 0.0;
     for (i = 0; i < n - 1; i++) {
         tInstance a = get_instance_at(tour, meilleure_tour[i]);
@@ -56,7 +50,6 @@ void plus_proche_voisin(tTournee tour, DistanceFunc distance, int *meilleure_tou
         somme_distances += distance(a, b);
     }
 
-    // Ajout du retour à la ville de départ
     tInstance debut = get_instance_at(tour, meilleure_tour[0]);
     tInstance fin = get_instance_at(tour, meilleure_tour[n - 1]);
     somme_distances += distance(fin, debut);
@@ -88,7 +81,7 @@ void plus_proche_voisin_demi_matrice(tTournee tour, tDemiMatrice matrice, int *m
     visite[ville_courante] = 1;
     meilleure_tour[0] = ville_courante;
 
-    // Construction du parcours
+    
     for (i = 1; i < n; i++) {
         double distance_min = DBL_MAX;
         int prochaine_ville = -1;
@@ -104,11 +97,11 @@ void plus_proche_voisin_demi_matrice(tTournee tour, tDemiMatrice matrice, int *m
         }
 
         if (prochaine_ville == -1) {
-            // Si plus de villes trouvées (ne devrait pas arriver)
+            
             for (j = i; j < n; j++) {
                 meilleure_tour[j] = -1;
             }
-            i = n; // on termine la boucle
+            i = n; 
         } else {
             meilleure_tour[i] = prochaine_ville;
             visite[prochaine_ville] = 1;
@@ -116,12 +109,12 @@ void plus_proche_voisin_demi_matrice(tTournee tour, tDemiMatrice matrice, int *m
         }
     }
 
-    // 🔹 Calcul de la longueur totale du parcours final
+    
     double somme = 0.0;
     for (i = 0; i < n - 1; i++) {
         somme += obtenir_distance(matrice, meilleure_tour[i], meilleure_tour[i + 1]);
     }
-    somme += obtenir_distance(matrice, meilleure_tour[n - 1], meilleure_tour[0]); // retour à la première ville
+    somme += obtenir_distance(matrice, meilleure_tour[n - 1], meilleure_tour[0]); 
 
     *longueur_totale = somme;
 
