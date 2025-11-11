@@ -4,7 +4,7 @@
 #include <string.h>
 #include <strings.h>
 #include <time.h>
-
+#include "rw.h"
 #include "nn.h"
 #include "struct.h"
 #include "tspReader.h"
@@ -53,12 +53,26 @@ DistanceFunc dist_Code_Func(int dist_code){
 }
 
 void affichage_test_python(char * filename, char * method, double sec, double length, int * tournee, int taille_tournee){
-    printf("%s ; %s ; %.6f ; %.2f ; [", filename, method, sec, length);
-    for(int i = 0; i < taille_tournee-1; i++){
-        printf("%d, ",tournee[i]);
+    if (!filename || !method || !tournee || taille_tournee <= 0) {
+        /* rien à afficher si arguments invalides */
+        return;
     }
-    printf("%d]\n",tournee[taille_tournee-1]);
+
+    /* Exemple de sortie : 
+       Tour att10.tsp rw 0.012345 6373.00 [1,2,3,4,...]
+    */
+    printf("Tour %s %s %.6f %.2f [", filename, method, sec, length);
+
+    for (int i = 0; i < taille_tournee; ++i) {
+        printf("%d", tournee[i]);
+        if (i + 1 < taille_tournee) {
+            printf(",");
+        }
+    }
+
+    printf("]\n");
 }
+
 
 
 
@@ -226,9 +240,38 @@ int main(int argc, char *argv[]) {
         double bf_time = (double)(endbf - startbf) / CLOCKS_PER_SEC;
         affichage_test_python(filename, method, bf_time, dist, best, get_taille_tournee(tour));
     }
-    
+     /* --- Random Walk (rw) --- */
+    if (rw) {
+        char method[4];
+        sprintf(method, "rw");
 
+        int n = get_taille_tournee(tour);
+        int *best = malloc(sizeof(int) * n);
+        if (!best) {
+            fprintf(stderr, "Erreur memoire allocation best (rw)\n");
+        } else {
+            double dist_found = 0.0;
+            //printf("Exécution de la marche aléatoire (random walk)...\n");
+            clock_t startrw = clock();
 
+            /* Appel de la fonction random_walk :
+             * int random_walk(tTournee tour, DistanceFunc dist, int *bestTour, double *bestDist);
+             */
+            int rc = random_walk(tour, dist_Code_Func(dist_code), best, &dist_found);
+
+            clock_t endrw = clock();
+            double rw_time = (double)(endrw - startrw) / CLOCKS_PER_SEC;
+
+            if (rc != 0) {
+                fprintf(stderr, "random_walk a retourné une erreur (rc=%d)\n", rc);
+            } else {
+                affichage_test_python(filename, method, rw_time, dist_found, best, n);
+            }
+
+            free(best);
+        }
+    }
+  
 
 
     // Libération memoire
