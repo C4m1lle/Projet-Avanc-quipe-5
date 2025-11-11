@@ -51,14 +51,7 @@ DistanceFunc dist_Code_Func(int dist_code){
 }
 
 void affichage_test_python(char * filename, char * method, double sec, double length, int * tournee, int taille_tournee){
-    if (!filename || !method || !tournee || taille_tournee <= 0) {
-        /* rien à afficher si arguments invalides */
-        return;
-    }
-
-    /* Exemple de sortie : 
-       Tour att10.tsp rw 0.012345 6373.00 [1,2,3,4,...]
-    */
+    
     printf("Tour %s %s %.6f %.2f [", filename, method, sec, length);
 
     for (int i = 0; i < taille_tournee; ++i) {
@@ -241,7 +234,28 @@ int main(int argc, char *argv[]) {
             free(best);
         }
     }
-  
+    if (nn) {
+    char method[3];
+    sprintf(method, "nn");
+
+    int n = get_taille_tournee(tour);
+    int *best = malloc(sizeof(int) * n);
+    if (!best) {
+        fprintf(stderr, "Erreur memoire allocation best (nn)\n");
+    } else {
+        double dist_found = 0.0;
+
+        clock_t startnn = clock();
+        plus_proche_voisin(tour, dist_Code_Func(dist_code), best, &dist_found);
+
+        clock_t endnn = clock();
+        double nn_time = (double)(endnn - startnn) / CLOCKS_PER_SEC;
+
+        affichage_test_python(filename, method, nn_time, dist_found, best, n);
+
+        free(best);
+    }
+}
 
 
     // Libération memoire
