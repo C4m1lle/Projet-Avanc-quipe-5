@@ -13,6 +13,14 @@
 #include "signal_handler.h"
 #include "bruteforce.h"
 
+#define BF_GA 200
+#define BFM 309
+#define NN 220
+#define RW 233
+#define DEUXOPTNN 609
+#define DEUXOPTRW 622
+
+
 void usage(char * arg){
     printf("Usage : %s [<-f file.tsp> [-o <output.txt>] [-c] [-d {eucl2d | att | geo}] [-m {bf | bfm | nn | rw | 2optnn | 2optrw | ga}]] [-h]\n",arg);
     printf("  -f : nom du fichier TSPLIB à lire\n");
@@ -51,30 +59,72 @@ void affichage_test_python(char * filename, char * method, double sec, double le
 }
 
 
+
 int main(int argc, char *argv[]) {
 
     if (argc < 2) {
         usage(argv[0]);
         return 1;
     }
-
+    
     char *filename = NULL;
-    int iscanonic=0,bf=0,bfm=0, nn;
+    char mMode_buffer[7];
+    int iscanonic=0,bf=0,bfm=0,nn=0,rw=0,deux_optnn=0,deux_optrw=0,ga=0,m=0,j,sum;
     for (int i = 1; i < argc; i++) {
-        if (strcmp(argv[i], "-f") == 0 && i + 1 < argc) {
+        if(strcmp(argv[i], "-f") == 0) {
+            if(i + 1 >= argc){
+                usage(argv[0]);
+                return 1;
+            }
             filename = argv[++i];
         }
         if (strcmp(argv[i], "-c") == 0) {
             iscanonic = 1;
         }
-        if (strcmp(argv[i], "-bf") == 0) {
-            bf = 1;
+        if (strcmp(argv[i], "-m") == 0) {
+            if( (m==1) | (i+1 >= argc)){
+                usage(argv[0]);
+                return 1;
+            }
+            m=1; sum=0; j=0;
+            strcpy(mMode_buffer,argv[i+1]);
+            while(mMode_buffer[j]!='\0' && j < 7){
+                sum+=mMode_buffer[j];
+                j++;
+            }
+            switch(sum){
+                case BF_GA:// somme ascii de ga | bf
+                    if (strcmp(mMode_buffer, "bf") == 0){
+                        bf = 1;
+                    }else{
+                        ga = 1;
+                    }
+                break;
+                case BFM:
+                    bfm = 1;
+                break;
+                case NN:
+                    nn = 1;
+                break;
+                case RW:
+                    rw = 1;
+                break;
+                case DEUXOPTNN:
+                    deux_optnn = 1;
+                break;
+                case DEUXOPTRW:
+                    deux_optrw = 1;
+                break;
+                default:
+                    usage(argv[0]);
+                    return 1;
+                break;
+
+            }
         }
-        if (strcmp(argv[i], "-bfm") == 0) {
-            bfm = 1;
-        }
-        if (strcmp(argv[i], "-h") == 0) {
+        if (strcmp(argv[i], "-h") == 0){
             usage(argv[0]);
+            return 0;
         }
     }
 
