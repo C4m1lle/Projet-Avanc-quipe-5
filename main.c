@@ -41,7 +41,7 @@ void usage(char * arg){
 
 void affichage_test_python(char * filename, char * method, double sec, double length, int * tournee, int taille_tournee){
     
-    printf("Tour %s %s %.6f %.2f [", filename, method, sec, length);
+    printf("%s %s %.6f %.2f [", filename, method, sec, length);
 
     for (int i = 0; i < taille_tournee; ++i) {
         printf("%d", tournee[i]);
@@ -185,7 +185,7 @@ int main(int argc, char *argv[]) {
 
         // Affichage au format Python attendu
 
-        printf("Tour %s canonical %.6f %.2f [", filename, cpu_time, length);
+        printf("%s canonical %.6f %.2f [", filename, cpu_time, length);
 
         int i = 0;
         tInstance inst;
