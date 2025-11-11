@@ -38,19 +38,6 @@ void usage(char * arg){
     printf("  -h : help, affiche l'usage et ne fait aucun calcul.\n");
 }
 
-DistanceFunc dist_Code_Func(int dist_code){
-    switch(dist_code){
-        case 1:
-            return dist_att;
-        break;
-        case 2:
-            return dist_geo;
-        break;
-        default:
-            return dist_eucl2d;
-        break;
-    }
-}
 
 void affichage_test_python(char * filename, char * method, double sec, double length, int * tournee, int taille_tournee){
     if (!filename || !method || !tournee || taille_tournee <= 0) {
@@ -85,7 +72,7 @@ int main(int argc, char *argv[]) {
     
     char *filename = NULL;
     char mMode_buffer[7];
-    int iscanonic=0,bf=0,bfm=0,nn=0,rw=0,deux_optnn=0,deux_optrw=0,ga=0,gadpx=0,m=0,j,sum;
+    int iscanonic=0,bf=0,bfm=0,nn=0,rw=0,deux_optnn=0,deux_optrw=0,ga=0,gadpx=0,m=0,j,sum,force_dist_method=0;
     DistanceFunc dist_method = dist_eucl2d;
     for (int i = 1; i < argc; i++) {
         if(strcmp(argv[i], "-f") == 0) {
@@ -109,7 +96,7 @@ int main(int argc, char *argv[]) {
             if (strcmp(argv[i+1], "geo") == 0){
                 dist_method = dist_geo;
             }
-
+            force_dist_method=1;
         }
         if (strcmp(argv[i], "-m") == 0) {
             if( (m==1) | (i+1 >= argc)){
@@ -187,10 +174,10 @@ int main(int argc, char *argv[]) {
         return 1;
     }
     const char *etype = get_edge_weight_type(problem);
-    int dist_code = 0;  // 0 = EUCL_2D, 1 = ATT, 2 = GEO
-    if (etype) {
-        if (strcasecmp(etype, "ATT") == 0) dist_code = 1;
-        else if (strcasecmp(etype, "GEO") == 0) dist_code = 2;
+
+    if (etype && !force_dist_method) {
+        if (strcasecmp(etype, "ATT") == 0) dist_method = dist_att;
+        else if (strcasecmp(etype, "GEO") == 0) dist_method = dist_geo;
     }
     printf("Instance ; Méthode ; Temps CPU (sec) ; Longueur ; Tour\n");
     if(iscanonic){
@@ -198,7 +185,7 @@ int main(int argc, char *argv[]) {
         clock_t start = clock();
 
         double length = 0.0;
-        length = tour_length(tour,dist_Code_Func(dist_code));
+        length = tour_length(tour,dist_method);
 
         clock_t end = clock();
         double cpu_time = (double)(end - start) / CLOCKS_PER_SEC;
@@ -257,7 +244,7 @@ int main(int argc, char *argv[]) {
             /* Appel de la fonction random_walk :
              * int random_walk(tTournee tour, DistanceFunc dist, int *bestTour, double *bestDist);
              */
-            int rc = random_walk(tour, dist_Code_Func(dist_code), best, &dist_found);
+            int rc = random_walk(tour, dist_method, best, &dist_found);
 
             clock_t endrw = clock();
             double rw_time = (double)(endrw - startrw) / CLOCKS_PER_SEC;
