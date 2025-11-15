@@ -73,7 +73,7 @@ int get_taille_tournee(tTournee tour){
 }
 
 tInstance get_instance_at(tTournee tour,int nb){
-     if (!tour) return NULL;
+    if (!tour) return NULL;
     if (nb >= tour->current) {
         return NULL;
     }
@@ -95,4 +95,14 @@ void delete_tournee(tTournee * ptour){
     free(t->chemin);
     free(t);
     *ptour = NULL;
+}
+
+int permute(tTournee tournee, int id1, int id2){
+    if(id1 > tournee->current-1 || id2 > tournee->current-1){
+        return -1;
+    }
+    tInstance tmp = tournee->chemin[id1];
+    tournee->chemin[id1] = tournee->chemin[id2];
+    tournee->chemin[id2] = tmp;
+    return 0;
 }
