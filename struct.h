@@ -17,5 +17,5 @@ int get_id(tInstance inst);
 
 tInstance get_instance_at(tTournee tour,int nb);
 int get_taille_tournee(tTournee tour);
-int permute(tTournee tournee, int id1, int id2);
+int reverse_segment(tTournee tournee, int id1, int id2);
 #endif

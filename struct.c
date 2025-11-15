@@ -97,12 +97,17 @@ void delete_tournee(tTournee * ptour){
     *ptour = NULL;
 }
 
-int permute(tTournee tournee, int id1, int id2){
+int reverse_segment(tTournee tournee, int id1, int id2){
     if(id1 > tournee->current-1 || id2 > tournee->current-1){
         return -1;
     }
-    tInstance tmp = tournee->chemin[id1];
-    tournee->chemin[id1] = tournee->chemin[id2];
-    tournee->chemin[id2] = tmp;
+    tInstance tmp;
+    while (id1 < id2) {
+            tmp = tournee->chemin[id1];
+            tournee->chemin[id1] = tournee->chemin[id2];
+            tournee->chemin[id2] = tmp;
+            id1++;
+            id2--;
+        }
     return 0;
 }

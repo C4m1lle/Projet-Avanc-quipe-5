@@ -241,7 +241,7 @@ int main(int argc, char *argv[]) {
         int n = taille_Tournee;
         int *best = malloc(sizeof(int) * n);
         if (!best) {
-            fprintf(stderr, "Erreur memoire allocation best (rw)\n");
+            fprintf(stderr, "Erreur memoire allocation (rw)\n");
         } else {
             double dist_found = 0.0;
             //printf("Exécution de la marche aléatoire (random walk)...\n");
@@ -270,7 +270,7 @@ int main(int argc, char *argv[]) {
 
         int *best = malloc(sizeof(int) * taille_Tournee);
             if (!best) {
-                fprintf(stderr, "Erreur memoire allocation best (nn)\n");
+                fprintf(stderr, "Erreur memoire allocation (nn)\n");
             } else {
                 double dist_found = 0.0;
 
@@ -291,19 +291,49 @@ int main(int argc, char *argv[]) {
 
         int *best = malloc(sizeof(int) * taille_Tournee);
             if (!best) {
-                fprintf(stderr, "Erreur memoire allocation best (nn)\n");
+                fprintf(stderr, "Erreur memoire allocation (opt2nn)\n");
             } else {
                 double dist_found = 0.0;
 
-                clock_t startnn = clock();
+                clock_t startOptnn = clock();
                 plus_proche_voisin(tour, dist_method, best, &dist_found);
-                opt2(dist_method,tour);
-                clock_t endnn = clock();
-                double nn_time = (double)(endnn - startnn) / CLOCKS_PER_SEC;
+                dist_found = opt2(dist_method,tour,best);
+                clock_t endOptnn = clock();
+                double Optnn_time = (double)(endOptnn - startOptnn) / CLOCKS_PER_SEC;
 
-                affichage_test_python(output_file,filename, method, nn_time, dist_found, best, taille_Tournee);
+                affichage_test_python(output_file,filename, method, Optnn_time, dist_found, best, taille_Tournee);
 
                 free(best);
+        }
+    }
+    if (deux_optrw) {
+        char method[7];
+        sprintf(method, "opt2rw");
+
+        int n = taille_Tournee;
+        int *best = malloc(sizeof(int) * n);
+        if (!best) {
+            fprintf(stderr, "Erreur memoire allocation (opt2rw)\n");
+        } else {
+            double dist_found = 0.0;
+            //printf("Exécution de la marche aléatoire (random walk)...\n");
+            clock_t startOptrw = clock();
+
+            /* Appel de la fonction random_walk :
+             * int random_walk(tTournee tour, DistanceFunc dist, int *bestTour, double *bestDist);
+             */
+            int rc = random_walk(tour, dist_method, best, &dist_found);
+            dist_found = opt2(dist_method,tour,best);
+            clock_t endOptrw = clock();
+            double Optrw_time = (double)(endOptrw - startOptrw) / CLOCKS_PER_SEC;
+
+            if (rc != 0) {
+                fprintf(stderr, "random_walk a retourné une erreur (rc=%d)\n", rc);
+            } else {
+                affichage_test_python(output_file,filename, method, Optrw_time, dist_found, best, n);
+            }
+
+            free(best);
         }
     }
 

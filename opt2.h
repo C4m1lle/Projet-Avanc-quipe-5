@@ -5,5 +5,5 @@
 
 
 
-void opt2(DistanceFunc dist_func,tTournee tournee);
+double opt2(DistanceFunc dist_func,tTournee tournee, int * tab_tournee);
 #endif
