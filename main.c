@@ -12,6 +12,7 @@
 #include "demi_matrice.h"
 #include "signal_handler.h"
 #include "bruteforce.h"
+#include "opt2.h"
 
 #define BF_GA 200
 #define BFM 309
@@ -276,6 +277,27 @@ int main(int argc, char *argv[]) {
                 clock_t startnn = clock();
                 plus_proche_voisin(tour, dist_method, best, &dist_found);
 
+                clock_t endnn = clock();
+                double nn_time = (double)(endnn - startnn) / CLOCKS_PER_SEC;
+
+                affichage_test_python(output_file,filename, method, nn_time, dist_found, best, taille_Tournee);
+
+                free(best);
+        }
+    }
+    if(deux_optnn){
+        char method[7];
+        sprintf(method, "opt2nn");
+
+        int *best = malloc(sizeof(int) * taille_Tournee);
+            if (!best) {
+                fprintf(stderr, "Erreur memoire allocation best (nn)\n");
+            } else {
+                double dist_found = 0.0;
+
+                clock_t startnn = clock();
+                plus_proche_voisin(tour, dist_method, best, &dist_found);
+                opt2(dist_method,tour);
                 clock_t endnn = clock();
                 double nn_time = (double)(endnn - startnn) / CLOCKS_PER_SEC;
 

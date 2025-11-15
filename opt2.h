@@ -5,6 +5,5 @@
 
 
 
-int opt2(tTournee tour, DistanceFunc dist, int *bestTour, double *bestDist);
-int is_crossed(tInstance A,tInstance B,tInstance C,tInstance D);
+void opt2(DistanceFunc dist_func,tTournee tournee);
 #endif

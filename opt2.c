@@ -3,7 +3,19 @@
 #include "nn.h"
 #include "distance.h"
 
-int opt2(DistanceFunc dist_func,tTournee tournee){
+
+int is_crossed(tInstance A,tInstance B,tInstance C,tInstance D){
+    double a,b;
+    double xc = get_x(C),xd = get_x(D),yc=get_y(C),yd=get_y(D);
+    a = ((get_y(A)-get_y(B))/(get_x(A)-get_x(B)));
+    b = get_y(A) - a*get_x(A);
+    if(((a*xc+b > yc) && (a*xd+b < yd)) || ((a*xc+b < yc) && (a*xd+b > yd))){
+        return 1;
+    }
+    return 0;
+}
+
+void opt2(DistanceFunc dist_func,tTournee tournee){
     int taille_tournee = get_taille_tournee(tournee);
     tInstance curr,next, curr2, next2;
     for(int i=0; i<taille_tournee-1; i++){
@@ -24,13 +36,4 @@ int opt2(DistanceFunc dist_func,tTournee tournee){
     }
 }
 
-int is_crossed(tInstance A,tInstance B,tInstance C,tInstance D){
-    double a,b;
-    double xc = getx_x(C),xd = getx_x(D),yc=get_y(C),yd=get_y(D);
-    a = ((get_y(A)-get_y(A))/(get_x(A)-get_x(A)));
-    b = get_y(A) - a*get_x(A);
-    if(((a*xc+b > yc) && (a*xd+b < yd)) || ((a*xc+b < yc) && (a*xd+b > yd))){
-        return 1;
-    }
-    return 0;
-}
+
