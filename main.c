@@ -137,8 +137,6 @@ int main(int argc, char *argv[]) {
                     gadpx = 1;
                 break;
                 case ALL:
-                    bf = 1;
-                    bfm = 1;
                     ga = 1;
                     nn = 1;
                     rw = 1;
