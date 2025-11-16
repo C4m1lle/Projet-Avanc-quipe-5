@@ -336,8 +336,31 @@ int main(int argc, char *argv[]) {
             free(best);
         }
     }
+      if (ga) {
 
+        int *best_ids = NULL;
+        double best_dist = 0.0;
+        int pop_size = 30;
+        int generations = 100;
+        double mutation_rate = 0.1;
+        if (argc >= 6 && strcmp(argv[4], "ga") == 0) {
+            pop_size      = atoi(argv[5]);
+            generations   = atoi(argv[6]);
+            mutation_rate = atof(argv[7]);
+        }
+        clock_t start_ga = clock();
+        int rc = ga_tri_light(tour,dist_method,pop_size,generations,mutation_rate,&best_ids,&best_dist);
+        clock_t end_ga = clock();
+        double ga_time = (double)(end_ga - start_ga) / CLOCKS_PER_SEC;
+        if (rc != 0) {
+            fprintf(stderr, "Erreur GA.\n");
+        } else {
+            affichage_test_python(output_file,filename,"ga",ga_time,best_dist,best_ids,taille_Tournee);
+        }
 
+        free(best_ids);
+    }
+ 
     // Libération memoire
 
     delete_problem(&problem);

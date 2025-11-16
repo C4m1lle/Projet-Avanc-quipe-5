@@ -111,3 +111,20 @@ int reverse_segment(tTournee tournee, int id1, int id2){
         }
     return 0;
 }
+void delete_tournee_without_instances(tTournee *ptour) {
+    if (!ptour || !*ptour) return;
+
+    tTournee t = *ptour;
+
+    // On ne supprime pas les instances (elles sont partagées)
+    if (t->chemin) {
+        free(t->chemin);
+    }
+
+    free(t);
+    *ptour = NULL;
+}
+void set_instance_at(tTournee tour, int index, tInstance inst){
+    if (!tour || index<0 || index>=tour->current) return;
+    tour->chemin[index] = inst;
+}
