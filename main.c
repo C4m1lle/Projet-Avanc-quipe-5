@@ -13,6 +13,7 @@
 #include "signal_handler.h"
 #include "bruteforce.h"
 #include "opt2.h"
+#include "ga.h"
 
 #define BF_GA 200
 #define BFM 309
@@ -336,7 +337,7 @@ int main(int argc, char *argv[]) {
             free(best);
         }
     }
-      if (ga) {
+    if(ga) {
 
         int *best_ids = NULL;
         double best_dist = 0.0;

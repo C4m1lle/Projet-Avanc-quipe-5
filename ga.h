@@ -20,7 +20,7 @@ void swap_mutation(tTournee tour, double mutation_rate);
 void sort_population(tTournee* population, int pop_size, DistanceFunc dist);
 
 // Algorithme génétique Python-like
-ga_tri_light(tTournee tour, DistanceFunc dist, int pop_size, int generations, double mutation_rate,
+int ga_tri_light(tTournee tour, DistanceFunc dist, int pop_size, int generations, double mutation_rate,
                    int** best_ids, double* best_dist);
 
 #endif
