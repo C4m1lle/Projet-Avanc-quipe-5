@@ -6,16 +6,27 @@
 #include <stdio.h>
 
 
-int is_crossed(tInstance A,tInstance B,tInstance C,tInstance D){
-    double a,b;
-    double xc = get_x(C),xd = get_x(D),yc=get_y(C),yd=get_y(D);
-    a = ((get_y(A)-get_y(B))/(get_x(A)-get_x(B)));
-    b = get_y(A) - a*get_x(A);
-    if(((a*xc+b > yc) && (a*xd+b < yd)) || ((a*xc+b < yc) && (a*xd+b > yd))){
+int is_crossed(tInstance A, tInstance B, tInstance C, tInstance D){
+    double ax = get_x(A), ay = get_y(A);
+    double bx = get_x(B), by = get_y(B);
+    double cx = get_x(C), cy = get_y(C);
+    double dx = get_x(D), dy = get_y(D);
+
+    double d1, d2, d3, d4;
+
+    // produits vectoriels
+    d1 = (bx - ax)*(cy - ay) - (by - ay)*(cx - ax);
+    d2 = (bx - ax)*(dy - ay) - (by - ay)*(dx - ax);
+    d3 = (dx - cx)*(ay - cy) - (dy - cy)*(ax - cx);
+    d4 = (dx - cx)*(by - cy) - (dy - cy)*(bx - cx);
+
+    // segments croisés si les signes sont opposés
+    if((d1 * d2 < 0) && (d3 * d4 < 0)){
         return 1;
     }
     return 0;
 }
+
 
 
 
@@ -35,17 +46,22 @@ double opt2(DistanceFunc dist_func,tTournee tournee, int * tab_tournee){
 
     tInstance curr,next, curr2, next2;
 
-    for(int i=0; i<taille_tournee-1; i++){ // optimisation de cette nouvelle tournee
-        curr = get_instance_at(tmp,i);
-        next = get_instance_at(tmp,i+1);
-        for(int j=0;j<taille_tournee-1;j++){
-            curr2 = get_instance_at(tmp,j);
-            next2 = get_instance_at(tmp,j+1);
-            if(j!=i && j!=i+1 && is_crossed(curr,next,curr2,next2)){
-                reverse_segment(tmp,i+1,j);
+int improved = 1;
+    while(improved){
+            improved = 0;
+            for(int i=0; i<taille_tournee-3; i++){ // optimisation de cette nouvelle tournee
+                curr = get_instance_at(tmp,i);
+                next = get_instance_at(tmp,i+1);
+                for(int j=i+2;j<taille_tournee-1;j++){
+                    curr2 = get_instance_at(tmp,j);
+                    next2 = get_instance_at(tmp,j+1);
+                    if(is_crossed(curr,next,curr2,next2)){
+                        reverse_segment(tmp,i+1,j);
+                        improved = 1;
+                    }
+                }
             }
         }
-    }
     for(int i = 0; i<taille_tournee; i++){ // reconstruction du tab apres optimisation
         tab_tournee[i] = get_id(get_instance_at(tmp,i));
     }
