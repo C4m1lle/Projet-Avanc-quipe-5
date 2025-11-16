@@ -1,22 +1,24 @@
-# Compilateur et options
+# Recherche automatiquement tous les .c dans l'arborescence
+SRC := $(shell find . -type f -name "*.c")
+OBJ := $(SRC:.c=.o)
+
+# Recherche automatiquement les .h (utile pour les dépendances)
+HEADERS := $(shell find . -type f -name "*.h")
+
 CC = gcc
 CFLAGS = -Wall -Wextra -std=c11
 LDFLAGS = -lm
 
-# Nom de l'exécutable
-EXE = main
+EXEC = main
 
-# Détection automatique de tous les fichiers .c du répertoire
-SRCS = $(wildcard *.c)
-OBJS = $(SRCS:.c=.o)
+all: $(EXEC)
 
-# Règle principale
-$(EXE): $(OBJS)
-	$(CC) $(OBJS) -o $(EXE) $(LDFLAGS)
-# Règle générique de compilation
-%.o: %.c
+$(EXEC): $(OBJ)
+	$(CC) $(OBJ) -o $@ $(LDFLAGS)
+
+# Compilation générique
+%.o: %.c $(HEADERS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# Nettoyage
 clean:
-	rm -f $(EXE) $(OBJS)
+	rm -f $(OBJ) $(EXEC)

@@ -4,16 +4,16 @@
 #include <string.h>
 #include <strings.h>
 #include <time.h>
-#include "rw.h"
-#include "nn.h"
-#include "struct.h"
-#include "tspReader.h"
-#include "distance.h"
-#include "demi_matrice.h"
-#include "signal_handler.h"
-#include "bruteforce.h"
-#include "opt2.h"
-#include "ga.h"
+#include "heuristiques/rw.h"
+#include "heuristiques/nn.h"
+#include "tsp/struct.h"
+#include "tsp/tspReader.h"
+#include "distance/distance.h"
+#include "bruteforce/demi_matrice.h"
+#include "bruteforce/signal_handler.h"
+#include "bruteforce/bruteforce.h"
+#include "heuristiques/opt2.h"
+#include "genes/ga.h"
 
 #define BF_GA 200
 #define BFM 309
