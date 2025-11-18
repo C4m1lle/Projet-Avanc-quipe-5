@@ -23,8 +23,6 @@
 #define DEUXOPTRW 622
 #define GADPX 532
 #define ALL 313
-
-
 void usage(char * arg){
     printf("Usage : %s [<-f file.tsp> [-o <output.txt>] [-c] [-d {eucl2d | att | geo}] [-m {bf | bfm | nn | rw | 2optnn | 2optrw | ga}]] [-h]\n",arg);
     printf("  -f : nom du fichier TSPLIB à lire\n");
@@ -337,30 +335,106 @@ int main(int argc, char *argv[]) {
             free(best);
         }
     }
-    if(ga) {
+if (ga) {
 
-        int *best_ids = NULL;
-        double best_dist = 0.0;
-        int pop_size = 30;
-        int generations = 100;
-        double mutation_rate = 0.1;
-        if (argc >= 6 && strcmp(argv[4], "ga") == 0) {
-            pop_size      = atoi(argv[5]);
-            generations   = atoi(argv[6]);
-            mutation_rate = atof(argv[7]);
-        }
-        clock_t start_ga = clock();
-        int rc = ga_tri_light(tour,dist_method,pop_size,generations,mutation_rate,&best_ids,&best_dist);
-        clock_t end_ga = clock();
-        double ga_time = (double)(end_ga - start_ga) / CLOCKS_PER_SEC;
-        if (rc != 0) {
-            fprintf(stderr, "Erreur GA.\n");
-        } else {
-            affichage_test_python(output_file,filename,"ga",ga_time,best_dist,best_ids,taille_Tournee);
-        }
-
-        free(best_ids);
+    int n = taille_Tournee;
+    if (n <= 0) {
+        fprintf(stderr, "Error: taille_Tournee must be > 0\n");
+        exit(1);
     }
+
+    srand((unsigned int)time(NULL));
+
+    /* Allocation du tableau contenant les IDs du meilleur tour */
+    int *best_ids = malloc(sizeof(int) * n);
+    if (!best_ids) { perror("malloc best_ids"); exit(1); }
+
+    /* Lecture des paramètres GA */
+    int pop_size = 30;
+    int generations = 100;
+    double mutation_rate = 0.1;
+
+    if (argc >= 8 && strcmp(argv[4], "ga") == 0) {
+        pop_size      = atoi(argv[5]);
+        generations   = atoi(argv[6]);
+        mutation_rate = atof(argv[7]);
+    }
+
+    /* Construction du tableau des villes */
+    tInstance *cities = malloc(sizeof(tInstance) * n);
+    if (!cities) { perror("malloc cities"); free(best_ids); exit(1); }
+
+    for (int i = 0; i < n; i++)
+        cities[i] = get_instance_at(tour, i);
+
+    /* Création de la structure GA_Data */
+    GA_Data data;
+    data.dist = dist_method;
+    data.cities = cities;
+    data.n = n;
+
+    /* Création de la population initiale */
+    Individual *population = malloc(sizeof(Individual) * pop_size);
+    if (!population) {
+        perror("malloc population");
+        free(cities);
+        free(best_ids);
+        exit(1);
+    }
+
+    for (int i = 0; i < pop_size; i++)
+        population[i] = ga_create_random_tour(n, &data);
+
+    /* Paramètres GA */
+    GA_Parameters params;
+    params.population_size = pop_size;
+    params.generations     = generations;
+    params.mutation_rate   = mutation_rate;
+    params.tournament_size = (int)(0.7 * pop_size);
+    params.individual_size = n;
+    params.data            = &data;
+
+    /* Exécution du GA */
+    Individual best_ind = NULL;
+    double best_score = 0.0;
+
+    clock_t start = clock();
+
+    int rc = ga_run(
+        population,
+        &params,
+        ga_copy_tour,
+        ga_delete_tour,
+        ga_mutate_tour,
+        ga_ordered_crossover,
+        ga_fitness_tour,
+        ga_tournament_selection,
+        ga_create_random_tour,
+        &best_ind,
+        &best_score
+    );
+
+    clock_t end = clock();
+    double cpu_time = (double)(end - start) / CLOCKS_PER_SEC;
+
+    if (rc != 0) {
+        fprintf(stderr, "ga_run failed\n");
+    } else if (best_ind) {
+
+        for (int i = 0; i < n; i++)
+            best_ids[i] = get_id(get_instance_at((tTournee)best_ind, i));
+
+        affichage_test_python(
+            output_file, filename, "ga",
+            cpu_time, best_score, best_ids, n
+        );
+    }
+    /* Libération */
+    free(cities);
+    free(best_ids);
+    if (best_ind)
+        delete_tournee_without_instances((tTournee*)&best_ind);
+}
  
     // Libération memoire
 
