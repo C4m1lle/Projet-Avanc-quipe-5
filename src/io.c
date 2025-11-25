@@ -1,7 +1,9 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "./distance/distance.h"
+#include <string.h>
+#include "../distance/distance.h"
 #include "io.h"
+#include "../tsp/types.h"
 
 #define BF_GA 200
 #define BFM 309
@@ -38,7 +40,18 @@ void affichage_test_python(FILE * output_file,char * filename, char * method, do
     fprintf(output_file,"%d]\n",tournee[taille_tournee-1]);
 }
 
+void add_method(solving_method *tab, int * size, solving_method method){
+    tab[*size] = method;
+    (*size)++;
+}
 
+solving_method * init_tabm(){
+    solving_method methods[8];
+    for(int i = 0; i<8;i++){
+        methods[i]=NULL;
+    }
+    return methods;
+}
 
 
 int param(int argc, char *argv[]){
@@ -51,8 +64,10 @@ int param(int argc, char *argv[]){
     char *filename = NULL;
     FILE * output_file = stdout;
     char mMode_buffer[7];
-    int iscanonic=0,bf=0,bfm=0,nn=0,rw=0,deux_optnn=0,deux_optrw=0,ga=0,gadpx=0,m=0,j,sum,force_dist_method=0;
+    int j,sum,force_dist_method=0;
     DistanceFunc dist_method = dist_eucl2d;
+    solving_method * methods = init_tabm();
+    int method_number = 0;
     for (int i = 1; i < argc; i++) {
         if(strcmp(argv[i], "-f") == 0) {
             if(i + 1 >= argc){
@@ -145,4 +160,5 @@ int param(int argc, char *argv[]){
             return 0;
         }
     }
+    return 0;
 }
