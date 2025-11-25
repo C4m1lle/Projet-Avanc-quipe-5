@@ -128,3 +128,9 @@ void set_instance_at(tTournee tour, int index, tInstance inst){
     if (!tour || index<0 || index>=tour->current) return;
     tour->chemin[index] = inst;
 }
+tInstance * get_chemin_tournee(tTournee tour){
+    if(tour){
+        return tour->chemin;
+    }
+    return NULL;
+}
