@@ -14,31 +14,27 @@
  * @param dist       fonction de distance (eucl2d, att, geo)
  * @param bestTour   tableau d'entiers où stocker l'ordre des IDs des villes
  * @param bestDist   pointeur où stocker la distance totale calculée
- * @return 0 si succès, -1 en cas d'erreur
+ * @param lenght     Longueur de la tournée
  */
-int random_walk(tTournee tour, DistanceFunc dist, int *bestTour, double *bestDist)
+void random_walk(void ** tour, DistanceFuncGenerique dist, int *bestTour, double *bestDist, int lenght)
 {
-    if (!tour || !dist || !bestTour || !bestDist)
-        return -1;
+    int n = lenght;
+    if (!tour || !dist || !bestTour || !bestDist || n <= 0){
+        fprintf(stderr,"nn : Paramètres invalides\n");
+        return;
+    }
 
-    int n = get_taille_tournee(tour);
-    if (n <= 0)
-        return -1;
 
     // Tableau des villes disponibles
     int *dispo = malloc(sizeof(int) * n);
-    if (!dispo) return -1;
+    if (!dispo) return;
     for (int i = 0; i < n; i++)
         dispo[i] = i;
 
     srand(time(NULL)); // initialisation du générateur aléatoire
 
     // Crée la tournée aléatoire
-    tTournee randomTour = create_tournee(n);
-    if (!randomTour) {
-        free(dispo);
-        return -1;
-    }
+    void ** randomTour = malloc(sizeof(void *)*n);
 
     int remaining = n; // nombre de villes encore disponibles
 
@@ -51,9 +47,8 @@ int random_walk(tTournee tour, DistanceFunc dist, int *bestTour, double *bestDis
         }
 
         int chosen_index = dispo[r];
-        tInstance inst = get_instance_at(tour, chosen_index);
-        add_in_tournee(randomTour, create_instance(get_id(inst), get_x(inst), get_y(inst)));
-
+        randomTour[i] = tour[chosen_index];
+        bestTour[i] = chosen_index + 1;//génération du tour avec début de l'indexation à +1 par convention du Ttournee
         // Remplacer l'indice choisi par le dernier élément disponible
         dispo[r] = dispo[remaining - 1];
         remaining--; // réduire le nombre de villes disponibles
@@ -62,24 +57,22 @@ int random_walk(tTournee tour, DistanceFunc dist, int *bestTour, double *bestDis
     // Calcul de la distance totale (boucle fermée)
     double totalDist = 0.0;
     for (int i = 0; i < n - 1; i++) {
-        tInstance a = get_instance_at(randomTour, i);
-        tInstance b = get_instance_at(randomTour, i + 1);
+        void * a = randomTour[i];
+        void * b = randomTour[i+1];
         totalDist += dist(a, b);
     }
 
     // Retour au point de départ
-    tInstance last = get_instance_at(randomTour, n - 1);
-    tInstance first = get_instance_at(randomTour, 0);
+    void * last = randomTour[n-1];
+    void * first = randomTour[0];
     totalDist += dist(last, first);
 
     // Stocker les résultats
     *bestDist = totalDist;
-    for (int i = 0; i < n; i++)
-        bestTour[i] = get_id(get_instance_at(randomTour, i));
 
     free(dispo);
-    delete_tournee(&randomTour);
-    return 0;
+    free(randomTour);
+    return;
 }
 
 

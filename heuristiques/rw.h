@@ -3,7 +3,7 @@
 
 #include "../tsp/struct.h"
 #include "../bruteforce/demi_matrice.h"
-
+#include "../tsp/types.h"
 /**
  * random_walk
  * ------------
@@ -20,6 +20,6 @@
  *  - 0 si succès
  *  - -1 si erreur
  */
-int random_walk(tTournee tour, DistanceFunc dist, int *bestTour, double *bestDist);
+void random_walk(void ** tour, DistanceFuncGenerique dist, int *bestTour, double *bestDist,int lenght);
 
 #endif

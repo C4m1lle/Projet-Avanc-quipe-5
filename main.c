@@ -249,16 +249,13 @@ int main(int argc, char *argv[]) {
             /* Appel de la fonction random_walk :
              * int random_walk(tTournee tour, DistanceFunc dist, int *bestTour, double *bestDist);
              */
-            int rc = random_walk(tour, dist_method, best, &dist_found);
+            random_walk((void**)get_chemin_tournee(tour), (DistanceFuncGenerique)dist_method, best, &dist_found,get_taille_tournee(tour));
 
             clock_t endrw = clock();
             double rw_time = (double)(endrw - startrw) / CLOCKS_PER_SEC;
 
-            if (rc != 0) {
-                fprintf(stderr, "random_walk a retourné une erreur (rc=%d)\n", rc);
-            } else {
-                affichage_test_python(output_file,filename, method, rw_time, dist_found, best, n);
-            }
+            affichage_test_python(output_file,filename, method, rw_time, dist_found, best, n);
+
 
             free(best);
         }
@@ -321,16 +318,13 @@ int main(int argc, char *argv[]) {
             /* Appel de la fonction random_walk :
              * int random_walk(tTournee tour, DistanceFunc dist, int *bestTour, double *bestDist);
              */
-            int rc = random_walk(tour, dist_method, best, &dist_found);
+            random_walk((void**)get_chemin_tournee(tour), (DistanceFuncGenerique)dist_method, best, &dist_found,get_taille_tournee(tour));
             dist_found = opt2(dist_method,tour,best);
             clock_t endOptrw = clock();
             double Optrw_time = (double)(endOptrw - startOptrw) / CLOCKS_PER_SEC;
 
-            if (rc != 0) {
-                fprintf(stderr, "random_walk a retourné une erreur (rc=%d)\n", rc);
-            } else {
-                affichage_test_python(output_file,filename, method, Optrw_time, dist_found, best, n);
-            }
+            affichage_test_python(output_file,filename, method, Optrw_time, dist_found, best, n);
+
 
             free(best);
         }
