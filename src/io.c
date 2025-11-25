@@ -13,7 +13,7 @@
 #define DEUXOPTRW 622
 #define GADPX 532
 #define ALL 313
-
+/*
 void usage(char * arg){
     printf("Usage : %s [<-f file.tsp> [-o <output.txt>] [-c] [-d {eucl2d | att | geo}] [-m {bf | bfm | nn | rw | 2optnn | 2optrw | ga}]] [-h]\n",arg);
     printf("  -f : nom du fichier TSPLIB à lire\n");
@@ -64,7 +64,7 @@ int param(int argc, char *argv[]){
     char *filename = NULL;
     FILE * output_file = stdout;
     char mMode_buffer[7];
-    int j,sum,force_dist_method=0;
+    int ga = 0;nn = 0;rw = 0;deux_optnn = 0;deux_optrw = 0;gadpx = 0;j,sum,force_dist_method=0;
     DistanceFunc dist_method = dist_eucl2d;
     solving_method * methods = init_tabm();
     int method_number = 0;
@@ -161,4 +161,4 @@ int param(int argc, char *argv[]){
         }
     }
     return 0;
-}
+}*/

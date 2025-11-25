@@ -4,7 +4,5 @@
 #include "../tsp/types.h"
 #include <time.h>
 
-void run(solving_method method,time_t runtime){
-
-}
+void run(solving_method method,time_t runtime);
 #endif

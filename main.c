@@ -14,7 +14,6 @@
 #include "bruteforce/bruteforce.h"
 #include "heuristiques/opt2.h"
 #include "genes/ga.h"
-#include "src/io.h"
 
 #define BF_GA 200
 #define BFM 309
@@ -24,6 +23,31 @@
 #define DEUXOPTRW 622
 #define GADPX 532
 #define ALL 313
+void usage(char * arg){
+    printf("Usage : %s [<-f file.tsp> [-o <output.txt>] [-c] [-d {eucl2d | att | geo}] [-m {bf | bfm | nn | rw | 2optnn | 2optrw | ga}]] [-h]\n",arg);
+    printf("  -f : nom du fichier TSPLIB à lire\n");
+    printf("  -o <output.txt> : rediriger la sortie vers un fichier .txt\n");
+    printf("  -d <distance_type> :  choix de la distance choisies pour les calculs (eucl2d par défaut)\n");
+    printf("  -c : afficher la longueur de la tournée canonique\n");
+    printf("  -m {bf | bfm | nn | rw | 2optnn | 2optrw | ga} : recherche de la longueur optimale selon la méthode choisie\n");
+    printf("                                         bf : force brute\n");
+    printf("                                         bfm : force brute matricielle\n");
+    printf("                                         nn : plus proche voisin (nearest neighbor)\n");
+    printf("                                         rw : marche aléatoire (random walk)\n");
+    printf("                                         ga <nombre d'individus> <nombre de générations> <taux de mutation> : algorithme génétique générique\n");
+    printf("  -h : help, affiche l'usage et ne fait aucun calcul.\n");
+}
+
+
+void affichage_test_python(FILE * output_file,char * filename, char * method, double sec, double length, int * tournee, int taille_tournee){
+    
+    fprintf(output_file,"%s %s %.6f %.2f [", filename, method, sec, length);
+
+    for(int i = 0; i < taille_tournee-1; i++){
+        fprintf(output_file,"%d,",tournee[i]);
+    }
+    fprintf(output_file,"%d]\n",tournee[taille_tournee-1]);
+}
 
 
 
@@ -250,7 +274,7 @@ int main(int argc, char *argv[]) {
                 double dist_found = 0.0;
 
                 clock_t startnn = clock();
-                plus_proche_voisin(tour, dist_method, best, &dist_found);
+                plus_proche_voisin((void **)get_chemin_tournee(tour), (DistanceFuncGenerique)dist_method, best, &dist_found,get_taille_tournee(tour));
 
                 clock_t endnn = clock();
                 double nn_time = (double)(endnn - startnn) / CLOCKS_PER_SEC;
@@ -271,7 +295,7 @@ int main(int argc, char *argv[]) {
                 double dist_found = 0.0;
 
                 clock_t startOptnn = clock();
-                plus_proche_voisin(tour, dist_method, best, &dist_found);
+                plus_proche_voisin((void **)get_chemin_tournee(tour), (DistanceFuncGenerique)dist_method, best, &dist_found,get_taille_tournee(tour));
                 dist_found = opt2(dist_method,tour,best);
                 clock_t endOptnn = clock();
                 double Optnn_time = (double)(endOptnn - startOptnn) / CLOCKS_PER_SEC;
@@ -420,5 +444,4 @@ if (ga) {
     }
     return 0;
 }
-
 

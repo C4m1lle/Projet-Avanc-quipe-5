@@ -4,10 +4,11 @@
 #include "../tsp/struct.h"
 #include "../bruteforce/demi_matrice.h"
 #include "../distance/distance.h"
+#include "nn.h"
 
-void plus_proche_voisin(tTournee tour, DistanceFunc distance, int *meilleure_tour, double *longueur_totale)
+void plus_proche_voisin(void ** tour, DistanceFuncGenerique distance, int *meilleure_tour, double *longueur_totale,int lenght)
 {
-    int n = get_taille_tournee(tour);
+    int n = lenght;
     if (n <= 0 || meilleure_tour == NULL) {
         return;
     }
@@ -32,11 +33,11 @@ void plus_proche_voisin(tTournee tour, DistanceFunc distance, int *meilleure_tou
         double distance_min = DBL_MAX;
         int prochaine_ville = -1;
 
-        tInstance instance_actuelle = get_instance_at(tour, ville_courante);
+        void * instance_actuelle = tour[ville_courante];
 
         for (j = 0; j < n; j++) {
             if (visite[j] == 0) {
-                tInstance instance_cand = get_instance_at(tour, j);
+                void * instance_cand = tour[j];
                 double d = distance(instance_actuelle, instance_cand);
                 if (d < distance_min) {
                     distance_min = d;
@@ -60,14 +61,14 @@ void plus_proche_voisin(tTournee tour, DistanceFunc distance, int *meilleure_tou
     
     double somme_distances = 0.0;
     for (i = 0; i < n - 1; i++) {
-        tInstance a = get_instance_at(tour, meilleure_tour[i] - 1);
-        tInstance b = get_instance_at(tour, meilleure_tour[i + 1] - 1);
+        void * a = tour[meilleure_tour[i]-1];
+        void * b = tour[meilleure_tour[i + 1]-1];
         somme_distances += distance(a, b);
     }
 
     
-    tInstance debut = get_instance_at(tour, meilleure_tour[0] - 1);
-    tInstance fin = get_instance_at(tour, meilleure_tour[n - 1] - 1);
+    void * debut = tour[meilleure_tour[0]-1];
+    void * fin = tour[meilleure_tour[n - 1]-1];
     somme_distances += distance(fin, debut);
 
     *longueur_totale = somme_distances;
