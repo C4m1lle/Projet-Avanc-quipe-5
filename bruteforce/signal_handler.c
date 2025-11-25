@@ -81,7 +81,7 @@ void setup_signal_handler(tTournee tour, DistanceFunc dist,int * best, double * 
         exit(EXIT_FAILURE);
     }
     if(!bff){
-        bruteforce(tour,dist,best,distmin,&has_to_stop);
+        bruteforce((void **)get_chemin_tournee(tour),(DistanceFuncGenerique)dist,best,distmin,get_taille_tournee(tour),&has_to_stop);
     }else{
         bruteforce_demi_matrice(tour,dist,best,distmin,&has_to_stop);
     }

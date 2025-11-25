@@ -36,24 +36,25 @@ int next_permutation(int ids[], int length){
 	return 0;
 }
 
-void bruteforce(tTournee tour, DistanceFunc dist,int * best, double * distmin,int * has_to_stop){
-    tInstance inst1,inst2;
-    int taille = get_taille_tournee(tour);
+void bruteforce(void ** tour, DistanceFuncGenerique dist,int * best, double * distmin,int lenght, int * has_to_stop){
+    void * inst1;
+    void *inst2;
+    int taille = lenght;
     (*distmin) = DBL_MAX;
     double distcur;
     int * tab_id = malloc(sizeof(int)*taille);
     for(int i = 0;i<taille;i++){
-        inst1 = get_instance_at(tour,i);
-        tab_id[i] = get_id(inst1);
+        inst1 = tour[i];
+        tab_id[i] = i;
     }
     while(next_permutation(tab_id,taille)==0 && (*has_to_stop)==0){
         distcur = 0;
         for(int i = 0;i<taille-1;i++){
-            inst1 = get_instance_at(tour,(tab_id[i])-1);
-            inst2 = get_instance_at(tour,(tab_id[i+1])-1);
+            inst1 = tour[tab_id[i]];
+            inst2 = tour[tab_id[i+1]];
             distcur+=dist(inst1,inst2);
         }
-        distcur+=dist(get_instance_at(tour,(tab_id[0])-1),get_instance_at(tour,(tab_id[taille-1])-1));
+        distcur+=dist(tour[tab_id[0]],tour[tab_id[taille-1]]);
         
         if((*distmin)>distcur){
             (*distmin) = distcur;
