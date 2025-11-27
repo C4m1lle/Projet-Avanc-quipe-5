@@ -56,16 +56,16 @@ int definir_distance(tDemiMatrice matrice, int i, int j, double valeur) {
 }
 
 // Création à partir d'une tournée
-tDemiMatrice demi_matrice_from_tour(tTournee tour, int nb_villes, DistanceFunc dist) {
+tDemiMatrice demi_matrice_from_tour(void** tour, int nb_villes, DistanceFuncGenerique dist) {
     if (!tour || !dist || nb_villes <= 0) return NULL;
 
     tDemiMatrice matrice = creer_demi_matrice(nb_villes);
     if (!matrice) return NULL;
 
     for (int i = 0; i < nb_villes - 1; i++) {
-        tInstance inst_i = get_instance_at(tour, i);
+        void * inst_i = tour[i];
         for (int j = i + 1; j < nb_villes; j++) {
-            tInstance inst_j = get_instance_at(tour, j);
+            void * inst_j = tour[j];
             double d = dist(inst_i, inst_j);
             definir_distance(matrice, i, j, d);
         }

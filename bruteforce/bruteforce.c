@@ -44,17 +44,16 @@ void bruteforce(void ** tour, DistanceFuncGenerique dist,int * best, double * di
     double distcur;
     int * tab_id = malloc(sizeof(int)*taille);
     for(int i = 0;i<taille;i++){
-        inst1 = tour[i];
-        tab_id[i] = i;
+        tab_id[i] = i+1;
     }
     while(next_permutation(tab_id,taille)==0 && (*has_to_stop)==0){
         distcur = 0;
         for(int i = 0;i<taille-1;i++){
-            inst1 = tour[tab_id[i]];
-            inst2 = tour[tab_id[i+1]];
+            inst1 = tour[tab_id[i]-1];
+            inst2 = tour[tab_id[i+1]-1];
             distcur+=dist(inst1,inst2);
         }
-        distcur+=dist(tour[tab_id[0]],tour[tab_id[taille-1]]);
+        distcur+=dist(tour[tab_id[0]-1],tour[tab_id[taille-1]-1]);
         
         if((*distmin)>distcur){
             (*distmin) = distcur;
@@ -66,17 +65,16 @@ void bruteforce(void ** tour, DistanceFuncGenerique dist,int * best, double * di
     free(tab_id);
 }
 
-void bruteforce_demi_matrice(tTournee tour, DistanceFunc dist,int * best, double * distmin,int * has_to_stop){
-    tDemiMatrice matrice = demi_matrice_from_tour(tour,get_taille_tournee(tour),dist);
-    tInstance inst = NULL;
+void bruteforce_demi_matrice(void ** tour, DistanceFuncGenerique dist,int * best, double * distmin,int lenght, int * has_to_stop){
+    tDemiMatrice matrice = demi_matrice_from_tour(tour,lenght,dist);
 
-    int taille = get_taille_tournee(tour);
+
+    int taille = lenght;
     (*distmin) = DBL_MAX;
     double distcur;
     int * tab_id = malloc(sizeof(int)*taille);
     for(int i = 0;i<taille;i++){
-        inst = get_instance_at(tour,i);
-        tab_id[i] = get_id(inst);
+        tab_id[i] = i+1;
     }
 
     while(next_permutation(tab_id,taille)==0 && (*has_to_stop)==0){
