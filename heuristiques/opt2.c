@@ -71,3 +71,52 @@ int improved = 1;
 }
 
 
+double opt2_improved(DistanceFunc dist_func, tTournee tournee, int *tab_tournee) {
+    int taille_tournee = get_taille_tournee(tournee);
+    tTournee tmp = create_tournee(taille_tournee);
+
+    // Recréation de la tournée à partir du tableau tab_tournee
+    for (int i = 0; i < taille_tournee; i++) {
+        int j = 0;
+        while (j < taille_tournee && get_id(get_instance_at(tournee, j)) != tab_tournee[i]) {
+            j++;
+        }
+        add_in_tournee(tmp, get_instance_at(tournee, j));
+    }
+
+    int improved = 1;
+    while (improved) {
+        improved = 0;
+        for (int i = 0; i < taille_tournee - 3; i++) {
+            tInstance curr = get_instance_at(tmp, i);
+            tInstance next = get_instance_at(tmp, i + 1);
+
+            for (int j = i + 2; j < taille_tournee - 1; j++) {
+                tInstance curr2 = get_instance_at(tmp, j);
+                tInstance next2 = get_instance_at(tmp, j + 1);
+
+                if (is_crossed(curr, next, curr2, next2)) {
+                    // Calcul de la distance avant et après inversion
+                    double old_dist = dist_func(curr, next) + dist_func(curr2, next2);
+                    double new_dist = dist_func(curr, curr2) + dist_func(next, next2);
+
+                    if (new_dist < old_dist) {  // appliquer seulement si amélioration
+                        reverse_segment(tmp, i + 1, j);
+                        improved = 1;
+                        break;  // first improvement : on recommence la boucle
+                    }
+                }
+            }
+            if (improved) break; // recommencer depuis le début
+        }
+    }
+
+    // Reconstruction du tableau tab_tournee
+    for (int i = 0; i < taille_tournee; i++) {
+        tab_tournee[i] = get_id(get_instance_at(tmp, i));
+    }
+
+    double dist = tour_length(tmp, dist_func);
+    delete_tournee_without_instances(&tmp);
+    return dist;
+}
