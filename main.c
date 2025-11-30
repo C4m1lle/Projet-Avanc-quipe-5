@@ -66,14 +66,14 @@ int main(int argc, char *argv[]) {
         return 1;
     }
     solving_method methods[NB_METHOD];
-    for(int i = 0; i<8;i++){
+    for(int i = 0; i<NB_METHOD;i++){
         methods[i]=NULL;
     }
 
     char *filename = NULL;
     FILE * output_file = stdout;
     char mMode_buffer[7];
-    int iscanonic=0,bf=0,bfm=0,nn=0,rw=0,deux_optnn=0,deux_optrw=0,ga=0,gadpx=0,m=0,j,sum,force_dist_method=0;
+    int bf=0,bfm=0,nn=0,rw=0,deux_optnn=0,deux_optrw=0,ga=0,gadpx=0,m=0,j,sum,force_dist_method=0;
     DistanceFunc dist_method = dist_eucl2d;
     for (int i = 1; i < argc; i++) {
         if(strcmp(argv[i], "-f") == 0) {
@@ -332,7 +332,7 @@ int main(int argc, char *argv[]) {
             free(best);
         }
     }
-if (ga) {
+    if (ga) {
 
     int n = taille_Tournee;
     if (n <= 0) {
@@ -431,8 +431,107 @@ if (ga) {
     free(best_ids);
     if (best_ind)
         delete_tournee_without_instances((tTournee*)&best_ind);
-}
- 
+    }
+    if (gadpx) {
+
+    int n = taille_Tournee;
+    if (n <= 0) {
+        fprintf(stderr, "Error: taille_Tournee must be > 0\n");
+        exit(1);
+    }
+
+    srand((unsigned int)time(NULL));
+
+    /* Allocation du tableau contenant les IDs du meilleur tour */
+    int *best_ids = malloc(sizeof(int) * n);
+    if (!best_ids) { perror("malloc best_ids"); exit(1); }
+
+    /* Lecture des paramètres GA */
+    int pop_size = 30;
+    int generations = 100;
+    double mutation_rate = 0.1;
+
+    if (argc >= 8 && strcmp(argv[4], "ga") == 0) {
+        pop_size      = atoi(argv[5]);
+        generations   = atoi(argv[6]);
+        mutation_rate = atof(argv[7]);
+    }
+
+    /* Construction du tableau des villes */
+    tInstance *cities = malloc(sizeof(tInstance) * n);
+    if (!cities) { perror("malloc cities"); free(best_ids); exit(1); }
+
+    for (int i = 0; i < n; i++)
+        cities[i] = get_instance_at(tour, i);
+
+    /* Création de la structure GA_Data */
+    GA_Data data;
+    data.dist = dist_method;
+    data.cities = cities;
+    data.n = n;
+
+    /* Création de la population initiale */
+    Individual *population = malloc(sizeof(Individual) * pop_size);
+    if (!population) {
+        perror("malloc population");
+        free(cities);
+        free(best_ids);
+        exit(1);
+    }
+
+    for (int i = 0; i < pop_size; i++)
+        population[i] = ga_create_random_tour(n, &data);
+
+    /* Paramètres GA */
+    GA_Parameters params;
+    params.population_size = pop_size;
+    params.generations     = generations;
+    params.mutation_rate   = mutation_rate;
+    params.tournament_size = (int)(0.7 * pop_size);
+    params.individual_size = n;
+    params.data            = &data;
+
+    /* Exécution du GA */
+    Individual best_ind = NULL;
+    double best_score = 0.0;
+
+    clock_t start = clock();
+
+    int rc = ga_run(
+        population,
+        &params,
+        ga_copy_tour,
+        ga_delete_tour,
+        ga_mutate_tour,
+        ga_dpx_crossover,
+        ga_fitness_tour,
+        ga_tournament_selection,
+        ga_create_random_tour,
+        &best_ind,
+        &best_score
+    );
+
+    clock_t end = clock();
+    double cpu_time = (double)(end - start) / CLOCKS_PER_SEC;
+
+    if (rc != 0) {
+        fprintf(stderr, "ga_run failed\n");
+    } else if (best_ind) {
+
+        for (int i = 0; i < n; i++)
+            best_ids[i] = get_id(get_instance_at((tTournee)best_ind, i));
+
+        affichage_test_python(
+            output_file, filename, "dpx",
+            cpu_time, best_score, best_ids, n
+        );
+    }
+    /* Libération */
+    free(cities);
+    free(best_ids);
+    if (best_ind)
+        delete_tournee_without_instances((tTournee*)&best_ind);
+    } 
     // Libération memoire
 
     delete_problem(&problem);

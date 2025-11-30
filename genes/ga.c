@@ -4,7 +4,7 @@
 #include "../tsp/struct.h"
 #include "../distance/distance.h"
 #include "ga.h"
-
+#include <float.h>
 /* ==========================================================
    COPY — copie d’un individu (tour)
    ========================================================== */
@@ -79,7 +79,8 @@ Individual ga_tournament_selection(Individual *population,int pop_size,int tourn
 /* ==========================================================
    CROSSOVER — Ordered Crossover (OX)
    ========================================================== */
-Individual ga_ordered_crossover(Individual parent_a, Individual parent_b) {
+Individual ga_ordered_crossover(Individual parent_a, Individual parent_b, void *data) {
+    (GA_Data *)data;
     tTournee a = (tTournee)parent_a;
     tTournee b = (tTournee)parent_b;
     int n = get_taille_tournee(a);
@@ -122,6 +123,85 @@ Individual ga_ordered_crossover(Individual parent_a, Individual parent_b) {
     free(child_array);
     return child;
 }
+Individual ga_dpx_crossover(Individual parent_a, Individual parent_b, void *data) {
+
+    GA_Data  * tsp_data = (GA_Data *)data;
+    tTournee a = (tTournee)parent_a;
+    tTournee b = (tTournee)parent_b;
+    int n = get_taille_tournee(a);
+
+    tTournee child = create_tournee(n);
+
+    tInstance * child_array = malloc(sizeof(tInstance) * n);
+    tInstance * intersec = malloc(sizeof(tInstance) * n);
+    int missed = 0;
+
+    //init des tableaux
+    for(int i = 0; i<n; i++){
+        intersec[i]=NULL;
+        child_array[i]=NULL;
+    }
+
+    /* 1) Copier valeurs communes */
+    for (int i = 0; i < n; i++) {
+        if (get_id(get_instance_at(a, i)) == get_id(get_instance_at(b, i))) {
+            child_array[i] = get_instance_at(a, i);
+        } else {
+            intersec[missed++] = get_instance_at(a, i);
+        }
+    }
+
+    /* 2) Remplir les trous */
+    for (int i = 0; i < n; i++) {
+
+        if (child_array[i] == NULL) {
+
+            /* Trouver le current précédent non vide */
+            tInstance current = NULL;
+            for (int k = i - 1; k >= 0 && current == NULL; k--) {
+                if (child_array[k] != NULL) {
+                    current = child_array[k];
+                }
+            }
+
+            /* Si aucun précédent n’existe */
+            if (current == NULL && missed > 0) {
+                current = intersec[0];  
+            }
+
+            /* Chercher le nearest */
+            double best_d = DBL_MAX;
+            int best_idx = -1;
+
+            for (int k = 0; k < missed; k++) {
+                if (intersec[k] != NULL) {
+                    double d = tsp_data->dist(intersec[k], current);
+                    if (d < best_d) {
+                        best_d = d;
+                        best_idx = k;
+                    }
+                }
+            }
+
+            /* Assigner et retirer */
+            if (best_idx >= 0) {
+                child_array[i] = intersec[best_idx];
+                intersec[best_idx] = NULL;
+            }
+        }
+    }
+
+    /* 3) Construire la tournée finale */
+    for (int i = 0; i < n; i++) {
+        add_in_tournee(child, child_array[i]);
+    }
+
+    free(child_array);
+    free(intersec);
+
+    return child;
+}
+
 
 /* ==========================================================
    RANDOM TOUR — création aléatoire
@@ -190,8 +270,8 @@ int ga_run(
         /* 2) CROSSOVER */
         Individual *offspring = malloc(sizeof(Individual) * pop_size);
         for (int i = 0; i < pop_size; i += 2) {
-            offspring[i]   = crossover(selected[i], selected[i+1]);
-            offspring[i+1] = crossover(selected[i+1], selected[i]);
+            offspring[i]   = crossover(selected[i], selected[i+1], data);
+            offspring[i+1] = crossover(selected[i+1], selected[i], data);
         }
 
         /* 3) MUTATION */
