@@ -4,5 +4,5 @@
 #include "../tsp/types.h"
 #include <time.h>
 
-void run(solving_method method,time_t runtime);
+void run(solving_method method, double * runtime, void ** tour, DistanceFuncGenerique dist, int * best, double * distmin, int lenght);
 #endif

@@ -85,3 +85,12 @@ double tour_length(tTournee tour, DistanceFunc dist) {
     return total;
 }
 
+void canonical(void ** tour, DistanceFuncGenerique dist, int * best, double * distmin, int lenght){
+    (*distmin)=0.0;
+    for(int i = 0;i<lenght-1;i++){
+        (*distmin)+=dist(tour[i],tour[i+1]);
+        best[i] = i+1;
+    }
+    (*distmin)+=dist(tour[0],tour[lenght-1]);
+
+}

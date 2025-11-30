@@ -13,7 +13,11 @@
 #include "bruteforce/signal_handler.h"
 #include "bruteforce/bruteforce.h"
 #include "heuristiques/opt2.h"
+#include "heuristiques/nn.h"
+#include "heuristiques/rw.h"
 #include "genes/ga.h"
+#include "src/exec.h"
+#include "distance/distance.h"
 
 #define BF_GA 200
 #define BFM 309
@@ -23,6 +27,9 @@
 #define DEUXOPTRW 622
 #define GADPX 532
 #define ALL 313
+#define NB_METHOD 9
+
+
 void usage(char * arg){
     printf("Usage : %s [<-f file.tsp> [-o <output.txt>] [-c] [-d {eucl2d | att | geo}] [-m {bf | bfm | nn | rw | 2optnn | 2optrw | ga}]] [-h]\n",arg);
     printf("  -f : nom du fichier TSPLIB à lire\n");
@@ -39,9 +46,9 @@ void usage(char * arg){
 }
 
 
-void affichage_test_python(FILE * output_file,char * filename, char * method, double sec, double length, int * tournee, int taille_tournee){
+void affichage_test_python(FILE * output_file,char * filename, const char * method_name, double sec, double length, int * tournee, int taille_tournee){
     
-    fprintf(output_file,"%s %s %.6f %.2f [", filename, method, sec, length);
+    fprintf(output_file,"%s %s %.6f %.2f [", filename, method_name, sec, length);
 
     for(int i = 0; i < taille_tournee-1; i++){
         fprintf(output_file,"%d,",tournee[i]);
@@ -53,12 +60,16 @@ void affichage_test_python(FILE * output_file,char * filename, char * method, do
 
 
 int main(int argc, char *argv[]) {
-
+    const char methods_names[NB_METHOD][16] = {"canonical","bf","bfm","nn","rw","opt2nn","opt2rw","ga","gadpx"};
     if (argc < 2) {
         usage(argv[0]);
         return 1;
     }
-    
+    solving_method methods[NB_METHOD];
+    for(int i = 0; i<8;i++){
+        methods[i]=NULL;
+    }
+
     char *filename = NULL;
     FILE * output_file = stdout;
     char mMode_buffer[7];
@@ -84,7 +95,7 @@ int main(int argc, char *argv[]) {
             
         }
         if (strcmp(argv[i], "-c") == 0) {
-            iscanonic = 1;
+            methods[0] = canonical;
         }
         if (strcmp(argv[i], "-d") == 0) {
             if(i+1 >= argc){
@@ -114,27 +125,33 @@ int main(int argc, char *argv[]) {
                 case BF_GA:// somme ascii de ga | bf
                     if (strcmp(mMode_buffer, "bf") == 0){
                         bf = 1;
+                        methods[1] = NULL;
                     }else{
-                        ga = 1;
+                        ga=1;
+                        methods[7] = NULL;
                     }
                 break;
                 case BFM:
                     bfm = 1;
+                    methods[2] = NULL;
                 break;
                 case NN:
-                    nn = 1;
+                    methods[3] = plus_proche_voisin;
                 break;
                 case RW:
-                    rw = 1;
+                    methods[4] = random_walk;
                 break;
                 case DEUXOPTNN:
                     deux_optnn = 1;
+                    methods[6] = NULL;
                 break;
                 case DEUXOPTRW:
                     deux_optrw = 1;
+                    methods[7] = NULL;
                 break;
                 case GADPX:
                     gadpx = 1;
+                    methods[8] = NULL;
                 break;
                 case ALL:
                     ga = 1;
@@ -179,29 +196,18 @@ int main(int argc, char *argv[]) {
         else if (strcasecmp(etype, "GEO") == 0) dist_method = dist_geo;
     }
     fprintf(output_file,"Instance ; Méthode ; Temps CPU (sec) ; Longueur ; Tour\n");
-    if(iscanonic){
-        // Chronométrer le calcul
-        clock_t start = clock();
 
-        double length = 0.0;
-        length = tour_length(tour,dist_method);
-
-        clock_t end = clock();
-        double cpu_time = (double)(end - start) / CLOCKS_PER_SEC;
-
-        // Affichage au format Python attendu
-
-        int * tab_tournee = malloc(sizeof(int)*taille_Tournee);
-        tInstance inst;
-
-        for(int id = 0; id<taille_Tournee; id++){
-            inst = get_instance_at(tour, id);
-            tab_tournee[id] = get_id(inst);
+    double runtime,dist_min;
+    void ** gen_tournee = (void **)get_chemin_tournee(tour);
+    int * best = malloc(sizeof(int)*taille_Tournee);
+    for(int i = 0; i<NB_METHOD;i++){
+        if(methods[i]){
+            run(methods[i],&runtime,gen_tournee,(DistanceFuncGenerique)(dist_method),best,&dist_min,taille_Tournee);
+            affichage_test_python(output_file,filename,methods_names[i],runtime,dist_min,best,taille_Tournee);
         }
-
-        affichage_test_python(output_file,filename, "canonical", cpu_time, length, tab_tournee, taille_Tournee);
-        free(tab_tournee);
     }
+    free(best);
+
     if(bf){
 
         //TEST BRUTEFORCE
@@ -270,11 +276,8 @@ int main(int argc, char *argv[]) {
             } else {
                 double dist_found = 0.0;
 
-                clock_t startnn = clock();
-                plus_proche_voisin((void **)get_chemin_tournee(tour), (DistanceFuncGenerique)dist_method, best, &dist_found,get_taille_tournee(tour));
-
-                clock_t endnn = clock();
-                double nn_time = (double)(endnn - startnn) / CLOCKS_PER_SEC;
+                double nn_time;
+                run(plus_proche_voisin, &nn_time, (void **)get_chemin_tournee(tour), (DistanceFuncGenerique)dist_method, best, &dist_found,get_taille_tournee(tour));
 
                 affichage_test_python(output_file,filename, method, nn_time, dist_found, best, taille_Tournee);
 
