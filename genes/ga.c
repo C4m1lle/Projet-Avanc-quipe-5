@@ -5,6 +5,7 @@
 #include "../distance/distance.h"
 #include "ga.h"
 #include <float.h>
+#include "../heuristiques/opt2.h"
 /* ==========================================================
    COPY — copie d’un individu (tour)
    ========================================================== */
@@ -131,6 +132,7 @@ Individual ga_dpx_crossover(Individual parent_a, Individual parent_b, void *data
     int n = get_taille_tournee(a);
 
     tTournee child = create_tournee(n);
+    tTournee childtmp = create_tournee(n);
 
     tInstance * child_array = malloc(sizeof(tInstance) * n);
     tInstance * intersec = malloc(sizeof(tInstance) * n);
@@ -143,7 +145,7 @@ Individual ga_dpx_crossover(Individual parent_a, Individual parent_b, void *data
     }
 
     /* 1) Copier valeurs communes */
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++){
         if (get_id(get_instance_at(a, i)) == get_id(get_instance_at(b, i))) {
             child_array[i] = get_instance_at(a, i);
         } else {
@@ -152,20 +154,20 @@ Individual ga_dpx_crossover(Individual parent_a, Individual parent_b, void *data
     }
 
     /* 2) Remplir les trous */
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++){
 
         if (child_array[i] == NULL) {
 
             /* Trouver le current précédent non vide */
             tInstance current = NULL;
-            for (int k = i - 1; k >= 0 && current == NULL; k--) {
-                if (child_array[k] != NULL) {
+            for (int k = i - 1; k >= 0 && current == NULL; k--){
+                if (child_array[k] != NULL){
                     current = child_array[k];
                 }
             }
 
             /* Si aucun précédent n’existe */
-            if (current == NULL && missed > 0) {
+            if (current == NULL && missed > 0){
                 current = intersec[0];  
             }
 
@@ -173,8 +175,8 @@ Individual ga_dpx_crossover(Individual parent_a, Individual parent_b, void *data
             double best_d = DBL_MAX;
             int best_idx = -1;
 
-            for (int k = 0; k < missed; k++) {
-                if (intersec[k] != NULL) {
+            for (int k = 0; k < missed; k++){
+                if (intersec[k] != NULL){
                     double d = tsp_data->dist(intersec[k], current);
                     if (d < best_d) {
                         best_d = d;
@@ -184,18 +186,33 @@ Individual ga_dpx_crossover(Individual parent_a, Individual parent_b, void *data
             }
 
             /* Assigner et retirer */
-            if (best_idx >= 0) {
+            if (best_idx >= 0){
                 child_array[i] = intersec[best_idx];
                 intersec[best_idx] = NULL;
             }
         }
     }
+    
+    /* 3) Construire la tournée fille */
+    int * tab_tournee = malloc(sizeof(int)*n);
 
-    /* 3) Construire la tournée finale */
-    for (int i = 0; i < n; i++) {
-        add_in_tournee(child, child_array[i]);
+    for (int i = 0; i < n; i++){
+        add_in_tournee(childtmp, child_array[i]);
+        tab_tournee[i] = get_id(child_array[i]);
     }
 
+    //Optimisation de la tournée fille à l'aide de 2opt
+
+    opt2((DistanceFunc)tsp_data->dist,childtmp,tab_tournee);
+
+    for(int i = 0; i<n; i++){
+        add_in_tournee(child,get_instance_by_id(childtmp,tab_tournee[i]));
+        printf("|%d|",tab_tournee[i]);
+        printf("|%p|",get_chemin_tournee(child)[i]);
+        fflush(stdout);
+    }
+
+    delete_tournee_without_instances(&childtmp);
     free(child_array);
     free(intersec);
 

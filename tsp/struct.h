@@ -22,6 +22,6 @@ int reverse_segment(tTournee tournee, int id1, int id2);
 void delete_tournee_without_instances(tTournee *ptour);
 void set_instance_at(tTournee tour, int index, tInstance inst);
 tInstance * get_chemin_tournee(tTournee tour);
-
+tInstance get_instance_by_id(tTournee tour, int index);
 
 #endif
