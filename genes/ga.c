@@ -207,14 +207,15 @@ Individual ga_dpx_crossover(Individual parent_a, Individual parent_b, void *data
 
     for(int i = 0; i<n; i++){
         add_in_tournee(child,get_instance_by_id(childtmp,tab_tournee[i]));
-        printf("|%d|",tab_tournee[i]);
-        printf("|%p|",get_chemin_tournee(child)[i]);
-        fflush(stdout);
+        //printf("|%d|",tab_tournee[i]); //debug
+        //printf("|%p|",get_chemin_tournee(child)[i]); //debug
+        //fflush(stdout);
     }
 
     delete_tournee_without_instances(&childtmp);
     free(child_array);
     free(intersec);
+    free(tab_tournee);
 
     return child;
 }

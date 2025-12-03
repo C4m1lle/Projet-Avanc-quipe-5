@@ -139,8 +139,8 @@ tInstance get_instance_by_id(tTournee tour, int index){
     if(!tour){
         return NULL;
     }
-    int i = 0,n = get_taille_tournee(tour);
-    if(index < n && index > 0){
+    int i = 0,n = tour->current;
+    if(index <= n && index > 0){
         while(i<n && get_id(tour->chemin[i])!=index){
             i++;
         }
