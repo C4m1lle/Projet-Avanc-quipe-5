@@ -13,7 +13,7 @@
 #define DEUXOPTRW 622
 #define GADPX 532
 #define ALL 313
-/*
+
 void usage(char * arg){
     printf("Usage : %s [<-f file.tsp> [-o <output.txt>] [-c] [-d {eucl2d | att | geo}] [-m {bf | bfm | nn | rw | 2optnn | 2optrw | ga}]] [-h]\n",arg);
     printf("  -f : nom du fichier TSPLIB à lire\n");
@@ -39,7 +39,7 @@ void affichage_test_python(FILE * output_file,char * filename, char * method, do
     }
     fprintf(output_file,"%d]\n",tournee[taille_tournee-1]);
 }
-
+/*
 void add_method(solving_method *tab, int * size, solving_method method){
     tab[*size] = method;
     (*size)++;

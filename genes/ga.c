@@ -81,10 +81,10 @@ Individual ga_tournament_selection(Individual *population,int pop_size,int tourn
    CROSSOVER — Ordered Crossover (OX)
    ========================================================== */
 Individual ga_ordered_crossover(Individual parent_a, Individual parent_b, void *data) {
-    (GA_Data *)data;
+    GA_Data *data_tsp = (GA_Data *)data;
     tTournee a = (tTournee)parent_a;
     tTournee b = (tTournee)parent_b;
-    int n = get_taille_tournee(a);
+    int n =data_tsp->n;
 
     tTournee child = create_tournee(n);
 
@@ -129,10 +129,10 @@ Individual ga_dpx_crossover(Individual parent_a, Individual parent_b, void *data
     GA_Data  * tsp_data = (GA_Data *)data;
     tTournee a = (tTournee)parent_a;
     tTournee b = (tTournee)parent_b;
-    int n = get_taille_tournee(a);
+    int n = tsp_data->n;
 
     tTournee child = create_tournee(n);
-    tTournee childtmp = create_tournee(n);
+
 
     tInstance * child_array = malloc(sizeof(tInstance) * n);
     tInstance * intersec = malloc(sizeof(tInstance) * n);
@@ -197,22 +197,21 @@ Individual ga_dpx_crossover(Individual parent_a, Individual parent_b, void *data
     int * tab_tournee = malloc(sizeof(int)*n);
 
     for (int i = 0; i < n; i++){
-        add_in_tournee(childtmp, child_array[i]);
         tab_tournee[i] = get_id(child_array[i]);
     }
 
     //Optimisation de la tournée fille à l'aide de 2opt
 
-    opt2((DistanceFunc)tsp_data->dist,childtmp,tab_tournee);
+    opt2((DistanceFunc)tsp_data->dist,a,tab_tournee);
 
     for(int i = 0; i<n; i++){
-        add_in_tournee(child,get_instance_by_id(childtmp,tab_tournee[i]));
+        add_in_tournee(child,get_instance_by_id(a,tab_tournee[i]));
         //printf("|%d|",tab_tournee[i]); //debug
         //printf("|%p|",get_chemin_tournee(child)[i]); //debug
         //fflush(stdout);
     }
 
-    delete_tournee_without_instances(&childtmp);
+
     free(child_array);
     free(intersec);
     free(tab_tournee);
