@@ -4,6 +4,8 @@
 #include <string.h>
 #include <strings.h>
 #include <time.h>
+#include "io.h"
+#include "exec.h"
 #include "../heuristiques/rw.h"
 #include "../heuristiques/nn.h"
 #include "../tsp/struct.h"
@@ -16,9 +18,8 @@
 #include "../heuristiques/nn.h"
 #include "../heuristiques/rw.h"
 #include "../genes/ga.h"
-#include "exec.h"
 #include "../distance/distance.h"
-#include "io.h"
+
 
 #define BF_GA 200
 #define BFM 309
@@ -43,6 +44,8 @@ int main(int argc, char *argv[]) {
     }
 
     char *filename = NULL;
+    char file_path[256];
+
     FILE * output_file = stdout;
     char mMode_buffer[7];
     int bf=0,bfm=0,nn=0,rw=0,deux_optnn=0,deux_optrw=0,ga=0,gadpx=0,m=0,j,sum,force_dist_method=0;
@@ -54,12 +57,14 @@ int main(int argc, char *argv[]) {
                 return 1;
             }
             filename = argv[++i];
+            sprintf(file_path,"tests/%s",filename);
         }
         if(strcmp(argv[i], "-o") == 0) {
             if(i + 1 >= argc){
                 usage(argv[0]);
                 return 1;
             }
+
             if((output_file = fopen(argv[i+1],"a")) == NULL){
                 fprintf(stderr,"Fichier %s inaccessible ou inexistant.\n",argv[++i]);
                 return 1;
@@ -150,7 +155,7 @@ int main(int argc, char *argv[]) {
         fprintf(stderr, "Erreur : aucun fichier .tsp fourni.\n");
         return 1;
     }
-    tProbleme problem = load_problem(filename);
+    tProbleme problem = load_problem(file_path);
     if (!problem) {
         fprintf(stderr, "Erreur : impossible de charger le fichier TSPLIB.\n");
         return 1;
@@ -175,7 +180,7 @@ int main(int argc, char *argv[]) {
     for(int i = 0; i<NB_METHOD;i++){
         if(methods[i]){
             run(methods[i],&runtime,gen_tournee,(DistanceFuncGenerique)(dist_method),best,&dist_min,taille_Tournee);
-            affichage_test_python(output_file,filename,methods_names[i],runtime,dist_min,best,taille_Tournee);
+            affichage_test_python(output_file,filename,(char *)methods_names[i],runtime,dist_min,best,taille_Tournee);
         }
     }
     free(best);

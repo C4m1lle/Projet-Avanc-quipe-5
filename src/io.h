@@ -1,5 +1,5 @@
-#ifndef __IOFILE_H__
-#define __IOFILE_H__
+#ifndef __IO_FILE_H__
+#define __IO_FILE_H__
 
 void usage(char * arg);
 void affichage_test_python(FILE * output_file,char * filename, char * method, double sec, double length, int * tournee, int taille_tournee);
