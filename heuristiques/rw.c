@@ -77,4 +77,7 @@ void random_walk(void ** tour, DistanceFuncGenerique dist, int *bestTour, double
 
 
 
-
+void deux_optrw(void ** tour, DistanceFuncGenerique dist, int * best, double * distmin, int lenght){
+    random_walk(tour, dist, best, distmin,lenght);
+    (*distmin) = opt2(dist,(tInstance *)tour,best,lenght);
+}

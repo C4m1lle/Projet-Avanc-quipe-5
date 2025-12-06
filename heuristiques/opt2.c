@@ -30,17 +30,17 @@ int is_crossed(tInstance A, tInstance B, tInstance C, tInstance D){
 
 
 
-double opt2(DistanceFunc dist_func,tTournee tournee, int * tab_tournee){
-    int taille_tournee = get_taille_tournee(tournee);
+double opt2(DistanceFuncGenerique dist_func,tInstance * tournee, int * tab_tournee, int lenght){
+    int taille_tournee = lenght;
     int j;
     double dist;
     tTournee tmp = create_tournee(taille_tournee);
     for(int i = 0; i<taille_tournee;i++){ // creation d'une tournee à partir du tableau  besttournee calculé auparavant par nn ou rw
         j = 0;
-        while(j<taille_tournee && get_id(get_instance_at(tournee,j))!=tab_tournee[i]){
+        while(j<taille_tournee && get_id(tournee[j])!=tab_tournee[i]){
             j++;
         }
-        add_in_tournee(tmp,get_instance_at(tournee,j));
+        add_in_tournee(tmp,tournee[j]);
     }
 
 
@@ -71,7 +71,7 @@ int improved = 1;
 }
 
 
-double opt2_improved(DistanceFunc dist_func, tTournee tournee, int *tab_tournee) {
+double opt2_improved(DistanceFuncGenerique dist_func, tTournee tournee, int *tab_tournee) {
     int taille_tournee = get_taille_tournee(tournee);
     tTournee tmp = create_tournee(taille_tournee);
 

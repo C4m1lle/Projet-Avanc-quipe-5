@@ -5,6 +5,6 @@
 
 
 
-double opt2(DistanceFunc dist_func,tTournee tournee, int * tab_tournee);
-double opt2_improved(DistanceFunc dist_func, tTournee tournee, int *tab_tournee);
+double opt2(DistanceFuncGenerique dist_func,tInstance * tournee, int * tab_tournee, int lenght);
+double opt2_improved(DistanceFuncGenerique dist_func, tTournee tournee, int *tab_tournee);
 #endif

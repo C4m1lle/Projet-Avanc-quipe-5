@@ -64,7 +64,7 @@ double dist_geo(tInstance a, tInstance b) {
     return dij;
 }
 
-double tour_length(tTournee tour, DistanceFunc dist) {
+double tour_length(tTournee tour, DistanceFuncGenerique dist) {
     if (!tour) return 0.0;
 
     int total = 0.0;

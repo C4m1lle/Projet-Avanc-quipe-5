@@ -4,6 +4,8 @@
 #include "../tsp/struct.h"
 #include "../bruteforce/demi_matrice.h"
 #include "../tsp/types.h"
+#include "opt2.h"
+
 /**
  * random_walk
  * ------------
@@ -22,4 +24,5 @@
  */
 void random_walk(void ** tour, DistanceFuncGenerique dist, int *bestTour, double *bestDist,int lenght);
 
+void deux_optrw(void ** tour, DistanceFuncGenerique dist, int * best, double * distmin, int lenght);
 #endif

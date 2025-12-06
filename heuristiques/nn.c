@@ -139,3 +139,7 @@ void plus_proche_voisin_demi_matrice(tTournee tour, tDemiMatrice matrice, int *m
     free(visite);
 }
 
+void deux_optnn(void ** tour, DistanceFuncGenerique dist, int * best, double * distmin, int lenght){
+    plus_proche_voisin(tour, dist, best, distmin,lenght);
+    (*distmin) = opt2(dist,(tInstance *)tour,best,lenght);
+}

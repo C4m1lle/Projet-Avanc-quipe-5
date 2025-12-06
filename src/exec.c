@@ -6,3 +6,5 @@ void run(solving_method method, double * runtime, void ** tour, DistanceFuncGene
     clock_t end = clock();
     (*runtime) = (double)(end - start) / CLOCKS_PER_SEC;
 }
+
+

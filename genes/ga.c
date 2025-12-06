@@ -202,7 +202,7 @@ Individual ga_dpx_crossover(Individual parent_a, Individual parent_b, void *data
 
     //Optimisation de la tournée fille à l'aide de 2opt
 
-    opt2((DistanceFunc)tsp_data->dist,a,tab_tournee);
+    opt2(tsp_data->dist,get_chemin_tournee(a),tab_tournee,get_taille_tournee(a));
 
     for(int i = 0; i<n; i++){
         add_in_tournee(child,get_instance_by_id(a,tab_tournee[i]));

@@ -13,7 +13,7 @@ double dist_att(tInstance a, tInstance b);
 double dist_geo(tInstance a, tInstance b);
 
 // Fonction de calcul de la longueur d’une tournée
-double tour_length(tTournee tour, DistanceFunc dist);
+double tour_length(tTournee tour, DistanceFuncGenerique dist);
 void canonical(void ** tour, DistanceFuncGenerique dist, int * best, double * distmin, int lenght);
 
 #endif

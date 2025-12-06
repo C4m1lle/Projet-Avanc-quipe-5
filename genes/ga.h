@@ -24,7 +24,7 @@ typedef Individual (*GA_CreateRandom)(int, void*);
    ---------------------------------------------------------- */
 
 typedef struct {
-    DistanceFunc dist;
+    DistanceFuncGenerique dist;
     tInstance *cities;
     int n;
 } GA_Data;
