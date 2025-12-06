@@ -1,0 +1,11 @@
+<map id="bruteforce/bruteforce.c" name="bruteforce/bruteforce.c">
+<area shape="rect" id="node1" title="Implémentation des algorithmes de résolution du TSP par force brute." alt="" coords="207,5,377,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,80,72,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="97,80,167,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="191,80,254,107"/>
+<area shape="rect" id="node5" href="$struct_8h.html" title="Déclarations des structures et fonctions pour les instances et tournées TSP." alt="" coords="291,229,397,256"/>
+<area shape="rect" id="node6" href="$distance_8h.html" title="Déclarations des fonctions de calcul de distances entre instances pour différents types de TSP." alt="" coords="329,155,489,181"/>
+<area shape="rect" id="node8" href="$demi__matrice_8h.html" title="Déclarations pour la gestion des demi&#45;matrices de distances entre villes." alt="" coords="381,80,505,107"/>
+<area shape="rect" id="node9" href="$bruteforce_8h.html" title="Déclarations des fonctions de résolution du TSP par force brute." alt="" coords="564,155,665,181"/>
+<area shape="rect" id="node7" href="$types_8h.html" title="Déclarations des types génériques utilisés pour les heuristiques et méthodes TSP." alt="" coords="473,229,580,256"/>
+</map>

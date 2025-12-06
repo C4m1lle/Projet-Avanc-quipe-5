@@ -1,0 +1,5 @@
+<map id="plus_proche_voisin" name="plus_proche_voisin">
+<area shape="rect" id="node1" title="Heuristique du plus proche voisin (Nearest Neighbor)." alt="" coords="255,31,401,57"/>
+<area shape="rect" id="node2" href="$nn_8c.html#a6f7d218342ef0f9a0fa30b0edba8333d" title="Application de l&#39;heuristique NN suivie d&#39;une optimisation 2&#45;opt." alt="" coords="108,5,207,32"/>
+<area shape="rect" id="node3" href="$main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Point d&#39;entrée principal du programme." alt="" coords="5,31,60,57"/>
+</map>

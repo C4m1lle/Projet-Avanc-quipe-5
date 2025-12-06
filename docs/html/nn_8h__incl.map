@@ -1,0 +1,8 @@
+<map id="heuristiques/nn.h" name="heuristiques/nn.h">
+<area shape="rect" id="node1" title=" " alt="" coords="127,5,262,32"/>
+<area shape="rect" id="node2" href="$struct_8h.html" title="Déclarations des structures et fonctions pour les instances et tournées TSP." alt="" coords="240,244,347,271"/>
+<area shape="rect" id="node3" href="$demi__matrice_8h.html" title="Déclarations pour la gestion des demi&#45;matrices de distances entre villes." alt="" coords="63,80,201,121"/>
+<area shape="rect" id="node5" href="$types_8h.html" title="Déclarations des types génériques utilisés pour les heuristiques et méthodes TSP." alt="" coords="5,244,112,271"/>
+<area shape="rect" id="node6" href="$opt2_8h.html" title="Déclarations des fonctions d&#39;optimisation 2&#45;opt pour le TSP." alt="" coords="226,87,289,114"/>
+<area shape="rect" id="node4" href="$distance_8h.html" title="Déclarations des fonctions de calcul de distances entre instances pour différents types de TSP." alt="" coords="96,169,256,196"/>
+</map>

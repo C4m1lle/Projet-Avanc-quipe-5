@@ -1,3 +1,11 @@
+/**
+ * @file io.c
+ * @brief Fonctions d'entrée/sortie pour le TSP.
+ *
+ * Contient les fonctions pour afficher l'usage de l'application et pour
+ * produire des sorties formatées, compatibles avec Python ou pour fichier texte.
+ */
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -14,6 +22,15 @@
 #define GADPX 532
 #define ALL 313
 
+/**
+ * @brief Affiche l'usage de l'application TSP.
+ *
+ * Cette fonction est appelée lorsque l'utilisateur fournit des arguments
+ * invalides ou demande l'aide (-h). Elle affiche les différentes options
+ * possibles pour exécuter le programme.
+ *
+ * @param arg Nom de l'exécutable (argv[0]).
+ */
 void usage(char * arg){
     printf("Usage : %s [<-f file.tsp> [-o <output.txt>] [-c] [-d {eucl2d | att | geo}] [-m {bf | bfm | nn | rw | 2optnn | 2optrw | ga}]] [-h]\n",arg);
     printf("  -f : nom du fichier TSPLIB à lire\n");
@@ -29,7 +46,20 @@ void usage(char * arg){
     printf("  -h : help, affiche l'usage et ne fait aucun calcul.\n");
 }
 
-
+/**
+ * @brief Affiche les résultats pour Python ou fichier texte.
+ *
+ * Produit une sortie au format :
+ * filename method runtime distance [tour]
+ *
+ * @param output_file    Fichier de sortie (stdout ou fichier .txt).
+ * @param filename       Nom du fichier TSP traité.
+ * @param method         Nom de la méthode utilisée (bf, nn, rw, etc.).
+ * @param sec            Temps d'exécution en secondes.
+ * @param length         Distance totale de la tournée calculée.
+ * @param tournee        Tableau des IDs des villes dans l'ordre de la tournée.
+ * @param taille_tournee Nombre de villes dans la tournée.
+ */
 void affichage_test_python(FILE * output_file,char * filename, char * method, double sec, double length, int * tournee, int taille_tournee){
     
     fprintf(output_file,"%s %s %.6f %.2f [", filename, method, sec, length);
@@ -39,6 +69,7 @@ void affichage_test_python(FILE * output_file,char * filename, char * method, do
     }
     fprintf(output_file,"%d]\n",tournee[taille_tournee-1]);
 }
+
 /*
 void add_method(solving_method *tab, int * size, solving_method method){
     tab[*size] = method;

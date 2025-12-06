@@ -1,0 +1,12 @@
+<map id="heuristiques" name="heuristiques">
+<area shape="rect" id="node1" href="dir_9239fd5d8767cddb83f912213fe4b4b5.html" title="heuristiques" alt="" coords="53,5,155,53"/>
+<area shape="rect" id="node2" href="dir_54047d3f3bfaca95cdcdc730229c6b0d.html" title="distance" alt="" coords="5,197,83,245"/>
+<area shape="rect" id="edge1-headlabel" href="dir_000003_000001.html" title="4" alt="" coords="43,171,52,185"/>
+<area shape="rect" id="node3" href="dir_9bdafc201ec58725961849c3ae45e910.html" title="bruteforce" alt="" coords="59,101,149,149"/>
+<area shape="rect" id="edge2-headlabel" href="dir_000003_000000.html" title="3" alt="" coords="108,76,117,90"/>
+<area shape="rect" id="node4" href="dir_bee98fde683d14e45eb5ba0bc4c742b4.html" title="tsp" alt="" coords="84,293,156,341"/>
+<area shape="rect" id="edge3-headlabel" href="dir_000003_000005.html" title="8" alt="" coords="143,273,152,287"/>
+<area shape="rect" id="edge6-headlabel" href="dir_000001_000005.html" title="3" alt="" coords="92,266,101,281"/>
+<area shape="rect" id="edge4-headlabel" href="dir_000000_000001.html" title="5" alt="" coords="71,179,80,194"/>
+<area shape="rect" id="edge5-headlabel" href="dir_000000_000005.html" title="7" alt="" coords="120,267,130,282"/>
+</map>

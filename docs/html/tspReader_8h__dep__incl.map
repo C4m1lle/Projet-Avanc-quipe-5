@@ -1,0 +1,6 @@
+<map id="tsp/tspReader.h" name="tsp/tspReader.h">
+<area shape="rect" id="node1" title="Déclarations pour la lecture des fichiers TSPLIB et gestion des problèmes TSP." alt="" coords="211,5,334,32"/>
+<area shape="rect" id="node2" href="$signal__handler_8c.html" title="Gestion des signaux pour permettre l&#39;interruption contrôlée du bruteforce." alt="" coords="5,80,204,107"/>
+<area shape="rect" id="node3" href="$main_8c.html" title="Programme principal pour résoudre le TSP avec plusieurs méthodes heuristiques et exactes." alt="" coords="228,80,317,107"/>
+<area shape="rect" id="node4" href="$tspReader_8c.html" title="Lecture des fichiers TSPLIB et gestion des problèmes TSP." alt="" coords="342,80,465,107"/>
+</map>

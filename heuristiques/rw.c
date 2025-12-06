@@ -1,3 +1,10 @@
+/**
+ * @file rw.c
+ * @brief Heuristique Random Walk (RW) pour générer une tournée aléatoire pour le TSP.
+ *
+ * Fournit des fonctions pour créer une tournée aléatoire valide et
+ * l'améliorer avec l'optimisation 2-opt.
+ */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -7,14 +14,16 @@
 #include "../distance/distance.h"
 
 /**
- * Heuristique : Random Walk
- * Crée une tournée aléatoire valide en visitant chaque sommet exactement une fois.
- * 
- * @param tour       tournée de départ (liste des sommets à visiter)
- * @param dist       fonction de distance (eucl2d, att, geo)
- * @param bestTour   tableau d'entiers où stocker l'ordre des IDs des villes
- * @param bestDist   pointeur où stocker la distance totale calculée
- * @param lenght     Longueur de la tournée
+ * @brief Génère une tournée aléatoire en visitant chaque sommet exactement une fois.
+ *
+ * La fonction remplit le tableau bestTour avec l'ordre des IDs des villes
+ * et calcule la distance totale de la tournée dans bestDist.
+ *
+ * @param tour       Tableau des instances représentant les villes.
+ * @param dist       Fonction de distance entre deux villes (eucl2d, att, geo, etc.).
+ * @param bestTour   Tableau d'entiers où stocker l'ordre des IDs des villes.
+ * @param bestDist   Pointeur où stocker la distance totale calculée.
+ * @param lenght     Nombre de villes dans la tournée.
  */
 void random_walk(void ** tour, DistanceFuncGenerique dist, int *bestTour, double *bestDist, int lenght)
 {
@@ -23,7 +32,6 @@ void random_walk(void ** tour, DistanceFuncGenerique dist, int *bestTour, double
         fprintf(stderr,"nn : Paramètres invalides\n");
         return;
     }
-
 
     // Tableau des villes disponibles
     int *dispo = malloc(sizeof(int) * n);
@@ -35,7 +43,6 @@ void random_walk(void ** tour, DistanceFuncGenerique dist, int *bestTour, double
 
     // Crée la tournée aléatoire
     void ** randomTour = malloc(sizeof(void *)*n);
-
     int remaining = n; // nombre de villes encore disponibles
 
     for (int i = 0; i < n; i++) {
@@ -48,10 +55,9 @@ void random_walk(void ** tour, DistanceFuncGenerique dist, int *bestTour, double
 
         int chosen_index = dispo[r];
         randomTour[i] = tour[chosen_index];
-        bestTour[i] = chosen_index + 1;//génération du tour avec début de l'indexation à +1 par convention du Ttournee
-        // Remplacer l'indice choisi par le dernier élément disponible
-        dispo[r] = dispo[remaining - 1];
-        remaining--; // réduire le nombre de villes disponibles
+        bestTour[i] = chosen_index + 1; // génération du tour avec indexation à +1
+        dispo[r] = dispo[remaining - 1]; // remplacer l'indice choisi par le dernier disponible
+        remaining--;
     }
 
     // Calcul de la distance totale (boucle fermée)
@@ -72,12 +78,21 @@ void random_walk(void ** tour, DistanceFuncGenerique dist, int *bestTour, double
 
     free(dispo);
     free(randomTour);
-    return;
 }
 
-
-
+/**
+ * @brief Heuristique combinée : Random Walk suivi d'une optimisation 2-opt.
+ *
+ * Génère une tournée aléatoire puis applique l'optimisation 2-opt
+ * pour améliorer la distance totale.
+ *
+ * @param tour    Tableau des instances représentant les villes.
+ * @param dist    Fonction de distance entre deux villes.
+ * @param best    Tableau d'entiers où stocker la meilleure tournée.
+ * @param distmin Pointeur vers la distance minimale trouvée.
+ * @param lenght  Nombre de villes dans la tournée.
+ */
 void deux_optrw(void ** tour, DistanceFuncGenerique dist, int * best, double * distmin, int lenght){
-    random_walk(tour, dist, best, distmin,lenght);
-    (*distmin) = opt2(dist,(tInstance *)tour,best,lenght);
+    random_walk(tour, dist, best, distmin, lenght);
+    (*distmin) = opt2(dist, (tInstance *)tour, best, lenght);
 }

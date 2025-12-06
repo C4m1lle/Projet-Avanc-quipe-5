@@ -1,0 +1,6 @@
+<map id="heuristiques/nn.h" name="heuristiques/nn.h">
+<area shape="rect" id="node1" title=" " alt="" coords="169,5,303,32"/>
+<area shape="rect" id="node2" href="$nn_8c.html" title="Implémentation de l&#39;heuristique du plus proche voisin (Nearest Neighbor) pour le problème du voyageur..." alt="" coords="5,80,139,107"/>
+<area shape="rect" id="node3" href="$opt2_8c.html" title="Implémentation de l&#39;algorithme d&#39;optimisation 2&#45;opt pour le TSP." alt="" coords="163,80,309,107"/>
+<area shape="rect" id="node4" href="$main_8c.html" title="Programme principal pour résoudre le TSP avec plusieurs méthodes heuristiques et exactes." alt="" coords="334,80,423,107"/>
+</map>

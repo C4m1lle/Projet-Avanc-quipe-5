@@ -1,0 +1,5 @@
+<map id="ga_fitness_tour" name="ga_fitness_tour">
+<area shape="rect" id="node1" title="Calcule la fitness d&#39;un individu (longueur totale du tour)." alt="" coords="5,5,127,32"/>
+<area shape="rect" id="node2" href="$distance_8c.html#a049910f8b67f9e3f6da2c571d3a7c4b3" title="Calcule la longueur totale d&#39;une tournée avec une fonction de distance donnée." alt="" coords="175,5,271,32"/>
+<area shape="rect" id="node3" href="$struct_8c.html#a39ea0a9ae06284ddbe6ac24ea79f26e6" title="Récupère l&#39;instance à une position donnée dans la tournée." alt="" coords="319,5,444,32"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="dist_eucl2d" name="dist_eucl2d">
+<area shape="rect" id="node1" title="Calcule la distance euclidienne 2D entre deux instances." alt="" coords="5,56,101,83"/>
+<area shape="rect" id="node2" href="$struct_8c.html#a9e83df5c8d31f650ba6a20f0ecaaa71c" title="Récupère la coordonnée x d&#39;une instance." alt="" coords="149,5,208,32"/>
+<area shape="rect" id="node3" href="$struct_8c.html#a86253305b7972b90ceb3d0af74954ccf" title="Récupère la coordonnée y d&#39;une instance." alt="" coords="149,56,208,83"/>
+<area shape="rect" id="node4" href="$distance_8c.html#a3b754d7a04e9c1b0e58eae4e68004344" title="Fonction utilitaire : arrondi d&#39;un double à l&#39;entier le plus proche." alt="" coords="155,107,202,133"/>
+</map>

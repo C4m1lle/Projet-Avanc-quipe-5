@@ -1,0 +1,81 @@
+# Doxyfile 1.9.7 (exemple pour projet TSP)
+# Généré manuellement pour ton projet
+
+# -------------------------------------------------------------------
+# Project related configuration options
+# -------------------------------------------------------------------
+PROJECT_NAME           = "TSP Project"
+PROJECT_BRIEF          = "Travelling Salesman Problem heuristics, brute force and GA implementations"
+PROJECT_NUMBER         = "1.0"
+OUTPUT_DIRECTORY       = docs
+CREATE_SUBDIRS         = NO
+OUTPUT_LANGUAGE        = French
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+EXTRACT_LOCAL_CLASSES  = YES
+EXTRACT_LOCAL_METHODS  = YES
+
+# -------------------------------------------------------------------
+# Build related configuration options
+# -------------------------------------------------------------------
+INPUT                  = .
+FILE_PATTERNS          = *.c *.h
+RECURSIVE              = YES
+EXCLUDE                =
+EXCLUDE_PATTERNS       =
+EXCLUDE_SYMBOLS        =
+EXCLUDE_FILES          =
+EXCLUDE_DIRECTORIES    =
+
+# -------------------------------------------------------------------
+# HTML output
+# -------------------------------------------------------------------
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+HTML_FILE_EXTENSION    = .html
+HTML_HEADER            =
+HTML_FOOTER            =
+HTML_STYLESHEET        =
+HTML_EXTRA_STYLESHEET  =
+HTML_COLORSTYLE_HUE    = 220
+HTML_COLORSTYLE_SAT    = 100
+HTML_COLORSTYLE_GAMMA  = 80
+GENERATE_TREEVIEW      = YES
+
+# -------------------------------------------------------------------
+# LaTeX output (désactivé)
+# -------------------------------------------------------------------
+GENERATE_LATEX         = NO
+
+# -------------------------------------------------------------------
+# Dot / Graphviz configuration (diagrammes)
+# -------------------------------------------------------------------
+HAVE_DOT               = YES
+DOT_PATH               =
+CLASS_DIAGRAMS         = YES
+COLLABORATION_GRAPH    = YES
+INCLUDE_GRAPH          = YES
+INCLUDED_BY_GRAPH      = YES
+CALL_GRAPH             = YES
+CALLER_GRAPH           = YES
+GRAPHICAL_HIERARCHY    = YES
+DOT_IMAGE_FORMAT       = png
+DOT_GRAPH_MAX_NODES    = 50
+MAX_DOT_GRAPH_DEPTH    = 0
+
+# -------------------------------------------------------------------
+# Source browsing
+# -------------------------------------------------------------------
+SOURCE_BROWSER         = YES
+INLINE_SOURCES         = YES
+STRIP_CODE_COMMENTS    = NO
+
+# -------------------------------------------------------------------
+# Misc
+# -------------------------------------------------------------------
+GENERATE_LATEX         = NO
+QUIET                  = NO
+WARNINGS               = YES
+WARN_IF_UNDOCUMENTED   = YES
+WARN_IF_DOC_ERROR      = YES

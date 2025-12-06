@@ -1,0 +1,5 @@
+<map id="is_crossed" name="is_crossed">
+<area shape="rect" id="node1" title="Vérifie si deux segments sont croisés." alt="" coords="5,31,96,57"/>
+<area shape="rect" id="node2" href="$struct_8c.html#a9e83df5c8d31f650ba6a20f0ecaaa71c" title="Récupère la coordonnée x d&#39;une instance." alt="" coords="144,5,203,32"/>
+<area shape="rect" id="node3" href="$struct_8c.html#a86253305b7972b90ceb3d0af74954ccf" title="Récupère la coordonnée y d&#39;une instance." alt="" coords="144,56,203,83"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="tour_length" name="tour_length">
+<area shape="rect" id="node1" title="Calcule la longueur totale d&#39;une tournée avec une fonction de distance donnée." alt="" coords="5,5,101,32"/>
+<area shape="rect" id="node2" href="$struct_8c.html#a39ea0a9ae06284ddbe6ac24ea79f26e6" title="Récupère l&#39;instance à une position donnée dans la tournée." alt="" coords="149,5,275,32"/>
+</map>

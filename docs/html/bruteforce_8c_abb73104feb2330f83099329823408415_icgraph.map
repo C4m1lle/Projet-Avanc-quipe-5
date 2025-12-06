@@ -1,0 +1,7 @@
+<map id="next_permutation" name="next_permutation">
+<area shape="rect" id="node1" title="Génère la permutation suivante dans l&#39;ordre lexicographique." alt="" coords="551,31,689,57"/>
+<area shape="rect" id="node2" href="$bruteforce_8c.html#ae0234e2402f791057934a6315a1c520c" title="Résout le problème du voyageur de commerce par force brute." alt="" coords="365,5,454,32"/>
+<area shape="rect" id="node5" href="$bruteforce_8c.html#ae4eed101c3e124032a5b34a149ec8017" title="Version optimisée de l&#39;algorithme force brute à l&#39;aide d&#39;une demi&#45;matrice de distances." alt="" coords="316,56,503,83"/>
+<area shape="rect" id="node3" href="$signal__handler_8c.html#ab9c0d4b895a32ee3a8875a8b8ec9cc6b" title="Initialise le gestionnaire de signal pour l&#39;algorithme de bruteforce." alt="" coords="108,31,268,57"/>
+<area shape="rect" id="node4" href="$main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Point d&#39;entrée principal du programme." alt="" coords="5,31,60,57"/>
+</map>

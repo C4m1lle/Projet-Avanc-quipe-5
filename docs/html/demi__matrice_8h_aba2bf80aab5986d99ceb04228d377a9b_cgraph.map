@@ -1,0 +1,5 @@
+<map id="demi_matrice_from_tour" name="demi_matrice_from_tour">
+<area shape="rect" id="node1" title="Crée une demi&#45;matrice à partir d&#39;une tournée et d&#39;une fonction de distance." alt="" coords="5,31,188,57"/>
+<area shape="rect" id="node2" href="$demi__matrice_8c.html#a8d63c42fe21689c516da08c2d4355b2e" title="Crée une demi&#45;matrice vide pour un nombre donné de villes." alt="" coords="236,5,388,32"/>
+<area shape="rect" id="node3" href="$demi__matrice_8c.html#ad35e16f43889b282e2839a4a1db8840d" title="Définit la distance entre deux villes dans une demi&#45;matrice." alt="" coords="249,56,375,83"/>
+</map>

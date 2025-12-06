@@ -1,0 +1,4 @@
+<map id="delete_tournee" name="delete_tournee">
+<area shape="rect" id="node1" title="Supprime une tournée et toutes ses instances." alt="" coords="5,5,125,32"/>
+<area shape="rect" id="node2" href="$struct_8c.html#a640303333d08b6d186eea65a795d69d8" title="Supprime une instance et libère la mémoire associée." alt="" coords="173,5,299,32"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="ga_delete_tour" name="ga_delete_tour">
+<area shape="rect" id="node1" title="Supprime un individu sans libérer la mémoire des instances." alt="" coords="5,13,124,39"/>
+<area shape="rect" id="node2" href="$struct_8c.html#a3ef0d5208385f6a4409c9e098cdd6fa9" title="Supprime une tournée sans supprimer ses instances." alt="" coords="172,5,348,47"/>
+</map>

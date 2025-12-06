@@ -1,0 +1,5 @@
+<map id="plus_proche_voisin_demi_matrice" name="plus_proche_voisin_demi_matrice">
+<area shape="rect" id="node1" title="Version optimisée du plus proche voisin utilisant une demi&#45;matrice." alt="" coords="5,23,152,65"/>
+<area shape="rect" id="node2" href="$struct_8c.html#a95d9c2f2752443b803b69740f255d621" title="Récupère le nombre de villes dans la tournée." alt="" coords="200,5,340,32"/>
+<area shape="rect" id="node3" href="$demi__matrice_8c.html#af4bce30800e352801246c8b6b6f26612" title="Obtient la distance entre deux villes dans une demi&#45;matrice." alt="" coords="205,56,335,83"/>
+</map>

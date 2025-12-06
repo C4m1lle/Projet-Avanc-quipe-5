@@ -1,3 +1,8 @@
+/**
+ * @file ga.c
+ * @brief Implémentation des fonctions pour un algorithme génétique pour le TSP.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -6,9 +11,17 @@
 #include "ga.h"
 #include <float.h>
 #include "../heuristiques/opt2.h"
+
 /* ==========================================================
    COPY — copie d’un individu (tour)
    ========================================================== */
+
+/**
+ * @brief Copie un individu (tournée) pour créer un nouvel individu.
+ *
+ * @param ind Individu à copier.
+ * @return Nouvelle copie de l'individu.
+ */
 Individual ga_copy_tour(Individual ind) {
     tTournee src = (tTournee) ind;
     int n = get_taille_tournee(src);
@@ -24,6 +37,12 @@ Individual ga_copy_tour(Individual ind) {
 /* ==========================================================
    DELETE — suppression sans supprimer les villes
    ========================================================== */
+
+/**
+ * @brief Supprime un individu sans libérer la mémoire des instances.
+ *
+ * @param ind Individu à supprimer.
+ */
 void ga_delete_tour(Individual ind) {
     if (!ind) return;
     delete_tournee_without_instances((tTournee*)&ind);
@@ -32,6 +51,13 @@ void ga_delete_tour(Individual ind) {
 /* ==========================================================
    MUTATION (swap mutation)
    ========================================================== */
+
+/**
+ * @brief Applique une mutation de type swap sur un individu.
+ *
+ * @param ind Individu à muter.
+ * @param mutation_rate Probabilité de mutation par position.
+ */
 void ga_mutate_tour(Individual ind, double mutation_rate) {
     tTournee tour = (tTournee) ind;
     int n = get_taille_tournee(tour);
@@ -52,6 +78,14 @@ void ga_mutate_tour(Individual ind, double mutation_rate) {
 /* ==========================================================
    FITNESS = longueur totale du tour
    ========================================================== */
+
+/**
+ * @brief Calcule la fitness d'un individu (longueur totale du tour).
+ *
+ * @param ind Individu à évaluer.
+ * @param data Données supplémentaires (GA_Data).
+ * @return Longueur totale de la tournée.
+ */
 double ga_fitness_tour(Individual ind, void *data) {
     GA_Data *g = (GA_Data*) data;
     return tour_length((tTournee) ind, g->dist);
@@ -60,6 +94,17 @@ double ga_fitness_tour(Individual ind, void *data) {
 /* ==========================================================
    SELECTION — tournament selection
    ========================================================== */
+
+/**
+ * @brief Sélectionne un individu via le tournoi.
+ *
+ * @param population Population d'individus.
+ * @param pop_size Taille de la population.
+ * @param tournament_size Taille du tournoi.
+ * @param fitness Fonction de fitness.
+ * @param data Données supplémentaires pour fitness.
+ * @return Individu sélectionné (copie).
+ */
 Individual ga_tournament_selection(Individual *population,int pop_size,int tournament_size,GA_Fitness fitness,void *data) {
     double best_score = -1.0;
     int best_idx = -1;
@@ -80,71 +125,76 @@ Individual ga_tournament_selection(Individual *population,int pop_size,int tourn
 /* ==========================================================
    CROSSOVER — Ordered Crossover (OX)
    ========================================================== */
+
+/**
+ * @brief Applique le crossover Ordered Crossover (OX) entre deux parents.
+ *
+ * @param parent_a Premier parent.
+ * @param parent_b Deuxième parent.
+ * @param data Données supplémentaires (GA_Data).
+ * @return Nouvel individu enfant.
+ */
 Individual ga_ordered_crossover(Individual parent_a, Individual parent_b, void *data) {
     GA_Data *data_tsp = (GA_Data *)data;
     tTournee a = (tTournee)parent_a;
     tTournee b = (tTournee)parent_b;
-    int n =data_tsp->n;
+    int n = data_tsp->n;
 
     tTournee child = create_tournee(n);
 
-    // Segment aléatoire
     int start = rand()%n;
     int end   = rand()%n;
     if(start > end){ int tmp=start; start=end; end=tmp; }
 
-    // Tableau temporaire des positions
     tInstance* child_array = malloc(sizeof(tInstance) * n);
     for(int i=0;i<n;i++) child_array[i]=NULL;
 
-    // 1) Copier segment de A
     for(int i=start;i<=end;i++)
         child_array[i] = get_instance_at(a,i);
 
-    // 2) Compléter avec B
     int idx=0;
     for(int i=0;i<n;i++){
         tInstance inst = get_instance_at(b,i);
-
-        // Vérifier si déjà dans la partie copiée
         int exists=0;
         for(int j=0;j<n;j++)
             if(child_array[j] && get_id(child_array[j]) == get_id(inst)){ exists=1; break; }
-
         if(!exists){
             while(child_array[idx]) idx++;
             child_array[idx] = inst;
         }
     }
 
-    // Construire l’enfant final
     for(int i=0;i<n;i++)
         add_in_tournee(child, child_array[i]);
 
     free(child_array);
     return child;
 }
-Individual ga_dpx_crossover(Individual parent_a, Individual parent_b, void *data) {
 
+/**
+ * @brief Applique le crossover DPX (Distance Preserving Crossover) entre deux parents.
+ *
+ * @param parent_a Premier parent.
+ * @param parent_b Deuxième parent.
+ * @param data Données supplémentaires (GA_Data).
+ * @return Nouvel individu enfant optimisé via 2-opt.
+ */
+Individual ga_dpx_crossover(Individual parent_a, Individual parent_b, void *data) {
     GA_Data  * tsp_data = (GA_Data *)data;
     tTournee a = (tTournee)parent_a;
     tTournee b = (tTournee)parent_b;
     int n = tsp_data->n;
 
     tTournee child = create_tournee(n);
-
-
     tInstance * child_array = malloc(sizeof(tInstance) * n);
     tInstance * intersec = malloc(sizeof(tInstance) * n);
     int missed = 0;
 
-    //init des tableaux
     for(int i = 0; i<n; i++){
         intersec[i]=NULL;
         child_array[i]=NULL;
     }
 
-    /* 1) Copier valeurs communes */
     for (int i = 0; i < n; i++){
         if (get_id(get_instance_at(a, i)) == get_id(get_instance_at(b, i))) {
             child_array[i] = get_instance_at(a, i);
@@ -153,28 +203,19 @@ Individual ga_dpx_crossover(Individual parent_a, Individual parent_b, void *data
         }
     }
 
-    /* 2) Remplir les trous */
     for (int i = 0; i < n; i++){
-
         if (child_array[i] == NULL) {
-
-            /* Trouver le current précédent non vide */
             tInstance current = NULL;
             for (int k = i - 1; k >= 0 && current == NULL; k--){
                 if (child_array[k] != NULL){
                     current = child_array[k];
                 }
             }
-
-            /* Si aucun précédent n’existe */
             if (current == NULL && missed > 0){
                 current = intersec[0];  
             }
-
-            /* Chercher le nearest */
             double best_d = DBL_MAX;
             int best_idx = -1;
-
             for (int k = 0; k < missed; k++){
                 if (intersec[k] != NULL){
                     double d = tsp_data->dist(intersec[k], current);
@@ -184,8 +225,6 @@ Individual ga_dpx_crossover(Individual parent_a, Individual parent_b, void *data
                     }
                 }
             }
-
-            /* Assigner et retirer */
             if (best_idx >= 0){
                 child_array[i] = intersec[best_idx];
                 intersec[best_idx] = NULL;
@@ -193,24 +232,16 @@ Individual ga_dpx_crossover(Individual parent_a, Individual parent_b, void *data
         }
     }
     
-    /* 3) Construire la tournée fille */
     int * tab_tournee = malloc(sizeof(int)*n);
-
     for (int i = 0; i < n; i++){
         tab_tournee[i] = get_id(child_array[i]);
     }
-
-    //Optimisation de la tournée fille à l'aide de 2opt
 
     opt2(tsp_data->dist,get_chemin_tournee(a),tab_tournee,get_taille_tournee(a));
 
     for(int i = 0; i<n; i++){
         add_in_tournee(child,get_instance_by_id(a,tab_tournee[i]));
-        //printf("|%d|",tab_tournee[i]); //debug
-        //printf("|%p|",get_chemin_tournee(child)[i]); //debug
-        //fflush(stdout);
     }
-
 
     free(child_array);
     free(intersec);
@@ -219,10 +250,17 @@ Individual ga_dpx_crossover(Individual parent_a, Individual parent_b, void *data
     return child;
 }
 
-
 /* ==========================================================
    RANDOM TOUR — création aléatoire
    ========================================================== */
+
+/**
+ * @brief Crée une tournée aléatoire.
+ *
+ * @param n Taille de la tournée.
+ * @param data Données supplémentaires (GA_Data).
+ * @return Nouvelle tournée aléatoire.
+ */
 Individual ga_create_random_tour(int n, void* data) {
     GA_Data *g = (GA_Data*) data;
 
@@ -231,7 +269,6 @@ Individual ga_create_random_tour(int n, void* data) {
     int *idx = malloc(sizeof(int) * n);
     for (int i = 0; i < n; i++) idx[i] = i;
 
-    //shuffle
     for (int i = n - 1; i > 0; i--) {
         int j = rand() % (i + 1);
         int t = idx[i]; idx[i] = idx[j]; idx[j] = t;
@@ -247,6 +284,23 @@ Individual ga_create_random_tour(int n, void* data) {
 /* ==========================================================
    GA RUN — algo genetique generique
    ========================================================== */
+
+/**
+ * @brief Exécute l'algorithme génétique complet sur une population.
+ *
+ * @param population Population initiale.
+ * @param params Paramètres de l'algorithme génétique.
+ * @param copy Fonction de copie d'un individu.
+ * @param del Fonction de suppression d'un individu.
+ * @param mutate Fonction de mutation d'un individu.
+ * @param crossover Fonction de crossover entre deux individus.
+ * @param fitness Fonction de fitness.
+ * @param selection Fonction de sélection.
+ * @param create_random Fonction de création d'individus aléatoires.
+ * @param best_ind Pointeur pour stocker le meilleur individu trouvé.
+ * @param best_score Pointeur pour stocker la meilleure fitness trouvée.
+ * @return 0 si succès, -1 si erreur.
+ */
 int ga_run(
     Individual *population,
     GA_Parameters *params,
@@ -272,30 +326,23 @@ int ga_run(
 
     srand((unsigned int)time(NULL));
 
-    /* Best = premier individu */
     Individual best = copy(population[0]);
     double best_len = fitness(best, data);
 
-    /* BOUCLE GA */
     for (int g = 0; g < generations; g++) {
-
-        /* 1) SELECTION */
         Individual *selected = malloc(sizeof(Individual) * pop_size);
         for (int i = 0; i < pop_size; i++)
             selected[i] = selection(population, pop_size, tournament_sz, fitness, data);
 
-        /* 2) CROSSOVER */
         Individual *offspring = malloc(sizeof(Individual) * pop_size);
         for (int i = 0; i < pop_size; i += 2) {
             offspring[i]   = crossover(selected[i], selected[i+1], data);
             offspring[i+1] = crossover(selected[i+1], selected[i], data);
         }
 
-        /* 3) MUTATION */
         for (int i = 0; i < pop_size; i++)
             mutate(offspring[i], mutation_r);
 
-        /* 4) TRI*/
         for (int i = 0; i < pop_size - 1; i++)
             for (int j = i + 1; j < pop_size; j++)
                 if (fitness(offspring[i], data) > fitness(offspring[j], data)) {
@@ -304,40 +351,32 @@ int ga_run(
                     offspring[j] = tmp;
                 }
 
-        /* 5) REMPLACER LE PIRE PAR RANDOM TOUR */
         int worst = pop_size - 1;
         del(offspring[worst]);
         offspring[worst] = create_random(individual_sz, data);
 
-        /* 6) GARDER LE MEILLEUR GLOBAL */
         if (fitness(offspring[0], data) < best_len) {
             del(best);
             best = copy(offspring[0]);
             best_len = fitness(best, data);
         }
 
-        /* 7) remplacer par le meilleur individu*/
         del(offspring[worst]);
         offspring[worst] = copy(best);
 
-        /* 8) Remplacement de la population */
         for (int i = 0; i < pop_size; i++) del(population[i]);
         free(population);
         population = offspring;
 
-        /* Libération de selected */
         for (int i = 0; i < pop_size; i++) del(selected[i]);
         free(selected);
     }
 
-    /* Retour des résultats */
     *best_ind = best;
     *best_score = best_len;
 
-    /* Nettoyage */
     for (int i = 0; i < pop_size; i++) del(population[i]);
     free(population);
 
     return 0;
 }
-

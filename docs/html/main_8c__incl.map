@@ -1,0 +1,21 @@
+<map id="src/main.c" name="src/main.c">
+<area shape="rect" id="node1" title="Programme principal pour résoudre le TSP avec plusieurs méthodes heuristiques et exactes." alt="" coords="567,5,657,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,162,72,189"/>
+<area shape="rect" id="node3" title=" " alt="" coords="117,80,187,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="211,80,282,107"/>
+<area shape="rect" id="node5" title=" " alt="" coords="306,80,385,107"/>
+<area shape="rect" id="node6" title=" " alt="" coords="396,162,460,189"/>
+<area shape="rect" id="node7" href="$io_8h.html" title="Fonctions d&#39;entrée/sortie pour l&#39;application TSP." alt="" coords="46,80,93,107"/>
+<area shape="rect" id="node8" href="$exec_8h.html" title="Exécution d&#39;une méthode de résolution TSP et mesure du temps d&#39;exécution." alt="" coords="409,80,473,107"/>
+<area shape="rect" id="node10" href="$rw_8h.html" title="Heuristique Random Walk (RW) pour le TSP." alt="" coords="881,80,1026,107"/>
+<area shape="rect" id="node11" href="$struct_8h.html" title="Déclarations des structures et fonctions pour les instances et tournées TSP." alt="" coords="1091,319,1197,345"/>
+<area shape="rect" id="node12" href="$demi__matrice_8h.html" title="Déclarations pour la gestion des demi&#45;matrices de distances entre villes." alt="" coords="804,155,943,196"/>
+<area shape="rect" id="node13" href="$distance_8h.html" title="Déclarations des fonctions de calcul de distances entre instances pour différents types de TSP." alt="" coords="921,244,1081,271"/>
+<area shape="rect" id="node14" href="$opt2_8h.html" title="Déclarations des fonctions d&#39;optimisation 2&#45;opt pour le TSP." alt="" coords="1018,162,1081,189"/>
+<area shape="rect" id="node15" href="$nn_8h.html" title=" " alt="" coords="659,80,805,107"/>
+<area shape="rect" id="node16" href="$tspReader_8h.html" title="Déclarations pour la lecture des fichiers TSPLIB et gestion des problèmes TSP." alt="" coords="1389,80,1523,107"/>
+<area shape="rect" id="node17" href="$signal__handler_8h.html" title="Déclarations pour la gestion des interruptions (Ctrl+C) pendant le bruteforce." alt="" coords="535,155,679,196"/>
+<area shape="rect" id="node18" href="$bruteforce_8h.html" title="Déclarations des fonctions de résolution du TSP par force brute." alt="" coords="416,244,600,271"/>
+<area shape="rect" id="node19" href="$ga_8h.html" title="Déclarations et types pour un algorithme génétique appliqué au TSP." alt="" coords="1207,162,1313,189"/>
+<area shape="rect" id="node9" href="$types_8h.html" title="Déclarations des types génériques utilisés pour les heuristiques et méthodes TSP." alt="" coords="663,319,769,345"/>
+</map>

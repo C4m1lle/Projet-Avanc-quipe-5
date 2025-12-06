@@ -1,3 +1,11 @@
+/**
+ * @file opt2.c
+ * @brief Implémentation de l'algorithme d'optimisation 2-opt pour le TSP.
+ *
+ * Permet d'améliorer une tournée en échangeant des segments pour réduire
+ * la distance totale.
+ */
+
 #include "../tsp/struct.h"
 #include "rw.h"
 #include "nn.h"
@@ -5,7 +13,15 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-
+/**
+ * @brief Vérifie si deux segments sont croisés.
+ *
+ * @param A Première extrémité du premier segment.
+ * @param B Deuxième extrémité du premier segment.
+ * @param C Première extrémité du second segment.
+ * @param D Deuxième extrémité du second segment.
+ * @return 1 si les segments se croisent, 0 sinon.
+ */
 int is_crossed(tInstance A, tInstance B, tInstance C, tInstance D){
     double ax = get_x(A), ay = get_y(A);
     double bx = get_x(B), by = get_y(B);
@@ -27,9 +43,15 @@ int is_crossed(tInstance A, tInstance B, tInstance C, tInstance D){
     return 0;
 }
 
-
-
-
+/**
+ * @brief Optimisation 2-opt sur une tournée donnée (first improvement).
+ *
+ * @param dist_func Fonction de distance entre deux instances.
+ * @param tournee Tableau d'instances représentant la tournée initiale.
+ * @param tab_tournee Tableau des indices de la tournée à optimiser.
+ * @param lenght Nombre de villes dans la tournée.
+ * @return Distance totale après optimisation.
+ */
 double opt2(DistanceFuncGenerique dist_func,tInstance * tournee, int * tab_tournee, int lenght){
     int taille_tournee = lenght;
     int j;
@@ -43,25 +65,24 @@ double opt2(DistanceFuncGenerique dist_func,tInstance * tournee, int * tab_tourn
         add_in_tournee(tmp,tournee[j]);
     }
 
-
     tInstance curr,next, curr2, next2;
-
-int improved = 1;
+    int improved = 1;
     while(improved){
-            improved = 0;
-            for(int i=0; i<taille_tournee-3; i++){ // optimisation de cette nouvelle tournee
-                curr = get_instance_at(tmp,i);
-                next = get_instance_at(tmp,i+1);
-                for(int j=i+2;j<taille_tournee-1;j++){
-                    curr2 = get_instance_at(tmp,j);
-                    next2 = get_instance_at(tmp,j+1);
-                    if(is_crossed(curr,next,curr2,next2)){
-                        reverse_segment(tmp,i+1,j);
-                        improved = 1;
-                    }
+        improved = 0;
+        for(int i=0; i<taille_tournee-3; i++){ // optimisation de cette nouvelle tournee
+            curr = get_instance_at(tmp,i);
+            next = get_instance_at(tmp,i+1);
+            for(int j=i+2;j<taille_tournee-1;j++){
+                curr2 = get_instance_at(tmp,j);
+                next2 = get_instance_at(tmp,j+1);
+                if(is_crossed(curr,next,curr2,next2)){
+                    reverse_segment(tmp,i+1,j);
+                    improved = 1;
                 }
             }
         }
+    }
+
     for(int i = 0; i<taille_tournee; i++){ // reconstruction du tab apres optimisation
         tab_tournee[i] = get_id(get_instance_at(tmp,i));
     }
@@ -70,7 +91,14 @@ int improved = 1;
     return dist;
 }
 
-
+/**
+ * @brief Version améliorée de l'optimisation 2-opt (first improvement avec vérification de distance).
+ *
+ * @param dist_func Fonction de distance entre deux instances.
+ * @param tournee Tournée initiale à optimiser.
+ * @param tab_tournee Tableau des indices de la tournée à optimiser.
+ * @return Distance totale après optimisation.
+ */
 double opt2_improved(DistanceFuncGenerique dist_func, tTournee tournee, int *tab_tournee) {
     int taille_tournee = get_taille_tournee(tournee);
     tTournee tmp = create_tournee(taille_tournee);

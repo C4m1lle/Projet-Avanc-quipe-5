@@ -1,0 +1,5 @@
+<map id="delete_problem" name="delete_problem">
+<area shape="rect" id="node1" title="Supprime un problème et libère toutes les ressources associées." alt="" coords="5,5,129,32"/>
+<area shape="rect" id="node2" href="$struct_8c.html#a29e44ee05de96b15bd1d11cbdb7ea4bc" title="Supprime une tournée et toutes ses instances." alt="" coords="177,5,297,32"/>
+<area shape="rect" id="node3" href="$struct_8c.html#a640303333d08b6d186eea65a795d69d8" title="Supprime une instance et libère la mémoire associée." alt="" coords="345,5,471,32"/>
+</map>

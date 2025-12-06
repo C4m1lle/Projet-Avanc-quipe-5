@@ -1,0 +1,297 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TSP Project:  Fichier source de genes/ga.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">TSP Project
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   <div id="projectbrief">Travelling Salesman Problem heuristics, brute force and GA implementations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('ga_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">ga.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="ga_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * @file ga.h</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * @brief Déclarations et types pour un algorithme génétique appliqué au TSP.</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef GA_H</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#define GA_H</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;../tsp/struct.h&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;../distance/distance.h&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">/* ----------------------------------------------------------</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">   Types génériques du GA</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">   ---------------------------------------------------------- */</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> * @typedef Individual</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"> * @brief Représente un individu dans le GA (pointeur générique vers une tournée).</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">   20</a></span>&#160;<span class="keyword">typedef</span> <span class="keywordtype">void</span>* <a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a>;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> * @brief Fonction de copie d&#39;un individu.</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="ga_8h.html#ab418e29198da1b5ddba41735edea39a8">   25</a></span>&#160;<span class="keyword">typedef</span> <a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> (*<a class="code" href="ga_8h.html#ab418e29198da1b5ddba41735edea39a8">GA_Copy</a>)(<a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a>);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * @brief Fonction de suppression d&#39;un individu.</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="ga_8h.html#aeef3943c27bcf97a7e938e8fed0adc64">   30</a></span>&#160;<span class="keyword">typedef</span> void (*<a class="code" href="ga_8h.html#aeef3943c27bcf97a7e938e8fed0adc64">GA_Delete</a>)(<a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a>);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment"> * @brief Fonction de mutation d&#39;un individu.</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="ga_8h.html#ad0274a36429b72e5edb8920a7d8c2a02">   35</a></span>&#160;<span class="keyword">typedef</span> void (*<a class="code" href="ga_8h.html#ad0274a36429b72e5edb8920a7d8c2a02">GA_Mutate</a>)(<a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a>, double);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment"> * @brief Fonction de crossover entre deux individus.</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="ga_8h.html#a203050d04d39289094ebae4718adf213">   40</a></span>&#160;<span class="keyword">typedef</span> <a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> (*<a class="code" href="ga_8h.html#a203050d04d39289094ebae4718adf213">GA_Crossover</a>)(<a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a>, <a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a>, <span class="keywordtype">void</span> *data);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment"> * @brief Fonction de fitness pour évaluer un individu.</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="ga_8h.html#aec8fcc82c577c63c791c8de4e2b5a4c0">   45</a></span>&#160;<span class="keyword">typedef</span> double (*<a class="code" href="ga_8h.html#aec8fcc82c577c63c791c8de4e2b5a4c0">GA_Fitness</a>)(<a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a>, <span class="keywordtype">void</span>*);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment"> * @brief Fonction de sélection d&#39;un individu dans la population.</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="ga_8h.html#a8b879929fca7ccabae6e7fcfdede3c68">   50</a></span>&#160;<span class="keyword">typedef</span> <a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> (*<a class="code" href="ga_8h.html#a8b879929fca7ccabae6e7fcfdede3c68">GA_Selection</a>)(<a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a>*, int, int, <a class="code" href="ga_8h.html#aec8fcc82c577c63c791c8de4e2b5a4c0">GA_Fitness</a>, <span class="keywordtype">void</span>*);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment"> * @brief Fonction de création d&#39;un individu aléatoire.</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="ga_8h.html#aa8d5706404560aa1a62c37d7b6f8f3bf">   55</a></span>&#160;<span class="keyword">typedef</span> <a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> (*<a class="code" href="ga_8h.html#aa8d5706404560aa1a62c37d7b6f8f3bf">GA_CreateRandom</a>)(int, <span class="keywordtype">void</span>*);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">/* ----------------------------------------------------------</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">   Données spécifiques au TSP</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">   ---------------------------------------------------------- */</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment"> * @struct GA_Data</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment"> * @brief Données supplémentaires pour le GA appliqué au TSP.</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="structGA__Data.html">   65</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="structGA__Data.html#a636c2bcf0d2f805b732f9676eaa21d11">   66</a></span>&#160;    <a class="code" href="types_8h.html#a3ae22e2043c81482caad8452ebbb37b2">DistanceFuncGenerique</a> <a class="code" href="structGA__Data.html#a636c2bcf0d2f805b732f9676eaa21d11">dist</a>; <span class="comment">/**&lt; Fonction de distance */</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="structGA__Data.html#abfd2f35fad7b965b3909569f0fe3be78">   67</a></span>&#160;    <a class="code" href="structs__instance.html">tInstance</a> *<a class="code" href="structGA__Data.html#abfd2f35fad7b965b3909569f0fe3be78">cities</a>;          <span class="comment">/**&lt; Tableau des instances */</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="structGA__Data.html#a45dd649852ec8ed681bd5a27e7941e11">   68</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structGA__Data.html#a45dd649852ec8ed681bd5a27e7941e11">n</a>;                      <span class="comment">/**&lt; Nombre de villes */</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;} <a class="code" href="structGA__Data.html">GA_Data</a>;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">/* ----------------------------------------------------------</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">   Paramètres du GA</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">   ---------------------------------------------------------- */</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment"> * @struct GA_Parameters</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment"> * @brief Paramètres de configuration de l&#39;algorithme génétique.</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="structGA__Parameters.html">   79</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="structGA__Parameters.html#a572b1af27ed311a9295842a18674b605">   80</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structGA__Parameters.html#a572b1af27ed311a9295842a18674b605">population_size</a>;  <span class="comment">/**&lt; Taille de la population */</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="structGA__Parameters.html#aa0fae1dcbed243aafb7514a8797f157d">   81</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structGA__Parameters.html#aa0fae1dcbed243aafb7514a8797f157d">generations</a>;      <span class="comment">/**&lt; Nombre de générations */</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="structGA__Parameters.html#af6ec6de985561865943a837df39c9312">   82</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structGA__Parameters.html#af6ec6de985561865943a837df39c9312">tournament_size</a>;  <span class="comment">/**&lt; Taille du tournoi pour la sélection */</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="structGA__Parameters.html#a5c77c042f3cfb70cb178a194f5d0be55">   83</a></span>&#160;    <span class="keywordtype">double</span> <a class="code" href="structGA__Parameters.html#a5c77c042f3cfb70cb178a194f5d0be55">mutation_rate</a>; <span class="comment">/**&lt; Probabilité de mutation par position */</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="structGA__Parameters.html#ae525ec8415f69fd918883e134e4293c1">   84</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structGA__Parameters.html#ae525ec8415f69fd918883e134e4293c1">individual_size</a>;  <span class="comment">/**&lt; Taille d&#39;un individu (nombre de villes) */</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="structGA__Parameters.html#a0d5f7cbfb1bcffa38e27b0f15eefc5a2">   85</a></span>&#160;    <span class="keywordtype">void</span> *<a class="code" href="structGA__Parameters.html#a0d5f7cbfb1bcffa38e27b0f15eefc5a2">data</a>;           <span class="comment">/**&lt; Données supplémentaires (GA_Data) */</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;} <a class="code" href="structGA__Parameters.html">GA_Parameters</a>;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment">/* ----------------------------------------------------------</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment">   Fonctions TSP (callbacks)</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment">   ---------------------------------------------------------- */</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment"> * @brief Copie un individu (tournée).</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> <a class="code" href="ga_8h.html#aa799c352015dae9826b911144d3afbc8">ga_copy_tour</a>(<a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> ind);</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="comment"> * @brief Supprime un individu sans libérer les instances.</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="keywordtype">void</span> <a class="code" href="ga_8h.html#ad146d4f57a9e5a4af91378d3be395a5b">ga_delete_tour</a>(<a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> ind);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment"> * @brief Applique une mutation (swap) sur un individu.</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="keywordtype">void</span> <a class="code" href="ga_8h.html#aaba5e8273592b612c2fbd652ad257079">ga_mutate_tour</a>(<a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> ind, <span class="keywordtype">double</span> mutation_rate);</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="comment"> * @brief Applique le crossover Ordered Crossover (OX) entre deux parents.</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> <a class="code" href="ga_8h.html#a58fb1f9fda72d8062cedc84e1ae6ea53">ga_ordered_crossover</a>(<a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> parent_a, <a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> parent_b, <span class="keywordtype">void</span> *data);</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="comment"> * @brief Applique le crossover DPX entre deux parents et optimise avec 2-opt.</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> <a class="code" href="ga_8h.html#adf0ea851daef7578dc44321421271583">ga_dpx_crossover</a>(<a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> parent_a, <a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> parent_b, <span class="keywordtype">void</span> *data);</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="comment"> * @brief Calcule la fitness d&#39;un individu (longueur totale du tour).</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="keywordtype">double</span> <a class="code" href="ga_8h.html#af8b8fb5ea7dd1a25172a66a41743de3c">ga_fitness_tour</a>(<a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> ind, <span class="keywordtype">void</span> *data);</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="comment"> * @brief Sélectionne un individu via le tournoi.</span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> <a class="code" href="ga_8h.html#af0597e276fcfe2117e4b9c1f5d681cb6">ga_tournament_selection</a>(<a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> *population, <span class="keywordtype">int</span> pop_size, <span class="keywordtype">int</span> tournament_size,</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;                                   <a class="code" href="ga_8h.html#aec8fcc82c577c63c791c8de4e2b5a4c0">GA_Fitness</a> fitness, <span class="keywordtype">void</span> *data);</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="comment"> * @brief Crée une tournée aléatoire.</span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> <a class="code" href="ga_8h.html#a216be71b03d6019e7a5a9b4df7837956">ga_create_random_tour</a>(<span class="keywordtype">int</span> n, <span class="keywordtype">void</span> *data);</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="comment">/* ----------------------------------------------------------</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="comment">   Algorithme génétique générique</span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="comment">   ---------------------------------------------------------- */</span></div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="comment"> * @brief Exécute l&#39;algorithme génétique complet sur une population.</span></div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="comment"> * @param population Population initiale.</span></div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="comment"> * @param params Paramètres du GA.</span></div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="comment"> * @param copy Fonction de copie d&#39;un individu.</span></div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="comment"> * @param del Fonction de suppression d&#39;un individu.</span></div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="comment"> * @param mutate Fonction de mutation d&#39;un individu.</span></div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="comment"> * @param crossover Fonction de crossover entre deux individus.</span></div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="comment"> * @param fitness Fonction de fitness.</span></div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="comment"> * @param selection Fonction de sélection.</span></div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="comment"> * @param create_random Fonction de création d&#39;individus aléatoires.</span></div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="comment"> * @param best_ind Pointeur pour stocker le meilleur individu trouvé.</span></div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="comment"> * @param best_score Pointeur pour stocker la meilleure fitness trouvée.</span></div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="comment"> * @return 0 si succès, -1 si erreur.</span></div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="keywordtype">int</span> <a class="code" href="ga_8h.html#a897a1f43bf496080ea08ad1bf2abb320">ga_run</a>(</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    <a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> *population,</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <a class="code" href="structGA__Parameters.html">GA_Parameters</a> *params,</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    <a class="code" href="ga_8h.html#ab418e29198da1b5ddba41735edea39a8">GA_Copy</a> copy,</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    <a class="code" href="ga_8h.html#aeef3943c27bcf97a7e938e8fed0adc64">GA_Delete</a> del,</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    <a class="code" href="ga_8h.html#ad0274a36429b72e5edb8920a7d8c2a02">GA_Mutate</a> mutate,</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    <a class="code" href="ga_8h.html#a203050d04d39289094ebae4718adf213">GA_Crossover</a> crossover,</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    <a class="code" href="ga_8h.html#aec8fcc82c577c63c791c8de4e2b5a4c0">GA_Fitness</a> fitness,</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    <a class="code" href="ga_8h.html#a8b879929fca7ccabae6e7fcfdede3c68">GA_Selection</a> selection,</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    <a class="code" href="ga_8h.html#aa8d5706404560aa1a62c37d7b6f8f3bf">GA_CreateRandom</a> create_random,</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    <a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> *best_ind,</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    <span class="keywordtype">double</span> *best_score</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;);</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aga_8h_html_a203050d04d39289094ebae4718adf213"><div class="ttname"><a href="ga_8h.html#a203050d04d39289094ebae4718adf213">GA_Crossover</a></div><div class="ttdeci">Individual(* GA_Crossover)(Individual, Individual, void *data)</div><div class="ttdoc">Fonction de crossover entre deux individus.</div><div class="ttdef"><b>Definition:</b> <a href="ga_8h_source.html#l00040">ga.h:40</a></div></div>
+<div class="ttc" id="aga_8h_html_a216be71b03d6019e7a5a9b4df7837956"><div class="ttname"><a href="ga_8h.html#a216be71b03d6019e7a5a9b4df7837956">ga_create_random_tour</a></div><div class="ttdeci">Individual ga_create_random_tour(int n, void *data)</div><div class="ttdoc">Crée une tournée aléatoire.</div><div class="ttdef"><b>Definition:</b> <a href="ga_8c_source.html#l00264">ga.c:264</a></div></div>
+<div class="ttc" id="aga_8h_html_a2d6d8c8cf1db9df18d6fd43ac0430cd1"><div class="ttname"><a href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a></div><div class="ttdeci">void * Individual</div><div class="ttdoc">Représente un individu dans le GA (pointeur générique vers une tournée).</div><div class="ttdef"><b>Definition:</b> <a href="ga_8h_source.html#l00020">ga.h:20</a></div></div>
+<div class="ttc" id="aga_8h_html_a58fb1f9fda72d8062cedc84e1ae6ea53"><div class="ttname"><a href="ga_8h.html#a58fb1f9fda72d8062cedc84e1ae6ea53">ga_ordered_crossover</a></div><div class="ttdeci">Individual ga_ordered_crossover(Individual parent_a, Individual parent_b, void *data)</div><div class="ttdoc">Applique le crossover Ordered Crossover (OX) entre deux parents.</div><div class="ttdef"><b>Definition:</b> <a href="ga_8c_source.html#l00137">ga.c:137</a></div></div>
+<div class="ttc" id="aga_8h_html_a897a1f43bf496080ea08ad1bf2abb320"><div class="ttname"><a href="ga_8h.html#a897a1f43bf496080ea08ad1bf2abb320">ga_run</a></div><div class="ttdeci">int ga_run(Individual *population, GA_Parameters *params, GA_Copy copy, GA_Delete del, GA_Mutate mutate, GA_Crossover crossover, GA_Fitness fitness, GA_Selection selection, GA_CreateRandom create_random, Individual *best_ind, double *best_score)</div><div class="ttdoc">Exécute l'algorithme génétique complet sur une population.</div><div class="ttdef"><b>Definition:</b> <a href="ga_8c_source.html#l00304">ga.c:304</a></div></div>
+<div class="ttc" id="aga_8h_html_a8b879929fca7ccabae6e7fcfdede3c68"><div class="ttname"><a href="ga_8h.html#a8b879929fca7ccabae6e7fcfdede3c68">GA_Selection</a></div><div class="ttdeci">Individual(* GA_Selection)(Individual *, int, int, GA_Fitness, void *)</div><div class="ttdoc">Fonction de sélection d'un individu dans la population.</div><div class="ttdef"><b>Definition:</b> <a href="ga_8h_source.html#l00050">ga.h:50</a></div></div>
+<div class="ttc" id="aga_8h_html_aa799c352015dae9826b911144d3afbc8"><div class="ttname"><a href="ga_8h.html#aa799c352015dae9826b911144d3afbc8">ga_copy_tour</a></div><div class="ttdeci">Individual ga_copy_tour(Individual ind)</div><div class="ttdoc">Copie un individu (tournée).</div><div class="ttdef"><b>Definition:</b> <a href="ga_8c_source.html#l00025">ga.c:25</a></div></div>
+<div class="ttc" id="aga_8h_html_aa8d5706404560aa1a62c37d7b6f8f3bf"><div class="ttname"><a href="ga_8h.html#aa8d5706404560aa1a62c37d7b6f8f3bf">GA_CreateRandom</a></div><div class="ttdeci">Individual(* GA_CreateRandom)(int, void *)</div><div class="ttdoc">Fonction de création d'un individu aléatoire.</div><div class="ttdef"><b>Definition:</b> <a href="ga_8h_source.html#l00055">ga.h:55</a></div></div>
+<div class="ttc" id="aga_8h_html_aaba5e8273592b612c2fbd652ad257079"><div class="ttname"><a href="ga_8h.html#aaba5e8273592b612c2fbd652ad257079">ga_mutate_tour</a></div><div class="ttdeci">void ga_mutate_tour(Individual ind, double mutation_rate)</div><div class="ttdoc">Applique une mutation (swap) sur un individu.</div><div class="ttdef"><b>Definition:</b> <a href="ga_8c_source.html#l00061">ga.c:61</a></div></div>
+<div class="ttc" id="aga_8h_html_ab418e29198da1b5ddba41735edea39a8"><div class="ttname"><a href="ga_8h.html#ab418e29198da1b5ddba41735edea39a8">GA_Copy</a></div><div class="ttdeci">Individual(* GA_Copy)(Individual)</div><div class="ttdoc">Fonction de copie d'un individu.</div><div class="ttdef"><b>Definition:</b> <a href="ga_8h_source.html#l00025">ga.h:25</a></div></div>
+<div class="ttc" id="aga_8h_html_ad0274a36429b72e5edb8920a7d8c2a02"><div class="ttname"><a href="ga_8h.html#ad0274a36429b72e5edb8920a7d8c2a02">GA_Mutate</a></div><div class="ttdeci">void(* GA_Mutate)(Individual, double)</div><div class="ttdoc">Fonction de mutation d'un individu.</div><div class="ttdef"><b>Definition:</b> <a href="ga_8h_source.html#l00035">ga.h:35</a></div></div>
+<div class="ttc" id="aga_8h_html_ad146d4f57a9e5a4af91378d3be395a5b"><div class="ttname"><a href="ga_8h.html#ad146d4f57a9e5a4af91378d3be395a5b">ga_delete_tour</a></div><div class="ttdeci">void ga_delete_tour(Individual ind)</div><div class="ttdoc">Supprime un individu sans libérer les instances.</div><div class="ttdef"><b>Definition:</b> <a href="ga_8c_source.html#l00046">ga.c:46</a></div></div>
+<div class="ttc" id="aga_8h_html_adf0ea851daef7578dc44321421271583"><div class="ttname"><a href="ga_8h.html#adf0ea851daef7578dc44321421271583">ga_dpx_crossover</a></div><div class="ttdeci">Individual ga_dpx_crossover(Individual parent_a, Individual parent_b, void *data)</div><div class="ttdoc">Applique le crossover DPX entre deux parents et optimise avec 2-opt.</div><div class="ttdef"><b>Definition:</b> <a href="ga_8c_source.html#l00182">ga.c:182</a></div></div>
+<div class="ttc" id="aga_8h_html_aec8fcc82c577c63c791c8de4e2b5a4c0"><div class="ttname"><a href="ga_8h.html#aec8fcc82c577c63c791c8de4e2b5a4c0">GA_Fitness</a></div><div class="ttdeci">double(* GA_Fitness)(Individual, void *)</div><div class="ttdoc">Fonction de fitness pour évaluer un individu.</div><div class="ttdef"><b>Definition:</b> <a href="ga_8h_source.html#l00045">ga.h:45</a></div></div>
+<div class="ttc" id="aga_8h_html_aeef3943c27bcf97a7e938e8fed0adc64"><div class="ttname"><a href="ga_8h.html#aeef3943c27bcf97a7e938e8fed0adc64">GA_Delete</a></div><div class="ttdeci">void(* GA_Delete)(Individual)</div><div class="ttdoc">Fonction de suppression d'un individu.</div><div class="ttdef"><b>Definition:</b> <a href="ga_8h_source.html#l00030">ga.h:30</a></div></div>
+<div class="ttc" id="aga_8h_html_af0597e276fcfe2117e4b9c1f5d681cb6"><div class="ttname"><a href="ga_8h.html#af0597e276fcfe2117e4b9c1f5d681cb6">ga_tournament_selection</a></div><div class="ttdeci">Individual ga_tournament_selection(Individual *population, int pop_size, int tournament_size, GA_Fitness fitness, void *data)</div><div class="ttdoc">Sélectionne un individu via le tournoi.</div><div class="ttdef"><b>Definition:</b> <a href="ga_8c_source.html#l00108">ga.c:108</a></div></div>
+<div class="ttc" id="aga_8h_html_af8b8fb5ea7dd1a25172a66a41743de3c"><div class="ttname"><a href="ga_8h.html#af8b8fb5ea7dd1a25172a66a41743de3c">ga_fitness_tour</a></div><div class="ttdeci">double ga_fitness_tour(Individual ind, void *data)</div><div class="ttdoc">Calcule la fitness d'un individu (longueur totale du tour).</div><div class="ttdef"><b>Definition:</b> <a href="ga_8c_source.html#l00089">ga.c:89</a></div></div>
+<div class="ttc" id="astructGA__Data_html"><div class="ttname"><a href="structGA__Data.html">GA_Data</a></div><div class="ttdoc">Données supplémentaires pour le GA appliqué au TSP.</div><div class="ttdef"><b>Definition:</b> <a href="ga_8h_source.html#l00065">ga.h:65</a></div></div>
+<div class="ttc" id="astructGA__Data_html_a45dd649852ec8ed681bd5a27e7941e11"><div class="ttname"><a href="structGA__Data.html#a45dd649852ec8ed681bd5a27e7941e11">GA_Data::n</a></div><div class="ttdeci">int n</div><div class="ttdef"><b>Definition:</b> <a href="ga_8h_source.html#l00068">ga.h:68</a></div></div>
+<div class="ttc" id="astructGA__Data_html_a636c2bcf0d2f805b732f9676eaa21d11"><div class="ttname"><a href="structGA__Data.html#a636c2bcf0d2f805b732f9676eaa21d11">GA_Data::dist</a></div><div class="ttdeci">DistanceFuncGenerique dist</div><div class="ttdef"><b>Definition:</b> <a href="ga_8h_source.html#l00066">ga.h:66</a></div></div>
+<div class="ttc" id="astructGA__Data_html_abfd2f35fad7b965b3909569f0fe3be78"><div class="ttname"><a href="structGA__Data.html#abfd2f35fad7b965b3909569f0fe3be78">GA_Data::cities</a></div><div class="ttdeci">tInstance * cities</div><div class="ttdef"><b>Definition:</b> <a href="ga_8h_source.html#l00067">ga.h:67</a></div></div>
+<div class="ttc" id="astructGA__Parameters_html"><div class="ttname"><a href="structGA__Parameters.html">GA_Parameters</a></div><div class="ttdoc">Paramètres de configuration de l'algorithme génétique.</div><div class="ttdef"><b>Definition:</b> <a href="ga_8h_source.html#l00079">ga.h:79</a></div></div>
+<div class="ttc" id="astructGA__Parameters_html_a0d5f7cbfb1bcffa38e27b0f15eefc5a2"><div class="ttname"><a href="structGA__Parameters.html#a0d5f7cbfb1bcffa38e27b0f15eefc5a2">GA_Parameters::data</a></div><div class="ttdeci">void * data</div><div class="ttdef"><b>Definition:</b> <a href="ga_8h_source.html#l00085">ga.h:85</a></div></div>
+<div class="ttc" id="astructGA__Parameters_html_a572b1af27ed311a9295842a18674b605"><div class="ttname"><a href="structGA__Parameters.html#a572b1af27ed311a9295842a18674b605">GA_Parameters::population_size</a></div><div class="ttdeci">int population_size</div><div class="ttdef"><b>Definition:</b> <a href="ga_8h_source.html#l00080">ga.h:80</a></div></div>
+<div class="ttc" id="astructGA__Parameters_html_a5c77c042f3cfb70cb178a194f5d0be55"><div class="ttname"><a href="structGA__Parameters.html#a5c77c042f3cfb70cb178a194f5d0be55">GA_Parameters::mutation_rate</a></div><div class="ttdeci">double mutation_rate</div><div class="ttdef"><b>Definition:</b> <a href="ga_8h_source.html#l00083">ga.h:83</a></div></div>
+<div class="ttc" id="astructGA__Parameters_html_aa0fae1dcbed243aafb7514a8797f157d"><div class="ttname"><a href="structGA__Parameters.html#aa0fae1dcbed243aafb7514a8797f157d">GA_Parameters::generations</a></div><div class="ttdeci">int generations</div><div class="ttdef"><b>Definition:</b> <a href="ga_8h_source.html#l00081">ga.h:81</a></div></div>
+<div class="ttc" id="astructGA__Parameters_html_ae525ec8415f69fd918883e134e4293c1"><div class="ttname"><a href="structGA__Parameters.html#ae525ec8415f69fd918883e134e4293c1">GA_Parameters::individual_size</a></div><div class="ttdeci">int individual_size</div><div class="ttdef"><b>Definition:</b> <a href="ga_8h_source.html#l00084">ga.h:84</a></div></div>
+<div class="ttc" id="astructGA__Parameters_html_af6ec6de985561865943a837df39c9312"><div class="ttname"><a href="structGA__Parameters.html#af6ec6de985561865943a837df39c9312">GA_Parameters::tournament_size</a></div><div class="ttdeci">int tournament_size</div><div class="ttdef"><b>Definition:</b> <a href="ga_8h_source.html#l00082">ga.h:82</a></div></div>
+<div class="ttc" id="astructs__instance_html"><div class="ttname"><a href="structs__instance.html">s_instance</a></div><div class="ttdoc">Représente une ville du TSP avec un identifiant et ses coordonnées.</div><div class="ttdef"><b>Definition:</b> <a href="struct_8c_source.html#l00014">struct.c:14</a></div></div>
+<div class="ttc" id="atypes_8h_html_a3ae22e2043c81482caad8452ebbb37b2"><div class="ttname"><a href="types_8h.html#a3ae22e2043c81482caad8452ebbb37b2">DistanceFuncGenerique</a></div><div class="ttdeci">double(* DistanceFuncGenerique)(void *, void *)</div><div class="ttdoc">Pointeur vers une fonction de calcul de distance entre deux villes.</div><div class="ttdef"><b>Definition:</b> <a href="types_8h_source.html#l00016">types.h:16</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_b181889e9661a5fc47c6703f6cfdc7e4.html">genes</a></li><li class="navelem"><a class="el" href="ga_8h.html">ga.h</a></li>
+    <li class="footer">Généré par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</body>
+</html>

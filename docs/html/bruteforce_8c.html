@@ -1,0 +1,476 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TSP Project: Référence du fichier bruteforce/bruteforce.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">TSP Project
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   <div id="projectbrief">Travelling Salesman Problem heuristics, brute force and GA implementations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('bruteforce_8c.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Fonctions</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence du fichier bruteforce.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Implémentation des algorithmes de résolution du TSP par force brute.  
+<a href="#details">Plus de détails...</a></p>
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;float.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="struct_8h_source.html">../tsp/struct.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="distance_8h_source.html">../distance/distance.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="demi__matrice_8h_source.html">demi_matrice.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="bruteforce_8h_source.html">bruteforce.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Graphe des dépendances par inclusion de bruteforce.c:</div>
+<div class="dyncontent">
+<div class="center"><img src="bruteforce_8c__incl.png" border="0" usemap="#abruteforce_2bruteforce_8c" alt=""/></div>
+<map name="abruteforce_2bruteforce_8c" id="abruteforce_2bruteforce_8c">
+<area shape="rect" title="Implémentation des algorithmes de résolution du TSP par force brute." alt="" coords="207,5,377,32"/>
+<area shape="rect" title=" " alt="" coords="5,80,72,107"/>
+<area shape="rect" title=" " alt="" coords="97,80,167,107"/>
+<area shape="rect" title=" " alt="" coords="191,80,254,107"/>
+<area shape="rect" href="struct_8h.html" title="Déclarations des structures et fonctions pour les instances et tournées TSP." alt="" coords="291,229,397,256"/>
+<area shape="rect" href="distance_8h.html" title="Déclarations des fonctions de calcul de distances entre instances pour différents types de TSP." alt="" coords="329,155,489,181"/>
+<area shape="rect" href="demi__matrice_8h.html" title="Déclarations pour la gestion des demi&#45;matrices de distances entre villes." alt="" coords="381,80,505,107"/>
+<area shape="rect" href="bruteforce_8h.html" title="Déclarations des fonctions de résolution du TSP par force brute." alt="" coords="564,155,665,181"/>
+<area shape="rect" href="types_8h.html" title="Déclarations des types génériques utilisés pour les heuristiques et méthodes TSP." alt="" coords="473,229,580,256"/>
+</map>
+</div>
+</div>
+<p><a href="bruteforce_8c_source.html">Aller au code source de ce fichier.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:abb73104feb2330f83099329823408415"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bruteforce_8c.html#abb73104feb2330f83099329823408415">next_permutation</a> (int ids[], int length)</td></tr>
+<tr class="memdesc:abb73104feb2330f83099329823408415"><td class="mdescLeft">&#160;</td><td class="mdescRight">Génère la permutation suivante dans l'ordre lexicographique.  <a href="bruteforce_8c.html#abb73104feb2330f83099329823408415">Plus de détails...</a><br /></td></tr>
+<tr class="separator:abb73104feb2330f83099329823408415"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0234e2402f791057934a6315a1c520c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bruteforce_8c.html#ae0234e2402f791057934a6315a1c520c">bruteforce</a> (void **tour, <a class="el" href="types_8h.html#a3ae22e2043c81482caad8452ebbb37b2">DistanceFuncGenerique</a> dist, int *best, double *distmin, int lenght, int *<a class="el" href="signal__handler_8c.html#a6f8c91746a9848acaf8c1ae4b500abc5">has_to_stop</a>)</td></tr>
+<tr class="memdesc:ae0234e2402f791057934a6315a1c520c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Résout le problème du voyageur de commerce par force brute.  <a href="bruteforce_8c.html#ae0234e2402f791057934a6315a1c520c">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ae0234e2402f791057934a6315a1c520c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4eed101c3e124032a5b34a149ec8017"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bruteforce_8c.html#ae4eed101c3e124032a5b34a149ec8017">bruteforce_demi_matrice</a> (void **tour, <a class="el" href="types_8h.html#a3ae22e2043c81482caad8452ebbb37b2">DistanceFuncGenerique</a> dist, int *best, double *distmin, int lenght, int *<a class="el" href="signal__handler_8c.html#a6f8c91746a9848acaf8c1ae4b500abc5">has_to_stop</a>)</td></tr>
+<tr class="memdesc:ae4eed101c3e124032a5b34a149ec8017"><td class="mdescLeft">&#160;</td><td class="mdescRight">Version optimisée de l'algorithme force brute à l'aide d'une demi-matrice de distances.  <a href="bruteforce_8c.html#ae4eed101c3e124032a5b34a149ec8017">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ae4eed101c3e124032a5b34a149ec8017"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Implémentation des algorithmes de résolution du TSP par force brute. </p>
+
+<p class="definition">Définition dans le fichier <a class="el" href="bruteforce_8c_source.html">bruteforce.c</a>.</p>
+</div><h2 class="groupheader">Documentation des fonctions</h2>
+<a id="ae0234e2402f791057934a6315a1c520c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0234e2402f791057934a6315a1c520c">&#9670;&nbsp;</a></span>bruteforce()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void bruteforce </td>
+          <td>(</td>
+          <td class="paramtype">void **&#160;</td>
+          <td class="paramname"><em>tour</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a3ae22e2043c81482caad8452ebbb37b2">DistanceFuncGenerique</a>&#160;</td>
+          <td class="paramname"><em>dist</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>best</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>distmin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>lenght</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>has_to_stop</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Résout le problème du voyageur de commerce par force brute. </p>
+<p>Teste toutes les permutations possibles des villes pour trouver le circuit de distance minimale.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tour</td><td>Tableau de pointeurs représentant les villes. </td></tr>
+    <tr><td class="paramname">dist</td><td>Fonction générique de calcul de distance. </td></tr>
+    <tr><td class="paramname">best</td><td>Tableau dans lequel sera stocké le meilleur parcours trouvé. </td></tr>
+    <tr><td class="paramname">distmin</td><td>Pointeur vers la distance minimale trouvée. </td></tr>
+    <tr><td class="paramname">lenght</td><td>Nombre de villes. </td></tr>
+    <tr><td class="paramname">has_to_stop</td><td>Pointeur indiquant si l'algorithme doit s'arrêter prématurément. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Définition à la ligne <a class="el" href="bruteforce_8c_source.html#l00066">66</a> du fichier <a class="el" href="bruteforce_8c_source.html">bruteforce.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                                                                                                                    {</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordtype">void</span> * inst1;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordtype">void</span> *inst2;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordtype">int</span> taille = lenght;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    (*distmin) = DBL_MAX;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordtype">double</span> distcur;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordtype">int</span> * tab_id = malloc(<span class="keyword">sizeof</span>(<span class="keywordtype">int</span>)*taille);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0;i&lt;taille;i++){</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        tab_id[i] = i+1;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    }</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordflow">while</span>(<a class="code" href="bruteforce_8c.html#abb73104feb2330f83099329823408415">next_permutation</a>(tab_id,taille)==0 &amp;&amp; (*<a class="code" href="signal__handler_8c.html#a6f8c91746a9848acaf8c1ae4b500abc5">has_to_stop</a>)==0){</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        distcur = 0;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0;i&lt;taille-1;i++){</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            inst1 = tour[tab_id[i]-1];</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            inst2 = tour[tab_id[i+1]-1];</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            distcur+=dist(inst1,inst2);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        }</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        distcur+=dist(tour[tab_id[0]-1],tour[tab_id[taille-1]-1]);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keywordflow">if</span>((*distmin)&gt;distcur){</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            (*distmin) = distcur;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0;i&lt;taille;i++){</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                best[i] = tab_id[i];</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            }</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        }</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    }</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    free(tab_id);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;}</div>
+<div class="ttc" id="abruteforce_8c_html_abb73104feb2330f83099329823408415"><div class="ttname"><a href="bruteforce_8c.html#abb73104feb2330f83099329823408415">next_permutation</a></div><div class="ttdeci">int next_permutation(int ids[], int length)</div><div class="ttdoc">Génère la permutation suivante dans l'ordre lexicographique.</div><div class="ttdef"><b>Definition:</b> <a href="bruteforce_8c_source.html#l00023">bruteforce.c:23</a></div></div>
+<div class="ttc" id="asignal__handler_8c_html_a6f8c91746a9848acaf8c1ae4b500abc5"><div class="ttname"><a href="signal__handler_8c.html#a6f8c91746a9848acaf8c1ae4b500abc5">has_to_stop</a></div><div class="ttdeci">static int has_to_stop</div><div class="ttdef"><b>Definition:</b> <a href="signal__handler_8c_source.html#l00025">signal_handler.c:25</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="bruteforce_8c_ae0234e2402f791057934a6315a1c520c_cgraph.png" border="0" usemap="#abruteforce_8c_ae0234e2402f791057934a6315a1c520c_cgraph" alt=""/></div>
+<map name="abruteforce_8c_ae0234e2402f791057934a6315a1c520c_cgraph" id="abruteforce_8c_ae0234e2402f791057934a6315a1c520c_cgraph">
+<area shape="rect" title="Résout le problème du voyageur de commerce par force brute." alt="" coords="5,5,95,32"/>
+<area shape="rect" href="bruteforce_8c.html#abb73104feb2330f83099329823408415" title="Génère la permutation suivante dans l&#39;ordre lexicographique." alt="" coords="143,5,281,32"/>
+</map>
+</div>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="bruteforce_8c_ae0234e2402f791057934a6315a1c520c_icgraph.png" border="0" usemap="#abruteforce_8c_ae0234e2402f791057934a6315a1c520c_icgraph" alt=""/></div>
+<map name="abruteforce_8c_ae0234e2402f791057934a6315a1c520c_icgraph" id="abruteforce_8c_ae0234e2402f791057934a6315a1c520c_icgraph">
+<area shape="rect" title="Résout le problème du voyageur de commerce par force brute." alt="" coords="316,5,405,32"/>
+<area shape="rect" href="signal__handler_8c.html#ab9c0d4b895a32ee3a8875a8b8ec9cc6b" title="Initialise le gestionnaire de signal pour l&#39;algorithme de bruteforce." alt="" coords="108,5,268,32"/>
+<area shape="rect" href="main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Point d&#39;entrée principal du programme." alt="" coords="5,5,60,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ae4eed101c3e124032a5b34a149ec8017"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4eed101c3e124032a5b34a149ec8017">&#9670;&nbsp;</a></span>bruteforce_demi_matrice()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void bruteforce_demi_matrice </td>
+          <td>(</td>
+          <td class="paramtype">void **&#160;</td>
+          <td class="paramname"><em>tour</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a3ae22e2043c81482caad8452ebbb37b2">DistanceFuncGenerique</a>&#160;</td>
+          <td class="paramname"><em>dist</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>best</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>distmin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>lenght</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>has_to_stop</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Version optimisée de l'algorithme force brute à l'aide d'une demi-matrice de distances. </p>
+<p>Version optimisée de l'algorithme de force brute utilisant une demi-matrice de distances.</p>
+<p>Cette fonction pré-calcule toutes les distances pour accélérer les calculs.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tour</td><td>Tableau de pointeurs représentant les villes. </td></tr>
+    <tr><td class="paramname">dist</td><td>Fonction générique de calcul de distance. </td></tr>
+    <tr><td class="paramname">best</td><td>Tableau dans lequel sera stocké le meilleur parcours trouvé. </td></tr>
+    <tr><td class="paramname">distmin</td><td>Pointeur vers la distance minimale trouvée. </td></tr>
+    <tr><td class="paramname">lenght</td><td>Nombre de villes. </td></tr>
+    <tr><td class="paramname">has_to_stop</td><td>Pointeur indiquant si l'algorithme doit s'arrêter prématurément. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Définition à la ligne <a class="el" href="bruteforce_8c_source.html#l00109">109</a> du fichier <a class="el" href="bruteforce_8c_source.html">bruteforce.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                                                                                                                                 {</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <a class="code" href="structsDemiMatrice.html">tDemiMatrice</a> matrice = <a class="code" href="demi__matrice_8c.html#aba2bf80aab5986d99ceb04228d377a9b">demi_matrice_from_tour</a>(tour,lenght,dist);</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="keywordtype">int</span> taille = lenght;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    (*distmin) = DBL_MAX;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keywordtype">double</span> distcur;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keywordtype">int</span> * tab_id = malloc(<span class="keyword">sizeof</span>(<span class="keywordtype">int</span>)*taille);</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0;i&lt;taille;i++){</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        tab_id[i] = i+1;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    }</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="keywordflow">while</span>(<a class="code" href="bruteforce_8c.html#abb73104feb2330f83099329823408415">next_permutation</a>(tab_id,taille)==0 &amp;&amp; (*<a class="code" href="signal__handler_8c.html#a6f8c91746a9848acaf8c1ae4b500abc5">has_to_stop</a>)==0){</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        distcur = 0;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0;i&lt;taille-1;i++){</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;            distcur+=<a class="code" href="demi__matrice_8c.html#af4bce30800e352801246c8b6b6f26612">obtenir_distance</a>(matrice,tab_id[i]-1,tab_id[i+1]-1);</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        }</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        distcur+=<a class="code" href="demi__matrice_8c.html#af4bce30800e352801246c8b6b6f26612">obtenir_distance</a>(matrice,tab_id[0]-1,tab_id[taille-1]-1);</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160; </div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        <span class="keywordflow">if</span>((*distmin)&gt;distcur){</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;            (*distmin) = distcur;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0;i&lt;taille;i++){</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;                best[i] = tab_id[i];</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;            }</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        }</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    }</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160; </div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    free(tab_id);</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    <a class="code" href="demi__matrice_8c.html#ac293a35d177017986f4c072cadac6612">detruire_demi_matrice</a>(matrice);</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;}</div>
+<div class="ttc" id="ademi__matrice_8c_html_aba2bf80aab5986d99ceb04228d377a9b"><div class="ttname"><a href="demi__matrice_8c.html#aba2bf80aab5986d99ceb04228d377a9b">demi_matrice_from_tour</a></div><div class="ttdeci">tDemiMatrice demi_matrice_from_tour(void **tour, int nb_villes, DistanceFuncGenerique dist)</div><div class="ttdoc">Crée une demi-matrice à partir d'une tournée et d'une fonction de distance.</div><div class="ttdef"><b>Definition:</b> <a href="demi__matrice_8c_source.html#l00103">demi_matrice.c:103</a></div></div>
+<div class="ttc" id="ademi__matrice_8c_html_ac293a35d177017986f4c072cadac6612"><div class="ttname"><a href="demi__matrice_8c.html#ac293a35d177017986f4c072cadac6612">detruire_demi_matrice</a></div><div class="ttdeci">void detruire_demi_matrice(tDemiMatrice matrice)</div><div class="ttdoc">Libère la mémoire occupée par une demi-matrice.</div><div class="ttdef"><b>Definition:</b> <a href="demi__matrice_8c_source.html#l00057">demi_matrice.c:57</a></div></div>
+<div class="ttc" id="ademi__matrice_8c_html_af4bce30800e352801246c8b6b6f26612"><div class="ttname"><a href="demi__matrice_8c.html#af4bce30800e352801246c8b6b6f26612">obtenir_distance</a></div><div class="ttdeci">double obtenir_distance(const tDemiMatrice matrice, int i, int j)</div><div class="ttdoc">Obtient la distance entre deux villes dans une demi-matrice.</div><div class="ttdef"><b>Definition:</b> <a href="demi__matrice_8c_source.html#l00072">demi_matrice.c:72</a></div></div>
+<div class="ttc" id="astructsDemiMatrice_html"><div class="ttname"><a href="structsDemiMatrice.html">sDemiMatrice</a></div><div class="ttdoc">Représentation d'une demi-matrice symétrique pour stocker les distances entre villes.</div><div class="ttdef"><b>Definition:</b> <a href="demi__matrice_8c_source.html#l00020">demi_matrice.c:20</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="bruteforce_8c_ae4eed101c3e124032a5b34a149ec8017_cgraph.png" border="0" usemap="#abruteforce_8c_ae4eed101c3e124032a5b34a149ec8017_cgraph" alt=""/></div>
+<map name="abruteforce_8c_ae4eed101c3e124032a5b34a149ec8017_cgraph" id="abruteforce_8c_ae4eed101c3e124032a5b34a149ec8017_cgraph">
+<area shape="rect" title="Version optimisée de l&#39;algorithme force brute à l&#39;aide d&#39;une demi&#45;matrice de distances." alt="" coords="5,107,192,133"/>
+<area shape="rect" href="demi__matrice_8c.html#aba2bf80aab5986d99ceb04228d377a9b" title="Crée une demi&#45;matrice à partir d&#39;une tournée et d&#39;une fonction de distance." alt="" coords="240,31,423,57"/>
+<area shape="rect" href="demi__matrice_8c.html#ac293a35d177017986f4c072cadac6612" title="Libère la mémoire occupée par une demi&#45;matrice." alt="" coords="246,81,417,108"/>
+<area shape="rect" href="bruteforce_8c.html#abb73104feb2330f83099329823408415" title="Génère la permutation suivante dans l&#39;ordre lexicographique." alt="" coords="262,132,401,159"/>
+<area shape="rect" href="demi__matrice_8c.html#af4bce30800e352801246c8b6b6f26612" title="Obtient la distance entre deux villes dans une demi&#45;matrice." alt="" coords="266,183,397,209"/>
+<area shape="rect" href="demi__matrice_8c.html#a8d63c42fe21689c516da08c2d4355b2e" title="Crée une demi&#45;matrice vide pour un nombre donné de villes." alt="" coords="471,5,623,32"/>
+<area shape="rect" href="demi__matrice_8c.html#ad35e16f43889b282e2839a4a1db8840d" title="Définit la distance entre deux villes dans une demi&#45;matrice." alt="" coords="484,56,609,83"/>
+</map>
+</div>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="bruteforce_8c_ae4eed101c3e124032a5b34a149ec8017_icgraph.png" border="0" usemap="#abruteforce_8c_ae4eed101c3e124032a5b34a149ec8017_icgraph" alt=""/></div>
+<map name="abruteforce_8c_ae4eed101c3e124032a5b34a149ec8017_icgraph" id="abruteforce_8c_ae4eed101c3e124032a5b34a149ec8017_icgraph">
+<area shape="rect" title="Version optimisée de l&#39;algorithme force brute à l&#39;aide d&#39;une demi&#45;matrice de distances." alt="" coords="316,5,503,32"/>
+<area shape="rect" href="signal__handler_8c.html#ab9c0d4b895a32ee3a8875a8b8ec9cc6b" title="Initialise le gestionnaire de signal pour l&#39;algorithme de bruteforce." alt="" coords="108,5,268,32"/>
+<area shape="rect" href="main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Point d&#39;entrée principal du programme." alt="" coords="5,5,60,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="abb73104feb2330f83099329823408415"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb73104feb2330f83099329823408415">&#9670;&nbsp;</a></span>next_permutation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int next_permutation </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ids</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>length</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Génère la permutation suivante dans l'ordre lexicographique. </p>
+<p>Cette fonction modifie le tableau en place pour obtenir la permutation suivante.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ids</td><td>Tableau d'entiers représentant une permutation. </td></tr>
+    <tr><td class="paramname">length</td><td>Taille du tableau. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>0 si une nouvelle permutation a été générée, 1 si la dernière permutation est atteinte. </dd></dl>
+
+<p class="definition">Définition à la ligne <a class="el" href="bruteforce_8c_source.html#l00023">23</a> du fichier <a class="el" href="bruteforce_8c_source.html">bruteforce.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                                           {</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="comment">// Find non-increasing suffix</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordflow">if</span> (length == 0)</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordtype">int</span> i = length - 1;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordflow">while</span> (i &gt; 0 &amp;&amp; ids[i - 1] &gt;= ids[i])</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        i--;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordflow">if</span> (i == 0)</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="comment">// Find successor to pivot</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordtype">int</span> j = length - 1;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordflow">while</span> (ids[j] &lt;= ids[i - 1])</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        j--;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">int</span> temp = ids[i - 1];</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    ids[i - 1] = ids[j];</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    ids[j] = temp;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="comment">// Reverse suffix</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    j = length - 1;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordflow">while</span> (i &lt; j) {</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        temp = ids[i];</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        ids[i] = ids[j];</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        ids[j] = temp;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        i++;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        j--;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    }</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;}</div>
+</div><!-- fragment --><div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="bruteforce_8c_abb73104feb2330f83099329823408415_icgraph.png" border="0" usemap="#abruteforce_8c_abb73104feb2330f83099329823408415_icgraph" alt=""/></div>
+<map name="abruteforce_8c_abb73104feb2330f83099329823408415_icgraph" id="abruteforce_8c_abb73104feb2330f83099329823408415_icgraph">
+<area shape="rect" title="Génère la permutation suivante dans l&#39;ordre lexicographique." alt="" coords="551,31,689,57"/>
+<area shape="rect" href="bruteforce_8c.html#ae0234e2402f791057934a6315a1c520c" title="Résout le problème du voyageur de commerce par force brute." alt="" coords="365,5,454,32"/>
+<area shape="rect" href="bruteforce_8c.html#ae4eed101c3e124032a5b34a149ec8017" title="Version optimisée de l&#39;algorithme force brute à l&#39;aide d&#39;une demi&#45;matrice de distances." alt="" coords="316,56,503,83"/>
+<area shape="rect" href="signal__handler_8c.html#ab9c0d4b895a32ee3a8875a8b8ec9cc6b" title="Initialise le gestionnaire de signal pour l&#39;algorithme de bruteforce." alt="" coords="108,31,268,57"/>
+<area shape="rect" href="main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Point d&#39;entrée principal du programme." alt="" coords="5,31,60,57"/>
+</map>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_9bdafc201ec58725961849c3ae45e910.html">bruteforce</a></li><li class="navelem"><a class="el" href="bruteforce_8c.html">bruteforce.c</a></li>
+    <li class="footer">Généré par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</body>
+</html>

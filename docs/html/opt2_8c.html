@@ -1,0 +1,497 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TSP Project: Référence du fichier heuristiques/opt2.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">TSP Project
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   <div id="projectbrief">Travelling Salesman Problem heuristics, brute force and GA implementations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('opt2_8c.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Fonctions</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence du fichier opt2.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Implémentation de l'algorithme d'optimisation 2-opt pour le TSP.  
+<a href="#details">Plus de détails...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="struct_8h_source.html">../tsp/struct.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="rw_8h_source.html">rw.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="nn_8h_source.html">nn.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="distance_8h_source.html">../distance/distance.h</a>&quot;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Graphe des dépendances par inclusion de opt2.c:</div>
+<div class="dyncontent">
+<div class="center"><img src="opt2_8c__incl.png" border="0" usemap="#aheuristiques_2opt2_8c" alt=""/></div>
+<map name="aheuristiques_2opt2_8c" id="aheuristiques_2opt2_8c">
+<area shape="rect" title="Implémentation de l&#39;algorithme d&#39;optimisation 2&#45;opt pour le TSP." alt="" coords="155,5,301,32"/>
+<area shape="rect" href="struct_8h.html" title="Déclarations des structures et fonctions pour les instances et tournées TSP." alt="" coords="5,319,112,345"/>
+<area shape="rect" href="rw_8h.html" title="Heuristique Random Walk (RW) pour le TSP." alt="" coords="235,80,285,107"/>
+<area shape="rect" href="distance_8h.html" title="Déclarations des fonctions de calcul de distances entre instances pour différents types de TSP." alt="" coords="147,244,307,271"/>
+<area shape="rect" href="nn_8h.html" title=" " alt="" coords="103,80,153,107"/>
+<area shape="rect" title=" " alt="" coords="309,80,379,107"/>
+<area shape="rect" title=" " alt="" coords="404,80,471,107"/>
+<area shape="rect" href="demi__matrice_8h.html" title="Déclarations pour la gestion des demi&#45;matrices de distances entre villes." alt="" coords="235,155,373,196"/>
+<area shape="rect" href="types_8h.html" title="Déclarations des types génériques utilisés pour les heuristiques et méthodes TSP." alt="" coords="265,319,372,345"/>
+<area shape="rect" href="opt2_8h.html" title="Déclarations des fonctions d&#39;optimisation 2&#45;opt pour le TSP." alt="" coords="97,162,159,189"/>
+</map>
+</div>
+</div>
+<p><a href="opt2_8c_source.html">Aller au code source de ce fichier.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:a207e2f324a4c5da219513863631bedd3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opt2_8c.html#a207e2f324a4c5da219513863631bedd3">is_crossed</a> (<a class="el" href="struct_8h.html#a6e2a131c19baeb1bba19f62338ebe89e">tInstance</a> A, <a class="el" href="struct_8h.html#a6e2a131c19baeb1bba19f62338ebe89e">tInstance</a> B, <a class="el" href="struct_8h.html#a6e2a131c19baeb1bba19f62338ebe89e">tInstance</a> C, <a class="el" href="struct_8h.html#a6e2a131c19baeb1bba19f62338ebe89e">tInstance</a> D)</td></tr>
+<tr class="memdesc:a207e2f324a4c5da219513863631bedd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vérifie si deux segments sont croisés.  <a href="opt2_8c.html#a207e2f324a4c5da219513863631bedd3">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a207e2f324a4c5da219513863631bedd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14dbf11f1266456ff122e6900a9f8f91"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opt2_8c.html#a14dbf11f1266456ff122e6900a9f8f91">opt2</a> (<a class="el" href="types_8h.html#a3ae22e2043c81482caad8452ebbb37b2">DistanceFuncGenerique</a> dist_func, <a class="el" href="struct_8h.html#a6e2a131c19baeb1bba19f62338ebe89e">tInstance</a> *tournee, int *tab_tournee, int lenght)</td></tr>
+<tr class="memdesc:a14dbf11f1266456ff122e6900a9f8f91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optimisation 2-opt sur une tournée donnée (first improvement).  <a href="opt2_8c.html#a14dbf11f1266456ff122e6900a9f8f91">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a14dbf11f1266456ff122e6900a9f8f91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9dc780ed0b195dfc0c83b4e936cf31e4"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opt2_8c.html#a9dc780ed0b195dfc0c83b4e936cf31e4">opt2_improved</a> (<a class="el" href="types_8h.html#a3ae22e2043c81482caad8452ebbb37b2">DistanceFuncGenerique</a> dist_func, <a class="el" href="struct_8h.html#a154e6f8aa290f7c0a6a28fffd227d013">tTournee</a> tournee, int *tab_tournee)</td></tr>
+<tr class="memdesc:a9dc780ed0b195dfc0c83b4e936cf31e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Version améliorée de l'optimisation 2-opt (first improvement avec vérification de distance).  <a href="opt2_8c.html#a9dc780ed0b195dfc0c83b4e936cf31e4">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a9dc780ed0b195dfc0c83b4e936cf31e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Implémentation de l'algorithme d'optimisation 2-opt pour le TSP. </p>
+<p>Permet d'améliorer une tournée en échangeant des segments pour réduire la distance totale. </p>
+
+<p class="definition">Définition dans le fichier <a class="el" href="opt2_8c_source.html">opt2.c</a>.</p>
+</div><h2 class="groupheader">Documentation des fonctions</h2>
+<a id="a207e2f324a4c5da219513863631bedd3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a207e2f324a4c5da219513863631bedd3">&#9670;&nbsp;</a></span>is_crossed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int is_crossed </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_8h.html#a6e2a131c19baeb1bba19f62338ebe89e">tInstance</a>&#160;</td>
+          <td class="paramname"><em>A</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_8h.html#a6e2a131c19baeb1bba19f62338ebe89e">tInstance</a>&#160;</td>
+          <td class="paramname"><em>B</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_8h.html#a6e2a131c19baeb1bba19f62338ebe89e">tInstance</a>&#160;</td>
+          <td class="paramname"><em>C</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_8h.html#a6e2a131c19baeb1bba19f62338ebe89e">tInstance</a>&#160;</td>
+          <td class="paramname"><em>D</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Vérifie si deux segments sont croisés. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">A</td><td>Première extrémité du premier segment. </td></tr>
+    <tr><td class="paramname">B</td><td>Deuxième extrémité du premier segment. </td></tr>
+    <tr><td class="paramname">C</td><td>Première extrémité du second segment. </td></tr>
+    <tr><td class="paramname">D</td><td>Deuxième extrémité du second segment. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 si les segments se croisent, 0 sinon. </dd></dl>
+
+<p class="definition">Définition à la ligne <a class="el" href="opt2_8c_source.html#l00025">25</a> du fichier <a class="el" href="opt2_8c_source.html">opt2.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                                                                  {</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordtype">double</span> ax = <a class="code" href="struct_8c.html#a9e83df5c8d31f650ba6a20f0ecaaa71c">get_x</a>(A), ay = <a class="code" href="struct_8c.html#a86253305b7972b90ceb3d0af74954ccf">get_y</a>(A);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordtype">double</span> bx = <a class="code" href="struct_8c.html#a9e83df5c8d31f650ba6a20f0ecaaa71c">get_x</a>(B), by = <a class="code" href="struct_8c.html#a86253305b7972b90ceb3d0af74954ccf">get_y</a>(B);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordtype">double</span> cx = <a class="code" href="struct_8c.html#a9e83df5c8d31f650ba6a20f0ecaaa71c">get_x</a>(C), cy = <a class="code" href="struct_8c.html#a86253305b7972b90ceb3d0af74954ccf">get_y</a>(C);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">double</span> dx = <a class="code" href="struct_8c.html#a9e83df5c8d31f650ba6a20f0ecaaa71c">get_x</a>(D), dy = <a class="code" href="struct_8c.html#a86253305b7972b90ceb3d0af74954ccf">get_y</a>(D);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">double</span> d1, d2, d3, d4;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="comment">// produits vectoriels</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    d1 = (bx - ax)*(cy - ay) - (by - ay)*(cx - ax);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    d2 = (bx - ax)*(dy - ay) - (by - ay)*(dx - ax);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    d3 = (dx - cx)*(ay - cy) - (dy - cy)*(ax - cx);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    d4 = (dx - cx)*(by - cy) - (dy - cy)*(bx - cx);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="comment">// segments croisés si les signes sont opposés</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordflow">if</span>((d1 * d2 &lt; 0) &amp;&amp; (d3 * d4 &lt; 0)){</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    }</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;}</div>
+<div class="ttc" id="astruct_8c_html_a86253305b7972b90ceb3d0af74954ccf"><div class="ttname"><a href="struct_8c.html#a86253305b7972b90ceb3d0af74954ccf">get_y</a></div><div class="ttdeci">double get_y(tInstance inst)</div><div class="ttdoc">Récupère la coordonnée y d'une instance.</div><div class="ttdef"><b>Definition:</b> <a href="struct_8c_source.html#l00064">struct.c:64</a></div></div>
+<div class="ttc" id="astruct_8c_html_a9e83df5c8d31f650ba6a20f0ecaaa71c"><div class="ttname"><a href="struct_8c.html#a9e83df5c8d31f650ba6a20f0ecaaa71c">get_x</a></div><div class="ttdeci">double get_x(tInstance inst)</div><div class="ttdoc">Récupère la coordonnée x d'une instance.</div><div class="ttdef"><b>Definition:</b> <a href="struct_8c_source.html#l00055">struct.c:55</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="opt2_8c_a207e2f324a4c5da219513863631bedd3_cgraph.png" border="0" usemap="#aopt2_8c_a207e2f324a4c5da219513863631bedd3_cgraph" alt=""/></div>
+<map name="aopt2_8c_a207e2f324a4c5da219513863631bedd3_cgraph" id="aopt2_8c_a207e2f324a4c5da219513863631bedd3_cgraph">
+<area shape="rect" title="Vérifie si deux segments sont croisés." alt="" coords="5,31,96,57"/>
+<area shape="rect" href="struct_8c.html#a9e83df5c8d31f650ba6a20f0ecaaa71c" title="Récupère la coordonnée x d&#39;une instance." alt="" coords="144,5,203,32"/>
+<area shape="rect" href="struct_8c.html#a86253305b7972b90ceb3d0af74954ccf" title="Récupère la coordonnée y d&#39;une instance." alt="" coords="144,56,203,83"/>
+</map>
+</div>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="opt2_8c_a207e2f324a4c5da219513863631bedd3_icgraph.png" border="0" usemap="#aopt2_8c_a207e2f324a4c5da219513863631bedd3_icgraph" alt=""/></div>
+<map name="aopt2_8c_a207e2f324a4c5da219513863631bedd3_icgraph" id="aopt2_8c_a207e2f324a4c5da219513863631bedd3_icgraph">
+<area shape="rect" title="Vérifie si deux segments sont croisés." alt="" coords="463,81,553,108"/>
+<area shape="rect" href="opt2_8c.html#a14dbf11f1266456ff122e6900a9f8f91" title="Optimisation 2&#45;opt sur une tournée donnée (first improvement)." alt="" coords="329,56,380,83"/>
+<area shape="rect" href="opt2_8c.html#a9dc780ed0b195dfc0c83b4e936cf31e4" title="Version améliorée de l&#39;optimisation 2&#45;opt (first improvement avec vérification de distance)." alt="" coords="295,107,415,133"/>
+<area shape="rect" href="nn_8c.html#a6f7d218342ef0f9a0fa30b0edba8333d" title="Application de l&#39;heuristique NN suivie d&#39;une optimisation 2&#45;opt." alt="" coords="128,5,227,32"/>
+<area shape="rect" href="rw_8c.html#a494331bd94b33d5be1f17c1322640798" title="Heuristique combinée : Random Walk suivi d&#39;une optimisation 2&#45;opt." alt="" coords="128,56,227,83"/>
+<area shape="rect" href="ga_8c.html#adf0ea851daef7578dc44321421271583" title="Applique le crossover DPX (Distance Preserving Crossover) entre deux parents." alt="" coords="108,107,247,133"/>
+<area shape="rect" href="main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Point d&#39;entrée principal du programme." alt="" coords="5,31,60,57"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a14dbf11f1266456ff122e6900a9f8f91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14dbf11f1266456ff122e6900a9f8f91">&#9670;&nbsp;</a></span>opt2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double opt2 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a3ae22e2043c81482caad8452ebbb37b2">DistanceFuncGenerique</a>&#160;</td>
+          <td class="paramname"><em>dist_func</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_8h.html#a6e2a131c19baeb1bba19f62338ebe89e">tInstance</a> *&#160;</td>
+          <td class="paramname"><em>tournee</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>tab_tournee</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>lenght</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Optimisation 2-opt sur une tournée donnée (first improvement). </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dist_func</td><td>Fonction de distance entre deux instances. </td></tr>
+    <tr><td class="paramname">tournee</td><td>Tableau d'instances représentant la tournée initiale. </td></tr>
+    <tr><td class="paramname">tab_tournee</td><td>Tableau des indices de la tournée à optimiser. </td></tr>
+    <tr><td class="paramname">lenght</td><td>Nombre de villes dans la tournée. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Distance totale après optimisation. </dd></dl>
+
+<p class="definition">Définition à la ligne <a class="el" href="opt2_8c_source.html#l00055">55</a> du fichier <a class="el" href="opt2_8c_source.html">opt2.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                                                                                               {</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">int</span> taille_tournee = lenght;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">int</span> j;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">double</span> dist;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <a class="code" href="structs__tournee.html">tTournee</a> tmp = <a class="code" href="struct_8c.html#a2ae1bdfc0a748027da966101a16f3528">create_tournee</a>(taille_tournee);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i&lt;taille_tournee;i++){ <span class="comment">// creation d&#39;une tournee à partir du tableau  besttournee calculé auparavant par nn ou rw</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        j = 0;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keywordflow">while</span>(j&lt;taille_tournee &amp;&amp; <a class="code" href="struct_8c.html#ab275e2c975f1b590005aad5b56f7ee6a">get_id</a>(tournee[j])!=tab_tournee[i]){</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            j++;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        }</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <a class="code" href="struct_8c.html#ace11200ddd03bb97d3976db37d0034b2">add_in_tournee</a>(tmp,tournee[j]);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    }</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <a class="code" href="structs__instance.html">tInstance</a> curr,next, curr2, next2;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordtype">int</span> improved = 1;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordflow">while</span>(improved){</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        improved = 0;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt;taille_tournee-3; i++){ <span class="comment">// optimisation de cette nouvelle tournee</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            curr = <a class="code" href="struct_8c.html#a39ea0a9ae06284ddbe6ac24ea79f26e6">get_instance_at</a>(tmp,i);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            next = <a class="code" href="struct_8c.html#a39ea0a9ae06284ddbe6ac24ea79f26e6">get_instance_at</a>(tmp,i+1);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> j=i+2;j&lt;taille_tournee-1;j++){</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                curr2 = <a class="code" href="struct_8c.html#a39ea0a9ae06284ddbe6ac24ea79f26e6">get_instance_at</a>(tmp,j);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                next2 = <a class="code" href="struct_8c.html#a39ea0a9ae06284ddbe6ac24ea79f26e6">get_instance_at</a>(tmp,j+1);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                <span class="keywordflow">if</span>(<a class="code" href="opt2_8c.html#a207e2f324a4c5da219513863631bedd3">is_crossed</a>(curr,next,curr2,next2)){</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                    <a class="code" href="struct_8c.html#a9d3d7e114248bd5ca06bb44c2e096afa">reverse_segment</a>(tmp,i+1,j);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                    improved = 1;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                }</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            }</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        }</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    }</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i&lt;taille_tournee; i++){ <span class="comment">// reconstruction du tab apres optimisation</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        tab_tournee[i] = <a class="code" href="struct_8c.html#ab275e2c975f1b590005aad5b56f7ee6a">get_id</a>(<a class="code" href="struct_8c.html#a39ea0a9ae06284ddbe6ac24ea79f26e6">get_instance_at</a>(tmp,i));</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    }</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    dist = <a class="code" href="distance_8c.html#a049910f8b67f9e3f6da2c571d3a7c4b3">tour_length</a>(tmp,dist_func);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <a class="code" href="struct_8c.html#a3ef0d5208385f6a4409c9e098cdd6fa9">delete_tournee_without_instances</a>(&amp;tmp);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keywordflow">return</span> dist;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;}</div>
+<div class="ttc" id="adistance_8c_html_a049910f8b67f9e3f6da2c571d3a7c4b3"><div class="ttname"><a href="distance_8c.html#a049910f8b67f9e3f6da2c571d3a7c4b3">tour_length</a></div><div class="ttdeci">double tour_length(tTournee tour, DistanceFuncGenerique dist)</div><div class="ttdoc">Calcule la longueur totale d'une tournée avec une fonction de distance donnée.</div><div class="ttdef"><b>Definition:</b> <a href="distance_8c_source.html#l00116">distance.c:116</a></div></div>
+<div class="ttc" id="aopt2_8c_html_a207e2f324a4c5da219513863631bedd3"><div class="ttname"><a href="opt2_8c.html#a207e2f324a4c5da219513863631bedd3">is_crossed</a></div><div class="ttdeci">int is_crossed(tInstance A, tInstance B, tInstance C, tInstance D)</div><div class="ttdoc">Vérifie si deux segments sont croisés.</div><div class="ttdef"><b>Definition:</b> <a href="opt2_8c_source.html#l00025">opt2.c:25</a></div></div>
+<div class="ttc" id="astruct_8c_html_a2ae1bdfc0a748027da966101a16f3528"><div class="ttname"><a href="struct_8c.html#a2ae1bdfc0a748027da966101a16f3528">create_tournee</a></div><div class="ttdeci">tTournee create_tournee(int tailledef)</div><div class="ttdoc">Crée une tournée avec une taille initiale donnée.</div><div class="ttdef"><b>Definition:</b> <a href="struct_8c_source.html#l00091">struct.c:91</a></div></div>
+<div class="ttc" id="astruct_8c_html_a39ea0a9ae06284ddbe6ac24ea79f26e6"><div class="ttname"><a href="struct_8c.html#a39ea0a9ae06284ddbe6ac24ea79f26e6">get_instance_at</a></div><div class="ttdeci">tInstance get_instance_at(tTournee tour, int nb)</div><div class="ttdoc">Récupère l'instance à une position donnée dans la tournée.</div><div class="ttdef"><b>Definition:</b> <a href="struct_8c_source.html#l00139">struct.c:139</a></div></div>
+<div class="ttc" id="astruct_8c_html_a3ef0d5208385f6a4409c9e098cdd6fa9"><div class="ttname"><a href="struct_8c.html#a3ef0d5208385f6a4409c9e098cdd6fa9">delete_tournee_without_instances</a></div><div class="ttdeci">void delete_tournee_without_instances(tTournee *ptour)</div><div class="ttdoc">Supprime une tournée sans supprimer ses instances.</div><div class="ttdef"><b>Definition:</b> <a href="struct_8c_source.html#l00191">struct.c:191</a></div></div>
+<div class="ttc" id="astruct_8c_html_a9d3d7e114248bd5ca06bb44c2e096afa"><div class="ttname"><a href="struct_8c.html#a9d3d7e114248bd5ca06bb44c2e096afa">reverse_segment</a></div><div class="ttdeci">int reverse_segment(tTournee tournee, int id1, int id2)</div><div class="ttdoc">Inverse un segment d'une tournée entre deux indices.</div><div class="ttdef"><b>Definition:</b> <a href="struct_8c_source.html#l00172">struct.c:172</a></div></div>
+<div class="ttc" id="astruct_8c_html_ab275e2c975f1b590005aad5b56f7ee6a"><div class="ttname"><a href="struct_8c.html#ab275e2c975f1b590005aad5b56f7ee6a">get_id</a></div><div class="ttdeci">int get_id(tInstance inst)</div><div class="ttdoc">Récupère l'identifiant d'une instance.</div><div class="ttdef"><b>Definition:</b> <a href="struct_8c_source.html#l00073">struct.c:73</a></div></div>
+<div class="ttc" id="astruct_8c_html_ace11200ddd03bb97d3976db37d0034b2"><div class="ttname"><a href="struct_8c.html#ace11200ddd03bb97d3976db37d0034b2">add_in_tournee</a></div><div class="ttdeci">int add_in_tournee(tTournee tour, tInstance inst)</div><div class="ttdoc">Ajoute une instance dans une tournée.</div><div class="ttdef"><b>Definition:</b> <a href="struct_8c_source.html#l00114">struct.c:114</a></div></div>
+<div class="ttc" id="astructs__instance_html"><div class="ttname"><a href="structs__instance.html">s_instance</a></div><div class="ttdoc">Représente une ville du TSP avec un identifiant et ses coordonnées.</div><div class="ttdef"><b>Definition:</b> <a href="struct_8c_source.html#l00014">struct.c:14</a></div></div>
+<div class="ttc" id="astructs__tournee_html"><div class="ttname"><a href="structs__tournee.html">s_tournee</a></div><div class="ttdoc">Représente une tournée (séquence de villes) pour le TSP.</div><div class="ttdef"><b>Definition:</b> <a href="struct_8c_source.html#l00024">struct.c:24</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="opt2_8c_a14dbf11f1266456ff122e6900a9f8f91_cgraph.png" border="0" usemap="#aopt2_8c_a14dbf11f1266456ff122e6900a9f8f91_cgraph" alt=""/></div>
+<map name="aopt2_8c_a14dbf11f1266456ff122e6900a9f8f91_cgraph" id="aopt2_8c_a14dbf11f1266456ff122e6900a9f8f91_cgraph">
+<area shape="rect" title="Optimisation 2&#45;opt sur une tournée donnée (first improvement)." alt="" coords="5,199,56,225"/>
+<area shape="rect" href="struct_8c.html#ace11200ddd03bb97d3976db37d0034b2" title="Ajoute une instance dans une tournée." alt="" coords="131,5,253,32"/>
+<area shape="rect" href="struct_8c.html#a2ae1bdfc0a748027da966101a16f3528" title="Crée une tournée avec une taille initiale donnée." alt="" coords="132,56,252,83"/>
+<area shape="rect" href="struct_8c.html#a3ef0d5208385f6a4409c9e098cdd6fa9" title="Supprime une tournée sans supprimer ses instances." alt="" coords="104,107,280,149"/>
+<area shape="rect" href="struct_8c.html#ab275e2c975f1b590005aad5b56f7ee6a" title="Récupère l&#39;identifiant d&#39;une instance." alt="" coords="161,173,223,200"/>
+<area shape="rect" href="struct_8c.html#a39ea0a9ae06284ddbe6ac24ea79f26e6" title="Récupère l&#39;instance à une position donnée dans la tournée." alt="" coords="328,325,453,352"/>
+<area shape="rect" href="opt2_8c.html#a207e2f324a4c5da219513863631bedd3" title="Vérifie si deux segments sont croisés." alt="" coords="147,224,237,251"/>
+<area shape="rect" href="struct_8c.html#a9d3d7e114248bd5ca06bb44c2e096afa" title="Inverse un segment d&#39;une tournée entre deux indices." alt="" coords="125,325,259,352"/>
+<area shape="rect" href="distance_8c.html#a049910f8b67f9e3f6da2c571d3a7c4b3" title="Calcule la longueur totale d&#39;une tournée avec une fonction de distance donnée." alt="" coords="144,376,240,403"/>
+<area shape="rect" href="struct_8c.html#a9e83df5c8d31f650ba6a20f0ecaaa71c" title="Récupère la coordonnée x d&#39;une instance." alt="" coords="361,249,420,276"/>
+<area shape="rect" href="struct_8c.html#a86253305b7972b90ceb3d0af74954ccf" title="Récupère la coordonnée y d&#39;une instance." alt="" coords="361,199,420,225"/>
+</map>
+</div>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="opt2_8c_a14dbf11f1266456ff122e6900a9f8f91_icgraph.png" border="0" usemap="#aopt2_8c_a14dbf11f1266456ff122e6900a9f8f91_icgraph" alt=""/></div>
+<map name="aopt2_8c_a14dbf11f1266456ff122e6900a9f8f91_icgraph" id="aopt2_8c_a14dbf11f1266456ff122e6900a9f8f91_icgraph">
+<area shape="rect" title="Optimisation 2&#45;opt sur une tournée donnée (first improvement)." alt="" coords="295,56,345,83"/>
+<area shape="rect" href="nn_8c.html#a6f7d218342ef0f9a0fa30b0edba8333d" title="Application de l&#39;heuristique NN suivie d&#39;une optimisation 2&#45;opt." alt="" coords="128,5,227,32"/>
+<area shape="rect" href="rw_8c.html#a494331bd94b33d5be1f17c1322640798" title="Heuristique combinée : Random Walk suivi d&#39;une optimisation 2&#45;opt." alt="" coords="128,56,227,83"/>
+<area shape="rect" href="ga_8c.html#adf0ea851daef7578dc44321421271583" title="Applique le crossover DPX (Distance Preserving Crossover) entre deux parents." alt="" coords="108,107,247,133"/>
+<area shape="rect" href="main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Point d&#39;entrée principal du programme." alt="" coords="5,31,60,57"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a9dc780ed0b195dfc0c83b4e936cf31e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9dc780ed0b195dfc0c83b4e936cf31e4">&#9670;&nbsp;</a></span>opt2_improved()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double opt2_improved </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a3ae22e2043c81482caad8452ebbb37b2">DistanceFuncGenerique</a>&#160;</td>
+          <td class="paramname"><em>dist_func</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_8h.html#a154e6f8aa290f7c0a6a28fffd227d013">tTournee</a>&#160;</td>
+          <td class="paramname"><em>tournee</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>tab_tournee</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Version améliorée de l'optimisation 2-opt (first improvement avec vérification de distance). </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dist_func</td><td>Fonction de distance entre deux instances. </td></tr>
+    <tr><td class="paramname">tournee</td><td>Tournée initiale à optimiser. </td></tr>
+    <tr><td class="paramname">tab_tournee</td><td>Tableau des indices de la tournée à optimiser. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Distance totale après optimisation. </dd></dl>
+
+<p class="definition">Définition à la ligne <a class="el" href="opt2_8c_source.html#l00102">102</a> du fichier <a class="el" href="opt2_8c_source.html">opt2.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                                                                                          {</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keywordtype">int</span> taille_tournee = <a class="code" href="struct_8c.html#a95d9c2f2752443b803b69740f255d621">get_taille_tournee</a>(tournee);</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <a class="code" href="structs__tournee.html">tTournee</a> tmp = <a class="code" href="struct_8c.html#a2ae1bdfc0a748027da966101a16f3528">create_tournee</a>(taille_tournee);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="comment">// Recréation de la tournée à partir du tableau tab_tournee</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; taille_tournee; i++) {</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        <span class="keywordtype">int</span> j = 0;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <span class="keywordflow">while</span> (j &lt; taille_tournee &amp;&amp; <a class="code" href="struct_8c.html#ab275e2c975f1b590005aad5b56f7ee6a">get_id</a>(<a class="code" href="struct_8c.html#a39ea0a9ae06284ddbe6ac24ea79f26e6">get_instance_at</a>(tournee, j)) != tab_tournee[i]) {</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            j++;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        }</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        <a class="code" href="struct_8c.html#ace11200ddd03bb97d3976db37d0034b2">add_in_tournee</a>(tmp, <a class="code" href="struct_8c.html#a39ea0a9ae06284ddbe6ac24ea79f26e6">get_instance_at</a>(tournee, j));</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    }</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keywordtype">int</span> improved = 1;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keywordflow">while</span> (improved) {</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        improved = 0;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; taille_tournee - 3; i++) {</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;            <a class="code" href="structs__instance.html">tInstance</a> curr = <a class="code" href="struct_8c.html#a39ea0a9ae06284ddbe6ac24ea79f26e6">get_instance_at</a>(tmp, i);</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;            <a class="code" href="structs__instance.html">tInstance</a> next = <a class="code" href="struct_8c.html#a39ea0a9ae06284ddbe6ac24ea79f26e6">get_instance_at</a>(tmp, i + 1);</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = i + 2; j &lt; taille_tournee - 1; j++) {</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                <a class="code" href="structs__instance.html">tInstance</a> curr2 = <a class="code" href="struct_8c.html#a39ea0a9ae06284ddbe6ac24ea79f26e6">get_instance_at</a>(tmp, j);</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;                <a class="code" href="structs__instance.html">tInstance</a> next2 = <a class="code" href="struct_8c.html#a39ea0a9ae06284ddbe6ac24ea79f26e6">get_instance_at</a>(tmp, j + 1);</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160; </div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="opt2_8c.html#a207e2f324a4c5da219513863631bedd3">is_crossed</a>(curr, next, curr2, next2)) {</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                    <span class="comment">// Calcul de la distance avant et après inversion</span></div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;                    <span class="keywordtype">double</span> old_dist = dist_func(curr, next) + dist_func(curr2, next2);</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;                    <span class="keywordtype">double</span> new_dist = dist_func(curr, curr2) + dist_func(next, next2);</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160; </div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;                    <span class="keywordflow">if</span> (new_dist &lt; old_dist) {  <span class="comment">// appliquer seulement si amélioration</span></div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;                        <a class="code" href="struct_8c.html#a9d3d7e114248bd5ca06bb44c2e096afa">reverse_segment</a>(tmp, i + 1, j);</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;                        improved = 1;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;                        <span class="keywordflow">break</span>;  <span class="comment">// first improvement : on recommence la boucle</span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;                    }</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;                }</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;            }</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;            <span class="keywordflow">if</span> (improved) <span class="keywordflow">break</span>; <span class="comment">// recommencer depuis le début</span></div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        }</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    }</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160; </div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    <span class="comment">// Reconstruction du tableau tab_tournee</span></div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; taille_tournee; i++) {</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        tab_tournee[i] = <a class="code" href="struct_8c.html#ab275e2c975f1b590005aad5b56f7ee6a">get_id</a>(<a class="code" href="struct_8c.html#a39ea0a9ae06284ddbe6ac24ea79f26e6">get_instance_at</a>(tmp, i));</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    }</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160; </div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    <span class="keywordtype">double</span> dist = <a class="code" href="distance_8c.html#a049910f8b67f9e3f6da2c571d3a7c4b3">tour_length</a>(tmp, dist_func);</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    <a class="code" href="struct_8c.html#a3ef0d5208385f6a4409c9e098cdd6fa9">delete_tournee_without_instances</a>(&amp;tmp);</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <span class="keywordflow">return</span> dist;</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;}</div>
+<div class="ttc" id="astruct_8c_html_a95d9c2f2752443b803b69740f255d621"><div class="ttname"><a href="struct_8c.html#a95d9c2f2752443b803b69740f255d621">get_taille_tournee</a></div><div class="ttdeci">int get_taille_tournee(tTournee tour)</div><div class="ttdoc">Récupère le nombre de villes dans la tournée.</div><div class="ttdef"><b>Definition:</b> <a href="struct_8c_source.html#l00129">struct.c:129</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="opt2_8c_a9dc780ed0b195dfc0c83b4e936cf31e4_cgraph.png" border="0" usemap="#aopt2_8c_a9dc780ed0b195dfc0c83b4e936cf31e4_cgraph" alt=""/></div>
+<map name="aopt2_8c_a9dc780ed0b195dfc0c83b4e936cf31e4_cgraph" id="aopt2_8c_a9dc780ed0b195dfc0c83b4e936cf31e4_cgraph">
+<area shape="rect" title="Version améliorée de l&#39;optimisation 2&#45;opt (first improvement avec vérification de distance)." alt="" coords="5,224,125,251"/>
+<area shape="rect" href="struct_8c.html#ace11200ddd03bb97d3976db37d0034b2" title="Ajoute une instance dans une tournée." alt="" coords="200,5,323,32"/>
+<area shape="rect" href="struct_8c.html#a2ae1bdfc0a748027da966101a16f3528" title="Crée une tournée avec une taille initiale donnée." alt="" coords="201,56,321,83"/>
+<area shape="rect" href="struct_8c.html#a3ef0d5208385f6a4409c9e098cdd6fa9" title="Supprime une tournée sans supprimer ses instances." alt="" coords="173,107,349,149"/>
+<area shape="rect" href="struct_8c.html#ab275e2c975f1b590005aad5b56f7ee6a" title="Récupère l&#39;identifiant d&#39;une instance." alt="" coords="230,173,293,200"/>
+<area shape="rect" href="struct_8c.html#a39ea0a9ae06284ddbe6ac24ea79f26e6" title="Récupère l&#39;instance à une position donnée dans la tournée." alt="" coords="397,275,523,301"/>
+<area shape="rect" href="struct_8c.html#a95d9c2f2752443b803b69740f255d621" title="Récupère le nombre de villes dans la tournée." alt="" coords="191,275,331,301"/>
+<area shape="rect" href="opt2_8c.html#a207e2f324a4c5da219513863631bedd3" title="Vérifie si deux segments sont croisés." alt="" coords="216,427,307,453"/>
+<area shape="rect" href="struct_8c.html#a9d3d7e114248bd5ca06bb44c2e096afa" title="Inverse un segment d&#39;une tournée entre deux indices." alt="" coords="194,376,329,403"/>
+<area shape="rect" href="distance_8c.html#a049910f8b67f9e3f6da2c571d3a7c4b3" title="Calcule la longueur totale d&#39;une tournée avec une fonction de distance donnée." alt="" coords="213,224,309,251"/>
+<area shape="rect" href="struct_8c.html#a9e83df5c8d31f650ba6a20f0ecaaa71c" title="Récupère la coordonnée x d&#39;une instance." alt="" coords="431,376,489,403"/>
+<area shape="rect" href="struct_8c.html#a86253305b7972b90ceb3d0af74954ccf" title="Récupère la coordonnée y d&#39;une instance." alt="" coords="431,427,489,453"/>
+</map>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_9239fd5d8767cddb83f912213fe4b4b5.html">heuristiques</a></li><li class="navelem"><a class="el" href="opt2_8c.html">opt2.c</a></li>
+    <li class="footer">Généré par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</body>
+</html>

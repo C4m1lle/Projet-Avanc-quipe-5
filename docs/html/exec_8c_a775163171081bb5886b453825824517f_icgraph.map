@@ -1,0 +1,4 @@
+<map id="run" name="run">
+<area shape="rect" id="node1" title="Exécute une méthode de résolution du TSP et mesure son temps d&#39;exécution." alt="" coords="108,5,151,32"/>
+<area shape="rect" id="node2" href="$main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Point d&#39;entrée principal du programme." alt="" coords="5,5,60,32"/>
+</map>
