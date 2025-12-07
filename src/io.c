@@ -37,12 +37,13 @@ void usage(char * arg){
     printf("  -o <output.txt> : rediriger la sortie vers un fichier .txt\n");
     printf("  -d <distance_type> :  choix de la distance choisies pour les calculs (eucl2d par défaut)\n");
     printf("  -c : afficher la longueur de la tournée canonique\n");
-    printf("  -m {bf | bfm | nn | rw | 2optnn | 2optrw | ga} : recherche de la longueur optimale selon la méthode choisie\n");
+    printf("  -m {bf | bfm | nn | rw | 2optnn | 2optrw | ga | all} : recherche de la longueur optimale selon la méthode choisie\n");
     printf("                                         bf : force brute\n");
     printf("                                         bfm : force brute matricielle\n");
     printf("                                         nn : plus proche voisin (nearest neighbor)\n");
     printf("                                         rw : marche aléatoire (random walk)\n");
     printf("                                         ga <nombre d'individus> <nombre de générations> <taux de mutation> : algorithme génétique générique\n");
+    printf("                                         all : Toutes les méthodes sauf bf et bfm\n");
     printf("  -h : help, affiche l'usage et ne fait aucun calcul.\n");
 }
 
