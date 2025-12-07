@@ -1,8 +1,3 @@
-/**
- * @file ga.c
- * @brief Implémentation des fonctions pour un algorithme génétique pour le TSP.
- */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -142,28 +137,36 @@ Individual ga_ordered_crossover(Individual parent_a, Individual parent_b, void *
 
     tTournee child = create_tournee(n);
 
+    // Segment aléatoire
     int start = rand()%n;
     int end   = rand()%n;
     if(start > end){ int tmp=start; start=end; end=tmp; }
 
+    // Tableau temporaire des positions
     tInstance* child_array = malloc(sizeof(tInstance) * n);
     for(int i=0;i<n;i++) child_array[i]=NULL;
 
+    // 1) Copier segment de A
     for(int i=start;i<=end;i++)
         child_array[i] = get_instance_at(a,i);
 
+    // 2) Compléter avec B
     int idx=0;
     for(int i=0;i<n;i++){
         tInstance inst = get_instance_at(b,i);
+
+        // Vérifier si déjà dans la partie copiée
         int exists=0;
         for(int j=0;j<n;j++)
             if(child_array[j] && get_id(child_array[j]) == get_id(inst)){ exists=1; break; }
+
         if(!exists){
             while(child_array[idx]) idx++;
             child_array[idx] = inst;
         }
     }
 
+    // Construire l’enfant final
     for(int i=0;i<n;i++)
         add_in_tournee(child, child_array[i]);
 
@@ -269,6 +272,7 @@ Individual ga_create_random_tour(int n, void* data) {
     int *idx = malloc(sizeof(int) * n);
     for (int i = 0; i < n; i++) idx[i] = i;
 
+    // shuffle
     for (int i = n - 1; i > 0; i--) {
         int j = rand() % (i + 1);
         int t = idx[i]; idx[i] = idx[j]; idx[j] = t;
@@ -287,19 +291,6 @@ Individual ga_create_random_tour(int n, void* data) {
 
 /**
  * @brief Exécute l'algorithme génétique complet sur une population.
- *
- * @param population Population initiale.
- * @param params Paramètres de l'algorithme génétique.
- * @param copy Fonction de copie d'un individu.
- * @param del Fonction de suppression d'un individu.
- * @param mutate Fonction de mutation d'un individu.
- * @param crossover Fonction de crossover entre deux individus.
- * @param fitness Fonction de fitness.
- * @param selection Fonction de sélection.
- * @param create_random Fonction de création d'individus aléatoires.
- * @param best_ind Pointeur pour stocker le meilleur individu trouvé.
- * @param best_score Pointeur pour stocker la meilleure fitness trouvée.
- * @return 0 si succès, -1 si erreur.
  */
 int ga_run(
     Individual *population,
@@ -326,23 +317,30 @@ int ga_run(
 
     srand((unsigned int)time(NULL));
 
+    /* Best = premier individu */
     Individual best = copy(population[0]);
     double best_len = fitness(best, data);
 
+    /* BOUCLE GA */
     for (int g = 0; g < generations; g++) {
+
+        /* 1) SELECTION */
         Individual *selected = malloc(sizeof(Individual) * pop_size);
         for (int i = 0; i < pop_size; i++)
             selected[i] = selection(population, pop_size, tournament_sz, fitness, data);
 
+        /* 2) CROSSOVER */
         Individual *offspring = malloc(sizeof(Individual) * pop_size);
         for (int i = 0; i < pop_size; i += 2) {
             offspring[i]   = crossover(selected[i], selected[i+1], data);
             offspring[i+1] = crossover(selected[i+1], selected[i], data);
         }
 
+        /* 3) MUTATION */
         for (int i = 0; i < pop_size; i++)
             mutate(offspring[i], mutation_r);
 
+        /* 4) TRI */
         for (int i = 0; i < pop_size - 1; i++)
             for (int j = i + 1; j < pop_size; j++)
                 if (fitness(offspring[i], data) > fitness(offspring[j], data)) {
@@ -351,30 +349,37 @@ int ga_run(
                     offspring[j] = tmp;
                 }
 
+        /* 5) REMPLACER LE PIRE PAR RANDOM TOUR */
         int worst = pop_size - 1;
         del(offspring[worst]);
         offspring[worst] = create_random(individual_sz, data);
 
+        /* 6) GARDER LE MEILLEUR GLOBAL */
         if (fitness(offspring[0], data) < best_len) {
             del(best);
             best = copy(offspring[0]);
             best_len = fitness(best, data);
         }
 
+        /* 7) remplacer par le meilleur individu */
         del(offspring[worst]);
         offspring[worst] = copy(best);
 
+        /* 8) Remplacement de la population */
         for (int i = 0; i < pop_size; i++) del(population[i]);
         free(population);
         population = offspring;
 
+        /* Libération de selected */
         for (int i = 0; i < pop_size; i++) del(selected[i]);
         free(selected);
     }
 
+    /* Retour des résultats */
     *best_ind = best;
     *best_score = best_len;
 
+    /* Nettoyage */
     for (int i = 0; i < pop_size; i++) del(population[i]);
     free(population);
 
