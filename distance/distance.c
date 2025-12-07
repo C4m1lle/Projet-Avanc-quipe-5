@@ -145,9 +145,11 @@ double tour_length(tTournee tour, DistanceFuncGenerique dist) {
  */
 void canonical(void ** tour, DistanceFuncGenerique dist, int * best, double * distmin, int lenght){
     (*distmin)=0.0;
+    tInstance * tournee = (tInstance *)tour;
     for(int i = 0;i<lenght-1;i++){
-        (*distmin)+=dist(tour[i],tour[i+1]);
-        best[i] = i+1;
+        (*distmin)+=dist(tournee[i],tournee[i+1]);
+        best[i] = get_id(tournee[i]);
     }
-    (*distmin)+=dist(tour[0],tour[lenght-1]);
+    best[lenght-1] = get_id(tournee[lenght-1]);;
+    (*distmin)+=dist(tournee[0],tournee[lenght-1]);
 }
