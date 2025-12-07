@@ -1,5 +1,5 @@
 <map id="string_alloc" name="string_alloc">
 <area shape="rect" id="node1" title="Alloue une copie d&#39;une chaîne de caractères." alt="" coords="267,5,364,32"/>
 <area shape="rect" id="node2" href="$tspReader_8c.html#adf3f02a549534f4d6efcea17c7d777d9" title="Charge un problème TSP depuis un fichier TSPLIB." alt="" coords="108,5,219,32"/>
-<area shape="rect" id="node3" href="$main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Point d&#39;entrée principal du programme." alt="" coords="5,5,60,32"/>
+<area shape="rect" id="node3" href="$main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Fonction principale du programme." alt="" coords="5,5,60,32"/>
 </map>

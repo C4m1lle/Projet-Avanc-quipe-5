@@ -87,398 +87,403 @@ $(document).ready(function(){initNavTree('ga_8c_source.html',''); initResizable(
 <div class="title">ga.c</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="ga_8c.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/**</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * @file ga.c</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * @brief Implémentation des fonctions pour un algorithme génétique pour le TSP.</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;time.h&gt;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;../tsp/struct.h&quot;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;../distance/distance.h&quot;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ga_8h.html">ga.h</a>&quot;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;float.h&gt;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;../heuristiques/opt2.h&quot;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">/* ==========================================================</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">   COPY — copie d’un individu (tour)</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">   ========================================================== */</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">/**</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment"> * @brief Copie un individu (tournée) pour créer un nouvel individu.</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> * @param ind Individu à copier.</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> * @return Nouvelle copie de l&#39;individu.</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="ga_8c.html#aa799c352015dae9826b911144d3afbc8">   25</a></span>&#160;<a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> <a class="code" href="ga_8c.html#aa799c352015dae9826b911144d3afbc8">ga_copy_tour</a>(<a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> ind) {</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="structs__tournee.html">tTournee</a> src = (<a class="code" href="struct_8h.html#a154e6f8aa290f7c0a6a28fffd227d013">tTournee</a>) ind;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordtype">int</span> n = <a class="code" href="struct_8c.html#a95d9c2f2752443b803b69740f255d621">get_taille_tournee</a>(src);</div>
+<a href="ga_8c.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;time.h&gt;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;../tsp/struct.h&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;../distance/distance.h&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ga_8h.html">ga.h</a>&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;float.h&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;../heuristiques/opt2.h&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">/* ==========================================================</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">   COPY — copie d’un individu (tour)</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">   ========================================================== */</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> * @brief Copie un individu (tournée) pour créer un nouvel individu.</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> * @param ind Individu à copier.</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"> * @return Nouvelle copie de l&#39;individu.</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="ga_8c.html#aa799c352015dae9826b911144d3afbc8">   20</a></span>&#160;<a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> <a class="code" href="ga_8c.html#aa799c352015dae9826b911144d3afbc8">ga_copy_tour</a>(<a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> ind) {</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="structs__tournee.html">tTournee</a> src = (<a class="code" href="struct_8h.html#a154e6f8aa290f7c0a6a28fffd227d013">tTournee</a>) ind;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordtype">int</span> n = <a class="code" href="struct_8c.html#a95d9c2f2752443b803b69740f255d621">get_taille_tournee</a>(src);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="structs__tournee.html">tTournee</a> dest = <a class="code" href="struct_8c.html#a2ae1bdfc0a748027da966101a16f3528">create_tournee</a>(n);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; n; i++)</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <a class="code" href="struct_8c.html#ace11200ddd03bb97d3976db37d0034b2">add_in_tournee</a>(dest, <a class="code" href="struct_8c.html#a39ea0a9ae06284ddbe6ac24ea79f26e6">get_instance_at</a>(src, i));</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="structs__tournee.html">tTournee</a> dest = <a class="code" href="struct_8c.html#a2ae1bdfc0a748027da966101a16f3528">create_tournee</a>(n);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; n; i++)</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <a class="code" href="struct_8c.html#ace11200ddd03bb97d3976db37d0034b2">add_in_tournee</a>(dest, <a class="code" href="struct_8c.html#a39ea0a9ae06284ddbe6ac24ea79f26e6">get_instance_at</a>(src, i));</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordflow">return</span> dest;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;}</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">/* ==========================================================</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">   DELETE — suppression sans supprimer les villes</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">   ========================================================== */</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">/**</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment"> * @brief Supprime un individu sans libérer la mémoire des instances.</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment"> * @param ind Individu à supprimer.</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="ga_8c.html#ad146d4f57a9e5a4af91378d3be395a5b">   46</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="ga_8c.html#ad146d4f57a9e5a4af91378d3be395a5b">ga_delete_tour</a>(<a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> ind) {</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordflow">if</span> (!ind) <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="struct_8c.html#a3ef0d5208385f6a4409c9e098cdd6fa9">delete_tournee_without_instances</a>((<a class="code" href="structs__tournee.html">tTournee</a>*)&amp;ind);</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;}</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">/* ==========================================================</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">   MUTATION (swap mutation)</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">   ========================================================== */</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">/**</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment"> * @brief Applique une mutation de type swap sur un individu.</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment"> * @param ind Individu à muter.</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment"> * @param mutation_rate Probabilité de mutation par position.</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="ga_8c.html#aaba5e8273592b612c2fbd652ad257079">   61</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="ga_8c.html#aaba5e8273592b612c2fbd652ad257079">ga_mutate_tour</a>(<a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> ind, <span class="keywordtype">double</span> mutation_rate) {</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <a class="code" href="structs__tournee.html">tTournee</a> tour = (<a class="code" href="struct_8h.html#a154e6f8aa290f7c0a6a28fffd227d013">tTournee</a>) ind;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">int</span> n = <a class="code" href="struct_8c.html#a95d9c2f2752443b803b69740f255d621">get_taille_tournee</a>(tour);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; n; i++) {</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordflow">if</span> ((<span class="keywordtype">double</span>)rand() / RAND_MAX &lt; mutation_rate) {</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            <span class="keywordtype">int</span> j = rand() % n;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            <a class="code" href="structs__instance.html">tInstance</a> a = <a class="code" href="struct_8c.html#a39ea0a9ae06284ddbe6ac24ea79f26e6">get_instance_at</a>(tour, i);</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            <a class="code" href="structs__instance.html">tInstance</a> b = <a class="code" href="struct_8c.html#a39ea0a9ae06284ddbe6ac24ea79f26e6">get_instance_at</a>(tour, j);</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            <a class="code" href="struct_8c.html#a82c61cf92e07df0f8fb5dc51a0f28be8">set_instance_at</a>(tour, i, b);</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            <a class="code" href="struct_8c.html#a82c61cf92e07df0f8fb5dc51a0f28be8">set_instance_at</a>(tour, j, a);</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        }</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    }</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;}</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">/* ==========================================================</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment">   FITNESS = longueur totale du tour</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">   ========================================================== */</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">/**</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment"> * @brief Calcule la fitness d&#39;un individu (longueur totale du tour).</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment"> * @param ind Individu à évaluer.</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment"> * @param data Données supplémentaires (GA_Data).</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment"> * @return Longueur totale de la tournée.</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="ga_8c.html#af8b8fb5ea7dd1a25172a66a41743de3c">   89</a></span>&#160;<span class="keywordtype">double</span> <a class="code" href="ga_8c.html#af8b8fb5ea7dd1a25172a66a41743de3c">ga_fitness_tour</a>(<a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> ind, <span class="keywordtype">void</span> *data) {</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <a class="code" href="structGA__Data.html">GA_Data</a> *g = (<a class="code" href="structGA__Data.html">GA_Data</a>*) data;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="distance_8c.html#a049910f8b67f9e3f6da2c571d3a7c4b3">tour_length</a>((<a class="code" href="structs__tournee.html">tTournee</a>) ind, g-&gt;<a class="code" href="structGA__Data.html#a636c2bcf0d2f805b732f9676eaa21d11">dist</a>);</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;}</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment">/* ==========================================================</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">   SELECTION — tournament selection</span></div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment">   ========================================================== */</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="comment">/**</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment"> * @brief Sélectionne un individu via le tournoi.</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment"> * @param population Population d&#39;individus.</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment"> * @param pop_size Taille de la population.</span></div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment"> * @param tournament_size Taille du tournoi.</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment"> * @param fitness Fonction de fitness.</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment"> * @param data Données supplémentaires pour fitness.</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment"> * @return Individu sélectionné (copie).</span></div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00108"></a><span class="lineno"><a class="line" href="ga_8c.html#af0597e276fcfe2117e4b9c1f5d681cb6">  108</a></span>&#160;<a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> <a class="code" href="ga_8c.html#af0597e276fcfe2117e4b9c1f5d681cb6">ga_tournament_selection</a>(<a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> *population,<span class="keywordtype">int</span> pop_size,<span class="keywordtype">int</span> tournament_size,<a class="code" href="ga_8h.html#aec8fcc82c577c63c791c8de4e2b5a4c0">GA_Fitness</a> fitness,<span class="keywordtype">void</span> *data) {</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keywordtype">double</span> best_score = -1.0;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keywordtype">int</span> best_idx = -1;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; tournament_size; i++) {</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        <span class="keywordtype">int</span> idx = rand() % pop_size;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        <span class="keywordtype">double</span> score = fitness(population[idx], data);</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        <span class="keywordflow">if</span> (best_idx == -1 || score &lt; best_score) {</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;            best_idx = idx;</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;            best_score = score;</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        }</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    }</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="ga_8c.html#aa799c352015dae9826b911144d3afbc8">ga_copy_tour</a>(population[best_idx]);</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;}</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160; </div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="comment">/* ==========================================================</span></div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="comment">   CROSSOVER — Ordered Crossover (OX)</span></div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="comment">   ========================================================== */</span></div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="comment">/**</span></div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="comment"> * @brief Applique le crossover Ordered Crossover (OX) entre deux parents.</span></div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="comment"> * @param parent_a Premier parent.</span></div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="comment"> * @param parent_b Deuxième parent.</span></div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="comment"> * @param data Données supplémentaires (GA_Data).</span></div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="comment"> * @return Nouvel individu enfant.</span></div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00137"></a><span class="lineno"><a class="line" href="ga_8c.html#a58fb1f9fda72d8062cedc84e1ae6ea53">  137</a></span>&#160;<a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> <a class="code" href="ga_8c.html#a58fb1f9fda72d8062cedc84e1ae6ea53">ga_ordered_crossover</a>(<a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> parent_a, <a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> parent_b, <span class="keywordtype">void</span> *data) {</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    <a class="code" href="structGA__Data.html">GA_Data</a> *data_tsp = (<a class="code" href="structGA__Data.html">GA_Data</a> *)data;</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    <a class="code" href="structs__tournee.html">tTournee</a> a = (<a class="code" href="struct_8h.html#a154e6f8aa290f7c0a6a28fffd227d013">tTournee</a>)parent_a;</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    <a class="code" href="structs__tournee.html">tTournee</a> b = (<a class="code" href="struct_8h.html#a154e6f8aa290f7c0a6a28fffd227d013">tTournee</a>)parent_b;</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <span class="keywordtype">int</span> n = data_tsp-&gt;<a class="code" href="structGA__Data.html#a45dd649852ec8ed681bd5a27e7941e11">n</a>;</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160; </div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    <a class="code" href="structs__tournee.html">tTournee</a> child = <a class="code" href="struct_8c.html#a2ae1bdfc0a748027da966101a16f3528">create_tournee</a>(n);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordflow">return</span> dest;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;}</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">/* ==========================================================</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">   DELETE — suppression sans supprimer les villes</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">   ========================================================== */</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment"> * @brief Supprime un individu sans libérer la mémoire des instances.</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment"> * @param ind Individu à supprimer.</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="ga_8c.html#ad146d4f57a9e5a4af91378d3be395a5b">   41</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="ga_8c.html#ad146d4f57a9e5a4af91378d3be395a5b">ga_delete_tour</a>(<a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> ind) {</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordflow">if</span> (!ind) <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="struct_8c.html#a3ef0d5208385f6a4409c9e098cdd6fa9">delete_tournee_without_instances</a>((<a class="code" href="structs__tournee.html">tTournee</a>*)&amp;ind);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;}</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">/* ==========================================================</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">   MUTATION (swap mutation)</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">   ========================================================== */</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment"> * @brief Applique une mutation de type swap sur un individu.</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment"> * @param ind Individu à muter.</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment"> * @param mutation_rate Probabilité de mutation par position.</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="ga_8c.html#aaba5e8273592b612c2fbd652ad257079">   56</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="ga_8c.html#aaba5e8273592b612c2fbd652ad257079">ga_mutate_tour</a>(<a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> ind, <span class="keywordtype">double</span> mutation_rate) {</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <a class="code" href="structs__tournee.html">tTournee</a> tour = (<a class="code" href="struct_8h.html#a154e6f8aa290f7c0a6a28fffd227d013">tTournee</a>) ind;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">int</span> n = <a class="code" href="struct_8c.html#a95d9c2f2752443b803b69740f255d621">get_taille_tournee</a>(tour);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; n; i++) {</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keywordflow">if</span> ((<span class="keywordtype">double</span>)rand() / RAND_MAX &lt; mutation_rate) {</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            <span class="keywordtype">int</span> j = rand() % n;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            <a class="code" href="structs__instance.html">tInstance</a> a = <a class="code" href="struct_8c.html#a39ea0a9ae06284ddbe6ac24ea79f26e6">get_instance_at</a>(tour, i);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            <a class="code" href="structs__instance.html">tInstance</a> b = <a class="code" href="struct_8c.html#a39ea0a9ae06284ddbe6ac24ea79f26e6">get_instance_at</a>(tour, j);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            <a class="code" href="struct_8c.html#a82c61cf92e07df0f8fb5dc51a0f28be8">set_instance_at</a>(tour, i, b);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            <a class="code" href="struct_8c.html#a82c61cf92e07df0f8fb5dc51a0f28be8">set_instance_at</a>(tour, j, a);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        }</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    }</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;}</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">/* ==========================================================</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">   FITNESS = longueur totale du tour</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">   ========================================================== */</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment"> * @brief Calcule la fitness d&#39;un individu (longueur totale du tour).</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment"> * @param ind Individu à évaluer.</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment"> * @param data Données supplémentaires (GA_Data).</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment"> * @return Longueur totale de la tournée.</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="ga_8c.html#af8b8fb5ea7dd1a25172a66a41743de3c">   84</a></span>&#160;<span class="keywordtype">double</span> <a class="code" href="ga_8c.html#af8b8fb5ea7dd1a25172a66a41743de3c">ga_fitness_tour</a>(<a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> ind, <span class="keywordtype">void</span> *data) {</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <a class="code" href="structGA__Data.html">GA_Data</a> *g = (<a class="code" href="structGA__Data.html">GA_Data</a>*) data;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="distance_8c.html#a049910f8b67f9e3f6da2c571d3a7c4b3">tour_length</a>((<a class="code" href="structs__tournee.html">tTournee</a>) ind, g-&gt;<a class="code" href="structGA__Data.html#a636c2bcf0d2f805b732f9676eaa21d11">dist</a>);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;}</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment">/* ==========================================================</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment">   SELECTION — tournament selection</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment">   ========================================================== */</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment"> * @brief Sélectionne un individu via le tournoi.</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment"> * @param population Population d&#39;individus.</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment"> * @param pop_size Taille de la population.</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="comment"> * @param tournament_size Taille du tournoi.</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment"> * @param fitness Fonction de fitness.</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment"> * @param data Données supplémentaires pour fitness.</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment"> * @return Individu sélectionné (copie).</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="ga_8c.html#af0597e276fcfe2117e4b9c1f5d681cb6">  103</a></span>&#160;<a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> <a class="code" href="ga_8c.html#af0597e276fcfe2117e4b9c1f5d681cb6">ga_tournament_selection</a>(<a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> *population,<span class="keywordtype">int</span> pop_size,<span class="keywordtype">int</span> tournament_size,<a class="code" href="ga_8h.html#aec8fcc82c577c63c791c8de4e2b5a4c0">GA_Fitness</a> fitness,<span class="keywordtype">void</span> *data) {</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordtype">double</span> best_score = -1.0;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keywordtype">int</span> best_idx = -1;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; tournament_size; i++) {</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        <span class="keywordtype">int</span> idx = rand() % pop_size;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <span class="keywordtype">double</span> score = fitness(population[idx], data);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        <span class="keywordflow">if</span> (best_idx == -1 || score &lt; best_score) {</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;            best_idx = idx;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;            best_score = score;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        }</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    }</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="ga_8c.html#aa799c352015dae9826b911144d3afbc8">ga_copy_tour</a>(population[best_idx]);</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;}</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="comment">/* ==========================================================</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="comment">   CROSSOVER — Ordered Crossover (OX)</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="comment">   ========================================================== */</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="comment"> * @brief Applique le crossover Ordered Crossover (OX) entre deux parents.</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="comment"> * @param parent_a Premier parent.</span></div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="comment"> * @param parent_b Deuxième parent.</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="comment"> * @param data Données supplémentaires (GA_Data).</span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="comment"> * @return Nouvel individu enfant.</span></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00132"></a><span class="lineno"><a class="line" href="ga_8c.html#a58fb1f9fda72d8062cedc84e1ae6ea53">  132</a></span>&#160;<a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> <a class="code" href="ga_8c.html#a58fb1f9fda72d8062cedc84e1ae6ea53">ga_ordered_crossover</a>(<a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> parent_a, <a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> parent_b, <span class="keywordtype">void</span> *data) {</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    <a class="code" href="structGA__Data.html">GA_Data</a> *data_tsp = (<a class="code" href="structGA__Data.html">GA_Data</a> *)data;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    <a class="code" href="structs__tournee.html">tTournee</a> a = (<a class="code" href="struct_8h.html#a154e6f8aa290f7c0a6a28fffd227d013">tTournee</a>)parent_a;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    <a class="code" href="structs__tournee.html">tTournee</a> b = (<a class="code" href="struct_8h.html#a154e6f8aa290f7c0a6a28fffd227d013">tTournee</a>)parent_b;</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    <span class="keywordtype">int</span> n = data_tsp-&gt;<a class="code" href="structGA__Data.html#a45dd649852ec8ed681bd5a27e7941e11">n</a>;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160; </div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    <a class="code" href="structs__tournee.html">tTournee</a> child = <a class="code" href="struct_8c.html#a2ae1bdfc0a748027da966101a16f3528">create_tournee</a>(n);</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160; </div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    <span class="comment">// Segment aléatoire</span></div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <span class="keywordtype">int</span> start = rand()%n;</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    <span class="keywordtype">int</span> end   = rand()%n;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    <span class="keywordflow">if</span>(start &gt; end){ <span class="keywordtype">int</span> tmp=start; start=end; end=tmp; }</div>
 <div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160; </div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    <span class="keywordtype">int</span> start = rand()%n;</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    <span class="keywordtype">int</span> end   = rand()%n;</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    <span class="keywordflow">if</span>(start &gt; end){ <span class="keywordtype">int</span> tmp=start; start=end; end=tmp; }</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    <span class="comment">// Tableau temporaire des positions</span></div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    <a class="code" href="structs__instance.html">tInstance</a>* child_array = malloc(<span class="keyword">sizeof</span>(<a class="code" href="structs__instance.html">tInstance</a>) * n);</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0;i&lt;n;i++) child_array[i]=NULL;</div>
 <div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160; </div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <a class="code" href="structs__instance.html">tInstance</a>* child_array = malloc(<span class="keyword">sizeof</span>(<a class="code" href="structs__instance.html">tInstance</a>) * n);</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0;i&lt;n;i++) child_array[i]=NULL;</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160; </div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=start;i&lt;=end;i++)</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        child_array[i] = <a class="code" href="struct_8c.html#a39ea0a9ae06284ddbe6ac24ea79f26e6">get_instance_at</a>(a,i);</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160; </div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <span class="keywordtype">int</span> idx=0;</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0;i&lt;n;i++){</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        <a class="code" href="structs__instance.html">tInstance</a> inst = <a class="code" href="struct_8c.html#a39ea0a9ae06284ddbe6ac24ea79f26e6">get_instance_at</a>(b,i);</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        <span class="keywordtype">int</span> exists=0;</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> j=0;j&lt;n;j++)</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            <span class="keywordflow">if</span>(child_array[j] &amp;&amp; <a class="code" href="struct_8c.html#ab275e2c975f1b590005aad5b56f7ee6a">get_id</a>(child_array[j]) == <a class="code" href="struct_8c.html#ab275e2c975f1b590005aad5b56f7ee6a">get_id</a>(inst)){ exists=1; <span class="keywordflow">break</span>; }</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        <span class="keywordflow">if</span>(!exists){</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;            <span class="keywordflow">while</span>(child_array[idx]) idx++;</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;            child_array[idx] = inst;</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        }</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    }</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0;i&lt;n;i++)</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        <a class="code" href="struct_8c.html#ace11200ddd03bb97d3976db37d0034b2">add_in_tournee</a>(child, child_array[i]);</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160; </div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    free(child_array);</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    <span class="keywordflow">return</span> child;</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;}</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span class="comment">/**</span></div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="comment"> * @brief Applique le crossover DPX (Distance Preserving Crossover) entre deux parents.</span></div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="comment"> * @param parent_a Premier parent.</span></div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="comment"> * @param parent_b Deuxième parent.</span></div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="comment"> * @param data Données supplémentaires (GA_Data).</span></div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;<span class="comment"> * @return Nouvel individu enfant optimisé via 2-opt.</span></div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00182"></a><span class="lineno"><a class="line" href="ga_8c.html#adf0ea851daef7578dc44321421271583">  182</a></span>&#160;<a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> <a class="code" href="ga_8c.html#adf0ea851daef7578dc44321421271583">ga_dpx_crossover</a>(<a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> parent_a, <a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> parent_b, <span class="keywordtype">void</span> *data) {</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    <a class="code" href="structGA__Data.html">GA_Data</a>  * tsp_data = (<a class="code" href="structGA__Data.html">GA_Data</a> *)data;</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    <a class="code" href="structs__tournee.html">tTournee</a> a = (<a class="code" href="struct_8h.html#a154e6f8aa290f7c0a6a28fffd227d013">tTournee</a>)parent_a;</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    <a class="code" href="structs__tournee.html">tTournee</a> b = (<a class="code" href="struct_8h.html#a154e6f8aa290f7c0a6a28fffd227d013">tTournee</a>)parent_b;</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    <span class="keywordtype">int</span> n = tsp_data-&gt;<a class="code" href="structGA__Data.html#a45dd649852ec8ed681bd5a27e7941e11">n</a>;</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160; </div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    <a class="code" href="structs__tournee.html">tTournee</a> child = <a class="code" href="struct_8c.html#a2ae1bdfc0a748027da966101a16f3528">create_tournee</a>(n);</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    <a class="code" href="structs__instance.html">tInstance</a> * child_array = malloc(<span class="keyword">sizeof</span>(<a class="code" href="structs__instance.html">tInstance</a>) * n);</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    <a class="code" href="structs__instance.html">tInstance</a> * intersec = malloc(<span class="keyword">sizeof</span>(<a class="code" href="structs__instance.html">tInstance</a>) * n);</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    <span class="keywordtype">int</span> missed = 0;</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160; </div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i&lt;n; i++){</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;        intersec[i]=NULL;</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;        child_array[i]=NULL;</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    }</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160; </div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; n; i++){</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="struct_8c.html#ab275e2c975f1b590005aad5b56f7ee6a">get_id</a>(<a class="code" href="struct_8c.html#a39ea0a9ae06284ddbe6ac24ea79f26e6">get_instance_at</a>(a, i)) == <a class="code" href="struct_8c.html#ab275e2c975f1b590005aad5b56f7ee6a">get_id</a>(<a class="code" href="struct_8c.html#a39ea0a9ae06284ddbe6ac24ea79f26e6">get_instance_at</a>(b, i))) {</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;            child_array[i] = <a class="code" href="struct_8c.html#a39ea0a9ae06284ddbe6ac24ea79f26e6">get_instance_at</a>(a, i);</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;            intersec[missed++] = <a class="code" href="struct_8c.html#a39ea0a9ae06284ddbe6ac24ea79f26e6">get_instance_at</a>(a, i);</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;        }</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    }</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160; </div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; n; i++){</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;        <span class="keywordflow">if</span> (child_array[i] == NULL) {</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;            <a class="code" href="structs__instance.html">tInstance</a> current = NULL;</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k = i - 1; k &gt;= 0 &amp;&amp; current == NULL; k--){</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;                <span class="keywordflow">if</span> (child_array[k] != NULL){</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;                    current = child_array[k];</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;                }</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;            }</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;            <span class="keywordflow">if</span> (current == NULL &amp;&amp; missed &gt; 0){</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;                current = intersec[0];  </div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <span class="comment">// 1) Copier segment de A</span></div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=start;i&lt;=end;i++)</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        child_array[i] = <a class="code" href="struct_8c.html#a39ea0a9ae06284ddbe6ac24ea79f26e6">get_instance_at</a>(a,i);</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160; </div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    <span class="comment">// 2) Compléter avec B</span></div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    <span class="keywordtype">int</span> idx=0;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0;i&lt;n;i++){</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        <a class="code" href="structs__instance.html">tInstance</a> inst = <a class="code" href="struct_8c.html#a39ea0a9ae06284ddbe6ac24ea79f26e6">get_instance_at</a>(b,i);</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160; </div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        <span class="comment">// Vérifier si déjà dans la partie copiée</span></div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        <span class="keywordtype">int</span> exists=0;</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> j=0;j&lt;n;j++)</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;            <span class="keywordflow">if</span>(child_array[j] &amp;&amp; <a class="code" href="struct_8c.html#ab275e2c975f1b590005aad5b56f7ee6a">get_id</a>(child_array[j]) == <a class="code" href="struct_8c.html#ab275e2c975f1b590005aad5b56f7ee6a">get_id</a>(inst)){ exists=1; <span class="keywordflow">break</span>; }</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160; </div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        <span class="keywordflow">if</span>(!exists){</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;            <span class="keywordflow">while</span>(child_array[idx]) idx++;</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;            child_array[idx] = inst;</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        }</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    }</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160; </div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    <span class="comment">// Construire l’enfant final</span></div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0;i&lt;n;i++)</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        <a class="code" href="struct_8c.html#ace11200ddd03bb97d3976db37d0034b2">add_in_tournee</a>(child, child_array[i]);</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160; </div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    free(child_array);</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    <span class="keywordflow">return</span> child;</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;}</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="comment"> * @brief Applique le crossover DPX (Distance Preserving Crossover) entre deux parents.</span></div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;<span class="comment"> * @param parent_a Premier parent.</span></div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;<span class="comment"> * @param parent_b Deuxième parent.</span></div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;<span class="comment"> * @param data Données supplémentaires (GA_Data).</span></div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;<span class="comment"> * @return Nouvel individu enfant optimisé via 2-opt.</span></div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00185"></a><span class="lineno"><a class="line" href="ga_8c.html#adf0ea851daef7578dc44321421271583">  185</a></span>&#160;<a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> <a class="code" href="ga_8c.html#adf0ea851daef7578dc44321421271583">ga_dpx_crossover</a>(<a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> parent_a, <a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> parent_b, <span class="keywordtype">void</span> *data) {</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    <a class="code" href="structGA__Data.html">GA_Data</a>  * tsp_data = (<a class="code" href="structGA__Data.html">GA_Data</a> *)data;</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    <a class="code" href="structs__tournee.html">tTournee</a> a = (<a class="code" href="struct_8h.html#a154e6f8aa290f7c0a6a28fffd227d013">tTournee</a>)parent_a;</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    <a class="code" href="structs__tournee.html">tTournee</a> b = (<a class="code" href="struct_8h.html#a154e6f8aa290f7c0a6a28fffd227d013">tTournee</a>)parent_b;</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    <span class="keywordtype">int</span> n = tsp_data-&gt;<a class="code" href="structGA__Data.html#a45dd649852ec8ed681bd5a27e7941e11">n</a>;</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160; </div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    <a class="code" href="structs__tournee.html">tTournee</a> child = <a class="code" href="struct_8c.html#a2ae1bdfc0a748027da966101a16f3528">create_tournee</a>(n);</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    <a class="code" href="structs__instance.html">tInstance</a> * child_array = malloc(<span class="keyword">sizeof</span>(<a class="code" href="structs__instance.html">tInstance</a>) * n);</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    <a class="code" href="structs__instance.html">tInstance</a> * intersec = malloc(<span class="keyword">sizeof</span>(<a class="code" href="structs__instance.html">tInstance</a>) * n);</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    <span class="keywordtype">int</span> missed = 0;</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160; </div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i&lt;n; i++){</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;        intersec[i]=NULL;</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;        child_array[i]=NULL;</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    }</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160; </div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; n; i++){</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="struct_8c.html#ab275e2c975f1b590005aad5b56f7ee6a">get_id</a>(<a class="code" href="struct_8c.html#a39ea0a9ae06284ddbe6ac24ea79f26e6">get_instance_at</a>(a, i)) == <a class="code" href="struct_8c.html#ab275e2c975f1b590005aad5b56f7ee6a">get_id</a>(<a class="code" href="struct_8c.html#a39ea0a9ae06284ddbe6ac24ea79f26e6">get_instance_at</a>(b, i))) {</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;            child_array[i] = <a class="code" href="struct_8c.html#a39ea0a9ae06284ddbe6ac24ea79f26e6">get_instance_at</a>(a, i);</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;            intersec[missed++] = <a class="code" href="struct_8c.html#a39ea0a9ae06284ddbe6ac24ea79f26e6">get_instance_at</a>(a, i);</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;        }</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    }</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160; </div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; n; i++){</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;        <span class="keywordflow">if</span> (child_array[i] == NULL) {</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;            <a class="code" href="structs__instance.html">tInstance</a> current = NULL;</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k = i - 1; k &gt;= 0 &amp;&amp; current == NULL; k--){</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;                <span class="keywordflow">if</span> (child_array[k] != NULL){</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;                    current = child_array[k];</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;                }</div>
 <div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;            }</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;            <span class="keywordtype">double</span> best_d = DBL_MAX;</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;            <span class="keywordtype">int</span> best_idx = -1;</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k = 0; k &lt; missed; k++){</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;                <span class="keywordflow">if</span> (intersec[k] != NULL){</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;                    <span class="keywordtype">double</span> d = tsp_data-&gt;<a class="code" href="structGA__Data.html#a636c2bcf0d2f805b732f9676eaa21d11">dist</a>(intersec[k], current);</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;                    <span class="keywordflow">if</span> (d &lt; best_d) {</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;                        best_d = d;</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;                        best_idx = k;</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;                    }</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;                }</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;            }</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;            <span class="keywordflow">if</span> (best_idx &gt;= 0){</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;                child_array[i] = intersec[best_idx];</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;                intersec[best_idx] = NULL;</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;            }</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;        }</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    }</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;    </div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    <span class="keywordtype">int</span> * tab_tournee = malloc(<span class="keyword">sizeof</span>(<span class="keywordtype">int</span>)*n);</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; n; i++){</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;        tab_tournee[i] = <a class="code" href="struct_8c.html#ab275e2c975f1b590005aad5b56f7ee6a">get_id</a>(child_array[i]);</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    }</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160; </div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    <a class="code" href="opt2_8c.html#a14dbf11f1266456ff122e6900a9f8f91">opt2</a>(tsp_data-&gt;<a class="code" href="structGA__Data.html#a636c2bcf0d2f805b732f9676eaa21d11">dist</a>,<a class="code" href="struct_8c.html#a2584e55be8c81fd1fc10e436e8d6d2be">get_chemin_tournee</a>(a),tab_tournee,<a class="code" href="struct_8c.html#a95d9c2f2752443b803b69740f255d621">get_taille_tournee</a>(a));</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160; </div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i&lt;n; i++){</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;        <a class="code" href="struct_8c.html#ace11200ddd03bb97d3976db37d0034b2">add_in_tournee</a>(child,<a class="code" href="struct_8c.html#a254e7b862c7bbfe65793947a8189b4dc">get_instance_by_id</a>(a,tab_tournee[i]));</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    }</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160; </div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    free(child_array);</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    free(intersec);</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    free(tab_tournee);</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160; </div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;    <span class="keywordflow">return</span> child;</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;}</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;            <span class="keywordflow">if</span> (current == NULL &amp;&amp; missed &gt; 0){</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;                current = intersec[0];  </div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;            }</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;            <span class="keywordtype">double</span> best_d = DBL_MAX;</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;            <span class="keywordtype">int</span> best_idx = -1;</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k = 0; k &lt; missed; k++){</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;                <span class="keywordflow">if</span> (intersec[k] != NULL){</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;                    <span class="keywordtype">double</span> d = tsp_data-&gt;<a class="code" href="structGA__Data.html#a636c2bcf0d2f805b732f9676eaa21d11">dist</a>(intersec[k], current);</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;                    <span class="keywordflow">if</span> (d &lt; best_d) {</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;                        best_d = d;</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;                        best_idx = k;</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;                    }</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;                }</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;            }</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;            <span class="keywordflow">if</span> (best_idx &gt;= 0){</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;                child_array[i] = intersec[best_idx];</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;                intersec[best_idx] = NULL;</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;            }</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;        }</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;    }</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;    </div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    <span class="keywordtype">int</span> * tab_tournee = malloc(<span class="keyword">sizeof</span>(<span class="keywordtype">int</span>)*n);</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; n; i++){</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;        tab_tournee[i] = <a class="code" href="struct_8c.html#ab275e2c975f1b590005aad5b56f7ee6a">get_id</a>(child_array[i]);</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    }</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160; </div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    <a class="code" href="opt2_8c.html#a14dbf11f1266456ff122e6900a9f8f91">opt2</a>(tsp_data-&gt;<a class="code" href="structGA__Data.html#a636c2bcf0d2f805b732f9676eaa21d11">dist</a>,<a class="code" href="struct_8c.html#a2584e55be8c81fd1fc10e436e8d6d2be">get_chemin_tournee</a>(a),tab_tournee,<a class="code" href="struct_8c.html#a95d9c2f2752443b803b69740f255d621">get_taille_tournee</a>(a));</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160; </div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i&lt;n; i++){</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;        <a class="code" href="struct_8c.html#ace11200ddd03bb97d3976db37d0034b2">add_in_tournee</a>(child,<a class="code" href="struct_8c.html#a254e7b862c7bbfe65793947a8189b4dc">get_instance_by_id</a>(a,tab_tournee[i]));</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    }</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160; </div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;    free(child_array);</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;    free(intersec);</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    free(tab_tournee);</div>
 <div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160; </div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;<span class="comment">/* ==========================================================</span></div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;<span class="comment">   RANDOM TOUR — création aléatoire</span></div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;<span class="comment">   ========================================================== */</span></div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;<span class="comment">/**</span></div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;<span class="comment"> * @brief Crée une tournée aléatoire.</span></div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;<span class="comment"> * @param n Taille de la tournée.</span></div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;<span class="comment"> * @param data Données supplémentaires (GA_Data).</span></div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;<span class="comment"> * @return Nouvelle tournée aléatoire.</span></div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00264"></a><span class="lineno"><a class="line" href="ga_8c.html#a216be71b03d6019e7a5a9b4df7837956">  264</a></span>&#160;<a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> <a class="code" href="ga_8c.html#a216be71b03d6019e7a5a9b4df7837956">ga_create_random_tour</a>(<span class="keywordtype">int</span> n, <span class="keywordtype">void</span>* data) {</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    <a class="code" href="structGA__Data.html">GA_Data</a> *g = (<a class="code" href="structGA__Data.html">GA_Data</a>*) data;</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160; </div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;    <a class="code" href="structs__tournee.html">tTournee</a> tour = <a class="code" href="struct_8c.html#a2ae1bdfc0a748027da966101a16f3528">create_tournee</a>(n);</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160; </div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;    <span class="keywordtype">int</span> *idx = malloc(<span class="keyword">sizeof</span>(<span class="keywordtype">int</span>) * n);</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; n; i++) idx[i] = i;</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    <span class="keywordflow">return</span> child;</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;}</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160; </div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;<span class="comment">/* ==========================================================</span></div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;<span class="comment">   RANDOM TOUR — création aléatoire</span></div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;<span class="comment">   ========================================================== */</span></div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;<span class="comment"> * @brief Crée une tournée aléatoire.</span></div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;<span class="comment"> * @param n Taille de la tournée.</span></div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;<span class="comment"> * @param data Données supplémentaires (GA_Data).</span></div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;<span class="comment"> * @return Nouvelle tournée aléatoire.</span></div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00267"></a><span class="lineno"><a class="line" href="ga_8c.html#a216be71b03d6019e7a5a9b4df7837956">  267</a></span>&#160;<a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> <a class="code" href="ga_8c.html#a216be71b03d6019e7a5a9b4df7837956">ga_create_random_tour</a>(<span class="keywordtype">int</span> n, <span class="keywordtype">void</span>* data) {</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;    <a class="code" href="structGA__Data.html">GA_Data</a> *g = (<a class="code" href="structGA__Data.html">GA_Data</a>*) data;</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160; </div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;    <a class="code" href="structs__tournee.html">tTournee</a> tour = <a class="code" href="struct_8c.html#a2ae1bdfc0a748027da966101a16f3528">create_tournee</a>(n);</div>
 <div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160; </div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = n - 1; i &gt; 0; i--) {</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;        <span class="keywordtype">int</span> j = rand() % (i + 1);</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;        <span class="keywordtype">int</span> t = idx[i]; idx[i] = idx[j]; idx[j] = t;</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;    }</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160; </div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; n; i++)</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;        <a class="code" href="struct_8c.html#ace11200ddd03bb97d3976db37d0034b2">add_in_tournee</a>(tour, g-&gt;<a class="code" href="structGA__Data.html#abfd2f35fad7b965b3909569f0fe3be78">cities</a>[idx[i]]);</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160; </div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;    free(idx);</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;    <span class="keywordflow">return</span> tour;</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;}</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;    <span class="keywordtype">int</span> *idx = malloc(<span class="keyword">sizeof</span>(<span class="keywordtype">int</span>) * n);</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; n; i++) idx[i] = i;</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160; </div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;    <span class="comment">// shuffle</span></div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = n - 1; i &gt; 0; i--) {</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;        <span class="keywordtype">int</span> j = rand() % (i + 1);</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;        <span class="keywordtype">int</span> t = idx[i]; idx[i] = idx[j]; idx[j] = t;</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;    }</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160; </div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; n; i++)</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;        <a class="code" href="struct_8c.html#ace11200ddd03bb97d3976db37d0034b2">add_in_tournee</a>(tour, g-&gt;<a class="code" href="structGA__Data.html#abfd2f35fad7b965b3909569f0fe3be78">cities</a>[idx[i]]);</div>
 <div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160; </div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;<span class="comment">/* ==========================================================</span></div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;<span class="comment">   GA RUN — algo genetique generique</span></div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;<span class="comment">   ========================================================== */</span></div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;<span class="comment">/**</span></div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;<span class="comment"> * @brief Exécute l&#39;algorithme génétique complet sur une population.</span></div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;<span class="comment"> * @param population Population initiale.</span></div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;<span class="comment"> * @param params Paramètres de l&#39;algorithme génétique.</span></div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;<span class="comment"> * @param copy Fonction de copie d&#39;un individu.</span></div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;<span class="comment"> * @param del Fonction de suppression d&#39;un individu.</span></div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;<span class="comment"> * @param mutate Fonction de mutation d&#39;un individu.</span></div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;<span class="comment"> * @param crossover Fonction de crossover entre deux individus.</span></div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;<span class="comment"> * @param fitness Fonction de fitness.</span></div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;<span class="comment"> * @param selection Fonction de sélection.</span></div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;<span class="comment"> * @param create_random Fonction de création d&#39;individus aléatoires.</span></div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;<span class="comment"> * @param best_ind Pointeur pour stocker le meilleur individu trouvé.</span></div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;<span class="comment"> * @param best_score Pointeur pour stocker la meilleure fitness trouvée.</span></div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;<span class="comment"> * @return 0 si succès, -1 si erreur.</span></div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00304"></a><span class="lineno"><a class="line" href="ga_8c.html#a897a1f43bf496080ea08ad1bf2abb320">  304</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="ga_8c.html#a897a1f43bf496080ea08ad1bf2abb320">ga_run</a>(</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;    <a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> *population,</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;    <a class="code" href="structGA__Parameters.html">GA_Parameters</a> *params,</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;    <a class="code" href="ga_8h.html#ab418e29198da1b5ddba41735edea39a8">GA_Copy</a> copy,</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;    <a class="code" href="ga_8h.html#aeef3943c27bcf97a7e938e8fed0adc64">GA_Delete</a> del,</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;    <a class="code" href="ga_8h.html#ad0274a36429b72e5edb8920a7d8c2a02">GA_Mutate</a> mutate,</div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;    <a class="code" href="ga_8h.html#a203050d04d39289094ebae4718adf213">GA_Crossover</a> crossover,</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;    <a class="code" href="ga_8h.html#aec8fcc82c577c63c791c8de4e2b5a4c0">GA_Fitness</a> fitness,</div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;    <a class="code" href="ga_8h.html#a8b879929fca7ccabae6e7fcfdede3c68">GA_Selection</a> selection,</div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;    <a class="code" href="ga_8h.html#aa8d5706404560aa1a62c37d7b6f8f3bf">GA_CreateRandom</a> create_random,</div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;    <a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> *best_ind,</div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;    <span class="keywordtype">double</span> *best_score</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;) {</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;    <span class="keywordflow">if</span> (!population || !params || params-&gt;<a class="code" href="structGA__Parameters.html#a572b1af27ed311a9295842a18674b605">population_size</a> &lt;= 0)</div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;        <span class="keywordflow">return</span> -1;</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;    free(idx);</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;    <span class="keywordflow">return</span> tour;</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;}</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160; </div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;<span class="comment">/* ==========================================================</span></div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;<span class="comment">   GA RUN — algo genetique generique</span></div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;<span class="comment">   ========================================================== */</span></div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;<span class="comment"> * @brief Exécute l&#39;algorithme génétique complet sur une population.</span></div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00295"></a><span class="lineno"><a class="line" href="ga_8c.html#a897a1f43bf496080ea08ad1bf2abb320">  295</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="ga_8c.html#a897a1f43bf496080ea08ad1bf2abb320">ga_run</a>(</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;    <a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> *population,</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;    <a class="code" href="structGA__Parameters.html">GA_Parameters</a> *params,</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;    <a class="code" href="ga_8h.html#ab418e29198da1b5ddba41735edea39a8">GA_Copy</a> copy,</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;    <a class="code" href="ga_8h.html#aeef3943c27bcf97a7e938e8fed0adc64">GA_Delete</a> del,</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    <a class="code" href="ga_8h.html#ad0274a36429b72e5edb8920a7d8c2a02">GA_Mutate</a> mutate,</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;    <a class="code" href="ga_8h.html#a203050d04d39289094ebae4718adf213">GA_Crossover</a> crossover,</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;    <a class="code" href="ga_8h.html#aec8fcc82c577c63c791c8de4e2b5a4c0">GA_Fitness</a> fitness,</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;    <a class="code" href="ga_8h.html#a8b879929fca7ccabae6e7fcfdede3c68">GA_Selection</a> selection,</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;    <a class="code" href="ga_8h.html#aa8d5706404560aa1a62c37d7b6f8f3bf">GA_CreateRandom</a> create_random,</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;    <a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> *best_ind,</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;    <span class="keywordtype">double</span> *best_score</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;) {</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;    <span class="keywordflow">if</span> (!population || !params || params-&gt;<a class="code" href="structGA__Parameters.html#a572b1af27ed311a9295842a18674b605">population_size</a> &lt;= 0)</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;        <span class="keywordflow">return</span> -1;</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160; </div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;    <span class="keywordtype">int</span> pop_size       = params-&gt;<a class="code" href="structGA__Parameters.html#a572b1af27ed311a9295842a18674b605">population_size</a>;</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;    <span class="keywordtype">int</span> generations    = params-&gt;<a class="code" href="structGA__Parameters.html#aa0fae1dcbed243aafb7514a8797f157d">generations</a>;</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;    <span class="keywordtype">int</span> tournament_sz  = params-&gt;<a class="code" href="structGA__Parameters.html#af6ec6de985561865943a837df39c9312">tournament_size</a>;</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;    <span class="keywordtype">int</span> individual_sz  = params-&gt;<a class="code" href="structGA__Parameters.html#ae525ec8415f69fd918883e134e4293c1">individual_size</a>;</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;    <span class="keywordtype">double</span> mutation_r  = params-&gt;<a class="code" href="structGA__Parameters.html#a5c77c042f3cfb70cb178a194f5d0be55">mutation_rate</a>;</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;    <span class="keywordtype">void</span> *data         = params-&gt;<a class="code" href="structGA__Parameters.html#a0d5f7cbfb1bcffa38e27b0f15eefc5a2">data</a>;</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160; </div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;    srand((<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>)time(NULL));</div>
 <div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160; </div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;    <span class="keywordtype">int</span> pop_size       = params-&gt;<a class="code" href="structGA__Parameters.html#a572b1af27ed311a9295842a18674b605">population_size</a>;</div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;    <span class="keywordtype">int</span> generations    = params-&gt;<a class="code" href="structGA__Parameters.html#aa0fae1dcbed243aafb7514a8797f157d">generations</a>;</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;    <span class="keywordtype">int</span> tournament_sz  = params-&gt;<a class="code" href="structGA__Parameters.html#af6ec6de985561865943a837df39c9312">tournament_size</a>;</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;    <span class="keywordtype">int</span> individual_sz  = params-&gt;<a class="code" href="structGA__Parameters.html#ae525ec8415f69fd918883e134e4293c1">individual_size</a>;</div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;    <span class="keywordtype">double</span> mutation_r  = params-&gt;<a class="code" href="structGA__Parameters.html#a5c77c042f3cfb70cb178a194f5d0be55">mutation_rate</a>;</div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;    <span class="keywordtype">void</span> *data         = params-&gt;<a class="code" href="structGA__Parameters.html#a0d5f7cbfb1bcffa38e27b0f15eefc5a2">data</a>;</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;    <span class="comment">/* Best = premier individu */</span></div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;    <a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> best = copy(population[0]);</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;    <span class="keywordtype">double</span> best_len = fitness(best, data);</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160; </div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;    <span class="comment">/* BOUCLE GA */</span></div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> g = 0; g &lt; generations; g++) {</div>
 <div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160; </div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;    srand((<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>)time(NULL));</div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160; </div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;    <a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> best = copy(population[0]);</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;    <span class="keywordtype">double</span> best_len = fitness(best, data);</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;        <span class="comment">/* 1) SELECTION */</span></div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;        <a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> *selected = malloc(<span class="keyword">sizeof</span>(<a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a>) * pop_size);</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; pop_size; i++)</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;            selected[i] = selection(population, pop_size, tournament_sz, fitness, data);</div>
 <div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160; </div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> g = 0; g &lt; generations; g++) {</div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;        <a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> *selected = malloc(<span class="keyword">sizeof</span>(<a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a>) * pop_size);</div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; pop_size; i++)</div>
-<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;            selected[i] = selection(population, pop_size, tournament_sz, fitness, data);</div>
-<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160; </div>
-<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;        <a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> *offspring = malloc(<span class="keyword">sizeof</span>(<a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a>) * pop_size);</div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; pop_size; i += 2) {</div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;            offspring[i]   = crossover(selected[i], selected[i+1], data);</div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;            offspring[i+1] = crossover(selected[i+1], selected[i], data);</div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;        }</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;        <span class="comment">/* 2) CROSSOVER */</span></div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;        <a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> *offspring = malloc(<span class="keyword">sizeof</span>(<a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a>) * pop_size);</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; pop_size; i += 2) {</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;            offspring[i]   = crossover(selected[i], selected[i+1], data);</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;            offspring[i+1] = crossover(selected[i+1], selected[i], data);</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;        }</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160; </div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;        <span class="comment">/* 3) MUTATION */</span></div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; pop_size; i++)</div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;            mutate(offspring[i], mutation_r);</div>
 <div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160; </div>
-<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; pop_size; i++)</div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;            mutate(offspring[i], mutation_r);</div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160; </div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; pop_size - 1; i++)</div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = i + 1; j &lt; pop_size; j++)</div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;                <span class="keywordflow">if</span> (fitness(offspring[i], data) &gt; fitness(offspring[j], data)) {</div>
-<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;                    <a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> tmp = offspring[i];</div>
-<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;                    offspring[i] = offspring[j];</div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;                    offspring[j] = tmp;</div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;                }</div>
-<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160; </div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;        <span class="keywordtype">int</span> worst = pop_size - 1;</div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;        del(offspring[worst]);</div>
-<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;        offspring[worst] = create_random(individual_sz, data);</div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160; </div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;        <span class="comment">/* 4) TRI */</span></div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; pop_size - 1; i++)</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = i + 1; j &lt; pop_size; j++)</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;                <span class="keywordflow">if</span> (fitness(offspring[i], data) &gt; fitness(offspring[j], data)) {</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;                    <a class="code" href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a> tmp = offspring[i];</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;                    offspring[i] = offspring[j];</div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;                    offspring[j] = tmp;</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;                }</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160; </div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;        <span class="comment">/* 5) REMPLACER LE PIRE PAR RANDOM TOUR */</span></div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;        <span class="keywordtype">int</span> worst = pop_size - 1;</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;        del(offspring[worst]);</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;        offspring[worst] = create_random(individual_sz, data);</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160; </div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;        <span class="comment">/* 6) GARDER LE MEILLEUR GLOBAL */</span></div>
 <div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;        <span class="keywordflow">if</span> (fitness(offspring[0], data) &lt; best_len) {</div>
 <div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;            del(best);</div>
 <div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;            best = copy(offspring[0]);</div>
 <div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;            best_len = fitness(best, data);</div>
 <div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;        }</div>
 <div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160; </div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;        del(offspring[worst]);</div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;        offspring[worst] = copy(best);</div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160; </div>
-<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; pop_size; i++) del(population[i]);</div>
-<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;        free(population);</div>
-<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;        population = offspring;</div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160; </div>
-<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; pop_size; i++) del(selected[i]);</div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;        free(selected);</div>
-<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;    }</div>
-<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160; </div>
-<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;    *best_ind = best;</div>
-<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;    *best_score = best_len;</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;        <span class="comment">/* 7) remplacer par le meilleur individu */</span></div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;        del(offspring[worst]);</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;        offspring[worst] = copy(best);</div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160; </div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;        <span class="comment">/* 8) Remplacement de la population */</span></div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; pop_size; i++) del(population[i]);</div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;        free(population);</div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;        population = offspring;</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160; </div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;        <span class="comment">/* Libération de selected */</span></div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; pop_size; i++) del(selected[i]);</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;        free(selected);</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;    }</div>
 <div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160; </div>
-<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; pop_size; i++) del(population[i]);</div>
-<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;    free(population);</div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160; </div>
-<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;}</div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;    <span class="comment">/* Retour des résultats */</span></div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;    *best_ind = best;</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;    *best_score = best_len;</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160; </div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;    <span class="comment">/* Nettoyage */</span></div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; pop_size; i++) del(population[i]);</div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;    free(population);</div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160; </div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;}</div>
 <div class="ttc" id="adistance_8c_html_a049910f8b67f9e3f6da2c571d3a7c4b3"><div class="ttname"><a href="distance_8c.html#a049910f8b67f9e3f6da2c571d3a7c4b3">tour_length</a></div><div class="ttdeci">double tour_length(tTournee tour, DistanceFuncGenerique dist)</div><div class="ttdoc">Calcule la longueur totale d'une tournée avec une fonction de distance donnée.</div><div class="ttdef"><b>Definition:</b> <a href="distance_8c_source.html#l00116">distance.c:116</a></div></div>
-<div class="ttc" id="aga_8c_html_a216be71b03d6019e7a5a9b4df7837956"><div class="ttname"><a href="ga_8c.html#a216be71b03d6019e7a5a9b4df7837956">ga_create_random_tour</a></div><div class="ttdeci">Individual ga_create_random_tour(int n, void *data)</div><div class="ttdoc">Crée une tournée aléatoire.</div><div class="ttdef"><b>Definition:</b> <a href="ga_8c_source.html#l00264">ga.c:264</a></div></div>
-<div class="ttc" id="aga_8c_html_a58fb1f9fda72d8062cedc84e1ae6ea53"><div class="ttname"><a href="ga_8c.html#a58fb1f9fda72d8062cedc84e1ae6ea53">ga_ordered_crossover</a></div><div class="ttdeci">Individual ga_ordered_crossover(Individual parent_a, Individual parent_b, void *data)</div><div class="ttdoc">Applique le crossover Ordered Crossover (OX) entre deux parents.</div><div class="ttdef"><b>Definition:</b> <a href="ga_8c_source.html#l00137">ga.c:137</a></div></div>
-<div class="ttc" id="aga_8c_html_a897a1f43bf496080ea08ad1bf2abb320"><div class="ttname"><a href="ga_8c.html#a897a1f43bf496080ea08ad1bf2abb320">ga_run</a></div><div class="ttdeci">int ga_run(Individual *population, GA_Parameters *params, GA_Copy copy, GA_Delete del, GA_Mutate mutate, GA_Crossover crossover, GA_Fitness fitness, GA_Selection selection, GA_CreateRandom create_random, Individual *best_ind, double *best_score)</div><div class="ttdoc">Exécute l'algorithme génétique complet sur une population.</div><div class="ttdef"><b>Definition:</b> <a href="ga_8c_source.html#l00304">ga.c:304</a></div></div>
-<div class="ttc" id="aga_8c_html_aa799c352015dae9826b911144d3afbc8"><div class="ttname"><a href="ga_8c.html#aa799c352015dae9826b911144d3afbc8">ga_copy_tour</a></div><div class="ttdeci">Individual ga_copy_tour(Individual ind)</div><div class="ttdoc">Copie un individu (tournée) pour créer un nouvel individu.</div><div class="ttdef"><b>Definition:</b> <a href="ga_8c_source.html#l00025">ga.c:25</a></div></div>
-<div class="ttc" id="aga_8c_html_aaba5e8273592b612c2fbd652ad257079"><div class="ttname"><a href="ga_8c.html#aaba5e8273592b612c2fbd652ad257079">ga_mutate_tour</a></div><div class="ttdeci">void ga_mutate_tour(Individual ind, double mutation_rate)</div><div class="ttdoc">Applique une mutation de type swap sur un individu.</div><div class="ttdef"><b>Definition:</b> <a href="ga_8c_source.html#l00061">ga.c:61</a></div></div>
-<div class="ttc" id="aga_8c_html_ad146d4f57a9e5a4af91378d3be395a5b"><div class="ttname"><a href="ga_8c.html#ad146d4f57a9e5a4af91378d3be395a5b">ga_delete_tour</a></div><div class="ttdeci">void ga_delete_tour(Individual ind)</div><div class="ttdoc">Supprime un individu sans libérer la mémoire des instances.</div><div class="ttdef"><b>Definition:</b> <a href="ga_8c_source.html#l00046">ga.c:46</a></div></div>
-<div class="ttc" id="aga_8c_html_adf0ea851daef7578dc44321421271583"><div class="ttname"><a href="ga_8c.html#adf0ea851daef7578dc44321421271583">ga_dpx_crossover</a></div><div class="ttdeci">Individual ga_dpx_crossover(Individual parent_a, Individual parent_b, void *data)</div><div class="ttdoc">Applique le crossover DPX (Distance Preserving Crossover) entre deux parents.</div><div class="ttdef"><b>Definition:</b> <a href="ga_8c_source.html#l00182">ga.c:182</a></div></div>
-<div class="ttc" id="aga_8c_html_af0597e276fcfe2117e4b9c1f5d681cb6"><div class="ttname"><a href="ga_8c.html#af0597e276fcfe2117e4b9c1f5d681cb6">ga_tournament_selection</a></div><div class="ttdeci">Individual ga_tournament_selection(Individual *population, int pop_size, int tournament_size, GA_Fitness fitness, void *data)</div><div class="ttdoc">Sélectionne un individu via le tournoi.</div><div class="ttdef"><b>Definition:</b> <a href="ga_8c_source.html#l00108">ga.c:108</a></div></div>
-<div class="ttc" id="aga_8c_html_af8b8fb5ea7dd1a25172a66a41743de3c"><div class="ttname"><a href="ga_8c.html#af8b8fb5ea7dd1a25172a66a41743de3c">ga_fitness_tour</a></div><div class="ttdeci">double ga_fitness_tour(Individual ind, void *data)</div><div class="ttdoc">Calcule la fitness d'un individu (longueur totale du tour).</div><div class="ttdef"><b>Definition:</b> <a href="ga_8c_source.html#l00089">ga.c:89</a></div></div>
+<div class="ttc" id="aga_8c_html_a216be71b03d6019e7a5a9b4df7837956"><div class="ttname"><a href="ga_8c.html#a216be71b03d6019e7a5a9b4df7837956">ga_create_random_tour</a></div><div class="ttdeci">Individual ga_create_random_tour(int n, void *data)</div><div class="ttdoc">Crée une tournée aléatoire.</div><div class="ttdef"><b>Definition:</b> <a href="ga_8c_source.html#l00267">ga.c:267</a></div></div>
+<div class="ttc" id="aga_8c_html_a58fb1f9fda72d8062cedc84e1ae6ea53"><div class="ttname"><a href="ga_8c.html#a58fb1f9fda72d8062cedc84e1ae6ea53">ga_ordered_crossover</a></div><div class="ttdeci">Individual ga_ordered_crossover(Individual parent_a, Individual parent_b, void *data)</div><div class="ttdoc">Applique le crossover Ordered Crossover (OX) entre deux parents.</div><div class="ttdef"><b>Definition:</b> <a href="ga_8c_source.html#l00132">ga.c:132</a></div></div>
+<div class="ttc" id="aga_8c_html_a897a1f43bf496080ea08ad1bf2abb320"><div class="ttname"><a href="ga_8c.html#a897a1f43bf496080ea08ad1bf2abb320">ga_run</a></div><div class="ttdeci">int ga_run(Individual *population, GA_Parameters *params, GA_Copy copy, GA_Delete del, GA_Mutate mutate, GA_Crossover crossover, GA_Fitness fitness, GA_Selection selection, GA_CreateRandom create_random, Individual *best_ind, double *best_score)</div><div class="ttdoc">Exécute l'algorithme génétique complet sur une population.</div><div class="ttdef"><b>Definition:</b> <a href="ga_8c_source.html#l00295">ga.c:295</a></div></div>
+<div class="ttc" id="aga_8c_html_aa799c352015dae9826b911144d3afbc8"><div class="ttname"><a href="ga_8c.html#aa799c352015dae9826b911144d3afbc8">ga_copy_tour</a></div><div class="ttdeci">Individual ga_copy_tour(Individual ind)</div><div class="ttdoc">Copie un individu (tournée) pour créer un nouvel individu.</div><div class="ttdef"><b>Definition:</b> <a href="ga_8c_source.html#l00020">ga.c:20</a></div></div>
+<div class="ttc" id="aga_8c_html_aaba5e8273592b612c2fbd652ad257079"><div class="ttname"><a href="ga_8c.html#aaba5e8273592b612c2fbd652ad257079">ga_mutate_tour</a></div><div class="ttdeci">void ga_mutate_tour(Individual ind, double mutation_rate)</div><div class="ttdoc">Applique une mutation de type swap sur un individu.</div><div class="ttdef"><b>Definition:</b> <a href="ga_8c_source.html#l00056">ga.c:56</a></div></div>
+<div class="ttc" id="aga_8c_html_ad146d4f57a9e5a4af91378d3be395a5b"><div class="ttname"><a href="ga_8c.html#ad146d4f57a9e5a4af91378d3be395a5b">ga_delete_tour</a></div><div class="ttdeci">void ga_delete_tour(Individual ind)</div><div class="ttdoc">Supprime un individu sans libérer la mémoire des instances.</div><div class="ttdef"><b>Definition:</b> <a href="ga_8c_source.html#l00041">ga.c:41</a></div></div>
+<div class="ttc" id="aga_8c_html_adf0ea851daef7578dc44321421271583"><div class="ttname"><a href="ga_8c.html#adf0ea851daef7578dc44321421271583">ga_dpx_crossover</a></div><div class="ttdeci">Individual ga_dpx_crossover(Individual parent_a, Individual parent_b, void *data)</div><div class="ttdoc">Applique le crossover DPX (Distance Preserving Crossover) entre deux parents.</div><div class="ttdef"><b>Definition:</b> <a href="ga_8c_source.html#l00185">ga.c:185</a></div></div>
+<div class="ttc" id="aga_8c_html_af0597e276fcfe2117e4b9c1f5d681cb6"><div class="ttname"><a href="ga_8c.html#af0597e276fcfe2117e4b9c1f5d681cb6">ga_tournament_selection</a></div><div class="ttdeci">Individual ga_tournament_selection(Individual *population, int pop_size, int tournament_size, GA_Fitness fitness, void *data)</div><div class="ttdoc">Sélectionne un individu via le tournoi.</div><div class="ttdef"><b>Definition:</b> <a href="ga_8c_source.html#l00103">ga.c:103</a></div></div>
+<div class="ttc" id="aga_8c_html_af8b8fb5ea7dd1a25172a66a41743de3c"><div class="ttname"><a href="ga_8c.html#af8b8fb5ea7dd1a25172a66a41743de3c">ga_fitness_tour</a></div><div class="ttdeci">double ga_fitness_tour(Individual ind, void *data)</div><div class="ttdoc">Calcule la fitness d'un individu (longueur totale du tour).</div><div class="ttdef"><b>Definition:</b> <a href="ga_8c_source.html#l00084">ga.c:84</a></div></div>
 <div class="ttc" id="aga_8h_html"><div class="ttname"><a href="ga_8h.html">ga.h</a></div><div class="ttdoc">Déclarations et types pour un algorithme génétique appliqué au TSP.</div></div>
 <div class="ttc" id="aga_8h_html_a203050d04d39289094ebae4718adf213"><div class="ttname"><a href="ga_8h.html#a203050d04d39289094ebae4718adf213">GA_Crossover</a></div><div class="ttdeci">Individual(* GA_Crossover)(Individual, Individual, void *data)</div><div class="ttdoc">Fonction de crossover entre deux individus.</div><div class="ttdef"><b>Definition:</b> <a href="ga_8h_source.html#l00040">ga.h:40</a></div></div>
 <div class="ttc" id="aga_8h_html_a2d6d8c8cf1db9df18d6fd43ac0430cd1"><div class="ttname"><a href="ga_8h.html#a2d6d8c8cf1db9df18d6fd43ac0430cd1">Individual</a></div><div class="ttdeci">void * Individual</div><div class="ttdoc">Représente un individu dans le GA (pointeur générique vers une tournée).</div><div class="ttdef"><b>Definition:</b> <a href="ga_8h_source.html#l00020">ga.h:20</a></div></div>

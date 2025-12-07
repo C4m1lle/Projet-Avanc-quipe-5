@@ -1,8 +1,8 @@
 <map id="heuristiques/opt2.h" name="heuristiques/opt2.h">
 <area shape="rect" id="node1" title="Déclarations des fonctions d&#39;optimisation 2&#45;opt pour le TSP." alt="" coords="225,5,372,32"/>
-<area shape="rect" id="node2" href="$ga_8c.html" title="Implémentation des fonctions pour un algorithme génétique pour le TSP." alt="" coords="37,80,129,107"/>
+<area shape="rect" id="node2" href="$ga_8c.html" title=" " alt="" coords="37,80,129,107"/>
 <area shape="rect" id="node3" href="$nn_8h.html" title=" " alt="" coords="153,80,287,107"/>
-<area shape="rect" id="node6" href="$main_8c.html" title="Programme principal pour résoudre le TSP avec plusieurs méthodes heuristiques et exactes." alt="" coords="334,155,423,181"/>
+<area shape="rect" id="node6" href="$main_8c.html" title="Programme principal de résolution du TSP (Traveling Salesman Problem)." alt="" coords="334,155,423,181"/>
 <area shape="rect" id="node7" href="$rw_8h.html" title="Heuristique Random Walk (RW) pour le TSP." alt="" coords="312,80,445,107"/>
 <area shape="rect" id="node4" href="$nn_8c.html" title="Implémentation de l&#39;heuristique du plus proche voisin (Nearest Neighbor) pour le problème du voyageur..." alt="" coords="5,155,139,181"/>
 <area shape="rect" id="node5" href="$opt2_8c.html" title="Implémentation de l&#39;algorithme d&#39;optimisation 2&#45;opt pour le TSP." alt="" coords="163,155,309,181"/>

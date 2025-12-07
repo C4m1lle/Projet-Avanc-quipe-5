@@ -1,4 +1,4 @@
 <map id="usage" name="usage">
 <area shape="rect" id="node1" title="Affiche l&#39;usage de l&#39;application TSP." alt="" coords="108,5,169,32"/>
-<area shape="rect" id="node2" href="$main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Point d&#39;entrée principal du programme." alt="" coords="5,5,60,32"/>
+<area shape="rect" id="node2" href="$main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Fonction principale du programme." alt="" coords="5,5,60,32"/>
 </map>

@@ -1,4 +1,5 @@
 <map id="get_instance_by_id" name="get_instance_by_id">
-<area shape="rect" id="node1" title="Récupère une instance par son identifiant." alt="" coords="192,5,339,32"/>
-<area shape="rect" id="node2" href="$ga_8c.html#adf0ea851daef7578dc44321421271583" title="Applique le crossover DPX (Distance Preserving Crossover) entre deux parents." alt="" coords="5,5,144,32"/>
+<area shape="rect" id="node1" title="Récupère une instance par son identifiant." alt="" coords="295,5,441,32"/>
+<area shape="rect" id="node2" href="$ga_8c.html#adf0ea851daef7578dc44321421271583" title="Applique le crossover DPX (Distance Preserving Crossover) entre deux parents." alt="" coords="108,5,247,32"/>
+<area shape="rect" id="node3" href="$main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Fonction principale du programme." alt="" coords="5,5,60,32"/>
 </map>

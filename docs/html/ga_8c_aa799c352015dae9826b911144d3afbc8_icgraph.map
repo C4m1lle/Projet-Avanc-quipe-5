@@ -1,4 +1,5 @@
 <map id="ga_copy_tour" name="ga_copy_tour">
-<area shape="rect" id="node1" title="Copie un individu (tournée) pour créer un nouvel individu." alt="" coords="240,5,349,32"/>
-<area shape="rect" id="node2" href="$ga_8c.html#af0597e276fcfe2117e4b9c1f5d681cb6" title="Sélectionne un individu via le tournoi." alt="" coords="5,5,192,32"/>
+<area shape="rect" id="node1" title="Copie un individu (tournée) pour créer un nouvel individu." alt="" coords="343,31,452,57"/>
+<area shape="rect" id="node2" href="$ga_8c.html#af0597e276fcfe2117e4b9c1f5d681cb6" title="Sélectionne un individu via le tournoi." alt="" coords="108,5,295,32"/>
+<area shape="rect" id="node3" href="$main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Fonction principale du programme." alt="" coords="5,31,60,57"/>
 </map>

@@ -1,11 +1,11 @@
 <map id="get_taille_tournee" name="get_taille_tournee">
-<area shape="rect" id="node1" title="Récupère le nombre de villes dans la tournée." alt="" coords="448,157,588,184"/>
-<area shape="rect" id="node2" href="$ga_8c.html#aa799c352015dae9826b911144d3afbc8" title="Copie un individu (tournée) pour créer un nouvel individu." alt="" coords="265,5,375,32"/>
-<area shape="rect" id="node4" href="$ga_8c.html#adf0ea851daef7578dc44321421271583" title="Applique le crossover DPX (Distance Preserving Crossover) entre deux parents." alt="" coords="251,56,389,83"/>
-<area shape="rect" id="node5" href="$ga_8c.html#aaba5e8273592b612c2fbd652ad257079" title="Applique une mutation de type swap sur un individu." alt="" coords="257,107,383,133"/>
-<area shape="rect" id="node6" href="$main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Point d&#39;entrée principal du programme." alt="" coords="71,241,126,268"/>
-<area shape="rect" id="node7" href="$opt2_8c.html#a9dc780ed0b195dfc0c83b4e936cf31e4" title="Version améliorée de l&#39;optimisation 2&#45;opt (first improvement avec vérification de distance)." alt="" coords="260,208,380,235"/>
-<area shape="rect" id="node8" href="$nn_8c.html#ae6f7244ea96548cdf071af15fa532231" title="Version optimisée du plus proche voisin utilisant une demi&#45;matrice." alt="" coords="247,259,393,301"/>
-<area shape="rect" id="node9" href="$signal__handler_8c.html#ab9c0d4b895a32ee3a8875a8b8ec9cc6b" title="Initialise le gestionnaire de signal pour l&#39;algorithme de bruteforce." alt="" coords="240,325,400,352"/>
-<area shape="rect" id="node3" href="$ga_8c.html#af0597e276fcfe2117e4b9c1f5d681cb6" title="Sélectionne un individu via le tournoi." alt="" coords="5,5,192,32"/>
+<area shape="rect" id="node1" title="Récupère le nombre de villes dans la tournée." alt="" coords="537,208,677,235"/>
+<area shape="rect" id="node2" href="$ga_8c.html#aa799c352015dae9826b911144d3afbc8" title="Copie un individu (tournée) pour créer un nouvel individu." alt="" coords="361,56,471,83"/>
+<area shape="rect" id="node4" href="$main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Fonction principale du programme." alt="" coords="5,132,60,159"/>
+<area shape="rect" id="node5" href="$ga_8c.html#adf0ea851daef7578dc44321421271583" title="Applique le crossover DPX (Distance Preserving Crossover) entre deux parents." alt="" coords="132,157,271,184"/>
+<area shape="rect" id="node6" href="$ga_8c.html#aaba5e8273592b612c2fbd652ad257079" title="Applique une mutation de type swap sur un individu." alt="" coords="139,208,264,235"/>
+<area shape="rect" id="node7" href="$opt2_8c.html#a9dc780ed0b195dfc0c83b4e936cf31e4" title="Version améliorée de l&#39;optimisation 2&#45;opt (first improvement avec vérification de distance)." alt="" coords="356,259,476,285"/>
+<area shape="rect" id="node8" href="$nn_8c.html#ae6f7244ea96548cdf071af15fa532231" title="Version optimisée du plus proche voisin utilisant une demi&#45;matrice." alt="" coords="343,310,489,351"/>
+<area shape="rect" id="node9" href="$signal__handler_8c.html#ab9c0d4b895a32ee3a8875a8b8ec9cc6b" title="Initialise le gestionnaire de signal pour l&#39;algorithme de bruteforce." alt="" coords="121,317,281,344"/>
+<area shape="rect" id="node3" href="$ga_8c.html#af0597e276fcfe2117e4b9c1f5d681cb6" title="Sélectionne un individu via le tournoi." alt="" coords="108,5,295,32"/>
 </map>

@@ -352,23 +352,23 @@ Fonctions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Définition à la ligne <a class="el" href="io_8c_source.html#l00063">63</a> du fichier <a class="el" href="io_8c_source.html">io.c</a>.</p>
-<div class="fragment"><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                                                                                                                                           {</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    </div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    fprintf(output_file,<span class="stringliteral">&quot;%s %s %.6f %.2f [&quot;</span>, filename, method, sec, length);</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; taille_tournee-1; i++){</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        fprintf(output_file,<span class="stringliteral">&quot;%d,&quot;</span>,tournee[i]);</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    }</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    fprintf(output_file,<span class="stringliteral">&quot;%d]\n&quot;</span>,tournee[taille_tournee-1]);</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;}</div>
+<p class="definition">Définition à la ligne <a class="el" href="io_8c_source.html#l00064">64</a> du fichier <a class="el" href="io_8c_source.html">io.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                                                                                                                                           {</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    fprintf(output_file,<span class="stringliteral">&quot;%s %s %.6f %.2f [&quot;</span>, filename, method, sec, length);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; taille_tournee-1; i++){</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        fprintf(output_file,<span class="stringliteral">&quot;%d,&quot;</span>,tournee[i]);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    }</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    fprintf(output_file,<span class="stringliteral">&quot;%d]\n&quot;</span>,tournee[taille_tournee-1]);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="io_8c_a951a86daf3adb68adf229543ee23ca8b_icgraph.png" border="0" usemap="#aio_8c_a951a86daf3adb68adf229543ee23ca8b_icgraph" alt=""/></div>
 <map name="aio_8c_a951a86daf3adb68adf229543ee23ca8b_icgraph" id="aio_8c_a951a86daf3adb68adf229543ee23ca8b_icgraph">
 <area shape="rect" title="Affiche les résultats pour Python ou fichier texte." alt="" coords="108,5,275,32"/>
-<area shape="rect" href="main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Point d&#39;entrée principal du programme." alt="" coords="5,5,60,32"/>
+<area shape="rect" href="main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Fonction principale du programme." alt="" coords="5,5,60,32"/>
 </map>
 </div>
 
@@ -402,26 +402,27 @@ Voici le graphe des appelants de cette fonction :</div>
 
 <p class="definition">Définition à la ligne <a class="el" href="io_8c_source.html#l00034">34</a> du fichier <a class="el" href="io_8c_source.html">io.c</a>.</p>
 <div class="fragment"><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                      {</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    printf(<span class="stringliteral">&quot;Usage : %s [&lt;-f file.tsp&gt; [-o &lt;output.txt&gt;] [-c] [-d {eucl2d | att | geo}] [-m {bf | bfm | nn | rw | 2optnn | 2optrw | ga}]] [-h]\n&quot;</span>,arg);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    printf(<span class="stringliteral">&quot;Usage : %s [&lt;-f file.tsp&gt; &lt;[-o &lt;output.txt&gt;] [-c] [-d {eucl2d | att | geo}] [-m {bf | bfm | nn | rw | 2optnn | 2optrw | ga}]] [-h]&gt;\n&quot;</span>,arg);</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    printf(<span class="stringliteral">&quot;  -f : nom du fichier TSPLIB à lire\n&quot;</span>);</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    printf(<span class="stringliteral">&quot;  -o &lt;output.txt&gt; : rediriger la sortie vers un fichier .txt\n&quot;</span>);</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    printf(<span class="stringliteral">&quot;  -d &lt;distance_type&gt; :  choix de la distance choisies pour les calculs (eucl2d par défaut)\n&quot;</span>);</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    printf(<span class="stringliteral">&quot;  -c : afficher la longueur de la tournée canonique\n&quot;</span>);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    printf(<span class="stringliteral">&quot;  -m {bf | bfm | nn | rw | 2optnn | 2optrw | ga} : recherche de la longueur optimale selon la méthode choisie\n&quot;</span>);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    printf(<span class="stringliteral">&quot;  -m {bf | bfm | nn | rw | 2optnn | 2optrw | ga | all} : recherche de la longueur optimale selon la méthode choisie\n&quot;</span>);</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    printf(<span class="stringliteral">&quot;                                         bf : force brute\n&quot;</span>);</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    printf(<span class="stringliteral">&quot;                                         bfm : force brute matricielle\n&quot;</span>);</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    printf(<span class="stringliteral">&quot;                                         nn : plus proche voisin (nearest neighbor)\n&quot;</span>);</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    printf(<span class="stringliteral">&quot;                                         rw : marche aléatoire (random walk)\n&quot;</span>);</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    printf(<span class="stringliteral">&quot;                                         ga &lt;nombre d&#39;individus&gt; &lt;nombre de générations&gt; &lt;taux de mutation&gt; : algorithme génétique générique\n&quot;</span>);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    printf(<span class="stringliteral">&quot;  -h : help, affiche l&#39;usage et ne fait aucun calcul.\n&quot;</span>);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;}</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    printf(<span class="stringliteral">&quot;                                         all : Toutes les méthodes sauf bf et bfm\n&quot;</span>);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    printf(<span class="stringliteral">&quot;  -h : help, affiche l&#39;usage et ne fait aucun calcul.\n&quot;</span>);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="io_8c_a92d1aa11ae3ffb29e174867ea1d45fa9_icgraph.png" border="0" usemap="#aio_8c_a92d1aa11ae3ffb29e174867ea1d45fa9_icgraph" alt=""/></div>
 <map name="aio_8c_a92d1aa11ae3ffb29e174867ea1d45fa9_icgraph" id="aio_8c_a92d1aa11ae3ffb29e174867ea1d45fa9_icgraph">
 <area shape="rect" title="Affiche l&#39;usage de l&#39;application TSP." alt="" coords="108,5,169,32"/>
-<area shape="rect" href="main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Point d&#39;entrée principal du programme." alt="" coords="5,5,60,32"/>
+<area shape="rect" href="main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Fonction principale du programme." alt="" coords="5,5,60,32"/>
 </map>
 </div>
 

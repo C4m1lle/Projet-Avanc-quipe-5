@@ -243,19 +243,32 @@ Fonctions</h2></td></tr>
 <p class="definition">Définition à la ligne <a class="el" href="distance_8c_source.html#l00146">146</a> du fichier <a class="el" href="distance_8c_source.html">distance.c</a>.</p>
 <div class="fragment"><div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;                                                                                                  {</div>
 <div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    (*distmin)=0.0;</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0;i&lt;lenght-1;i++){</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        (*distmin)+=dist(tour[i],tour[i+1]);</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        best[i] = i+1;</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    }</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    (*distmin)+=dist(tour[0],tour[lenght-1]);</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;}</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    <a class="code" href="structs__instance.html">tInstance</a> * tournee = (<a class="code" href="structs__instance.html">tInstance</a> *)tour;</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0;i&lt;lenght-1;i++){</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        (*distmin)+=dist(tournee[i],tournee[i+1]);</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        best[i] = <a class="code" href="struct_8c.html#ab275e2c975f1b590005aad5b56f7ee6a">get_id</a>(tournee[i]);</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    }</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    best[lenght-1] = <a class="code" href="struct_8c.html#ab275e2c975f1b590005aad5b56f7ee6a">get_id</a>(tournee[lenght-1]);;</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    (*distmin)+=dist(tournee[0],tournee[lenght-1]);</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;}</div>
+<div class="ttc" id="astruct_8c_html_ab275e2c975f1b590005aad5b56f7ee6a"><div class="ttname"><a href="struct_8c.html#ab275e2c975f1b590005aad5b56f7ee6a">get_id</a></div><div class="ttdeci">int get_id(tInstance inst)</div><div class="ttdoc">Récupère l'identifiant d'une instance.</div><div class="ttdef"><b>Definition:</b> <a href="struct_8c_source.html#l00073">struct.c:73</a></div></div>
+<div class="ttc" id="astructs__instance_html"><div class="ttname"><a href="structs__instance.html">s_instance</a></div><div class="ttdoc">Représente une ville du TSP avec un identifiant et ses coordonnées.</div><div class="ttdef"><b>Definition:</b> <a href="struct_8c_source.html#l00014">struct.c:14</a></div></div>
 </div><!-- fragment --><div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="distance_8c_aa7e66abca651ebe127ef8a92497d817f_cgraph.png" border="0" usemap="#adistance_8c_aa7e66abca651ebe127ef8a92497d817f_cgraph" alt=""/></div>
+<map name="adistance_8c_aa7e66abca651ebe127ef8a92497d817f_cgraph" id="adistance_8c_aa7e66abca651ebe127ef8a92497d817f_cgraph">
+<area shape="rect" title="Initialise une tournée canonique et calcule sa distance totale." alt="" coords="5,5,89,32"/>
+<area shape="rect" href="struct_8c.html#ab275e2c975f1b590005aad5b56f7ee6a" title="Récupère l&#39;identifiant d&#39;une instance." alt="" coords="137,5,200,32"/>
+</map>
+</div>
+<div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="distance_8c_aa7e66abca651ebe127ef8a92497d817f_icgraph.png" border="0" usemap="#adistance_8c_aa7e66abca651ebe127ef8a92497d817f_icgraph" alt=""/></div>
 <map name="adistance_8c_aa7e66abca651ebe127ef8a92497d817f_icgraph" id="adistance_8c_aa7e66abca651ebe127ef8a92497d817f_icgraph">
 <area shape="rect" title="Initialise une tournée canonique et calcule sa distance totale." alt="" coords="108,5,192,32"/>
-<area shape="rect" href="main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Point d&#39;entrée principal du programme." alt="" coords="5,5,60,32"/>
+<area shape="rect" href="main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Fonction principale du programme." alt="" coords="5,5,60,32"/>
 </map>
 </div>
 
@@ -333,7 +346,7 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="center"><img src="distance_8c_aa6dadc7a13f030348c42d24fa7b61b78_icgraph.png" border="0" usemap="#adistance_8c_aa6dadc7a13f030348c42d24fa7b61b78_icgraph" alt=""/></div>
 <map name="adistance_8c_aa6dadc7a13f030348c42d24fa7b61b78_icgraph" id="adistance_8c_aa6dadc7a13f030348c42d24fa7b61b78_icgraph">
 <area shape="rect" title="Calcule la distance pseudo&#45;euclidienne (ATT) entre deux instances." alt="" coords="108,5,179,32"/>
-<area shape="rect" href="main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Point d&#39;entrée principal du programme." alt="" coords="5,5,60,32"/>
+<area shape="rect" href="main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Fonction principale du programme." alt="" coords="5,5,60,32"/>
 </map>
 </div>
 
@@ -400,7 +413,7 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="center"><img src="distance_8c_a976b3e437d171ee26ac36b28b20dae9c_icgraph.png" border="0" usemap="#adistance_8c_a976b3e437d171ee26ac36b28b20dae9c_icgraph" alt=""/></div>
 <map name="adistance_8c_a976b3e437d171ee26ac36b28b20dae9c_icgraph" id="adistance_8c_a976b3e437d171ee26ac36b28b20dae9c_icgraph">
 <area shape="rect" title="Calcule la distance euclidienne 2D entre deux instances." alt="" coords="108,5,204,32"/>
-<area shape="rect" href="main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Point d&#39;entrée principal du programme." alt="" coords="5,5,60,32"/>
+<area shape="rect" href="main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Fonction principale du programme." alt="" coords="5,5,60,32"/>
 </map>
 </div>
 
@@ -477,7 +490,7 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="center"><img src="distance_8c_aecde2a42f4da5324ab08729066f01dcf_icgraph.png" border="0" usemap="#adistance_8c_aecde2a42f4da5324ab08729066f01dcf_icgraph" alt=""/></div>
 <map name="adistance_8c_aecde2a42f4da5324ab08729066f01dcf_icgraph" id="adistance_8c_aecde2a42f4da5324ab08729066f01dcf_icgraph">
 <area shape="rect" title="Calcule la distance géographique entre deux instances." alt="" coords="108,5,185,32"/>
-<area shape="rect" href="main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Point d&#39;entrée principal du programme." alt="" coords="5,5,60,32"/>
+<area shape="rect" href="main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Fonction principale du programme." alt="" coords="5,5,60,32"/>
 </map>
 </div>
 
@@ -530,7 +543,7 @@ Voici le graphe des appelants de cette fonction :</div>
 <map name="adistance_8c_a46ae9ce1d1d67dcfc009bcf89e27f41c_icgraph" id="adistance_8c_a46ae9ce1d1d67dcfc009bcf89e27f41c_icgraph">
 <area shape="rect" title="Convertit une coordonnée GEO en radians." alt="" coords="233,5,328,32"/>
 <area shape="rect" href="distance_8c.html#aecde2a42f4da5324ab08729066f01dcf" title="Calcule la distance géographique entre deux instances." alt="" coords="108,5,185,32"/>
-<area shape="rect" href="main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Point d&#39;entrée principal du programme." alt="" coords="5,5,60,32"/>
+<area shape="rect" href="main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Fonction principale du programme." alt="" coords="5,5,60,32"/>
 </map>
 </div>
 
@@ -581,7 +594,7 @@ Voici le graphe des appelants de cette fonction :</div>
 <area shape="rect" title="Fonction utilitaire : arrondi d&#39;un double à l&#39;entier le plus proche." alt="" coords="252,31,299,57"/>
 <area shape="rect" href="distance_8c.html#aa6dadc7a13f030348c42d24fa7b61b78" title="Calcule la distance pseudo&#45;euclidienne (ATT) entre deux instances." alt="" coords="121,5,191,32"/>
 <area shape="rect" href="distance_8c.html#a976b3e437d171ee26ac36b28b20dae9c" title="Calcule la distance euclidienne 2D entre deux instances." alt="" coords="108,56,204,83"/>
-<area shape="rect" href="main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Point d&#39;entrée principal du programme." alt="" coords="5,31,60,57"/>
+<area shape="rect" href="main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Fonction principale du programme." alt="" coords="5,31,60,57"/>
 </map>
 </div>
 
@@ -645,7 +658,6 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    <span class="keywordflow">return</span> total;</div>
 <div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;}</div>
 <div class="ttc" id="astruct_8c_html_a39ea0a9ae06284ddbe6ac24ea79f26e6"><div class="ttname"><a href="struct_8c.html#a39ea0a9ae06284ddbe6ac24ea79f26e6">get_instance_at</a></div><div class="ttdeci">tInstance get_instance_at(tTournee tour, int nb)</div><div class="ttdoc">Récupère l'instance à une position donnée dans la tournée.</div><div class="ttdef"><b>Definition:</b> <a href="struct_8c_source.html#l00139">struct.c:139</a></div></div>
-<div class="ttc" id="astructs__instance_html"><div class="ttname"><a href="structs__instance.html">s_instance</a></div><div class="ttdoc">Représente une ville du TSP avec un identifiant et ses coordonnées.</div><div class="ttdef"><b>Definition:</b> <a href="struct_8c_source.html#l00014">struct.c:14</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
@@ -660,14 +672,14 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="distance_8c_a049910f8b67f9e3f6da2c571d3a7c4b3_icgraph.png" border="0" usemap="#adistance_8c_a049910f8b67f9e3f6da2c571d3a7c4b3_icgraph" alt=""/></div>
 <map name="adistance_8c_a049910f8b67f9e3f6da2c571d3a7c4b3_icgraph" id="adistance_8c_a049910f8b67f9e3f6da2c571d3a7c4b3_icgraph">
-<area shape="rect" title="Calcule la longueur totale d&#39;une tournée avec une fonction de distance donnée." alt="" coords="464,56,560,83"/>
+<area shape="rect" title="Calcule la longueur totale d&#39;une tournée avec une fonction de distance donnée." alt="" coords="464,68,560,95"/>
 <area shape="rect" href="ga_8c.html#af8b8fb5ea7dd1a25172a66a41743de3c" title="Calcule la fitness d&#39;un individu (longueur totale du tour)." alt="" coords="295,5,416,32"/>
-<area shape="rect" href="opt2_8c.html#a14dbf11f1266456ff122e6900a9f8f91" title="Optimisation 2&#45;opt sur une tournée donnée (first improvement)." alt="" coords="330,56,381,83"/>
-<area shape="rect" href="opt2_8c.html#a9dc780ed0b195dfc0c83b4e936cf31e4" title="Version améliorée de l&#39;optimisation 2&#45;opt (first improvement avec vérification de distance)." alt="" coords="295,107,415,133"/>
-<area shape="rect" href="nn_8c.html#a6f7d218342ef0f9a0fa30b0edba8333d" title="Application de l&#39;heuristique NN suivie d&#39;une optimisation 2&#45;opt." alt="" coords="128,5,227,32"/>
-<area shape="rect" href="rw_8c.html#a494331bd94b33d5be1f17c1322640798" title="Heuristique combinée : Random Walk suivi d&#39;une optimisation 2&#45;opt." alt="" coords="128,56,227,83"/>
-<area shape="rect" href="ga_8c.html#adf0ea851daef7578dc44321421271583" title="Applique le crossover DPX (Distance Preserving Crossover) entre deux parents." alt="" coords="108,107,247,133"/>
-<area shape="rect" href="main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Point d&#39;entrée principal du programme." alt="" coords="5,31,60,57"/>
+<area shape="rect" href="opt2_8c.html#a14dbf11f1266456ff122e6900a9f8f91" title="Optimisation 2&#45;opt sur une tournée donnée (first improvement)." alt="" coords="330,68,381,95"/>
+<area shape="rect" href="opt2_8c.html#a9dc780ed0b195dfc0c83b4e936cf31e4" title="Version améliorée de l&#39;optimisation 2&#45;opt (first improvement avec vérification de distance)." alt="" coords="295,119,415,145"/>
+<area shape="rect" href="main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Fonction principale du programme." alt="" coords="5,68,60,95"/>
+<area shape="rect" href="nn_8c.html#a6f7d218342ef0f9a0fa30b0edba8333d" title="Application de l&#39;heuristique NN suivie d&#39;une optimisation 2&#45;opt." alt="" coords="128,43,227,69"/>
+<area shape="rect" href="rw_8c.html#a494331bd94b33d5be1f17c1322640798" title="Heuristique combinée : Random Walk suivi d&#39;une optimisation 2&#45;opt." alt="" coords="128,93,227,120"/>
+<area shape="rect" href="ga_8c.html#adf0ea851daef7578dc44321421271583" title="Applique le crossover DPX (Distance Preserving Crossover) entre deux parents." alt="" coords="108,144,247,171"/>
 </map>
 </div>
 
