@@ -67,7 +67,7 @@
  */
 int main(int argc, char *argv[]) {
     const char methods_names[NB_METHOD][16] = {"canonical","bf","bfm","nn","rw","opt2nn","opt2rw","ga","gadpx"};
-    if (argc < 2) {
+    if (argc < 4) {
         usage(argv[0]);
         return 1;
     }

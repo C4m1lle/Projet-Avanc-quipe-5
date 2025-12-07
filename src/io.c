@@ -32,7 +32,7 @@
  * @param arg Nom de l'exécutable (argv[0]).
  */
 void usage(char * arg){
-    printf("Usage : %s [<-f file.tsp> [-o <output.txt>] [-c] [-d {eucl2d | att | geo}] [-m {bf | bfm | nn | rw | 2optnn | 2optrw | ga}]] [-h]\n",arg);
+    printf("Usage : %s [<-f file.tsp> <[-o <output.txt>] [-c] [-d {eucl2d | att | geo}] [-m {bf | bfm | nn | rw | 2optnn | 2optrw | ga}]] [-h]>\n",arg);
     printf("  -f : nom du fichier TSPLIB à lire\n");
     printf("  -o <output.txt> : rediriger la sortie vers un fichier .txt\n");
     printf("  -d <distance_type> :  choix de la distance choisies pour les calculs (eucl2d par défaut)\n");
