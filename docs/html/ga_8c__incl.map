@@ -1,0 +1,12 @@
+<map id="genes/ga.c" name="genes/ga.c">
+<area shape="rect" id="node1" title="Implémentation des fonctions pour un algorithme génétique pour le TSP." alt="" coords="278,5,370,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,80,72,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="97,80,167,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="192,80,256,107"/>
+<area shape="rect" id="node5" href="$struct_8h.html" title="Déclarations des structures et fonctions pour les instances et tournées TSP." alt="" coords="315,229,421,256"/>
+<area shape="rect" id="node6" href="$distance_8h.html" title="Déclarations des fonctions de calcul de distances entre instances pour différents types de TSP." alt="" coords="437,155,597,181"/>
+<area shape="rect" id="node8" href="$ga_8h.html" title="Déclarations et types pour un algorithme génétique appliqué au TSP." alt="" coords="331,80,381,107"/>
+<area shape="rect" id="node9" title=" " alt="" coords="641,80,703,107"/>
+<area shape="rect" id="node10" href="$opt2_8h.html" title="Déclarations des fonctions d&#39;optimisation 2&#45;opt pour le TSP." alt="" coords="406,80,565,107"/>
+<area shape="rect" id="node7" href="$types_8h.html" title="Déclarations des types génériques utilisés pour les heuristiques et méthodes TSP." alt="" coords="464,229,571,256"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="get_instance_by_id" name="get_instance_by_id">
+<area shape="rect" id="node1" title="Récupère une instance par son identifiant." alt="" coords="5,5,152,32"/>
+<area shape="rect" id="node2" href="$struct_8c.html#ab275e2c975f1b590005aad5b56f7ee6a" title="Récupère l&#39;identifiant d&#39;une instance." alt="" coords="200,5,263,32"/>
+</map>

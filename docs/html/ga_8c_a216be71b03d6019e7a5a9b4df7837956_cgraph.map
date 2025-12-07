@@ -1,0 +1,5 @@
+<map id="ga_create_random_tour" name="ga_create_random_tour">
+<area shape="rect" id="node1" title="Crée une tournée aléatoire." alt="" coords="5,31,181,57"/>
+<area shape="rect" id="node2" href="$struct_8c.html#ace11200ddd03bb97d3976db37d0034b2" title="Ajoute une instance dans une tournée." alt="" coords="229,5,352,32"/>
+<area shape="rect" id="node3" href="$struct_8c.html#a2ae1bdfc0a748027da966101a16f3528" title="Crée une tournée avec une taille initiale donnée." alt="" coords="231,56,351,83"/>
+</map>

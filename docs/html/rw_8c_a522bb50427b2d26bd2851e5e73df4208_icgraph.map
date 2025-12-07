@@ -1,0 +1,5 @@
+<map id="random_walk" name="random_walk">
+<area shape="rect" id="node1" title="Génère une tournée aléatoire en visitant chaque sommet exactement une fois." alt="" coords="255,31,365,57"/>
+<area shape="rect" id="node2" href="$rw_8c.html#a494331bd94b33d5be1f17c1322640798" title="Heuristique combinée : Random Walk suivi d&#39;une optimisation 2&#45;opt." alt="" coords="108,5,207,32"/>
+<area shape="rect" id="node3" href="$main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Point d&#39;entrée principal du programme." alt="" coords="5,31,60,57"/>
+</map>

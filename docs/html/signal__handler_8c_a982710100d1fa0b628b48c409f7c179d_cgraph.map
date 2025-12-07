@@ -1,0 +1,4 @@
+<map id="traiterSignal" name="traiterSignal">
+<area shape="rect" id="node1" title="Signal handler pour l&#39;interruption Ctrl+C." alt="" coords="5,5,108,32"/>
+<area shape="rect" id="node2" href="$signal__handler_8c.html#a5d543370170cc2966c8ca10c218d0746" title="Affiche la permutation courante." alt="" coords="156,5,241,32"/>
+</map>

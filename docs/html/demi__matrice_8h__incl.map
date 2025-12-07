@@ -1,0 +1,6 @@
+<map id="bruteforce/demi_matrice.h" name="bruteforce/demi_matrice.h">
+<area shape="rect" id="node1" title="Déclarations pour la gestion des demi&#45;matrices de distances entre villes." alt="" coords="47,5,241,32"/>
+<area shape="rect" id="node2" href="$distance_8h.html" title="Déclarations des fonctions de calcul de distances entre instances pour différents types de TSP." alt="" coords="5,80,165,107"/>
+<area shape="rect" id="node4" href="$types_8h.html" title="Déclarations des types génériques utilisés pour les heuristiques et méthodes TSP." alt="" coords="149,155,256,181"/>
+<area shape="rect" id="node3" href="$struct_8h.html" title="Déclarations des structures et fonctions pour les instances et tournées TSP." alt="" coords="19,155,125,181"/>
+</map>

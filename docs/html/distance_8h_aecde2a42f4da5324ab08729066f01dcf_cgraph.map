@@ -1,0 +1,6 @@
+<map id="dist_geo" name="dist_geo">
+<area shape="rect" id="node1" title="Calcule la distance géographique (GEO) entre deux instances." alt="" coords="5,56,83,83"/>
+<area shape="rect" id="node2" href="$distance_8c.html#a46ae9ce1d1d67dcfc009bcf89e27f41c" title="Convertit une coordonnée GEO en radians." alt="" coords="131,5,225,32"/>
+<area shape="rect" id="node3" href="$struct_8c.html#a9e83df5c8d31f650ba6a20f0ecaaa71c" title="Récupère la coordonnée x d&#39;une instance." alt="" coords="149,56,207,83"/>
+<area shape="rect" id="node4" href="$struct_8c.html#a86253305b7972b90ceb3d0af74954ccf" title="Récupère la coordonnée y d&#39;une instance." alt="" coords="149,107,207,133"/>
+</map>

@@ -1,0 +1,12 @@
+<map id="heuristiques/nn.c" name="heuristiques/nn.c">
+<area shape="rect" id="node1" title="Implémentation de l&#39;heuristique du plus proche voisin (Nearest Neighbor) pour le problème du voyageur..." alt="" coords="225,5,359,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,80,72,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="97,80,167,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="191,80,254,107"/>
+<area shape="rect" id="node5" href="$struct_8h.html" title="Déclarations des structures et fonctions pour les instances et tournées TSP." alt="" coords="315,319,421,345"/>
+<area shape="rect" id="node6" href="$demi__matrice_8h.html" title="Déclarations pour la gestion des demi&#45;matrices de distances entre villes." alt="" coords="609,155,748,196"/>
+<area shape="rect" id="node7" href="$distance_8h.html" title="Déclarations des fonctions de calcul de distances entre instances pour différents types de TSP." alt="" coords="431,244,591,271"/>
+<area shape="rect" id="node9" href="$nn_8h.html" title=" " alt="" coords="467,80,517,107"/>
+<area shape="rect" id="node8" href="$types_8h.html" title="Déclarations des types génériques utilisés pour les heuristiques et méthodes TSP." alt="" coords="575,319,681,345"/>
+<area shape="rect" id="node10" href="$opt2_8h.html" title="Déclarations des fonctions d&#39;optimisation 2&#45;opt pour le TSP." alt="" coords="461,162,523,189"/>
+</map>

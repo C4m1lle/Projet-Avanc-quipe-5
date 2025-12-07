@@ -1,0 +1,14 @@
+<map id="get_x" name="get_x">
+<area shape="rect" id="node1" title="Récupère la coordonnée x d&#39;une instance." alt="" coords="613,107,672,133"/>
+<area shape="rect" id="node2" href="$distance_8c.html#aa6dadc7a13f030348c42d24fa7b61b78" title="Calcule la distance pseudo&#45;euclidienne (ATT) entre deux instances." alt="" coords="319,5,390,32"/>
+<area shape="rect" id="node4" href="$distance_8c.html#a976b3e437d171ee26ac36b28b20dae9c" title="Calcule la distance euclidienne 2D entre deux instances." alt="" coords="307,56,403,83"/>
+<area shape="rect" id="node5" href="$distance_8c.html#aecde2a42f4da5324ab08729066f01dcf" title="Calcule la distance géographique entre deux instances." alt="" coords="475,107,553,133"/>
+<area shape="rect" id="node6" href="$opt2_8c.html#a207e2f324a4c5da219513863631bedd3" title="Vérifie si deux segments sont croisés." alt="" coords="469,157,559,184"/>
+<area shape="rect" id="node12" href="$tspReader_8c.html#a476534a02e0629a10a7f4257db323f11" title="Affiche les coordonnées des villes d&#39;un problème." alt="" coords="463,208,565,235"/>
+<area shape="rect" id="node3" href="$main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Point d&#39;entrée principal du programme." alt="" coords="5,107,60,133"/>
+<area shape="rect" id="node7" href="$opt2_8c.html#a14dbf11f1266456ff122e6900a9f8f91" title="Optimisation 2&#45;opt sur une tournée donnée (first improvement)." alt="" coords="329,157,380,184"/>
+<area shape="rect" id="node11" href="$opt2_8c.html#a9dc780ed0b195dfc0c83b4e936cf31e4" title="Version améliorée de l&#39;optimisation 2&#45;opt (first improvement avec vérification de distance)." alt="" coords="295,208,415,235"/>
+<area shape="rect" id="node8" href="$nn_8c.html#a6f7d218342ef0f9a0fa30b0edba8333d" title="Application de l&#39;heuristique NN suivie d&#39;une optimisation 2&#45;opt." alt="" coords="128,157,227,184"/>
+<area shape="rect" id="node9" href="$rw_8c.html#a494331bd94b33d5be1f17c1322640798" title="Heuristique combinée : Random Walk suivi d&#39;une optimisation 2&#45;opt." alt="" coords="128,208,227,235"/>
+<area shape="rect" id="node10" href="$ga_8c.html#adf0ea851daef7578dc44321421271583" title="Applique le crossover DPX (Distance Preserving Crossover) entre deux parents." alt="" coords="108,259,247,285"/>
+</map>

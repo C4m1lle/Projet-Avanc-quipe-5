@@ -1,0 +1,9 @@
+<map id="reverse_segment" name="reverse_segment">
+<area shape="rect" id="node1" title="Inverse un segment d&#39;une tournée entre deux indices." alt="" coords="463,81,597,108"/>
+<area shape="rect" id="node2" href="$opt2_8c.html#a14dbf11f1266456ff122e6900a9f8f91" title="Optimisation 2&#45;opt sur une tournée donnée (first improvement)." alt="" coords="329,56,380,83"/>
+<area shape="rect" id="node7" href="$opt2_8c.html#a9dc780ed0b195dfc0c83b4e936cf31e4" title="Version améliorée de l&#39;optimisation 2&#45;opt (first improvement avec vérification de distance)." alt="" coords="295,107,415,133"/>
+<area shape="rect" id="node3" href="$nn_8c.html#a6f7d218342ef0f9a0fa30b0edba8333d" title="Application de l&#39;heuristique NN suivie d&#39;une optimisation 2&#45;opt." alt="" coords="128,5,227,32"/>
+<area shape="rect" id="node5" href="$rw_8c.html#a494331bd94b33d5be1f17c1322640798" title="Heuristique combinée : Random Walk suivi d&#39;une optimisation 2&#45;opt." alt="" coords="128,56,227,83"/>
+<area shape="rect" id="node6" href="$ga_8c.html#adf0ea851daef7578dc44321421271583" title="Applique le crossover DPX (Distance Preserving Crossover) entre deux parents." alt="" coords="108,107,247,133"/>
+<area shape="rect" id="node4" href="$main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Point d&#39;entrée principal du programme." alt="" coords="5,31,60,57"/>
+</map>

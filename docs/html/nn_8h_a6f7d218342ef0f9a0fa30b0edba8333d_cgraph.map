@@ -1,0 +1,15 @@
+<map id="deux_optnn" name="deux_optnn">
+<area shape="rect" id="node1" title="Heuristique plus proche voisin suivie de l&#39;optimisation 2&#45;opt." alt="" coords="5,224,104,251"/>
+<area shape="rect" id="node2" href="$opt2_8c.html#a14dbf11f1266456ff122e6900a9f8f91" title="Optimisation 2&#45;opt sur une tournée donnée (first improvement)." alt="" coords="200,199,251,225"/>
+<area shape="rect" id="node13" href="$nn_8c.html#a37d77f2b45aeb154d006dbd5779193a5" title="Heuristique du plus proche voisin (Nearest Neighbor)." alt="" coords="152,249,299,276"/>
+<area shape="rect" id="node3" href="$struct_8c.html#ace11200ddd03bb97d3976db37d0034b2" title="Ajoute une instance dans une tournée." alt="" coords="373,5,496,32"/>
+<area shape="rect" id="node4" href="$struct_8c.html#a2ae1bdfc0a748027da966101a16f3528" title="Crée une tournée avec une taille initiale donnée." alt="" coords="375,56,495,83"/>
+<area shape="rect" id="node5" href="$struct_8c.html#a3ef0d5208385f6a4409c9e098cdd6fa9" title="Supprime une tournée sans supprimer ses instances." alt="" coords="347,107,523,149"/>
+<area shape="rect" id="node6" href="$struct_8c.html#ab275e2c975f1b590005aad5b56f7ee6a" title="Récupère l&#39;identifiant d&#39;une instance." alt="" coords="403,173,466,200"/>
+<area shape="rect" id="node7" href="$struct_8c.html#a39ea0a9ae06284ddbe6ac24ea79f26e6" title="Récupère l&#39;instance à une position donnée dans la tournée." alt="" coords="571,325,696,352"/>
+<area shape="rect" id="node8" href="$opt2_8c.html#a207e2f324a4c5da219513863631bedd3" title="Vérifie si deux segments sont croisés." alt="" coords="389,224,480,251"/>
+<area shape="rect" id="node11" href="$struct_8c.html#a9d3d7e114248bd5ca06bb44c2e096afa" title="Inverse un segment d&#39;une tournée entre deux indices." alt="" coords="367,325,502,352"/>
+<area shape="rect" id="node12" href="$distance_8c.html#a049910f8b67f9e3f6da2c571d3a7c4b3" title="Calcule la longueur totale d&#39;une tournée avec une fonction de distance donnée." alt="" coords="387,376,483,403"/>
+<area shape="rect" id="node9" href="$struct_8c.html#a9e83df5c8d31f650ba6a20f0ecaaa71c" title="Récupère la coordonnée x d&#39;une instance." alt="" coords="604,249,663,276"/>
+<area shape="rect" id="node10" href="$struct_8c.html#a86253305b7972b90ceb3d0af74954ccf" title="Récupère la coordonnée y d&#39;une instance." alt="" coords="604,199,663,225"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="print_values" name="print_values">
+<area shape="rect" id="node1" title="Affiche les coordonnées des villes d&#39;un problème." alt="" coords="5,56,108,83"/>
+<area shape="rect" id="node2" href="$struct_8c.html#a39ea0a9ae06284ddbe6ac24ea79f26e6" title="Récupère l&#39;instance à une position donnée dans la tournée." alt="" coords="156,5,281,32"/>
+<area shape="rect" id="node3" href="$struct_8c.html#a9e83df5c8d31f650ba6a20f0ecaaa71c" title="Récupère la coordonnée x d&#39;une instance." alt="" coords="189,56,248,83"/>
+<area shape="rect" id="node4" href="$struct_8c.html#a86253305b7972b90ceb3d0af74954ccf" title="Récupère la coordonnée y d&#39;une instance." alt="" coords="189,107,248,133"/>
+</map>

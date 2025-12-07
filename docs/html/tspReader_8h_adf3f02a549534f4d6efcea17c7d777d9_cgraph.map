@@ -1,0 +1,8 @@
+<map id="load_problem" name="load_problem">
+<area shape="rect" id="node1" title="Charge un problème TSP depuis un fichier TSPLIB." alt="" coords="5,107,116,133"/>
+<area shape="rect" id="node2" href="$struct_8c.html#ace11200ddd03bb97d3976db37d0034b2" title="Ajoute une instance dans une tournée." alt="" coords="165,5,288,32"/>
+<area shape="rect" id="node3" href="$struct_8c.html#af4980ee2bf5eb2477e646e37897d1946" title="Crée une instance (ville) avec un ID et des coordonnées." alt="" coords="164,56,289,83"/>
+<area shape="rect" id="node4" href="$tspReader_8c.html#aecc937ba40c7ff37e2054d66389d458f" title="Crée une structure tProbleme vide." alt="" coords="165,107,289,133"/>
+<area shape="rect" id="node5" href="$struct_8c.html#a2ae1bdfc0a748027da966101a16f3528" title="Crée une tournée avec une taille initiale donnée." alt="" coords="167,157,287,184"/>
+<area shape="rect" id="node6" href="$tspReader_8c.html#af8a091a250e272d38025218ae4cd4dbd" title="Alloue une copie d&#39;une chaîne de caractères." alt="" coords="178,208,275,235"/>
+</map>

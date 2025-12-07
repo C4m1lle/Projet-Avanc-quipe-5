@@ -1,0 +1,5 @@
+<map id="tour_length_from_demi_matrice" name="tour_length_from_demi_matrice">
+<area shape="rect" id="node1" title="Calcule la longueur totale d&#39;une tournée en utilisant une demi&#45;matrice." alt="" coords="5,23,180,65"/>
+<area shape="rect" id="node2" href="$struct_8c.html#a39ea0a9ae06284ddbe6ac24ea79f26e6" title="Récupère l&#39;instance à une position donnée dans la tournée." alt="" coords="231,5,356,32"/>
+<area shape="rect" id="node3" href="$demi__matrice_8c.html#af4bce30800e352801246c8b6b6f26612" title="Obtient la distance entre deux villes dans une demi&#45;matrice." alt="" coords="228,56,359,83"/>
+</map>

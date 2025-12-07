@@ -1,0 +1,250 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TSP Project:  Fichier source de tsp/struct.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">TSP Project
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   <div id="projectbrief">Travelling Salesman Problem heuristics, brute force and GA implementations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('struct_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">struct.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="struct_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * @file struct.h</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * @brief Déclarations des structures et fonctions pour les instances et tournées TSP.</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef __STRUCT_H__</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#define __STRUCT_H__    </span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> * @typedef tInstance</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> * @brief Pointeur vers une structure représentant une ville du TSP.</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="struct_8h.html#a6e2a131c19baeb1bba19f62338ebe89e">   13</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structs__instance.html">s_instance</a>* <a class="code" href="struct_8h.html#a6e2a131c19baeb1bba19f62338ebe89e">tInstance</a>;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> * @typedef tTournee</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> * @brief Pointeur vers une structure représentant une tournée (séquence de villes).</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="struct_8h.html#a154e6f8aa290f7c0a6a28fffd227d013">   19</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structs__tournee.html">s_tournee</a>* <a class="code" href="struct_8h.html#a154e6f8aa290f7c0a6a28fffd227d013">tTournee</a>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> * @brief Crée une instance (ville) avec un identifiant et des coordonnées.</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> * @param idd Identifiant de la ville</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment"> * @param xd Coordonnée x</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment"> * @param yd Coordonnée y</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment"> * @return tInstance Nouvelle instance créée</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<a class="code" href="structs__instance.html">tInstance</a> <a class="code" href="struct_8h.html#af4980ee2bf5eb2477e646e37897d1946">create_instance</a>(<span class="keywordtype">int</span> idd, <span class="keywordtype">double</span> xd, <span class="keywordtype">double</span> yd);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment"> * @brief Supprime une instance et libère la mémoire.</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment"> * @param pinst Pointeur vers l&#39;instance</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keywordtype">void</span> <a class="code" href="struct_8h.html#a640303333d08b6d186eea65a795d69d8">delete_instance</a>(<a class="code" href="structs__instance.html">tInstance</a> * pinst);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment"> * @brief Crée une tournée avec une taille initiale donnée.</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment"> * @param tailledef Taille initiale de la tournée</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment"> * @return tTournee Nouvelle tournée créée</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<a class="code" href="structs__tournee.html">tTournee</a> <a class="code" href="struct_8h.html#a2ae1bdfc0a748027da966101a16f3528">create_tournee</a>(<span class="keywordtype">int</span> tailledef);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment"> * @brief Ajoute une instance à la tournée.</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment"> * @param tour Tournée</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment"> * @param inst Instance à ajouter</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment"> * @return int 0 si succès, -1 si la tournée est pleine</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keywordtype">int</span> <a class="code" href="struct_8h.html#ace11200ddd03bb97d3976db37d0034b2">add_in_tournee</a>(<a class="code" href="structs__tournee.html">tTournee</a> tour, <a class="code" href="structs__instance.html">tInstance</a> inst);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment"> * @brief Supprime une tournée et toutes ses instances.</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment"> * @param ptour Pointeur vers la tournée</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keywordtype">void</span> <a class="code" href="struct_8h.html#a29e44ee05de96b15bd1d11cbdb7ea4bc">delete_tournee</a>(<a class="code" href="structs__tournee.html">tTournee</a> * ptour);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment"> * @brief Récupère la coordonnée x d&#39;une instance.</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment"> * @param inst Instance</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment"> * @return double Coordonnée x</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keywordtype">double</span> <a class="code" href="struct_8h.html#a9e83df5c8d31f650ba6a20f0ecaaa71c">get_x</a>(<a class="code" href="structs__instance.html">tInstance</a> inst);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment"> * @brief Récupère la coordonnée y d&#39;une instance.</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment"> * @param inst Instance</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment"> * @return double Coordonnée y</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="keywordtype">double</span> <a class="code" href="struct_8h.html#a86253305b7972b90ceb3d0af74954ccf">get_y</a>(<a class="code" href="structs__instance.html">tInstance</a> inst);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment"> * @brief Récupère l&#39;identifiant d&#39;une instance.</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment"> * @param inst Instance</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment"> * @return int Identifiant</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="keywordtype">int</span> <a class="code" href="struct_8h.html#ab275e2c975f1b590005aad5b56f7ee6a">get_id</a>(<a class="code" href="structs__instance.html">tInstance</a> inst);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment"> * @brief Récupère l&#39;instance à un index donné dans une tournée.</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment"> * @param tour Tournée</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment"> * @param nb Index</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment"> * @return tInstance Instance correspondante, NULL si index invalide</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<a class="code" href="structs__instance.html">tInstance</a> <a class="code" href="struct_8h.html#a39ea0a9ae06284ddbe6ac24ea79f26e6">get_instance_at</a>(<a class="code" href="structs__tournee.html">tTournee</a> tour,<span class="keywordtype">int</span> nb);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment"> * @brief Récupère le nombre de villes ajoutées dans la tournée.</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment"> * @param tour Tournée</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment"> * @return int Nombre de villes</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="keywordtype">int</span> <a class="code" href="struct_8h.html#a95d9c2f2752443b803b69740f255d621">get_taille_tournee</a>(<a class="code" href="structs__tournee.html">tTournee</a> tour);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment"> * @brief Inverse un segment de la tournée entre deux indices.</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment"> * @param tournee Tournée</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment"> * @param id1 Index de début</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment"> * @param id2 Index de fin</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="comment"> * @return int 0 si succès, -1 si indices invalides</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="keywordtype">int</span> <a class="code" href="struct_8h.html#a9d3d7e114248bd5ca06bb44c2e096afa">reverse_segment</a>(<a class="code" href="structs__tournee.html">tTournee</a> tournee, <span class="keywordtype">int</span> id1, <span class="keywordtype">int</span> id2);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment"> * @brief Supprime la tournée sans supprimer ses instances.</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment"> * @param ptour Pointeur vers la tournée</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="keywordtype">void</span> <a class="code" href="struct_8h.html#a3ef0d5208385f6a4409c9e098cdd6fa9">delete_tournee_without_instances</a>(<a class="code" href="structs__tournee.html">tTournee</a> *ptour);</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="comment"> * @brief Modifie l&#39;instance à un index donné dans la tournée.</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="comment"> * @param tour Tournée</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment"> * @param index Index à modifier</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="comment"> * @param inst Nouvelle instance</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="keywordtype">void</span> <a class="code" href="struct_8h.html#a82c61cf92e07df0f8fb5dc51a0f28be8">set_instance_at</a>(<a class="code" href="structs__tournee.html">tTournee</a> tour, <span class="keywordtype">int</span> index, <a class="code" href="structs__instance.html">tInstance</a> inst);</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="comment"> * @brief Récupère le tableau des instances d&#39;une tournée.</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="comment"> * @param tour Tournée</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="comment"> * @return tInstance* Tableau des instances</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<a class="code" href="structs__instance.html">tInstance</a> * <a class="code" href="struct_8h.html#a2584e55be8c81fd1fc10e436e8d6d2be">get_chemin_tournee</a>(<a class="code" href="structs__tournee.html">tTournee</a> tour);</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="comment"> * @brief Récupère une instance par son identifiant.</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="comment"> * @param tour Tournée</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="comment"> * @param index Identifiant recherché</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="comment"> * @return tInstance Instance correspondante, NULL si non trouvée</span></div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<a class="code" href="structs__instance.html">tInstance</a> <a class="code" href="struct_8h.html#a254e7b862c7bbfe65793947a8189b4dc">get_instance_by_id</a>(<a class="code" href="structs__tournee.html">tTournee</a> tour, <span class="keywordtype">int</span> index);</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160; </div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="astruct_8h_html_a154e6f8aa290f7c0a6a28fffd227d013"><div class="ttname"><a href="struct_8h.html#a154e6f8aa290f7c0a6a28fffd227d013">tTournee</a></div><div class="ttdeci">struct s_tournee * tTournee</div><div class="ttdoc">Pointeur vers une structure représentant une tournée (séquence de villes).</div><div class="ttdef"><b>Definition:</b> <a href="struct_8h_source.html#l00019">struct.h:19</a></div></div>
+<div class="ttc" id="astruct_8h_html_a254e7b862c7bbfe65793947a8189b4dc"><div class="ttname"><a href="struct_8h.html#a254e7b862c7bbfe65793947a8189b4dc">get_instance_by_id</a></div><div class="ttdeci">tInstance get_instance_by_id(tTournee tour, int index)</div><div class="ttdoc">Récupère une instance par son identifiant.</div><div class="ttdef"><b>Definition:</b> <a href="struct_8c_source.html#l00233">struct.c:233</a></div></div>
+<div class="ttc" id="astruct_8h_html_a2584e55be8c81fd1fc10e436e8d6d2be"><div class="ttname"><a href="struct_8h.html#a2584e55be8c81fd1fc10e436e8d6d2be">get_chemin_tournee</a></div><div class="ttdeci">tInstance * get_chemin_tournee(tTournee tour)</div><div class="ttdoc">Récupère le tableau des instances d'une tournée.</div><div class="ttdef"><b>Definition:</b> <a href="struct_8c_source.html#l00220">struct.c:220</a></div></div>
+<div class="ttc" id="astruct_8h_html_a29e44ee05de96b15bd1d11cbdb7ea4bc"><div class="ttname"><a href="struct_8h.html#a29e44ee05de96b15bd1d11cbdb7ea4bc">delete_tournee</a></div><div class="ttdeci">void delete_tournee(tTournee *ptour)</div><div class="ttdoc">Supprime une tournée et toutes ses instances.</div><div class="ttdef"><b>Definition:</b> <a href="struct_8c_source.html#l00151">struct.c:151</a></div></div>
+<div class="ttc" id="astruct_8h_html_a2ae1bdfc0a748027da966101a16f3528"><div class="ttname"><a href="struct_8h.html#a2ae1bdfc0a748027da966101a16f3528">create_tournee</a></div><div class="ttdeci">tTournee create_tournee(int tailledef)</div><div class="ttdoc">Crée une tournée avec une taille initiale donnée.</div><div class="ttdef"><b>Definition:</b> <a href="struct_8c_source.html#l00091">struct.c:91</a></div></div>
+<div class="ttc" id="astruct_8h_html_a39ea0a9ae06284ddbe6ac24ea79f26e6"><div class="ttname"><a href="struct_8h.html#a39ea0a9ae06284ddbe6ac24ea79f26e6">get_instance_at</a></div><div class="ttdeci">tInstance get_instance_at(tTournee tour, int nb)</div><div class="ttdoc">Récupère l'instance à un index donné dans une tournée.</div><div class="ttdef"><b>Definition:</b> <a href="struct_8c_source.html#l00139">struct.c:139</a></div></div>
+<div class="ttc" id="astruct_8h_html_a3ef0d5208385f6a4409c9e098cdd6fa9"><div class="ttname"><a href="struct_8h.html#a3ef0d5208385f6a4409c9e098cdd6fa9">delete_tournee_without_instances</a></div><div class="ttdeci">void delete_tournee_without_instances(tTournee *ptour)</div><div class="ttdoc">Supprime la tournée sans supprimer ses instances.</div><div class="ttdef"><b>Definition:</b> <a href="struct_8c_source.html#l00191">struct.c:191</a></div></div>
+<div class="ttc" id="astruct_8h_html_a640303333d08b6d186eea65a795d69d8"><div class="ttname"><a href="struct_8h.html#a640303333d08b6d186eea65a795d69d8">delete_instance</a></div><div class="ttdeci">void delete_instance(tInstance *pinst)</div><div class="ttdoc">Supprime une instance et libère la mémoire.</div><div class="ttdef"><b>Definition:</b> <a href="struct_8c_source.html#l00081">struct.c:81</a></div></div>
+<div class="ttc" id="astruct_8h_html_a6e2a131c19baeb1bba19f62338ebe89e"><div class="ttname"><a href="struct_8h.html#a6e2a131c19baeb1bba19f62338ebe89e">tInstance</a></div><div class="ttdeci">struct s_instance * tInstance</div><div class="ttdoc">Pointeur vers une structure représentant une ville du TSP.</div><div class="ttdef"><b>Definition:</b> <a href="struct_8h_source.html#l00013">struct.h:13</a></div></div>
+<div class="ttc" id="astruct_8h_html_a82c61cf92e07df0f8fb5dc51a0f28be8"><div class="ttname"><a href="struct_8h.html#a82c61cf92e07df0f8fb5dc51a0f28be8">set_instance_at</a></div><div class="ttdeci">void set_instance_at(tTournee tour, int index, tInstance inst)</div><div class="ttdoc">Modifie l'instance à un index donné dans la tournée.</div><div class="ttdef"><b>Definition:</b> <a href="struct_8c_source.html#l00210">struct.c:210</a></div></div>
+<div class="ttc" id="astruct_8h_html_a86253305b7972b90ceb3d0af74954ccf"><div class="ttname"><a href="struct_8h.html#a86253305b7972b90ceb3d0af74954ccf">get_y</a></div><div class="ttdeci">double get_y(tInstance inst)</div><div class="ttdoc">Récupère la coordonnée y d'une instance.</div><div class="ttdef"><b>Definition:</b> <a href="struct_8c_source.html#l00064">struct.c:64</a></div></div>
+<div class="ttc" id="astruct_8h_html_a95d9c2f2752443b803b69740f255d621"><div class="ttname"><a href="struct_8h.html#a95d9c2f2752443b803b69740f255d621">get_taille_tournee</a></div><div class="ttdeci">int get_taille_tournee(tTournee tour)</div><div class="ttdoc">Récupère le nombre de villes ajoutées dans la tournée.</div><div class="ttdef"><b>Definition:</b> <a href="struct_8c_source.html#l00129">struct.c:129</a></div></div>
+<div class="ttc" id="astruct_8h_html_a9d3d7e114248bd5ca06bb44c2e096afa"><div class="ttname"><a href="struct_8h.html#a9d3d7e114248bd5ca06bb44c2e096afa">reverse_segment</a></div><div class="ttdeci">int reverse_segment(tTournee tournee, int id1, int id2)</div><div class="ttdoc">Inverse un segment de la tournée entre deux indices.</div><div class="ttdef"><b>Definition:</b> <a href="struct_8c_source.html#l00172">struct.c:172</a></div></div>
+<div class="ttc" id="astruct_8h_html_a9e83df5c8d31f650ba6a20f0ecaaa71c"><div class="ttname"><a href="struct_8h.html#a9e83df5c8d31f650ba6a20f0ecaaa71c">get_x</a></div><div class="ttdeci">double get_x(tInstance inst)</div><div class="ttdoc">Récupère la coordonnée x d'une instance.</div><div class="ttdef"><b>Definition:</b> <a href="struct_8c_source.html#l00055">struct.c:55</a></div></div>
+<div class="ttc" id="astruct_8h_html_ab275e2c975f1b590005aad5b56f7ee6a"><div class="ttname"><a href="struct_8h.html#ab275e2c975f1b590005aad5b56f7ee6a">get_id</a></div><div class="ttdeci">int get_id(tInstance inst)</div><div class="ttdoc">Récupère l'identifiant d'une instance.</div><div class="ttdef"><b>Definition:</b> <a href="struct_8c_source.html#l00073">struct.c:73</a></div></div>
+<div class="ttc" id="astruct_8h_html_ace11200ddd03bb97d3976db37d0034b2"><div class="ttname"><a href="struct_8h.html#ace11200ddd03bb97d3976db37d0034b2">add_in_tournee</a></div><div class="ttdeci">int add_in_tournee(tTournee tour, tInstance inst)</div><div class="ttdoc">Ajoute une instance à la tournée.</div><div class="ttdef"><b>Definition:</b> <a href="struct_8c_source.html#l00114">struct.c:114</a></div></div>
+<div class="ttc" id="astruct_8h_html_af4980ee2bf5eb2477e646e37897d1946"><div class="ttname"><a href="struct_8h.html#af4980ee2bf5eb2477e646e37897d1946">create_instance</a></div><div class="ttdeci">tInstance create_instance(int idd, double xd, double yd)</div><div class="ttdoc">Crée une instance (ville) avec un identifiant et des coordonnées.</div><div class="ttdef"><b>Definition:</b> <a href="struct_8c_source.html#l00038">struct.c:38</a></div></div>
+<div class="ttc" id="astructs__instance_html"><div class="ttname"><a href="structs__instance.html">s_instance</a></div><div class="ttdoc">Représente une ville du TSP avec un identifiant et ses coordonnées.</div><div class="ttdef"><b>Definition:</b> <a href="struct_8c_source.html#l00014">struct.c:14</a></div></div>
+<div class="ttc" id="astructs__tournee_html"><div class="ttname"><a href="structs__tournee.html">s_tournee</a></div><div class="ttdoc">Représente une tournée (séquence de villes) pour le TSP.</div><div class="ttdef"><b>Definition:</b> <a href="struct_8c_source.html#l00024">struct.c:24</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_bee98fde683d14e45eb5ba0bc4c742b4.html">tsp</a></li><li class="navelem"><a class="el" href="struct_8h.html">struct.h</a></li>
+    <li class="footer">Généré par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</body>
+</html>

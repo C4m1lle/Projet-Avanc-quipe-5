@@ -1,0 +1,12 @@
+<map id="heuristiques/rw.c" name="heuristiques/rw.c">
+<area shape="rect" id="node1" title="Heuristique Random Walk (RW) pour générer une tournée aléatoire pour le TSP." alt="" coords="193,5,325,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,80,72,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="97,80,167,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="192,80,256,107"/>
+<area shape="rect" id="node5" href="$rw_8h.html" title="Heuristique Random Walk (RW) pour le TSP." alt="" coords="439,80,489,107"/>
+<area shape="rect" id="node6" href="$struct_8h.html" title="Déclarations des structures et fonctions pour les instances et tournées TSP." alt="" coords="367,319,473,345"/>
+<area shape="rect" id="node8" href="$distance_8h.html" title="Déclarations des fonctions de calcul de distances entre instances pour différents types de TSP." alt="" coords="483,244,643,271"/>
+<area shape="rect" id="node7" href="$demi__matrice_8h.html" title="Déclarations pour la gestion des demi&#45;matrices de distances entre villes." alt="" coords="520,155,659,196"/>
+<area shape="rect" id="node9" href="$types_8h.html" title="Déclarations des types génériques utilisés pour les heuristiques et méthodes TSP." alt="" coords="627,319,733,345"/>
+<area shape="rect" id="node10" href="$opt2_8h.html" title="Déclarations des fonctions d&#39;optimisation 2&#45;opt pour le TSP." alt="" coords="433,162,495,189"/>
+</map>

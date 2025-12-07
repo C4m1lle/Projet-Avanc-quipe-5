@@ -1,0 +1,6 @@
+<map id="nint" name="nint">
+<area shape="rect" id="node1" title="Fonction utilitaire : arrondi d&#39;un double à l&#39;entier le plus proche." alt="" coords="252,31,299,57"/>
+<area shape="rect" id="node2" href="$distance_8c.html#aa6dadc7a13f030348c42d24fa7b61b78" title="Calcule la distance pseudo&#45;euclidienne (ATT) entre deux instances." alt="" coords="121,5,191,32"/>
+<area shape="rect" id="node4" href="$distance_8c.html#a976b3e437d171ee26ac36b28b20dae9c" title="Calcule la distance euclidienne 2D entre deux instances." alt="" coords="108,56,204,83"/>
+<area shape="rect" id="node3" href="$main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Point d&#39;entrée principal du programme." alt="" coords="5,31,60,57"/>
+</map>

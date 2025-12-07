@@ -1,0 +1,5 @@
+<map id="s_probleme" name="s_probleme">
+<area shape="rect" id="node1" title="Structure interne représentant un problème TSP." alt="" coords="5,184,104,211"/>
+<area shape="rect" id="node2" href="$structs__tournee.html" title="Représente une tournée (séquence de villes) pour le TSP." alt="" coords="11,95,98,121"/>
+<area shape="rect" id="node3" href="$structs__instance.html" title="Représente une ville du TSP avec un identifiant et ses coordonnées." alt="" coords="9,5,100,32"/>
+</map>

@@ -1,0 +1,14 @@
+<map id="add_in_tournee" name="add_in_tournee">
+<area shape="rect" id="node1" title="Ajoute une instance dans une tournée." alt="" coords="567,157,689,184"/>
+<area shape="rect" id="node2" href="$ga_8c.html#aa799c352015dae9826b911144d3afbc8" title="Copie un individu (tournée) pour créer un nouvel individu." alt="" coords="376,5,485,32"/>
+<area shape="rect" id="node4" href="$ga_8c.html#a216be71b03d6019e7a5a9b4df7837956" title="Crée une tournée aléatoire." alt="" coords="343,56,519,83"/>
+<area shape="rect" id="node5" href="$ga_8c.html#adf0ea851daef7578dc44321421271583" title="Applique le crossover DPX (Distance Preserving Crossover) entre deux parents." alt="" coords="132,107,271,133"/>
+<area shape="rect" id="node6" href="$ga_8c.html#a58fb1f9fda72d8062cedc84e1ae6ea53" title="Applique le crossover Ordered Crossover (OX) entre deux parents." alt="" coords="348,157,513,184"/>
+<area shape="rect" id="node7" href="$tspReader_8c.html#adf3f02a549534f4d6efcea17c7d777d9" title="Charge un problème TSP depuis un fichier TSPLIB." alt="" coords="146,259,257,285"/>
+<area shape="rect" id="node9" href="$opt2_8c.html#a14dbf11f1266456ff122e6900a9f8f91" title="Optimisation 2&#45;opt sur une tournée donnée (first improvement)." alt="" coords="405,208,456,235"/>
+<area shape="rect" id="node12" href="$opt2_8c.html#a9dc780ed0b195dfc0c83b4e936cf31e4" title="Version améliorée de l&#39;optimisation 2&#45;opt (first improvement avec vérification de distance)." alt="" coords="371,309,491,336"/>
+<area shape="rect" id="node3" href="$ga_8c.html#af0597e276fcfe2117e4b9c1f5d681cb6" title="Sélectionne un individu via le tournoi." alt="" coords="108,5,295,32"/>
+<area shape="rect" id="node8" href="$main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Point d&#39;entrée principal du programme." alt="" coords="5,208,60,235"/>
+<area shape="rect" id="node10" href="$nn_8c.html#a6f7d218342ef0f9a0fa30b0edba8333d" title="Application de l&#39;heuristique NN suivie d&#39;une optimisation 2&#45;opt." alt="" coords="152,208,251,235"/>
+<area shape="rect" id="node11" href="$rw_8c.html#a494331bd94b33d5be1f17c1322640798" title="Heuristique combinée : Random Walk suivi d&#39;une optimisation 2&#45;opt." alt="" coords="152,157,251,184"/>
+</map>

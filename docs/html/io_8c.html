@@ -1,0 +1,440 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TSP Project: Référence du fichier src/io.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">TSP Project
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   <div id="projectbrief">Travelling Salesman Problem heuristics, brute force and GA implementations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('io_8c.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Fonctions</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence du fichier io.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Fonctions d'entrée/sortie pour le TSP.  
+<a href="#details">Plus de détails...</a></p>
+<div class="textblock"><code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="distance_8h_source.html">../distance/distance.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="io_8h_source.html">io.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="types_8h_source.html">../tsp/types.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Graphe des dépendances par inclusion de io.c:</div>
+<div class="dyncontent">
+<div class="center"><img src="io_8c__incl.png" border="0" usemap="#asrc_2io_8c" alt=""/></div>
+<map name="asrc_2io_8c" id="asrc_2io_8c">
+<area shape="rect" title="Fonctions d&#39;entrée/sortie pour le TSP." alt="" coords="195,5,263,32"/>
+<area shape="rect" title=" " alt="" coords="5,80,76,107"/>
+<area shape="rect" title=" " alt="" coords="159,155,226,181"/>
+<area shape="rect" title=" " alt="" coords="152,80,223,107"/>
+<area shape="rect" href="distance_8h.html" title="Déclarations des fonctions de calcul de distances entre instances pour différents types de TSP." alt="" coords="318,80,478,107"/>
+<area shape="rect" href="types_8h.html" title="Déclarations des types génériques utilisés pour les heuristiques et méthodes TSP." alt="" coords="462,155,569,181"/>
+<area shape="rect" href="io_8h.html" title="Fonctions d&#39;entrée/sortie pour l&#39;application TSP." alt="" coords="247,80,293,107"/>
+<area shape="rect" href="struct_8h.html" title="Déclarations des structures et fonctions pour les instances et tournées TSP." alt="" coords="331,155,438,181"/>
+</map>
+</div>
+</div>
+<p><a href="io_8c_source.html">Aller au code source de ce fichier.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ab283023b9cc105ecd08fc291171bf496"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io_8c.html#ab283023b9cc105ecd08fc291171bf496">BF_GA</a>&#160;&#160;&#160;200</td></tr>
+<tr class="separator:ab283023b9cc105ecd08fc291171bf496"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a174cecd41ac5c0946a936e5899c93bd7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io_8c.html#a174cecd41ac5c0946a936e5899c93bd7">BFM</a>&#160;&#160;&#160;309</td></tr>
+<tr class="separator:a174cecd41ac5c0946a936e5899c93bd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a170755e30c36be4904106b7bb279b1ec"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io_8c.html#a170755e30c36be4904106b7bb279b1ec">NN</a>&#160;&#160;&#160;220</td></tr>
+<tr class="separator:a170755e30c36be4904106b7bb279b1ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc4ded33ac0ca43defcce639e965748a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io_8c.html#afc4ded33ac0ca43defcce639e965748a">RW</a>&#160;&#160;&#160;233</td></tr>
+<tr class="separator:afc4ded33ac0ca43defcce639e965748a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbb59e45bd01067f3ce80290dc1f27a9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io_8c.html#abbb59e45bd01067f3ce80290dc1f27a9">DEUXOPTNN</a>&#160;&#160;&#160;609</td></tr>
+<tr class="separator:abbb59e45bd01067f3ce80290dc1f27a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8624ae1867aa3774478d1550f4f67e7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io_8c.html#aa8624ae1867aa3774478d1550f4f67e7">DEUXOPTRW</a>&#160;&#160;&#160;622</td></tr>
+<tr class="separator:aa8624ae1867aa3774478d1550f4f67e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6f6b7cddf0e000c23cc5235db2e4836"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io_8c.html#aa6f6b7cddf0e000c23cc5235db2e4836">GADPX</a>&#160;&#160;&#160;532</td></tr>
+<tr class="separator:aa6f6b7cddf0e000c23cc5235db2e4836"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1edd1ea8bddaf4d9c5eb3eae1ee1726a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io_8c.html#a1edd1ea8bddaf4d9c5eb3eae1ee1726a">ALL</a>&#160;&#160;&#160;313</td></tr>
+<tr class="separator:a1edd1ea8bddaf4d9c5eb3eae1ee1726a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:a92d1aa11ae3ffb29e174867ea1d45fa9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io_8c.html#a92d1aa11ae3ffb29e174867ea1d45fa9">usage</a> (char *arg)</td></tr>
+<tr class="memdesc:a92d1aa11ae3ffb29e174867ea1d45fa9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affiche l'usage de l'application TSP.  <a href="io_8c.html#a92d1aa11ae3ffb29e174867ea1d45fa9">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a92d1aa11ae3ffb29e174867ea1d45fa9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a951a86daf3adb68adf229543ee23ca8b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io_8c.html#a951a86daf3adb68adf229543ee23ca8b">affichage_test_python</a> (FILE *output_file, char *filename, char *method, double sec, double length, int *tournee, int taille_tournee)</td></tr>
+<tr class="memdesc:a951a86daf3adb68adf229543ee23ca8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affiche les résultats pour Python ou fichier texte.  <a href="io_8c.html#a951a86daf3adb68adf229543ee23ca8b">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a951a86daf3adb68adf229543ee23ca8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Fonctions d'entrée/sortie pour le TSP. </p>
+<p>Contient les fonctions pour afficher l'usage de l'application et pour produire des sorties formatées, compatibles avec Python ou pour fichier texte. </p>
+
+<p class="definition">Définition dans le fichier <a class="el" href="io_8c_source.html">io.c</a>.</p>
+</div><h2 class="groupheader">Documentation des macros</h2>
+<a id="a1edd1ea8bddaf4d9c5eb3eae1ee1726a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1edd1ea8bddaf4d9c5eb3eae1ee1726a">&#9670;&nbsp;</a></span>ALL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ALL&#160;&#160;&#160;313</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="io_8c_source.html#l00023">23</a> du fichier <a class="el" href="io_8c_source.html">io.c</a>.</p>
+
+</div>
+</div>
+<a id="ab283023b9cc105ecd08fc291171bf496"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab283023b9cc105ecd08fc291171bf496">&#9670;&nbsp;</a></span>BF_GA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BF_GA&#160;&#160;&#160;200</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="io_8c_source.html#l00016">16</a> du fichier <a class="el" href="io_8c_source.html">io.c</a>.</p>
+
+</div>
+</div>
+<a id="a174cecd41ac5c0946a936e5899c93bd7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a174cecd41ac5c0946a936e5899c93bd7">&#9670;&nbsp;</a></span>BFM</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BFM&#160;&#160;&#160;309</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="io_8c_source.html#l00017">17</a> du fichier <a class="el" href="io_8c_source.html">io.c</a>.</p>
+
+</div>
+</div>
+<a id="abbb59e45bd01067f3ce80290dc1f27a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbb59e45bd01067f3ce80290dc1f27a9">&#9670;&nbsp;</a></span>DEUXOPTNN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEUXOPTNN&#160;&#160;&#160;609</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="io_8c_source.html#l00020">20</a> du fichier <a class="el" href="io_8c_source.html">io.c</a>.</p>
+
+</div>
+</div>
+<a id="aa8624ae1867aa3774478d1550f4f67e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8624ae1867aa3774478d1550f4f67e7">&#9670;&nbsp;</a></span>DEUXOPTRW</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEUXOPTRW&#160;&#160;&#160;622</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="io_8c_source.html#l00021">21</a> du fichier <a class="el" href="io_8c_source.html">io.c</a>.</p>
+
+</div>
+</div>
+<a id="aa6f6b7cddf0e000c23cc5235db2e4836"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6f6b7cddf0e000c23cc5235db2e4836">&#9670;&nbsp;</a></span>GADPX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define GADPX&#160;&#160;&#160;532</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="io_8c_source.html#l00022">22</a> du fichier <a class="el" href="io_8c_source.html">io.c</a>.</p>
+
+</div>
+</div>
+<a id="a170755e30c36be4904106b7bb279b1ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a170755e30c36be4904106b7bb279b1ec">&#9670;&nbsp;</a></span>NN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NN&#160;&#160;&#160;220</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="io_8c_source.html#l00018">18</a> du fichier <a class="el" href="io_8c_source.html">io.c</a>.</p>
+
+</div>
+</div>
+<a id="afc4ded33ac0ca43defcce639e965748a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc4ded33ac0ca43defcce639e965748a">&#9670;&nbsp;</a></span>RW</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RW&#160;&#160;&#160;233</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="io_8c_source.html#l00019">19</a> du fichier <a class="el" href="io_8c_source.html">io.c</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des fonctions</h2>
+<a id="a951a86daf3adb68adf229543ee23ca8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a951a86daf3adb68adf229543ee23ca8b">&#9670;&nbsp;</a></span>affichage_test_python()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void affichage_test_python </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>output_file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>filename</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>method</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>sec</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>length</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>tournee</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>taille_tournee</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Affiche les résultats pour Python ou fichier texte. </p>
+<p>Affiche les résultats de l'exécution au format compatible Python.</p>
+<p>Produit une sortie au format : filename method runtime distance [tour]</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">output_file</td><td>Fichier de sortie (stdout ou fichier .txt). </td></tr>
+    <tr><td class="paramname">filename</td><td>Nom du fichier TSP traité. </td></tr>
+    <tr><td class="paramname">method</td><td>Nom de la méthode utilisée (bf, nn, rw, etc.). </td></tr>
+    <tr><td class="paramname">sec</td><td>Temps d'exécution en secondes. </td></tr>
+    <tr><td class="paramname">length</td><td>Distance totale de la tournée calculée. </td></tr>
+    <tr><td class="paramname">tournee</td><td>Tableau des IDs des villes dans l'ordre de la tournée. </td></tr>
+    <tr><td class="paramname">taille_tournee</td><td>Nombre de villes dans la tournée. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Définition à la ligne <a class="el" href="io_8c_source.html#l00063">63</a> du fichier <a class="el" href="io_8c_source.html">io.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                                                                                                                                           {</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    fprintf(output_file,<span class="stringliteral">&quot;%s %s %.6f %.2f [&quot;</span>, filename, method, sec, length);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; taille_tournee-1; i++){</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        fprintf(output_file,<span class="stringliteral">&quot;%d,&quot;</span>,tournee[i]);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    }</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    fprintf(output_file,<span class="stringliteral">&quot;%d]\n&quot;</span>,tournee[taille_tournee-1]);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;}</div>
+</div><!-- fragment --><div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="io_8c_a951a86daf3adb68adf229543ee23ca8b_icgraph.png" border="0" usemap="#aio_8c_a951a86daf3adb68adf229543ee23ca8b_icgraph" alt=""/></div>
+<map name="aio_8c_a951a86daf3adb68adf229543ee23ca8b_icgraph" id="aio_8c_a951a86daf3adb68adf229543ee23ca8b_icgraph">
+<area shape="rect" title="Affiche les résultats pour Python ou fichier texte." alt="" coords="108,5,275,32"/>
+<area shape="rect" href="main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Point d&#39;entrée principal du programme." alt="" coords="5,5,60,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a92d1aa11ae3ffb29e174867ea1d45fa9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92d1aa11ae3ffb29e174867ea1d45fa9">&#9670;&nbsp;</a></span>usage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void usage </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>arg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Affiche l'usage de l'application TSP. </p>
+<p>Affiche l'usage du programme TSP.</p>
+<p>Cette fonction est appelée lorsque l'utilisateur fournit des arguments invalides ou demande l'aide (-h). Elle affiche les différentes options possibles pour exécuter le programme.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">arg</td><td>Nom de l'exécutable (argv[0]). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Définition à la ligne <a class="el" href="io_8c_source.html#l00034">34</a> du fichier <a class="el" href="io_8c_source.html">io.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                      {</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    printf(<span class="stringliteral">&quot;Usage : %s [&lt;-f file.tsp&gt; [-o &lt;output.txt&gt;] [-c] [-d {eucl2d | att | geo}] [-m {bf | bfm | nn | rw | 2optnn | 2optrw | ga}]] [-h]\n&quot;</span>,arg);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    printf(<span class="stringliteral">&quot;  -f : nom du fichier TSPLIB à lire\n&quot;</span>);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    printf(<span class="stringliteral">&quot;  -o &lt;output.txt&gt; : rediriger la sortie vers un fichier .txt\n&quot;</span>);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    printf(<span class="stringliteral">&quot;  -d &lt;distance_type&gt; :  choix de la distance choisies pour les calculs (eucl2d par défaut)\n&quot;</span>);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    printf(<span class="stringliteral">&quot;  -c : afficher la longueur de la tournée canonique\n&quot;</span>);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    printf(<span class="stringliteral">&quot;  -m {bf | bfm | nn | rw | 2optnn | 2optrw | ga} : recherche de la longueur optimale selon la méthode choisie\n&quot;</span>);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    printf(<span class="stringliteral">&quot;                                         bf : force brute\n&quot;</span>);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    printf(<span class="stringliteral">&quot;                                         bfm : force brute matricielle\n&quot;</span>);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    printf(<span class="stringliteral">&quot;                                         nn : plus proche voisin (nearest neighbor)\n&quot;</span>);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    printf(<span class="stringliteral">&quot;                                         rw : marche aléatoire (random walk)\n&quot;</span>);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    printf(<span class="stringliteral">&quot;                                         ga &lt;nombre d&#39;individus&gt; &lt;nombre de générations&gt; &lt;taux de mutation&gt; : algorithme génétique générique\n&quot;</span>);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    printf(<span class="stringliteral">&quot;  -h : help, affiche l&#39;usage et ne fait aucun calcul.\n&quot;</span>);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;}</div>
+</div><!-- fragment --><div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="io_8c_a92d1aa11ae3ffb29e174867ea1d45fa9_icgraph.png" border="0" usemap="#aio_8c_a92d1aa11ae3ffb29e174867ea1d45fa9_icgraph" alt=""/></div>
+<map name="aio_8c_a92d1aa11ae3ffb29e174867ea1d45fa9_icgraph" id="aio_8c_a92d1aa11ae3ffb29e174867ea1d45fa9_icgraph">
+<area shape="rect" title="Affiche l&#39;usage de l&#39;application TSP." alt="" coords="108,5,169,32"/>
+<area shape="rect" href="main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Point d&#39;entrée principal du programme." alt="" coords="5,5,60,32"/>
+</map>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="io_8c.html">io.c</a></li>
+    <li class="footer">Généré par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</body>
+</html>

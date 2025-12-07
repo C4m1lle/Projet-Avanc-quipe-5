@@ -1,0 +1,6 @@
+<map id="ga_mutate_tour" name="ga_mutate_tour">
+<area shape="rect" id="node1" title="Applique une mutation de type swap sur un individu." alt="" coords="5,56,131,83"/>
+<area shape="rect" id="node2" href="$struct_8c.html#a39ea0a9ae06284ddbe6ac24ea79f26e6" title="Récupère l&#39;instance à une position donnée dans la tournée." alt="" coords="186,5,311,32"/>
+<area shape="rect" id="node3" href="$struct_8c.html#a95d9c2f2752443b803b69740f255d621" title="Récupère le nombre de villes dans la tournée." alt="" coords="179,56,319,83"/>
+<area shape="rect" id="node4" href="$struct_8c.html#a82c61cf92e07df0f8fb5dc51a0f28be8" title="Modifie l&#39;instance à un index donné dans la tournée." alt="" coords="187,107,311,133"/>
+</map>

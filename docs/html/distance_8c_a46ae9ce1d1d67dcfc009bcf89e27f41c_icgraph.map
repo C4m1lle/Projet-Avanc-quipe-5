@@ -1,0 +1,5 @@
+<map id="geo_to_rad" name="geo_to_rad">
+<area shape="rect" id="node1" title="Convertit une coordonnée GEO en radians." alt="" coords="233,5,328,32"/>
+<area shape="rect" id="node2" href="$distance_8c.html#aecde2a42f4da5324ab08729066f01dcf" title="Calcule la distance géographique entre deux instances." alt="" coords="108,5,185,32"/>
+<area shape="rect" id="node3" href="$main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Point d&#39;entrée principal du programme." alt="" coords="5,5,60,32"/>
+</map>

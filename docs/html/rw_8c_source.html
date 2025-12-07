@@ -1,0 +1,204 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TSP Project:  Fichier source de heuristiques/rw.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">TSP Project
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   <div id="projectbrief">Travelling Salesman Problem heuristics, brute force and GA implementations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('rw_8c_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">rw.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="rw_8c.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * @file rw.c</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * @brief Heuristique Random Walk (RW) pour générer une tournée aléatoire pour le TSP.</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * Fournit des fonctions pour créer une tournée aléatoire valide et</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * l&#39;améliorer avec l&#39;optimisation 2-opt.</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;time.h&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="rw_8h.html">rw.h</a>&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;../tsp/struct.h&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;../distance/distance.h&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> * @brief Génère une tournée aléatoire en visitant chaque sommet exactement une fois.</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment"> * La fonction remplit le tableau bestTour avec l&#39;ordre des IDs des villes</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment"> * et calcule la distance totale de la tournée dans bestDist.</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> * @param tour       Tableau des instances représentant les villes.</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> * @param dist       Fonction de distance entre deux villes (eucl2d, att, geo, etc.).</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment"> * @param bestTour   Tableau d&#39;entiers où stocker l&#39;ordre des IDs des villes.</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment"> * @param bestDist   Pointeur où stocker la distance totale calculée.</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment"> * @param lenght     Nombre de villes dans la tournée.</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="rw_8c.html#a522bb50427b2d26bd2851e5e73df4208">   28</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="rw_8c.html#a522bb50427b2d26bd2851e5e73df4208">random_walk</a>(<span class="keywordtype">void</span> ** tour, <a class="code" href="types_8h.html#a3ae22e2043c81482caad8452ebbb37b2">DistanceFuncGenerique</a> dist, <span class="keywordtype">int</span> *bestTour, <span class="keywordtype">double</span> *bestDist, <span class="keywordtype">int</span> lenght)</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;{</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">int</span> n = lenght;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordflow">if</span> (!tour || !dist || !bestTour || !bestDist || n &lt;= 0){</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        fprintf(stderr,<span class="stringliteral">&quot;nn : Paramètres invalides\n&quot;</span>);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    }</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="comment">// Tableau des villes disponibles</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">int</span> *dispo = malloc(<span class="keyword">sizeof</span>(<span class="keywordtype">int</span>) * n);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordflow">if</span> (!dispo) <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; n; i++)</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        dispo[i] = i;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    srand(time(NULL)); <span class="comment">// initialisation du générateur aléatoire</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="comment">// Crée la tournée aléatoire</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">void</span> ** randomTour = malloc(<span class="keyword">sizeof</span>(<span class="keywordtype">void</span> *)*n);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordtype">int</span> remaining = n; <span class="comment">// nombre de villes encore disponibles</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; n; i++) {</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keywordtype">int</span> r;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keywordflow">if</span> (remaining == 1) {</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            r = 0; <span class="comment">// si une seule ville restante, on la prend</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            r = rand() % remaining; <span class="comment">// indice aléatoire parmi les restantes</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        }</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordtype">int</span> chosen_index = dispo[r];</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        randomTour[i] = tour[chosen_index];</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        bestTour[i] = chosen_index + 1; <span class="comment">// génération du tour avec indexation à +1</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        dispo[r] = dispo[remaining - 1]; <span class="comment">// remplacer l&#39;indice choisi par le dernier disponible</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        remaining--;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    }</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="comment">// Calcul de la distance totale (boucle fermée)</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">double</span> totalDist = 0.0;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; n - 1; i++) {</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordtype">void</span> * a = randomTour[i];</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keywordtype">void</span> * b = randomTour[i+1];</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        totalDist += dist(a, b);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    }</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="comment">// Retour au point de départ</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordtype">void</span> * last = randomTour[n-1];</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordtype">void</span> * first = randomTour[0];</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    totalDist += dist(last, first);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="comment">// Stocker les résultats</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    *bestDist = totalDist;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    free(dispo);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    free(randomTour);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;}</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment"> * @brief Heuristique combinée : Random Walk suivi d&#39;une optimisation 2-opt.</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment"> * Génère une tournée aléatoire puis applique l&#39;optimisation 2-opt</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment"> * pour améliorer la distance totale.</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment"> * @param tour    Tableau des instances représentant les villes.</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment"> * @param dist    Fonction de distance entre deux villes.</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment"> * @param best    Tableau d&#39;entiers où stocker la meilleure tournée.</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment"> * @param distmin Pointeur vers la distance minimale trouvée.</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment"> * @param lenght  Nombre de villes dans la tournée.</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno"><a class="line" href="rw_8c.html#a494331bd94b33d5be1f17c1322640798">   95</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="rw_8c.html#a494331bd94b33d5be1f17c1322640798">deux_optrw</a>(<span class="keywordtype">void</span> ** tour, <a class="code" href="types_8h.html#a3ae22e2043c81482caad8452ebbb37b2">DistanceFuncGenerique</a> dist, <span class="keywordtype">int</span> * best, <span class="keywordtype">double</span> * distmin, <span class="keywordtype">int</span> lenght){</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <a class="code" href="rw_8c.html#a522bb50427b2d26bd2851e5e73df4208">random_walk</a>(tour, dist, best, distmin, lenght);</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    (*distmin) = <a class="code" href="opt2_8c.html#a14dbf11f1266456ff122e6900a9f8f91">opt2</a>(dist, (<a class="code" href="structs__instance.html">tInstance</a> *)tour, best, lenght);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;}</div>
+<div class="ttc" id="aopt2_8c_html_a14dbf11f1266456ff122e6900a9f8f91"><div class="ttname"><a href="opt2_8c.html#a14dbf11f1266456ff122e6900a9f8f91">opt2</a></div><div class="ttdeci">double opt2(DistanceFuncGenerique dist_func, tInstance *tournee, int *tab_tournee, int lenght)</div><div class="ttdoc">Optimisation 2-opt sur une tournée donnée (first improvement).</div><div class="ttdef"><b>Definition:</b> <a href="opt2_8c_source.html#l00055">opt2.c:55</a></div></div>
+<div class="ttc" id="arw_8c_html_a494331bd94b33d5be1f17c1322640798"><div class="ttname"><a href="rw_8c.html#a494331bd94b33d5be1f17c1322640798">deux_optrw</a></div><div class="ttdeci">void deux_optrw(void **tour, DistanceFuncGenerique dist, int *best, double *distmin, int lenght)</div><div class="ttdoc">Heuristique combinée : Random Walk suivi d'une optimisation 2-opt.</div><div class="ttdef"><b>Definition:</b> <a href="rw_8c_source.html#l00095">rw.c:95</a></div></div>
+<div class="ttc" id="arw_8c_html_a522bb50427b2d26bd2851e5e73df4208"><div class="ttname"><a href="rw_8c.html#a522bb50427b2d26bd2851e5e73df4208">random_walk</a></div><div class="ttdeci">void random_walk(void **tour, DistanceFuncGenerique dist, int *bestTour, double *bestDist, int lenght)</div><div class="ttdoc">Génère une tournée aléatoire en visitant chaque sommet exactement une fois.</div><div class="ttdef"><b>Definition:</b> <a href="rw_8c_source.html#l00028">rw.c:28</a></div></div>
+<div class="ttc" id="arw_8h_html"><div class="ttname"><a href="rw_8h.html">rw.h</a></div><div class="ttdoc">Heuristique Random Walk (RW) pour le TSP.</div></div>
+<div class="ttc" id="astructs__instance_html"><div class="ttname"><a href="structs__instance.html">s_instance</a></div><div class="ttdoc">Représente une ville du TSP avec un identifiant et ses coordonnées.</div><div class="ttdef"><b>Definition:</b> <a href="struct_8c_source.html#l00014">struct.c:14</a></div></div>
+<div class="ttc" id="atypes_8h_html_a3ae22e2043c81482caad8452ebbb37b2"><div class="ttname"><a href="types_8h.html#a3ae22e2043c81482caad8452ebbb37b2">DistanceFuncGenerique</a></div><div class="ttdeci">double(* DistanceFuncGenerique)(void *, void *)</div><div class="ttdoc">Pointeur vers une fonction de calcul de distance entre deux villes.</div><div class="ttdef"><b>Definition:</b> <a href="types_8h_source.html#l00016">types.h:16</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_9239fd5d8767cddb83f912213fe4b4b5.html">heuristiques</a></li><li class="navelem"><a class="el" href="rw_8c.html">rw.c</a></li>
+    <li class="footer">Généré par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</body>
+</html>

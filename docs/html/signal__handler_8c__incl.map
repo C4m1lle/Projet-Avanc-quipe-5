@@ -1,0 +1,13 @@
+<map id="bruteforce/signal_handler.c" name="bruteforce/signal_handler.c">
+<area shape="rect" id="node1" title="Gestion des signaux pour permettre l&#39;interruption contrôlée du bruteforce." alt="" coords="254,5,453,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,80,72,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="97,80,167,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="191,80,265,107"/>
+<area shape="rect" id="node5" href="$struct_8h.html" title="Déclarations des structures et fonctions pour les instances et tournées TSP." alt="" coords="335,229,441,256"/>
+<area shape="rect" id="node6" href="$demi__matrice_8h.html" title="Déclarations pour la gestion des demi&#45;matrices de distances entre villes." alt="" coords="391,80,515,107"/>
+<area shape="rect" id="node7" href="$distance_8h.html" title="Déclarations des fonctions de calcul de distances entre instances pour différents types de TSP." alt="" coords="356,155,516,181"/>
+<area shape="rect" id="node9" href="$signal__handler_8h.html" title="Déclarations pour la gestion des interruptions (Ctrl+C) pendant le bruteforce." alt="" coords="540,80,668,107"/>
+<area shape="rect" id="node10" href="$tspReader_8h.html" title="Déclarations pour la lecture des fichiers TSPLIB et gestion des problèmes TSP." alt="" coords="743,80,878,107"/>
+<area shape="rect" id="node11" href="$bruteforce_8h.html" title="Déclarations des fonctions de résolution du TSP par force brute." alt="" coords="648,155,749,181"/>
+<area shape="rect" id="node8" href="$types_8h.html" title="Déclarations des types génériques utilisés pour les heuristiques et méthodes TSP." alt="" coords="525,229,632,256"/>
+</map>

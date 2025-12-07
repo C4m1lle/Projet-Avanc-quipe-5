@@ -1,0 +1,7 @@
+<map id="ga_copy_tour" name="ga_copy_tour">
+<area shape="rect" id="node1" title="Copie un individu (tournée)." alt="" coords="5,81,115,108"/>
+<area shape="rect" id="node2" href="$struct_8c.html#ace11200ddd03bb97d3976db37d0034b2" title="Ajoute une instance dans une tournée." alt="" coords="171,5,294,32"/>
+<area shape="rect" id="node3" href="$struct_8c.html#a2ae1bdfc0a748027da966101a16f3528" title="Crée une tournée avec une taille initiale donnée." alt="" coords="173,56,293,83"/>
+<area shape="rect" id="node4" href="$struct_8c.html#a39ea0a9ae06284ddbe6ac24ea79f26e6" title="Récupère l&#39;instance à une position donnée dans la tournée." alt="" coords="170,107,295,133"/>
+<area shape="rect" id="node5" href="$struct_8c.html#a95d9c2f2752443b803b69740f255d621" title="Récupère le nombre de villes dans la tournée." alt="" coords="163,157,303,184"/>
+</map>

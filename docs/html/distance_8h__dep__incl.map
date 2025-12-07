@@ -1,0 +1,19 @@
+<map id="distance/distance.h" name="distance/distance.h">
+<area shape="rect" id="node1" title="Déclarations des fonctions de calcul de distances entre instances pour différents types de TSP." alt="" coords="941,5,1089,32"/>
+<area shape="rect" id="node2" href="$bruteforce_8c.html" title="Implémentation des algorithmes de résolution du TSP par force brute." alt="" coords="272,155,443,181"/>
+<area shape="rect" id="node3" href="$demi__matrice_8c.html" title="Gestion d&#39;une demi&#45;matrice pour le calcul des distances entre villes." alt="" coords="568,155,763,181"/>
+<area shape="rect" id="node4" href="$demi__matrice_8h.html" title="Déclarations pour la gestion des demi&#45;matrices de distances entre villes." alt="" coords="495,80,690,107"/>
+<area shape="rect" id="node5" href="$signal__handler_8c.html" title="Gestion des signaux pour permettre l&#39;interruption contrôlée du bruteforce." alt="" coords="49,155,248,181"/>
+<area shape="rect" id="node6" href="$nn_8c.html" title="Implémentation de l&#39;heuristique du plus proche voisin (Nearest Neighbor) pour le problème du voyageur..." alt="" coords="414,229,547,256"/>
+<area shape="rect" id="node8" href="$opt2_8c.html" title="Implémentation de l&#39;algorithme d&#39;optimisation 2&#45;opt pour le TSP." alt="" coords="1042,229,1188,256"/>
+<area shape="rect" id="node9" href="$main_8c.html" title="Programme principal pour résoudre le TSP avec plusieurs méthodes heuristiques et exactes." alt="" coords="916,229,1005,256"/>
+<area shape="rect" id="node11" href="$rw_8c.html" title="Heuristique Random Walk (RW) pour générer une tournée aléatoire pour le TSP." alt="" coords="1292,229,1424,256"/>
+<area shape="rect" id="node12" href="$signal__handler_8h.html" title="Déclarations pour la gestion des interruptions (Ctrl+C) pendant le bruteforce." alt="" coords="49,80,248,107"/>
+<area shape="rect" id="node13" href="$distance_8c.html" title="Fonctions de calcul de distances entre instances pour différents types de TSP." alt="" coords="1475,80,1622,107"/>
+<area shape="rect" id="node14" href="$ga_8c.html" title="Implémentation des fonctions pour un algorithme génétique pour le TSP." alt="" coords="1206,155,1298,181"/>
+<area shape="rect" id="node15" href="$ga_8h.html" title="Déclarations et types pour un algorithme génétique appliqué au TSP." alt="" coords="1219,80,1312,107"/>
+<area shape="rect" id="node16" href="$opt2_8h.html" title="Déclarations des fonctions d&#39;optimisation 2&#45;opt pour le TSP." alt="" coords="998,80,1144,107"/>
+<area shape="rect" id="node17" href="$io_8c.html" title="Fonctions d&#39;entrée/sortie pour le TSP." alt="" coords="1646,80,1714,107"/>
+<area shape="rect" id="node7" href="$nn_8h.html" title=" " alt="" coords="788,155,922,181"/>
+<area shape="rect" id="node10" href="$rw_8h.html" title="Heuristique Random Walk (RW) pour le TSP." alt="" coords="1048,155,1182,181"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="s_tournee" name="s_tournee">
+<area shape="rect" id="node1" title="Représente une tournée (séquence de villes) pour le TSP." alt="" coords="7,95,94,121"/>
+<area shape="rect" id="node2" href="$structs__instance.html" title="Représente une ville du TSP avec un identifiant et ses coordonnées." alt="" coords="5,5,96,32"/>
+</map>
