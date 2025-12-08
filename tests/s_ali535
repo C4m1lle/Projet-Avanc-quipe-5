@@ -1,0 +1,30 @@
+Sortie python ali535 
+ga/gadpx parametres 30 1000 0.1
+Instance ; algo ; long (C) ; long (Python) ; temps ; tour ; valid ; mêmes longueurs
+ali535.tsp ; nn ; 253127 ; 253127 ; 0.020567 ;  ; True ; True
+ali535.tsp ; rw ; 3588772 ; 3588772 ; 0.000263 ;  ; True ; True
+ali535.tsp ; opt2nn ; 267793 ; 267793 ; 0.034640 ;  ; True ; True
+ali535.tsp ; opt2rw ; 544356 ; 544356 ; 0.034007 ;  ; True ; True
+ali535.tsp ; ga ; 2988750 ; 2988750 ; 137.506561 ;  ; True ; True
+ali535.tsp ; dpx ; 830282 ; 830282 ; 1046.958532 ;  ; True ; True
+
+ga/gadpx parametre 10 100 0.1
+
+Instance ; algo ; long (C) ; long (Python) ; temps ; tour ; valid ; mêmes longueurs
+ali535.tsp ; nn ; 253127 ; 253127 ; 0.030185 ;  ; True ; True
+ali535.tsp ; rw ; 3529772 ; 3529772 ; 0.000353 ;  ; True ; True
+ali535.tsp ; opt2nn ; 267793 ; 267793 ; 0.046429 ;  ; True ; True
+ali535.tsp ; opt2rw ; 622756 ; 622756 ; 0.046483 ;  ; True ; True
+ali535.tsp ; ga ; 3166336 ; 3166336 ; 2.521196 ;  ; True ; True
+ali535.tsp ; dpx ; 902075 ; 902075 ; 37.172058 ;  ; True ; True
+
+ga/gdpx paremetre 16 300 0.2
+
+Instance ; algo ; long (C) ; long (Python) ; temps ; tour ; valid ; mêmes longueurs
+ali535.tsp ; nn ; 253127 ; 253127 ; 0.029044 ;  ; True ; True
+ali535.tsp ; rw ; 3497531 ; 3497531 ; 0.000245 ;  ; True ; True
+ali535.tsp ; opt2nn ; 267793 ; 267793 ; 0.039616 ;  ; True ; True
+ali535.tsp ; opt2rw ; 570097 ; 570097 ; 0.033611 ;  ; True ; True
+ali535.tsp ; ga ; 3177651 ; 3177651 ; 15.789178 ;  ; True ; True
+ali535.tsp ; dpx ; 1507792 ; 1507792 ; 199.779479 ;  ; True ; True
+

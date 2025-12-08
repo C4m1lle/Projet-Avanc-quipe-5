@@ -1,0 +1,12 @@
+Sortie att15
+Longueur du tour canonique (tsplib95 built in) = 13095
+
+
+Instance ; algo ; long (C) ; long (Python) ; temps ; tour ; valid ; mêmes longueurs
+att15.tsp ; nn ; 7798 ; 7798 ; 0.000010 ; [1, 9, 8, 15, 12, 11, 13, 14, 3, 5, 2, 4, 10, 7, 6] ; True ; True
+att15.tsp ; rw ; 13930 ; 13930 ; 0.000023 ; [4, 14, 3, 12, 13, 5, 9, 6, 2, 8, 15, 1, 11, 7, 10] ; True ; True
+att15.tsp ; opt2nn ; 7602 ; 7602 ; 0.000019 ; [1, 8, 9, 15, 12, 11, 13, 14, 3, 5, 2, 4, 10, 7, 6] ; True ; True
+att15.tsp ; opt2rw ; 9269 ; 9269 ; 0.000035 ; [11, 1, 8, 3, 14, 13, 12, 15, 9, 7, 6, 10, 5, 2, 4] ; True ; True
+att15.tsp ; ga ; 6443 ; 6443 ; 0.991773 ; [1, 8, 9, 7, 6, 15, 12, 11, 13, 14, 5, 10, 4, 2, 3] ; True ; True
+att15.tsp ; dpx ; 6443 ; 6443 ; 1.112551 ; [4, 10, 5, 14, 13, 11, 12, 15, 6, 7, 9, 8, 1, 3, 2] ; True ; True
+
