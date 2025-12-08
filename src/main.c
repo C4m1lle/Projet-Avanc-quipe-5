@@ -95,7 +95,7 @@ int main(int argc, char *argv[]) {
                 return 1;
             }
             filename = argv[++i];
-            sprintf(file_path,"tests/%s",filename);
+            sprintf(file_path,"%s",filename);
         }
 
         if(strcmp(argv[i], "-o") == 0) {
@@ -242,230 +242,99 @@ int main(int argc, char *argv[]) {
         }
     }
     free(best);
+  void run_bruteforce(int use_memo) {
+    int *best = malloc(sizeof(int) * taille_Tournee);
+    if (!best) { perror("malloc best"); exit(1); }
 
-    if(bf){
-        //TEST BRUTEFORCE
-        int * best_bf = malloc(sizeof(int)*taille_Tournee);
-        double dist;
+    double dist;
+    clock_t start = clock();
+    setup_signal_handler(tour, dist_method, best, &dist, use_memo);
+    clock_t end = clock();
 
-        // Setup Ctrl+C
-        clock_t startbf = clock();
-        setup_signal_handler(tour,dist_method,best_bf,&dist,0);
-        clock_t endbf = clock();
+    double cpu_time = (double)(end - start) / CLOCKS_PER_SEC;
+    affichage_test_python(output_file, (char *)filename, use_memo ? "bfm" : "bf",
+                          cpu_time, dist, best, taille_Tournee);
 
-        double bf_time = (double)(endbf - startbf) / CLOCKS_PER_SEC;
-        affichage_test_python(output_file,filename, "bf", bf_time, dist, best_bf, taille_Tournee);
+    free(best);
+}
+ 
 
-        free(best_bf);
+if (bf) run_bruteforce(0);
+if (bfm) run_bruteforce(1);
+if (ga || gadpx) {
+    int n = taille_Tournee;
+    if (n <= 0) { fprintf(stderr,"Error: taille_Tournee must be > 0\n"); exit(1); }
+
+    srand((unsigned int)time(NULL));
+
+    int *best_ids = malloc(sizeof(int) * n);
+    if (!best_ids) { perror("malloc best_ids"); exit(1); }
+
+    int pop_size = 30;
+    int generations = 100;
+    double mutation_rate = 0.1;
+    if (argc >= 8 && (strcmp(argv[4],"ga")==0 || strcmp(argv[4],"gadpx")==0)) {
+        pop_size      = atoi(argv[5]);
+        generations   = atoi(argv[6]);
+        mutation_rate = atof(argv[7]);
     }
 
-    if(bfm){
-        //TEST BRUTEFORCE
-        int * best_bfm = malloc(sizeof(int)*taille_Tournee);
-        double dist;
+    tInstance *cities = malloc(sizeof(tInstance) * n);
+    if (!cities) { perror("malloc cities"); free(best_ids); exit(1); }
+    for (int i = 0; i < n; i++) cities[i] = get_instance_at(tour, i);
 
-        // Setup Ctrl+C
-        clock_t startbfm = clock();
-        setup_signal_handler(tour,dist_method,best_bfm,&dist,1);
-        clock_t endbfm = clock();
+    GA_Data data = { .dist = (DistanceFuncGenerique)dist_method, .cities = cities, .n = n };
 
-        double bfm_time = (double)(endbfm - startbfm) / CLOCKS_PER_SEC;
-        affichage_test_python(output_file,filename, "bfm", bfm_time, dist, best_bfm, taille_Tournee);
+    Individual *population = malloc(sizeof(Individual) * pop_size);
+    if (!population) { perror("malloc population"); free(cities); free(best_ids); exit(1); }
+    for (int i = 0; i < pop_size; i++) population[i] = ga_create_random_tour(n, &data);
 
-        free(best_bfm);
-    }
+    GA_Parameters params = { .population_size = pop_size,
+                             .generations = generations,
+                             .mutation_rate = mutation_rate,
+                             .tournament_size = (int)(0.7 * pop_size),
+                             .individual_size = n,
+                             .data = &data };
 
-    if (ga) {
-        int n = taille_Tournee;
-        if (n <= 0) {
-            fprintf(stderr, "Error: taille_Tournee must be > 0\n");
-            exit(1);
-        }
+    GA_Crossover crossovers[2] = { ga_ordered_crossover, ga_dpx_crossover };
+    const char *names[2] = { "ga", "dpx" };
+    int flags[2] = { ga, gadpx };
 
-        srand((unsigned int)time(NULL));
-
-        int *best_ids = malloc(sizeof(int) * n);
-        if (!best_ids) { perror("malloc best_ids"); exit(1); }
-
-        int pop_size = 30;
-        int generations = 100;
-        double mutation_rate = 0.1;
-
-        if (argc >= 8 && strcmp(argv[4], "ga") == 0) {
-            pop_size      = atoi(argv[5]);
-            generations   = atoi(argv[6]);
-            mutation_rate = atof(argv[7]);
-        }
-
-        tInstance *cities = malloc(sizeof(tInstance) * n);
-        if (!cities) { perror("malloc cities"); free(best_ids); exit(1); }
-
-        for (int i = 0; i < n; i++)
-            cities[i] = get_instance_at(tour, i);
-
-        GA_Data data;
-        data.dist = (DistanceFuncGenerique)dist_method;
-        data.cities = cities;
-        data.n = n;
-
-        Individual *population = malloc(sizeof(Individual) * pop_size);
-        if (!population) {
-            perror("malloc population");
-            free(cities);
-            free(best_ids);
-            exit(1);
-        }
-
-        for (int i = 0; i < pop_size; i++)
-            population[i] = ga_create_random_tour(n, &data);
-
-        GA_Parameters params;
-        params.population_size = pop_size;
-        params.generations     = generations;
-        params.mutation_rate   = mutation_rate;
-        params.tournament_size = (int)(0.7 * pop_size);
-        params.individual_size = n;
-        params.data            = &data;
+    for (int k = 0; k < 2; k++) {
+        if (!flags[k]) continue;
 
         Individual best_ind = NULL;
         double best_score = 0.0;
 
         clock_t start = clock();
-
-        int rc = ga_run(
-            population,
-            &params,
-            ga_copy_tour,
-            ga_delete_tour,
-            ga_mutate_tour,
-            ga_ordered_crossover,
-            ga_fitness_tour,
-            ga_tournament_selection,
-            ga_create_random_tour,
-            &best_ind,
-            &best_score
-        );
-
+        int rc = ga_run(population, &params,
+                        ga_copy_tour, ga_delete_tour, ga_mutate_tour,
+                        crossovers[k], ga_fitness_tour,
+                        ga_tournament_selection, ga_create_random_tour,
+                        &best_ind, &best_score);
         clock_t end = clock();
         double cpu_time = (double)(end - start) / CLOCKS_PER_SEC;
 
-        if (rc != 0) {
-            fprintf(stderr, "ga_run failed\n");
-        } else if (best_ind) {
-
+        if (rc != 0) fprintf(stderr, "%s ga_run failed\n", names[k]);
+        else if (best_ind) {
             for (int i = 0; i < n; i++)
                 best_ids[i] = get_id(get_instance_at((tTournee)best_ind, i));
 
-            affichage_test_python(
-                output_file, filename, "ga",
-                cpu_time, best_score, best_ids, n
-            );
+            affichage_test_python(output_file, (char *)filename, (char *)names[k], cpu_time, best_score, best_ids, n);
         }
 
-        free(cities);
-        free(best_ids);
-        if (best_ind)
-            delete_tournee_without_instances((tTournee*)&best_ind);
+        if (best_ind) delete_tournee_without_instances((tTournee*)&best_ind);
     }
 
-    if (gadpx) {
-        int n = taille_Tournee;
-        if (n <= 0) {
-            fprintf(stderr, "Error: taille_Tournee must be > 0\n");
-            exit(1);
-        }
+    for (int i = 0; i < pop_size; i++) ga_delete_tour(population[i]);
+    free(population);
+    free(cities);
+    free(best_ids);
+}
 
-        srand((unsigned int)time(NULL));
+/* ===================== Libération finale ===================== */
+delete_problem(&problem);
+if (output_file != stdout) fclose(output_file);
 
-        int *best_ids = malloc(sizeof(int) * n);
-        if (!best_ids) { perror("malloc best_ids"); exit(1); }
-
-        int pop_size = 30;
-        int generations = 100;
-        double mutation_rate = 0.1;
-
-        if (argc >= 8 && strcmp(argv[4], "ga") == 0) {
-            pop_size      = atoi(argv[5]);
-            generations   = atoi(argv[6]);
-            mutation_rate = atof(argv[7]);
-        }
-
-        tInstance *cities = malloc(sizeof(tInstance) * n);
-        if (!cities) { perror("malloc cities"); free(best_ids); exit(1); }
-
-        for (int i = 0; i < n; i++)
-            cities[i] = get_instance_at(tour, i);
-
-        GA_Data data;
-        data.dist = (DistanceFuncGenerique)dist_method;
-        data.cities = cities;
-        data.n = n;
-
-        Individual *population = malloc(sizeof(Individual) * pop_size);
-        if (!population) {
-            perror("malloc population");
-            free(cities);
-            free(best_ids);
-            exit(1);
-        }
-
-        for (int i = 0; i < pop_size; i++)
-            population[i] = ga_create_random_tour(n, &data);
-
-        GA_Parameters params;
-        params.population_size = pop_size;
-        params.generations     = generations;
-        params.mutation_rate   = mutation_rate;
-        params.tournament_size = (int)(0.7 * pop_size);
-        params.individual_size = n;
-        params.data            = &data;
-
-        Individual best_ind = NULL;
-        double best_score = 0.0;
-
-        clock_t start = clock();
-
-        int rc = ga_run(
-            population,
-            &params,
-            ga_copy_tour,
-            ga_delete_tour,
-            ga_mutate_tour,
-            ga_dpx_crossover,
-            ga_fitness_tour,
-            ga_tournament_selection,
-            ga_create_random_tour,
-            &best_ind,
-            &best_score
-        );
-
-        clock_t end = clock();
-        double cpu_time = (double)(end - start) / CLOCKS_PER_SEC;
-
-        if (rc != 0) {
-            fprintf(stderr, "ga_run failed\n");
-        } else if (best_ind) {
-
-            for (int i = 0; i < n; i++)
-                best_ids[i] = get_id(get_instance_at((tTournee)best_ind, i));
-
-            affichage_test_python(
-                output_file, filename, "dpx",
-                cpu_time, best_score, best_ids, n
-            );
-        }
-
-        free(cities);
-        free(best_ids);
-        if (best_ind)
-            delete_tournee_without_instances((tTournee*)&best_ind);
-    } 
-
-    // Libération memoire
-    delete_problem(&problem);
-    if(output_file!=stdout){
-        fclose(output_file);
-    }
-
-    return 0;
+return 0;
 }
