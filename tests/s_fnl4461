@@ -1,0 +1,10 @@
+fnl4461.tsp sortie python 
+parametre ga 10 1000 0.1
+Instance ; algo ; long (C) ; long (Python) ; temps ; tour ; valid ; mêmes longueurs
+fnl4461.tsp ; nn ; 229963 ; 230222 ; 0.278594 ;  ; True ; False
+fnl4461.tsp ; rw ; 8256094 ; 8256097 ; 0.000486 ;  ; True ; False
+fnl4461.tsp ; opt2nn ; 227585 ; 227821 ; 2.779656 ;  ; True ; False
+fnl4461.tsp ; opt2rw ; 530261 ; 530369 ; 3.544761 ;  ; True ; False
+fnl4461.tsp ; ga ; 8100253 ; 8100300 ; 79.997973 ;  ; True ; False
+fnl4461.tsp ; dpx ; 2629697 ; 2629866 ; 2334.358705 ;  ; True ; False
+
