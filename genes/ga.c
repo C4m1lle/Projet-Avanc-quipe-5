@@ -317,11 +317,10 @@ int ga_run(
 
     srand((unsigned int)time(NULL));
 
-    /* Best = premier individu */
+    /* Initialiser le meilleur */
     Individual best = copy(population[0]);
     double best_len = fitness(best, data);
 
-    /* BOUCLE GA */
     for (int g = 0; g < generations; g++) {
 
         /* 1) SELECTION */
@@ -349,7 +348,7 @@ int ga_run(
                     offspring[j] = tmp;
                 }
 
-        /* 5) REMPLACER LE PIRE PAR RANDOM TOUR */
+        /* 5) REMPLACER LE PIRE PAR RANDOM */
         int worst = pop_size - 1;
         del(offspring[worst]);
         offspring[worst] = create_random(individual_sz, data);
@@ -361,27 +360,25 @@ int ga_run(
             best_len = fitness(best, data);
         }
 
-        /* 7) remplacer par le meilleur individu */
+        /* 7) remplacer par le meilleur */
         del(offspring[worst]);
         offspring[worst] = copy(best);
 
         /* 8) Remplacement de la population */
-        for (int i = 0; i < pop_size; i++) del(population[i]);
-        free(population);
-        population = offspring;
+        for (int i = 0; i < pop_size; i++)
+            del(population[i]);  // libère anciens individus
+        for (int i = 0; i < pop_size; i++)
+            population[i] = offspring[i];  // copier pointeurs
+        free(offspring);  // tableau temporaire seulement
 
         /* Libération de selected */
         for (int i = 0; i < pop_size; i++) del(selected[i]);
         free(selected);
     }
 
-    /* Retour des résultats */
     *best_ind = best;
     *best_score = best_len;
 
-    /* Nettoyage */
-    for (int i = 0; i < pop_size; i++) del(population[i]);
-    free(population);
-
     return 0;
 }
+
