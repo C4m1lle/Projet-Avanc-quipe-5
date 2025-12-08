@@ -1,5 +1,5 @@
 <map id="src/io.h" name="src/io.h">
 <area shape="rect" id="node1" title="Fonctions d&#39;entrée/sortie pour l&#39;application TSP." alt="" coords="55,5,125,32"/>
 <area shape="rect" id="node2" href="$io_8c.html" title="Fonctions d&#39;entrée/sortie pour le TSP." alt="" coords="5,80,73,107"/>
-<area shape="rect" id="node3" href="$main_8c.html" title="Programme principal pour résoudre le TSP avec plusieurs méthodes heuristiques et exactes." alt="" coords="97,80,187,107"/>
+<area shape="rect" id="node3" href="$main_8c.html" title="Programme principal de résolution du TSP (Traveling Salesman Problem)." alt="" coords="97,80,187,107"/>
 </map>

@@ -5,7 +5,7 @@
 <area shape="rect" id="node5" href="$distance_8c.html#aecde2a42f4da5324ab08729066f01dcf" title="Calcule la distance géographique entre deux instances." alt="" coords="475,107,553,133"/>
 <area shape="rect" id="node6" href="$opt2_8c.html#a207e2f324a4c5da219513863631bedd3" title="Vérifie si deux segments sont croisés." alt="" coords="469,157,559,184"/>
 <area shape="rect" id="node12" href="$tspReader_8c.html#a476534a02e0629a10a7f4257db323f11" title="Affiche les coordonnées des villes d&#39;un problème." alt="" coords="463,208,565,235"/>
-<area shape="rect" id="node3" href="$main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Point d&#39;entrée principal du programme." alt="" coords="5,107,60,133"/>
+<area shape="rect" id="node3" href="$main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Fonction principale du programme." alt="" coords="5,132,60,159"/>
 <area shape="rect" id="node7" href="$opt2_8c.html#a14dbf11f1266456ff122e6900a9f8f91" title="Optimisation 2&#45;opt sur une tournée donnée (first improvement)." alt="" coords="329,157,380,184"/>
 <area shape="rect" id="node11" href="$opt2_8c.html#a9dc780ed0b195dfc0c83b4e936cf31e4" title="Version améliorée de l&#39;optimisation 2&#45;opt (first improvement avec vérification de distance)." alt="" coords="295,208,415,235"/>
 <area shape="rect" id="node8" href="$nn_8c.html#a6f7d218342ef0f9a0fa30b0edba8333d" title="Application de l&#39;heuristique NN suivie d&#39;une optimisation 2&#45;opt." alt="" coords="128,157,227,184"/>

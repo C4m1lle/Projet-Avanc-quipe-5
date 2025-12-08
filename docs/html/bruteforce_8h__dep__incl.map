@@ -2,5 +2,5 @@
 <area shape="rect" id="node1" title="Déclarations des fonctions de résolution du TSP par force brute." alt="" coords="214,5,386,32"/>
 <area shape="rect" id="node2" href="$bruteforce_8c.html" title="Implémentation des algorithmes de résolution du TSP par force brute." alt="" coords="5,80,176,107"/>
 <area shape="rect" id="node3" href="$signal__handler_8c.html" title="Gestion des signaux pour permettre l&#39;interruption contrôlée du bruteforce." alt="" coords="201,80,399,107"/>
-<area shape="rect" id="node4" href="$main_8c.html" title="Programme principal pour résoudre le TSP avec plusieurs méthodes heuristiques et exactes." alt="" coords="423,80,513,107"/>
+<area shape="rect" id="node4" href="$main_8c.html" title="Programme principal de résolution du TSP (Traveling Salesman Problem)." alt="" coords="423,80,513,107"/>
 </map>

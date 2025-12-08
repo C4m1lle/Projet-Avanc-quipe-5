@@ -2,5 +2,5 @@
 <area shape="rect" id="node1" title="Supprime une instance et libère la mémoire." alt="" coords="448,5,573,32"/>
 <area shape="rect" id="node2" href="$struct_8c.html#a29e44ee05de96b15bd1d11cbdb7ea4bc" title="Supprime une tournée et toutes ses instances." alt="" coords="280,5,400,32"/>
 <area shape="rect" id="node3" href="$tspReader_8c.html#a3943b0e61a764efa4beafa14a80bfedc" title="Supprime un problème et libère toutes les ressources associées." alt="" coords="108,5,232,32"/>
-<area shape="rect" id="node4" href="$main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Point d&#39;entrée principal du programme." alt="" coords="5,5,60,32"/>
+<area shape="rect" id="node4" href="$main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Fonction principale du programme." alt="" coords="5,5,60,32"/>
 </map>

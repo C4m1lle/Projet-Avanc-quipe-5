@@ -2,5 +2,5 @@
 <area shape="rect" id="node1" title="Crée une demi&#45;matrice à partir d&#39;une tournée et d&#39;une fonction de distance." alt="" coords="551,5,733,32"/>
 <area shape="rect" id="node2" href="$bruteforce_8c.html#ae4eed101c3e124032a5b34a149ec8017" title="Version optimisée de l&#39;algorithme force brute à l&#39;aide d&#39;une demi&#45;matrice de distances." alt="" coords="316,5,503,32"/>
 <area shape="rect" id="node3" href="$signal__handler_8c.html#ab9c0d4b895a32ee3a8875a8b8ec9cc6b" title="Initialise le gestionnaire de signal pour l&#39;algorithme de bruteforce." alt="" coords="108,5,268,32"/>
-<area shape="rect" id="node4" href="$main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Point d&#39;entrée principal du programme." alt="" coords="5,5,60,32"/>
+<area shape="rect" id="node4" href="$main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Fonction principale du programme." alt="" coords="5,5,60,32"/>
 </map>

@@ -1,5 +1,5 @@
 <map id="src/main.c" name="src/main.c">
-<area shape="rect" id="node1" title="Programme principal pour résoudre le TSP avec plusieurs méthodes heuristiques et exactes." alt="" coords="567,5,657,32"/>
+<area shape="rect" id="node1" title="Programme principal de résolution du TSP (Traveling Salesman Problem)." alt="" coords="567,5,657,32"/>
 <area shape="rect" id="node2" title=" " alt="" coords="5,162,72,189"/>
 <area shape="rect" id="node3" title=" " alt="" coords="117,80,187,107"/>
 <area shape="rect" id="node4" title=" " alt="" coords="211,80,282,107"/>

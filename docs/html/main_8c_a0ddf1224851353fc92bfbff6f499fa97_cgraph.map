@@ -1,49 +1,52 @@
 <map id="main" name="main">
-<area shape="rect" id="node1" title="Point d&#39;entrée principal du programme." alt="" coords="5,604,60,631"/>
-<area shape="rect" id="node2" href="$io_8c.html#a951a86daf3adb68adf229543ee23ca8b" title="Affiche les résultats pour Python ou fichier texte." alt="" coords="109,173,276,200"/>
-<area shape="rect" id="node3" href="$distance_8c.html#aa7e66abca651ebe127ef8a92497d817f" title="Initialise une tournée canonique et calcule sa distance totale." alt="" coords="151,224,235,251"/>
-<area shape="rect" id="node4" href="$tspReader_8c.html#a3943b0e61a764efa4beafa14a80bfedc" title="Supprime un problème et libère toutes les ressources associées." alt="" coords="131,275,255,301"/>
-<area shape="rect" id="node7" href="$nn_8c.html#a6f7d218342ef0f9a0fa30b0edba8333d" title="Application de l&#39;heuristique NN suivie d&#39;une optimisation 2&#45;opt." alt="" coords="143,477,242,504"/>
-<area shape="rect" id="node19" href="$nn_8c.html#a37d77f2b45aeb154d006dbd5779193a5" title="Heuristique du plus proche voisin (Nearest Neighbor)." alt="" coords="345,503,492,529"/>
-<area shape="rect" id="node20" href="$rw_8c.html#a494331bd94b33d5be1f17c1322640798" title="Heuristique combinée : Random Walk suivi d&#39;une optimisation 2&#45;opt." alt="" coords="143,427,242,453"/>
-<area shape="rect" id="node21" href="$rw_8c.html#a522bb50427b2d26bd2851e5e73df4208" title="Génère une tournée aléatoire en visitant chaque sommet exactement une fois." alt="" coords="363,376,474,403"/>
-<area shape="rect" id="node22" href="$distance_8c.html#aa6dadc7a13f030348c42d24fa7b61b78" title="Calcule la distance pseudo&#45;euclidienne (ATT) entre deux instances." alt="" coords="616,579,687,605"/>
-<area shape="rect" id="node24" href="$distance_8c.html#a976b3e437d171ee26ac36b28b20dae9c" title="Calcule la distance euclidienne 2D entre deux instances." alt="" coords="603,629,699,656"/>
-<area shape="rect" id="node25" href="$distance_8c.html#aecde2a42f4da5324ab08729066f01dcf" title="Calcule la distance géographique entre deux instances." alt="" coords="613,731,690,757"/>
-<area shape="rect" id="node27" href="$struct_8c.html#a2584e55be8c81fd1fc10e436e8d6d2be" title="Récupère le tableau des instances d&#39;une tournée." alt="" coords="341,731,496,757"/>
-<area shape="rect" id="node28" href="$tspReader_8c.html#a9fd95e7ccff4d71ac721ccd388143326" title="Récupère le type de distance du problème." alt="" coords="108,883,277,909"/>
-<area shape="rect" id="node29" href="$tspReader_8c.html#af155139d8179863806eec3d31e4fde6f" title="Récupère la tournée des villes du problème." alt="" coords="148,933,237,960"/>
-<area shape="rect" id="node30" href="$struct_8c.html#a95d9c2f2752443b803b69740f255d621" title="Récupère le nombre de villes dans la tournée." alt="" coords="349,781,489,808"/>
-<area shape="rect" id="node31" href="$tspReader_8c.html#adf3f02a549534f4d6efcea17c7d777d9" title="Charge un problème TSP depuis un fichier TSPLIB." alt="" coords="363,183,474,209"/>
-<area shape="rect" id="node35" href="$exec_8c.html#a775163171081bb5886b453825824517f" title="Exécute une méthode de résolution du TSP et mesure son temps d&#39;exécution." alt="" coords="171,984,214,1011"/>
-<area shape="rect" id="node36" href="$signal__handler_8c.html#ab9c0d4b895a32ee3a8875a8b8ec9cc6b" title="Initialise le gestionnaire de signal pour l&#39;algorithme de bruteforce." alt="" coords="113,832,273,859"/>
-<area shape="rect" id="node47" href="$io_8c.html#a92d1aa11ae3ffb29e174867ea1d45fa9" title="Affiche l&#39;usage de l&#39;application TSP." alt="" coords="162,1035,223,1061"/>
-<area shape="rect" id="node5" href="$struct_8c.html#a29e44ee05de96b15bd1d11cbdb7ea4bc" title="Supprime une tournée et toutes ses instances." alt="" coords="359,56,479,83"/>
-<area shape="rect" id="node6" href="$struct_8c.html#a640303333d08b6d186eea65a795d69d8" title="Supprime une instance et libère la mémoire associée." alt="" coords="589,5,714,32"/>
-<area shape="rect" id="node8" href="$opt2_8c.html#a14dbf11f1266456ff122e6900a9f8f91" title="Optimisation 2&#45;opt sur une tournée donnée (first improvement)." alt="" coords="393,427,444,453"/>
-<area shape="rect" id="node9" href="$struct_8c.html#ace11200ddd03bb97d3976db37d0034b2" title="Ajoute une instance dans une tournée." alt="" coords="590,208,713,235"/>
-<area shape="rect" id="node10" href="$struct_8c.html#a2ae1bdfc0a748027da966101a16f3528" title="Crée une tournée avec une taille initiale donnée." alt="" coords="591,259,711,285"/>
-<area shape="rect" id="node11" href="$struct_8c.html#a3ef0d5208385f6a4409c9e098cdd6fa9" title="Supprime une tournée sans supprimer ses instances." alt="" coords="563,310,739,351"/>
-<area shape="rect" id="node12" href="$struct_8c.html#ab275e2c975f1b590005aad5b56f7ee6a" title="Récupère l&#39;identifiant d&#39;une instance." alt="" coords="620,427,683,453"/>
-<area shape="rect" id="node13" href="$struct_8c.html#a39ea0a9ae06284ddbe6ac24ea79f26e6" title="Récupère l&#39;instance à une position donnée dans la tournée." alt="" coords="804,427,929,453"/>
-<area shape="rect" id="node14" href="$opt2_8c.html#a207e2f324a4c5da219513863631bedd3" title="Vérifie si deux segments sont croisés." alt="" coords="606,680,697,707"/>
-<area shape="rect" id="node17" href="$struct_8c.html#a9d3d7e114248bd5ca06bb44c2e096afa" title="Inverse un segment d&#39;une tournée entre deux indices." alt="" coords="584,528,719,555"/>
-<area shape="rect" id="node18" href="$distance_8c.html#a049910f8b67f9e3f6da2c571d3a7c4b3" title="Calcule la longueur totale d&#39;une tournée avec une fonction de distance donnée." alt="" coords="603,477,699,504"/>
-<area shape="rect" id="node15" href="$struct_8c.html#a9e83df5c8d31f650ba6a20f0ecaaa71c" title="Récupère la coordonnée x d&#39;une instance." alt="" coords="837,629,896,656"/>
-<area shape="rect" id="node16" href="$struct_8c.html#a86253305b7972b90ceb3d0af74954ccf" title="Récupère la coordonnée y d&#39;une instance." alt="" coords="837,680,896,707"/>
-<area shape="rect" id="node23" href="$distance_8c.html#a3b754d7a04e9c1b0e58eae4e68004344" title="Fonction utilitaire : arrondi d&#39;un double à l&#39;entier le plus proche." alt="" coords="843,579,890,605"/>
-<area shape="rect" id="node26" href="$distance_8c.html#a46ae9ce1d1d67dcfc009bcf89e27f41c" title="Convertit une coordonnée GEO en radians." alt="" coords="819,731,914,757"/>
-<area shape="rect" id="node32" href="$struct_8c.html#af4980ee2bf5eb2477e646e37897d1946" title="Crée une instance (ville) avec un ID et des coordonnées." alt="" coords="589,56,714,83"/>
-<area shape="rect" id="node33" href="$tspReader_8c.html#aecc937ba40c7ff37e2054d66389d458f" title="Crée une structure tProbleme vide." alt="" coords="589,107,713,133"/>
-<area shape="rect" id="node34" href="$tspReader_8c.html#af8a091a250e272d38025218ae4cd4dbd" title="Alloue une copie d&#39;une chaîne de caractères." alt="" coords="603,157,700,184"/>
-<area shape="rect" id="node37" href="$bruteforce_8c.html#ae0234e2402f791057934a6315a1c520c" title="Résout le problème du voyageur de commerce par force brute." alt="" coords="374,959,463,985"/>
-<area shape="rect" id="node39" href="$bruteforce_8c.html#ae4eed101c3e124032a5b34a149ec8017" title="Version optimisée de l&#39;algorithme force brute à l&#39;aide d&#39;une demi&#45;matrice de distances." alt="" coords="325,883,512,909"/>
-<area shape="rect" id="node45" href="$signal__handler_8c.html#a982710100d1fa0b628b48c409f7c179d" title="Signal handler pour l&#39;interruption Ctrl+C." alt="" coords="367,832,470,859"/>
-<area shape="rect" id="node38" href="$bruteforce_8c.html#abb73104feb2330f83099329823408415" title="Génère la permutation suivante dans l&#39;ordre lexicographique." alt="" coords="582,984,721,1011"/>
-<area shape="rect" id="node40" href="$demi__matrice_8c.html#aba2bf80aab5986d99ceb04228d377a9b" title="Crée une demi&#45;matrice à partir d&#39;une tournée et d&#39;une fonction de distance." alt="" coords="560,883,743,909"/>
-<area shape="rect" id="node43" href="$demi__matrice_8c.html#ac293a35d177017986f4c072cadac6612" title="Libère la mémoire occupée par une demi&#45;matrice." alt="" coords="566,933,737,960"/>
-<area shape="rect" id="node44" href="$demi__matrice_8c.html#af4bce30800e352801246c8b6b6f26612" title="Obtient la distance entre deux villes dans une demi&#45;matrice." alt="" coords="586,832,717,859"/>
-<area shape="rect" id="node41" href="$demi__matrice_8c.html#a8d63c42fe21689c516da08c2d4355b2e" title="Crée une demi&#45;matrice vide pour un nombre donné de villes." alt="" coords="791,908,943,935"/>
-<area shape="rect" id="node42" href="$demi__matrice_8c.html#ad35e16f43889b282e2839a4a1db8840d" title="Définit la distance entre deux villes dans une demi&#45;matrice." alt="" coords="804,857,929,884"/>
-<area shape="rect" id="node46" href="$signal__handler_8c.html#a5d543370170cc2966c8ca10c218d0746" title="Affiche la permutation courante." alt="" coords="609,781,694,808"/>
+<area shape="rect" id="node1" title="Fonction principale du programme." alt="" coords="5,791,60,817"/>
+<area shape="rect" id="node2" href="$io_8c.html#a951a86daf3adb68adf229543ee23ca8b" title="Affiche les résultats pour Python ou fichier texte." alt="" coords="118,5,285,32"/>
+<area shape="rect" id="node3" href="$distance_8c.html#aa7e66abca651ebe127ef8a92497d817f" title="Initialise une tournée canonique et calcule sa distance totale." alt="" coords="394,563,478,589"/>
+<area shape="rect" id="node4" href="$struct_8c.html#ab275e2c975f1b590005aad5b56f7ee6a" title="Récupère l&#39;identifiant d&#39;une instance." alt="" coords="634,639,697,665"/>
+<area shape="rect" id="node5" href="$tspReader_8c.html#a3943b0e61a764efa4beafa14a80bfedc" title="Supprime un problème et libère toutes les ressources associées." alt="" coords="139,56,263,83"/>
+<area shape="rect" id="node8" href="$struct_8c.html#a3ef0d5208385f6a4409c9e098cdd6fa9" title="Supprime une tournée sans supprimer ses instances." alt="" coords="577,209,753,250"/>
+<area shape="rect" id="node9" href="$nn_8c.html#a6f7d218342ef0f9a0fa30b0edba8333d" title="Application de l&#39;heuristique NN suivie d&#39;une optimisation 2&#45;opt." alt="" coords="152,461,251,488"/>
+<area shape="rect" id="node13" href="$struct_8c.html#a39ea0a9ae06284ddbe6ac24ea79f26e6" title="Récupère l&#39;instance à une position donnée dans la tournée." alt="" coords="801,816,927,843"/>
+<area shape="rect" id="node18" href="$nn_8c.html#a37d77f2b45aeb154d006dbd5779193a5" title="Heuristique du plus proche voisin (Nearest Neighbor)." alt="" coords="363,360,509,387"/>
+<area shape="rect" id="node19" href="$rw_8c.html#a494331bd94b33d5be1f17c1322640798" title="Heuristique combinée : Random Walk suivi d&#39;une optimisation 2&#45;opt." alt="" coords="152,512,251,539"/>
+<area shape="rect" id="node20" href="$rw_8c.html#a522bb50427b2d26bd2851e5e73df4208" title="Génère une tournée aléatoire en visitant chaque sommet exactement une fois." alt="" coords="381,411,491,437"/>
+<area shape="rect" id="node21" href="$distance_8c.html#aa6dadc7a13f030348c42d24fa7b61b78" title="Calcule la distance pseudo&#45;euclidienne (ATT) entre deux instances." alt="" coords="630,157,701,184"/>
+<area shape="rect" id="node23" href="$distance_8c.html#a976b3e437d171ee26ac36b28b20dae9c" title="Calcule la distance euclidienne 2D entre deux instances." alt="" coords="617,107,713,133"/>
+<area shape="rect" id="node24" href="$distance_8c.html#aecde2a42f4da5324ab08729066f01dcf" title="Calcule la distance géographique entre deux instances." alt="" coords="627,325,704,352"/>
+<area shape="rect" id="node26" href="$ga_8c.html#aa799c352015dae9826b911144d3afbc8" title="Copie un individu (tournée) pour créer un nouvel individu." alt="" coords="381,1019,491,1045"/>
+<area shape="rect" id="node27" href="$struct_8c.html#a95d9c2f2752443b803b69740f255d621" title="Récupère le nombre de villes dans la tournée." alt="" coords="595,1221,735,1248"/>
+<area shape="rect" id="node28" href="$ga_8c.html#a216be71b03d6019e7a5a9b4df7837956" title="Crée une tournée aléatoire." alt="" coords="348,917,524,944"/>
+<area shape="rect" id="node29" href="$ga_8c.html#ad146d4f57a9e5a4af91378d3be395a5b" title="Supprime un individu sans libérer la mémoire des instances." alt="" coords="142,259,261,285"/>
+<area shape="rect" id="node30" href="$ga_8c.html#adf0ea851daef7578dc44321421271583" title="Applique le crossover DPX (Distance Preserving Crossover) entre deux parents." alt="" coords="132,816,271,843"/>
+<area shape="rect" id="node31" href="$struct_8c.html#a2584e55be8c81fd1fc10e436e8d6d2be" title="Récupère le tableau des instances d&#39;une tournée." alt="" coords="359,1171,513,1197"/>
+<area shape="rect" id="node33" href="$ga_8c.html#af8b8fb5ea7dd1a25172a66a41743de3c" title="Calcule la fitness d&#39;un individu (longueur totale du tour)." alt="" coords="141,563,262,589"/>
+<area shape="rect" id="node34" href="$ga_8c.html#aaba5e8273592b612c2fbd652ad257079" title="Applique une mutation de type swap sur un individu." alt="" coords="373,1475,499,1501"/>
+<area shape="rect" id="node36" href="$ga_8c.html#a58fb1f9fda72d8062cedc84e1ae6ea53" title="Applique le crossover Ordered Crossover (OX) entre deux parents." alt="" coords="353,765,519,792"/>
+<area shape="rect" id="node37" href="$ga_8c.html#a897a1f43bf496080ea08ad1bf2abb320" title="Exécute l&#39;algorithme génétique complet sur une population." alt="" coords="168,1221,235,1248"/>
+<area shape="rect" id="node38" href="$ga_8c.html#af0597e276fcfe2117e4b9c1f5d681cb6" title="Sélectionne un individu via le tournoi." alt="" coords="108,1012,295,1039"/>
+<area shape="rect" id="node39" href="$tspReader_8c.html#a9fd95e7ccff4d71ac721ccd388143326" title="Récupère le type de distance du problème." alt="" coords="117,1323,286,1349"/>
+<area shape="rect" id="node40" href="$tspReader_8c.html#af155139d8179863806eec3d31e4fde6f" title="Récupère la tournée des villes du problème." alt="" coords="157,1373,246,1400"/>
+<area shape="rect" id="node41" href="$tspReader_8c.html#adf3f02a549534f4d6efcea17c7d777d9" title="Charge un problème TSP depuis un fichier TSPLIB." alt="" coords="381,1525,491,1552"/>
+<area shape="rect" id="node45" href="$exec_8c.html#a775163171081bb5886b453825824517f" title="Exécute une méthode de résolution du TSP et mesure son temps d&#39;exécution." alt="" coords="180,1475,223,1501"/>
+<area shape="rect" id="node46" href="$signal__handler_8c.html#ab9c0d4b895a32ee3a8875a8b8ec9cc6b" title="Initialise le gestionnaire de signal pour l&#39;algorithme de bruteforce." alt="" coords="121,1272,281,1299"/>
+<area shape="rect" id="node50" href="$io_8c.html#a92d1aa11ae3ffb29e174867ea1d45fa9" title="Affiche l&#39;usage de l&#39;application TSP." alt="" coords="171,1576,232,1603"/>
+<area shape="rect" id="node6" href="$struct_8c.html#a29e44ee05de96b15bd1d11cbdb7ea4bc" title="Supprime une tournée et toutes ses instances." alt="" coords="376,56,496,83"/>
+<area shape="rect" id="node7" href="$struct_8c.html#a640303333d08b6d186eea65a795d69d8" title="Supprime une instance et libère la mémoire associée." alt="" coords="603,56,728,83"/>
+<area shape="rect" id="node10" href="$opt2_8c.html#a14dbf11f1266456ff122e6900a9f8f91" title="Optimisation 2&#45;opt sur une tournée donnée (first improvement)." alt="" coords="411,461,461,488"/>
+<area shape="rect" id="node11" href="$struct_8c.html#ace11200ddd03bb97d3976db37d0034b2" title="Ajoute une instance dans une tournée." alt="" coords="604,931,727,957"/>
+<area shape="rect" id="node12" href="$struct_8c.html#a2ae1bdfc0a748027da966101a16f3528" title="Crée une tournée avec une taille initiale donnée." alt="" coords="605,873,725,900"/>
+<area shape="rect" id="node14" href="$opt2_8c.html#a207e2f324a4c5da219513863631bedd3" title="Vérifie si deux segments sont croisés." alt="" coords="620,275,711,301"/>
+<area shape="rect" id="node17" href="$distance_8c.html#a049910f8b67f9e3f6da2c571d3a7c4b3" title="Calcule la longueur totale d&#39;une tournée avec une fonction de distance donnée." alt="" coords="617,512,713,539"/>
+<area shape="rect" id="node15" href="$struct_8c.html#a9e83df5c8d31f650ba6a20f0ecaaa71c" title="Récupère la coordonnée x d&#39;une instance." alt="" coords="835,187,893,213"/>
+<area shape="rect" id="node16" href="$struct_8c.html#a86253305b7972b90ceb3d0af74954ccf" title="Récupère la coordonnée y d&#39;une instance." alt="" coords="835,245,893,272"/>
+<area shape="rect" id="node22" href="$distance_8c.html#a3b754d7a04e9c1b0e58eae4e68004344" title="Fonction utilitaire : arrondi d&#39;un double à l&#39;entier le plus proche." alt="" coords="841,132,887,159"/>
+<area shape="rect" id="node25" href="$distance_8c.html#a46ae9ce1d1d67dcfc009bcf89e27f41c" title="Convertit une coordonnée GEO en radians." alt="" coords="817,325,911,352"/>
+<area shape="rect" id="node32" href="$struct_8c.html#a254e7b862c7bbfe65793947a8189b4dc" title="Récupère une instance par son identifiant." alt="" coords="363,664,509,691"/>
+<area shape="rect" id="node35" href="$struct_8c.html#a82c61cf92e07df0f8fb5dc51a0f28be8" title="Modifie l&#39;instance à un index donné dans la tournée." alt="" coords="603,1399,727,1425"/>
+<area shape="rect" id="node42" href="$struct_8c.html#af4980ee2bf5eb2477e646e37897d1946" title="Crée une instance (ville) avec un ID et des coordonnées." alt="" coords="603,1500,728,1527"/>
+<area shape="rect" id="node43" href="$tspReader_8c.html#aecc937ba40c7ff37e2054d66389d458f" title="Crée une structure tProbleme vide." alt="" coords="603,1551,727,1577"/>
+<area shape="rect" id="node44" href="$tspReader_8c.html#af8a091a250e272d38025218ae4cd4dbd" title="Alloue une copie d&#39;une chaîne de caractères." alt="" coords="617,1601,714,1628"/>
+<area shape="rect" id="node47" href="$bruteforce_8c.html#ae0234e2402f791057934a6315a1c520c" title="Résout le problème du voyageur de commerce par force brute." alt="" coords="391,1424,481,1451"/>
+<area shape="rect" id="node48" href="$bruteforce_8c.html#ae4eed101c3e124032a5b34a149ec8017" title="Version optimisée de l&#39;algorithme force brute à l&#39;aide d&#39;une demi&#45;matrice de distances." alt="" coords="343,1323,529,1349"/>
+<area shape="rect" id="node49" href="$signal__handler_8c.html#a982710100d1fa0b628b48c409f7c179d" title="Signal handler pour l&#39;interruption Ctrl+C." alt="" coords="385,1373,487,1400"/>
 </map>
