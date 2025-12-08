@@ -1,5 +1,5 @@
 sortie python att10.tsp 
-parametre ga 10 1000 0.1
+parametre ga 30 1000 0.1
 Longueur du tour canonique (tsplib95 built in) = 11698
 
 
